@@ -1,0 +1,13 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.AboutUsText
+
+@{
+    ViewData["Title"] = SharedResource.AS_Title;
+}
+
+<section class="text-center p-5">
+    <div class="title-fade-in container bg-white rounded-3 p-4 shadow" style="max-width: 60%;">
+       @Html.Raw(@SharedResource.AS_Text)
+    </div>
+</section>

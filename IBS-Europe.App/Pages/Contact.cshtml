@@ -1,0 +1,215 @@
+﻿@page
+@model IBS_Europe.App.Pages.Contact
+
+@{
+    ViewData["Title"] = "Contact";
+    @Html.Partial("_EditInformationsModal", Model)
+    @Html.Partial("_DeleteConfirmationModal");
+}
+
+<section id="contact" class="container p-4" xmlns="http://www.w3.org/1999/html">
+    <div class="row">
+        <!-- Colonne gauche : Formulaire de contact -->
+        <div class="col-md-6">
+            <h3 class="mb-4">Contactez-nous</h3>
+            
+            @if (TempData["SuccessMessage"] != null)
+                {
+                    <div class="alert alert-success" role="alert">
+                        @TempData["SuccessMessage"]
+                    </div>
+                }
+             @if (TempData["ErrorMessage"] != null)
+                {
+                    <div class="alert alert-danger" role="alert">
+                        @TempData["ErrorMessage"]
+                    </div>
+                }
+            
+           <form method="post" enctype="multipart/form-data">
+               <div class="row">
+                   <div class="col-md-6 mb-3">
+                       <label for="firstname" class="form-label">Prénom</label>
+                       <input type="text" class="form-control" id="firstname" asp-for="Input.FirstName"/>
+                       <span asp-validation-for="Input.FirstName" class="text-danger"></span>
+                   </div>
+                   <div class="col-md-6 mb-3">
+                       <label for="lastname" class="form-label">Nom</label>
+                       <input type="text" class="form-control" id="lastname" asp-for="Input.LastName"/>
+                       <span asp-validation-for="Input.LastName" class="text-danger"></span>
+                   </div>
+               </div>
+           
+               <div class="row">
+                   <div class="col-md-6 mb-3">
+                       <label for="phone" class="form-label">Téléphone</label>
+                       <input type="tel" class="form-control" id="phone" asp-for="Input.Phone"/>
+                       <span asp-validation-for="Input.Phone" class="text-danger"></span>
+                   </div>
+                   <div class="col-md-6 mb-3">
+                       <label for="email" class="form-label">Email</label>
+                       <input type="email" class="form-control" id="email" asp-for="Input.Email"/>
+                       <span asp-validation-for="Input.Email" class="text-danger"></span>
+                   </div>
+               </div>
+           
+               <div class="mb-3">
+                   <label for="subject" class="form-label">Sujet</label>
+                   <select asp-for="Input.Sort" class="form-select" id="subject">
+                       <option value="" disabled selected>Choisissez un sujet</option>
+                       @foreach (var email in Model.EmailList)
+                       {
+                           <option title="@email.Description" value="@email.Name">@email.Name</option>
+                       }
+                   </select>
+                   <span asp-validation-for="Input.Sort" class="text-danger"></span>
+               </div>
+           
+               <div class="mb-3">
+                   <label for="message" class="form-label">Message</label>
+                   <textarea class="form-control" id="message" asp-for="Input.Message" rows="5"></textarea>
+                   <span asp-validation-for="Input.Message" class="text-danger"></span>
+               </div>
+           
+               <div class="mb-3">
+                   <label for="picture" class="form-label">Joindre un fichier (PNG, JPEG, PDF)</label>
+                   <!-- Utilisation de asp-for pour la cohérence -->
+                   <input type="file" class="form-control" id="picture" asp-for="Input.Attachment" accept=".png, .jpeg, .jpg, .pdf">
+                   <span asp-validation-for="Input.Attachment" class="text-danger"></span>
+               </div>
+           
+               <p class="text-primary">Si votre formulaire a été refusé, veuillez remettre votre pièce jointe s'il vous plaît.</p>
+           
+               <button type="submit" class="btn btn-primary">Envoyer</button>
+           </form>
+
+        </div>
+
+        <!-- Colonne droite : Informations principales -->
+       <div class="col-md-6">
+       
+           <!-- Informations sur l'entreprise avec icônes -->
+            <img src="images/IBS-logo-bleu-2_HD.JPG" alt="LinkedIn" style="width: 15em; margin-left: 10em;">
+                   <div class="company-info p-4 shadow-sm rounded bg-light"
+                        style="border: 0.1em solid midnightblue; position: relative; margin-top: @(User.Identity.IsAuthenticated ? "5%" : "8%");">
+       
+                       @foreach(var info in Model.Informations)
+                      {
+                          <div class="d-flex justify-content-between align-items-center mb-3">
+                              <!-- Partie gauche avec icône et texte -->
+                              <div class="d-flex align-items-center">
+                                  <!-- Icône -->
+                                  <span class="d-flex align-items-center justify-content-center" style="width: 2.5rem;">
+                                      @switch ((int)info.Type)
+                                      {
+                                          case 1:
+                                              <i class="fas fa-phone-alt fs-4 text-primary"></i>
+                                              break;
+                                          case 2:
+                                              <i class="fas fa-envelope fs-4 text-primary"></i>
+                                              break;
+                                          case 3:
+                                              <i class="fas fa-map-marker-alt fs-4 text-primary"></i>
+                                              break;
+                                          default:
+                                              <i class="fas fa-info-circle fs-4 text-primary"></i>
+                                              break;
+                                      }
+                                  </span>
+                      
+                                  <!-- Texte -->
+                                  <strong class="ms-2">@info.Description:</strong>
+                                  @if ((int)info.Type == 1 || (int)info.Type == 2 || (int)info.Type == 3)
+                                  {
+                                      <a href="@(
+                                         (int)info.Type == 3 ? 
+                                         $"https://www.google.com/maps/place/{Uri.EscapeDataString(info.Text)}" :
+                                         (int)info.Type == 1 ? 
+                                         $"tel:{info.Text}" :
+                                         (int)info.Type == 2 ? 
+                                         $"mailto:{info.Text}" : 
+                                         "#"
+                                         )"
+                                         target="@((int)info.Type == 3 ? "_blank" : "")"
+                                         class="text-decoration-none text-dark ms-2" style="font-weight: 600;">
+                                          @info.Text
+                                      </a>
+                                  }
+                                  else
+                                  {
+                                      <span class="text-dark ms-2" style="font-weight: 600;">@info.Text</span>
+                                  }
+                                  
+                                   @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                                   {
+                                       <form method="post" asp-page-handler="Switch" class="ms-2">
+                                           <input type="hidden" name="direction" value="top" />
+                                           <input type="hidden" name="priority" value="@info.Priority" />
+                                           <button type="submit" class="btn p-0">
+                                               <i class="fas fa-arrow-up fs-6 text-muted cursor"></i>
+                                           </button>
+                                       </form>
+                      
+                                       <form method="post" class="ms-2" asp-page-handler="Switch">
+                                           <input type="hidden" name="direction" value="bottom" />
+                                           <input type="hidden" name="priority" value="@info.Priority" />
+                                           <button type="submit" class="btn p-0">
+                                               <i class="fas fa-arrow-down fs-6 text-muted cursor"></i>
+                                           </button>
+                                       </form>
+                                   }
+                                                                    
+                              </div>
+                              
+                          </div>
+                      }
+
+       
+                       @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                       {
+                           <!-- Bouton d'édition dans le coin inférieur droit -->
+                           <button type="button" class="btn button-1" data-bs-toggle="modal"
+                                   data-bs-target="#editInformationsModal" style="position: absolute; top: 10px; right: 10px;">
+                               <i class="fas fa-edit"></i>
+                           </button>
+                       }
+                   </div>
+               </div>
+            
+            
+    </div>
+</section>
+
+@section Scripts {
+    <script>
+   $(document).ready(function () {
+       var isAddInformation = '@Model.IsAddInformation';
+       if (isAddInformation === 'True') {
+           var modal = new bootstrap.Modal(document.getElementById('addInformationModal'));
+           modal.show();
+       }
+   });
+   
+   $(document).ready(function () {
+          var IsAddEmail = '@Model.IsAddEmail';
+          if (IsAddEmail === 'True') {
+              var modal = new bootstrap.Modal(document.getElementById('addEmailModal'));
+              modal.show();
+          }
+      });
+   
+    $(document).ready(function () {
+             var isOpenInfo = '@Model.isOpenInfo';
+             if (isOpenInfo === 'True') {
+                 var modal = new bootstrap.Modal(document.getElementById('editInformationsModal'));
+                 modal.show();
+             }
+         });
+    
+    function openDeleteModal(id) {
+       document.getElementById("contactId").value = id;
+    }
+</script>
+}
+
+

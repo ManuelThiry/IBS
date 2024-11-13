@@ -1,0 +1,38 @@
+﻿@using IBS_Europe.App.Resources
+<div class="modal fade" id="deleteConfirmationModal" tabindex="-1" aria-labelledby="deleteConfirmationLabel" data-bs-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="post" 
+              asp-page="@(ViewData["Title"]?.ToString() == SharedResource.B_Title ? 
+                            "BrokerSpace" : 
+                            ViewData["Title"]?.ToString() == SharedResource.AT_Title ? 
+                                "AboutUsTeam" : 
+                                ViewData["Title"]?.ToString() == SharedResource.P_Title ? 
+                                    "Products" : 
+                                    ViewData["Title"]?.ToString() == SharedResource.Pa_Title ? 
+                                        "Partners" : 
+                                        "Contact")"
+              asp-page-handler="Delete">
+            
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="deleteConfirmationLabel">@SharedResource.MAD_Title</h5>
+                <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                @SharedResource.MAD_Text
+            </div>
+            <div class="modal-footer">
+                <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
+                    <input type="hidden" name="priority" id="priorityInput" value="" /> 
+                    <input type="hidden" id="brokerId" name="brokerId" value="" />
+                    <input type="hidden" id="peopleId" name="id" value="" />
+                    <input type="hidden" id="productId" name="productId" value="" />
+                    <input type="hidden" id="contactId" name="contactId" value="" />
+                    <button type="submit" class="btn btn-danger">@SharedResource.MAD_Delete
+            </button>
+              </div>
+                    </div>
+                </form>
+          
+    </div>
+</div>

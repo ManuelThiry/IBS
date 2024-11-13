@@ -1,0 +1,76 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.ProfileModel
+@{
+    ViewData["Title"] = SharedResource.Pr_Title;
+}
+
+<section class="container mt-5">
+    <!-- Bouton pour se déconnecter (en haut de la page) -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h2 class="mb-0">@SharedResource.Pr_MyP</h2>
+        <form method="post" asp-page-handler="Logout">
+            <button type="submit" class="btn btn-danger">@SharedResource.Pr_Logout</button>
+        </form>
+        <a asp-page="/Translate" class="btn btn-success">@SharedResource.Pr_TranslateB</a>
+    </div>
+
+      @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success" role="alert">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+    
+    <!-- Formulaire pour changer le nom d'utilisateur -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-midnight text-white">
+            <h4>@SharedResource.Pr_SwitchUsername</h4>
+        </div>
+        <div class="card-body">
+           <form method="post" asp-page-handler="ChangeUsername">
+               <div class="form-group mb-3">
+                   <label for="username" class="form-label">@SharedResource.Pr_CurrentU</label>
+                   <input type="text" class="form-control" id="username" value="@Model.UserName.CurrentUsername" disabled />
+               </div>
+               <div class="form-group mb-3">
+                   <label for="newUsername" class="form-label">@SharedResource.Pr_NewU</label>
+                   <input type="text" class="form-control" id="newUsername" asp-for="@Model.UserName.NewUsername" />
+                   <span asp-validation-for="@Model.UserName.NewUsername" class="text-danger"></span>
+               </div>
+               <button type="submit" class="button-1">@SharedResource.Pr_ChangeU</button>
+           </form>
+        </div>
+    </div>
+
+    <!-- Formulaire pour changer le mot de passe -->
+    <div class="card shadow-lg mb-4">
+        <div class="card-header bg-midnight text-white">
+            <h4>@SharedResource.Pr_SwitchP</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" asp-page-handler="ChangePassword">
+                <div class="form-group mb-3">
+                    <label for="currentPassword" class="form-label">@SharedResource.Pr_CurrentP</label>
+                    <input type="password" class="form-control" id="currentPassword" asp-for="Password.CurrentPassword" />
+                    <span asp-validation-for="Password.CurrentPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="newPassword" class="form-label">@SharedResource.Pr_NewP</label>
+                    <input type="password" class="form-control" id="newPassword" asp-for="Password.NewPassword" />
+                    <span asp-validation-for="Password.NewPassword" class="text-danger"></span>
+                </div>
+                <div class="form-group mb-3">
+                    <label for="confirmPassword" class="form-label">@SharedResource.Pr_ConfirmP</label>
+                    <input type="password" class="form-control" id="confirmPassword" asp-for="Password.ConfirmPassword" />
+                    <span asp-validation-for="Password.ConfirmPassword" class="text-danger"></span>
+                </div>
+                <button type="submit" class="button-1">@SharedResource.Pr_ChangeP</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

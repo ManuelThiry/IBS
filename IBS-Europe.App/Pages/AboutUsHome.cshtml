@@ -1,0 +1,50 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.AboutUsHome
+
+@{
+    ViewData["Title"] = SharedResource.AH_Title;
+}
+
+<style>
+    .size {
+        width: 25em;
+        height: 20em;
+    }
+    
+    .engage {
+         background-image: url("images/engagement.jpg");
+         background-size: cover;       
+    }
+    
+    .teams {
+        background-image: url("images/equipe.jpg");
+        background-size: cover;
+    }
+    
+</style>
+
+<div class="container mt-5">
+    <h1 class="text-center">@SharedResource.AH_Title</h1>
+    <div class="mt-5 d-flex flex-column flex-md-row justify-content-center gap-3">
+        <a asp-page="/AboutUsText" class="m-1">
+            
+            <button class="btn button-1 size engage">
+                <fieldset class="p-1 rounded-4 bg-transparent-light border-black">
+                    <p class="m-1 text-black fs-3">@SharedResource.AH_Commitments</p>
+                </fieldset>
+            </button>
+        </a>
+        <a asp-page="/AboutUsTeam" class="m-1">
+            <button class="btn button-1 size teams">
+                <fieldset class="p-1 rounded-4 bg-transparent-light border-black">
+                    <p class="m-1 text-black fs-3">@SharedResource.AT_Title</p>
+                </fieldset>
+            </button>
+        </a>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/js/aboutUsHome.js"></script>
+}

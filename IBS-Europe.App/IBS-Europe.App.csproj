@@ -1,0 +1,205 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net6.0</TargetFramework>
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <RootNamespace>IBS_Europe.App</RootNamespace>
+      <UserSecretsId>324dff46-d24d-401d-b8c1-3ba3c9b71be3</UserSecretsId>
+  </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Remove="wwwroot\images\ibs-removebg-preview\**" />
+      <Compile Remove="Pages\Profile.cs" />
+      <Compile Remove="Pages\AddPartner.cshtml.cs" />
+      <Compile Remove="Pages\Shared\Controller1.cs" />
+      <Compile Remove="Pages\Shared\Model\UsernameModel.cs" />
+      <Compile Remove="Pages\Shared\ChangeUsername.cshtml.cs" />
+      <Compile Remove="Pages\Shared\Model\**" />
+      <Compile Remove="Pages\Mentions.cs" />
+      <Compile Update="Pages\Resources\SharedResource.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResource.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Pages\Resources\SharedResources.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResources.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\SharedResources.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResources.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\SharedResources.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResources.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Resource.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resource.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Resource.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>Resource.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Pages\Shared\_Layout.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.fr.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\Pages\Shared\_Layout.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>_Layout.en.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\SharedResource.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResource.enresx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\SharedResource.fr.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResource.fr-FR.resx</DependentUpon>
+      </Compile>
+      <Compile Remove="Resources\SharedResource.en-USS.Designer.cs" />
+      <Compile Update="Resources\SharedResources.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResources.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\SharedResource.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResource.resx</DependentUpon>
+      </Compile>
+      <Compile Update="Resources\SharedResource.en.Designer.cs">
+        <DesignTime>True</DesignTime>
+        <AutoGen>True</AutoGen>
+        <DependentUpon>SharedResource.en.resx</DependentUpon>
+      </Compile>
+      <Compile Remove="Pages\Shared\Email\EmailService.cs" />
+      <Compile Remove="Pages\Shared\Email\GmailAuthService.cs" />
+      <Compile Remove="Controllers\MailController.cs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <EmbeddedResource Remove="wwwroot\images\ibs-removebg-preview\**" />
+      <EmbeddedResource Remove="Pages\Shared\Model\**" />
+      <EmbeddedResource Update="Pages\Resources\SharedResource.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Layout.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Pages\Resources\SharedResources.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>IBS.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResources.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResources.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResources.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResource.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResource.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Resource.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Resource.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>Resource.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\Shared\_Layout.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.fr.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\Pages\Shared\_Layout.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>_Layout.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResource.enresx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.en-US.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResource.fr.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.fr-FR.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Remove="Resources\SharedResource.en-USS.resx" />
+      <EmbeddedResource Update="Resources\SharedResources.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResources.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResource.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+      <EmbeddedResource Update="Resources\SharedResource.en.resx">
+        <Generator>ResXFileCodeGenerator</Generator>
+        <LastGenOutput>SharedResource.en.Designer.cs</LastGenOutput>
+      </EmbeddedResource>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Content Remove="wwwroot\images\ibs-removebg-preview\**" />
+      <Content Remove="wwwroot\js\site.js" />
+      <Content Remove="wwwroot\js\aboutUsTeam.js" />
+      <Content Remove="Pages\AddPartner.cshtml" />
+      <Content Remove="Pages\Shared\Model\Page1.cshtml" />
+      <Content Remove="Pages\Shared\_UsernameModelForm.cshtml" />
+      <Content Remove="Pages\Shared\ChangeUsername.cshtml" />
+      <Content Remove="Pages\Shared\Model\**" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Remove="wwwroot\images\ibs-removebg-preview\**" />
+      <None Remove="Pages\Shared\Model\**" />
+      <None Remove="Pages\Shared\Email\NewFile1.txt" />
+        
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\IBS-Europe.Domains\IBS-Europe.Domains.csproj" />
+      <ProjectReference Include="..\IBS-Europe.Infrastructures\IBS-Europe.Infrastructures.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Google.Apis.Auth" Version="1.68.0" />
+      <PackageReference Include="MailKit" Version="4.8.0" />
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.24">
+        <PrivateAssets>all</PrivateAssets>
+        <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      </PackageReference>
+      <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="6.0.24" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <Folder Include="Data\" />
+      <Folder Include="Pages\Shared\Translation\" />
+      <Folder Include="wwwroot\images\Brokers\" />
+      <Folder Include="wwwroot\images\Partners\" />
+      <Folder Include="wwwroot\images\People\" />
+      <Folder Include="wwwroot\images\Products\" />
+    </ItemGroup>
+
+
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Pages\Shared\Model\Page1.cshtml" />
+    </ItemGroup>
+
+</Project>

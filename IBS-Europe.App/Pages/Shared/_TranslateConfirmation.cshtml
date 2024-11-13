@@ -1,0 +1,19 @@
+﻿@using IBS_Europe.App.Resources
+<div class="modal fade" id="translateConfirmationModal" tabindex="-1" aria-labelledby="translateConfirmationLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="translateConfirmationLabel">@SharedResource.T_ConfirmT</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @SharedResource.T_Validation
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.T_Cancel</button>
+                <!-- Utilisation de JavaScript pour soumettre le formulaire -->
+                <button type="button" class="btn btn-success" id="confirmTranslationButton">@SharedResource.T_ValidationB</button>
+            </div>
+        </div>
+    </div>
+</div>

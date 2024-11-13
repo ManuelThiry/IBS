@@ -1,0 +1,246 @@
+﻿@page
+@using IBS_Europe.Domains
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.BrokerSpace
+@{
+    ViewData["Title"] = SharedResource.B_Title;
+    @Html.Partial("_DeleteConfirmationModal");
+    @Html.Partial("_AddBrokerModal", Model.Input);
+    @Html.Partial("_EditBrokerModal", Model.Input);
+}
+
+    <style>
+        .highlight-section {
+            background-color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .highlight-section h2 {
+            border-bottom: 2px solid #007bff;
+            padding-bottom: 10px;
+        }
+        
+        .document-list .list-group-item {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            transition: transform 0.2s ease-in-out;
+        }
+        .document-list .list-group-item:hover {
+            transform: scale(1.02);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+        .document-list .list-group-item .badge {
+            background-color: #007bff;
+            font-size: 0.8rem;
+        }
+    </style>
+
+<div class="container mt-4">
+    
+    <section class="highlight-section">
+        @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+        {
+            <div class="d-flex justify-content-between align-items-center">
+                <h2>@SharedResource.B_MainD</h2>
+                <div>
+                    <form method="post" asp-page-handler="AddBroker">
+                        <button type="submit" class="button-1">
+                            <i class="fas fa-plus"></i>
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="list-group document-list mt-4">
+                @foreach (var document in Model.BrokersGeneralLists)
+                {
+                    <a href="@document.Path" class="list-group-item list-group-item-action" target="_blank">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span id="brokerName_@document.Id">
+                                <i class="fas fa-file-pdf text-danger me-2"></i> @document.Name
+                            </span>
+                            
+                            <div class="d-flex align-items-center">
+                                @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                                {
+                                    <form method="post" asp-page-handler="UpdateButton">
+                                        <input type="hidden" name="id" value="@document.Id"/>
+                                        <button class="btn btn-link p-0 ms-2 edit-button">
+                                            <i class="fas fa-edit"></i>
+                                        </button>
+                                    </form>
+                               
+                                    <button onclick="openDeleteModal(@document.Id)" class="btn btn-link p-0 ms-2 delete-button" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                        <i class="fas fa-trash text-danger"></i>
+                                    </button>
+                                    <button onclick="switchElement(@document.Id,'left')" class="btn btn-link p-0 ms-2 move-up-button" data-broker-id="@document.Id">
+                                        <i class="fas fa-arrow-up"></i>
+                                    </button>
+                               
+                                    <button onclick="switchElement(@document.Id,'right')" class="btn btn-link p-0 ms-2 move-up-button" data-broker-id="@document.Id">
+                                        <i class="fas fa-arrow-down"></i>
+                                    </button>
+                                }
+                            </div>
+                        </div>
+                    </a>
+                }
+            </div>
+
+        }
+        else
+        {
+            <h2>@SharedResource.B_MainD</h2>
+            <div class="list-group document-list mt-4">
+                @foreach (var document in Model.BrokersGeneralLists)
+                {
+                    <a href="@document.Path" class="list-group-item list-group-item-action" target="_blank">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <span><i class="fas fa-file-pdf text-danger me-2"></i> @document.Name</span>
+                        </div>
+                    </a>
+                }
+            </div>
+        }
+    </section>
+
+
+    <section class="highlight-section">
+        <div class="d-flex justify-content-between align-items-center">
+            <h2>@SharedResource.B_OtherD</h2>
+            <div>
+                <form method="post">
+                @foreach (var category in Enum.GetValues(typeof(IBS_Europe.Domains.Category)))
+                {
+                    if (category.Equals(IBS_Europe.Domains.Category.Généralistes))
+                    {
+                        continue;
+                    }
+                    var integer = (int)category;
+                    <button type="submit" name="selectedCategory" value="@integer" class="btn @(@Model.SelectedCategory == integer ? "btn btn-secondary" : "btn btn-primary") m-1" style="min-width: 8em;">
+                        @if (category.Equals(Category.Particuliers))
+                        {
+                            @SharedResource.B_Individuals
+                        }
+                        else
+                        {
+                            @SharedResource.B_Professionals
+                        }
+                    </button>
+                }
+                </form>
+            </div>
+        </div>
+
+       <div class="list-group document-list mt-3">
+           @foreach (var broker in Model.BrokersLists)
+           {
+               <a href="@broker.Path" class="list-group-item list-group-item-action" target="_blank">
+                   <div class="d-flex justify-content-between align-items-center">
+                       <span id="brokerName_@broker.Id">
+                           <i class="fas fa-file-pdf text-danger me-2"></i> @broker.Name
+                       </span>
+                       
+                       <div class="d-flex align-items-center">
+                           @if (Enum.GetName(typeof(Category), Model.SelectedCategory)?.Equals("Particuliers") == true)
+                           {
+                               <span class="badge rounded-pill">@SharedResource.B_Individuals</span>
+                           }
+                           else
+                           {
+                               <span class="badge rounded-pill">@SharedResource.B_Professionals</span>
+                           }
+       
+                           @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                           {
+                               <form method="post" asp-page-handler="UpdateButton">
+                                   <input type="hidden" name="id" value="@broker.Id"/>
+                                   <button class="btn btn-link p-0 ms-2 edit-button">
+                                       <i class="fas fa-edit"></i>
+                                   </button>
+                               </form>
+                               
+                               <button onclick="openDeleteModal(@broker.Id)" class="btn btn-link p-0 ms-2 delete-button" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                                   <i class="fas fa-trash text-danger"></i>
+                               </button>
+                               <button onclick="switchElement(@broker.Id,'left')" class="btn btn-link p-0 ms-2 move-up-button" data-broker-id="@broker.Id">
+                                   <i class="fas fa-arrow-up"></i>
+                               </button>
+                               
+                               <button onclick="switchElement(@broker.Id,'right')" class="btn btn-link p-0 ms-2 move-up-button" data-broker-id="@broker.Id">
+                                   <i class="fas fa-arrow-down"></i>
+                               </button>
+                           }
+                       </div>
+                   </div>
+               </a>
+           }
+       </div>
+
+    </section>
+
+</div>
+
+@section Scripts {
+    <script>
+    $(document).ready(function () {
+                var isAddBroker = '@Model.IsAddBrokerAction';
+                if (isAddBroker === 'True') {
+                    var modal = new bootstrap.Modal(document.getElementById('addBrokerModal'));
+                    modal.show();
+                }
+    });
+    
+    $(document).ready(function () {
+                    var isEditBroker = '@Model.IsEditdBrokerAction';
+                    if (isEditBroker === 'True') {
+                        var modal = new bootstrap.Modal(document.getElementById('editBrokerModal'));
+                        modal.show();
+                    }
+        });
+    </script>
+    
+    <script>
+       
+        
+        function openDeleteModal(id) {
+           document.getElementById("brokerId").value = id;
+        }
+        
+        $(document).ready(function () {
+            // Empêcher la redirection lorsqu'on clique sur le bouton de suppression, la flèche vers le haut et la flèche vers le bas
+            $(document).on('click', '.delete-button', function (event) {
+                event.preventDefault();  // Empêche l'action par défaut (dans ce cas, l'ouverture du lien)
+                event.stopPropagation(); // Empêche la propagation vers l'élément parent <a>
+        
+                // Vous pouvez ajouter ici le code pour gérer la suppression ou le déplacement si nécessaire
+            });
+            
+        
+            // Vous pouvez ajouter d'autres logiques pour les autres boutons ou actions ici
+        });
+        
+        function switchElement(id, direction) {
+                                        
+            $.ajax({
+                type: 'GET',
+                url: `?handler=Switch&direction=${direction}&id=${id}`,
+            });
+            location.reload();
+        }
+
+             
+
+
+
+    </script>
+
+
+
+
+    
+}

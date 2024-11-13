@@ -1,0 +1,57 @@
+﻿@using IBS_Europe.Domains
+@using IBS_Europe.App.Resources
+@model BrokerSpace.AddBrokerModel
+
+<div class="modal fade" id="addBrokerModal" tabindex="-1" aria-labelledby="addBrokerLabel" data-bs-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog">
+        <form method="post" enctype="multipart/form-data" asp-page-handler="Add">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addBrokerLabel">@SharedResource.MAB_Title</h5>
+                    <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="brokerName" class="form-label">@SharedResource.MA_Name</label>
+                        <input type="text" class="form-control" id="brokerName" name="Name" value="@Model.Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brokerPdf" class="form-label">@SharedResource.MAB_Document</label>
+                        <input type="file" class="form-control" id="brokerPdf" name="pdf" accept=".pdf">
+                        <span asp-validation-for="Pdf" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="brokerCategory" class="form-label">@SharedResource.MAB_Category</label>
+                        <select asp-for="Category" class="form-select" id="brokerCategory">
+                            <option value="" disabled selected>@SharedResource.MAB_CategorySelect</option>
+                            @foreach (var cat in Enum.GetValues(typeof(Category)))
+                            {
+                                int category = (int)cat;
+                                <option value="@category">
+                                    @if (category.Equals(Category.Particuliers))
+                                    {
+                                        @SharedResource.B_Individuals
+                                    }
+                                    else
+                                    {
+                                        @SharedResource.B_Professionals
+                                    }
+                                </option>
+                            }
+                        </select>
+
+                        <span asp-validation-for="Category" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
+                        <button type="submit" name="action" value="add" class="btn btn-primary">@SharedResource.MA_Add</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

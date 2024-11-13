@@ -1,0 +1,68 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.Translate
+
+@{
+    ViewData["Title"] = SharedResource.T_Title;
+    @Html.Partial("_TranslateConfirmation");
+}
+
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-lg position-relative">
+                <div class="card-header bg-midnight text-white text-center">
+                    <h3 class="mb-0">@SharedResource.T_Confirm</h3>
+
+                    <!-- Afficher le nombre de traductions restantes dans le coin supérieur droit -->
+                    <span class="badge color-midnight bg-white position-absolute top-0 end-0 m-2" style="font-size: 1rem;">
+                        @Model.NbTranslations 
+                    </span>
+                </div>
+                <div class="card-body p-4">
+
+                    <!-- Vérifier si Model.Translator est null -->
+                    @if (Model.Translator != null)
+                    {
+                        <div class="mb-4">
+                            <h5 class="card-title">@SharedResource.T_OriginalT</h5>
+                            <p class="card-text bg-light p-3 rounded">
+                                <!-- Texte de la traduction originale en français -->
+                                @Model.Translator.OriginalText
+                            </p>
+                        </div>
+
+                        <!-- Formulaire pour la modification de la traduction -->
+                        <form id="translationForm" method="post">
+                            <div class="form-group mb-4">
+                                <label for="correctedTranslation" class="font-weight-bold">@SharedResource.T_Automatic</label>
+                                <textarea id="correctedTranslation" name="TrTranslator.Translation" class="form-control shadow-sm" rows="5">@Model.TrTranslator.Translation</textarea>
+                                <span asp-validation-for="TrTranslator.Translation" class="text-danger"></span>
+                            </div>
+
+                            <!-- Boutons d'action -->
+                            <div class="d-flex justify-content-end">
+                                <!-- Le bouton ouvre la modale pour confirmer la soumission -->
+                                <button type="button" class="button-1 px-5" data-bs-toggle="modal" data-bs-target="#translateConfirmationModal">@SharedResource.T_Submit</button>
+                            </div>
+                        </form>
+                    }
+                    else
+                    {
+                        <!-- Message affiché si aucune traduction n'est disponible -->
+                        <p class="text-center text-success">@SharedResource.T_Nothing</p>
+                    }
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Lorsque l'utilisateur clique sur le bouton de confirmation
+    document.getElementById('confirmTranslationButton').addEventListener('click', function() {
+        // Soumettre le formulaire principal
+        document.getElementById('translationForm').submit();
+    });
+</script>

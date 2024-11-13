@@ -1,0 +1,30 @@
+﻿@using IBS_Europe.App.Resources
+@model Pages.BrokerSpace.AddBrokerModel
+
+<div class="modal fade" id="editBrokerModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="editBrokerLabel" aria-hidden="true">
+    <div class="modal-dialog">
+
+        <!-- Formulaire pour ajouter un partenaire -->
+        <form method="post" asp-page-handler="Update">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editBrokerLabel">@SharedResource.MEB_Title</h5>
+                    <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="mb-3">
+                        <label for="brokerName" class="form-label">@SharedResource.MA_Name</label>
+                        <input type="text" class="form-control" id="brokerName" name="Name" value="@Model.Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
+                        <button type="submit" name="action" value="add" class="btn btn-primary">@SharedResource.MA_Edit</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+
+    </div>
+</div>

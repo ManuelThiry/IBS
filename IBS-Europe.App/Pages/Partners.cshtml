@@ -1,0 +1,70 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.Partners
+@{
+    ViewData["Title"] = SharedResource.Pa_Title;
+    @Html.Partial("_DeleteConfirmationModal")
+    @Html.Partial("_AddPartnerModal", Model.Input)
+}
+
+<section id="partners" class="text-center p-4">
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <h1 class="mb-0">@SharedResource.Pa_Title</h1>
+        @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+        {
+            <form method="post" asp-page-handler="AddButton">
+            <button class="button-1 ms-3">
+                <i class="fas fa-plus"></i>
+            </button>
+            </form>
+        }
+    </div>
+    
+    <div class="mt-3 d-flex flex-wrap justify-content-center gap-4" style="width: 80%; margin: auto;">
+        @foreach (var product in Model.PartnersList)
+        {
+            <div class="appears partner-logo">
+                <a class="text-decoration-none" href="@product.Website" 
+                   @if (!string.IsNullOrEmpty(product.Website)) 
+                   {
+                       <text>target="_blank"</text>
+                   }>
+                    <img src="@product.Path" alt="@product.Name" title="@product.Name" class="w-h-7em cursor">
+                </a>
+                
+                @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                {
+                    <button onclick="openDeleteModal(@product.Priority)" class="btn-close translate-middle bg-white border-0 fs-6" aria-label="Close" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"></button>
+                    
+                    <form method="post">
+                        <div class="d-flex justify-content-center" style="margin-right: 2em;">
+                            <button class="btn btn-light" name="direction" value="left" asp-route-priority="@product.Priority">
+                                <i class="fas fa-chevron-left"></i>
+                            </button>
+                            <button class="btn btn-light" name="direction" value="right" asp-route-priority="@product.Priority">
+                                <i class="fas fa-chevron-right"></i>
+                            </button>
+                        </div>
+                    </form>
+                }
+            </div>
+        }
+    </div>
+</section>
+
+@section Scripts {
+    <script src="~/js/partners.js"></script>
+     <script>
+            $(document).ready(function () {
+            
+                var isAddPartnerAction = '@Model.IsAddPartnerAction';
+    
+               
+                if ( isAddPartnerAction === 'True') {
+                    var modal = new bootstrap.Modal(document.getElementById('addPartnerModal'));
+                    modal.show();
+                }
+            });
+        </script>
+    
+}

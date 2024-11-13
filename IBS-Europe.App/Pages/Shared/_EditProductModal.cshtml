@@ -1,0 +1,56 @@
+﻿@using IBS_Europe.App.Resources
+@model Products.EditModel?
+
+<div class="modal fade" id="editProductModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="editProductModalLabel" aria-hidden="true">
+    <div class="modal-dialog" style="max-width: 80%; margin: auto;">
+        <div class="modal-content">
+            <form method="post" asp-page-handler="Edit">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editProductModalLabel">@SharedResource.MEPr_Title</h5>
+                <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label for="ProductName">@SharedResource.MA_Name</label>
+                    <input type="text" class="form-control" id="ProductName" name="Name" value="@Model.Name">
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                    
+                <div class="form-group">
+                    <label for="ProductDescription">@SharedResource.MAP_Description</label>
+                    <textarea class="form-control" id="ProductDescription" name="Description">@Model.Description</textarea>
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
+                    <button type="submit" name="action" class="btn btn-primary">@SharedResource.MA_Edit</button>
+                </div>
+                
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<style>
+    .modal-dialog {
+        max-width: 80%; 
+        margin: auto; 
+    }
+
+</style>
+
+<script src="https://cdn.tiny.cloud/1/93mx2gu9dbxj1psj7god49w6svzacamnd280f1fjv0u5j4og/tinymce/7/tinymce.min.js" referrerpolicy="origin"></script>
+<script>
+    tinymce.init({
+        selector: '#ProductDescription',
+        toolbar: 'undo redo | bold italic underline | forecolor backcolor | fontsize fontfamily | alignleft aligncenter alignright | removeformat',
+        menubar: false, // Désactive la barre de menu
+        height: 300,
+        branding: false // Désactive le branding "Powered by Tiny"
+    });
+</script>
+
+

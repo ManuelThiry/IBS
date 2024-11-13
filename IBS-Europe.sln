@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBS-Europe.App", "IBS-Europe.App\IBS-Europe.App.csproj", "{73385C5B-5A24-4F86-950C-413B3BAF2F80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBS-Europe.Domains", "IBS-Europe.Domains\IBS-Europe.Domains.csproj", "{240C1EC2-7AF8-45AF-84C0-B3590D4EB09D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBS-Europe.Infrastructures", "IBS-Europe.Infrastructures\IBS-Europe.Infrastructures.csproj", "{CF9AE6F3-9AF4-47E3-9643-98A8FBE815A2}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73385C5B-5A24-4F86-950C-413B3BAF2F80}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73385C5B-5A24-4F86-950C-413B3BAF2F80}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73385C5B-5A24-4F86-950C-413B3BAF2F80}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73385C5B-5A24-4F86-950C-413B3BAF2F80}.Release|Any CPU.Build.0 = Release|Any CPU
+		{240C1EC2-7AF8-45AF-84C0-B3590D4EB09D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{240C1EC2-7AF8-45AF-84C0-B3590D4EB09D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{240C1EC2-7AF8-45AF-84C0-B3590D4EB09D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{240C1EC2-7AF8-45AF-84C0-B3590D4EB09D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF9AE6F3-9AF4-47E3-9643-98A8FBE815A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF9AE6F3-9AF4-47E3-9643-98A8FBE815A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF9AE6F3-9AF4-47E3-9643-98A8FBE815A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF9AE6F3-9AF4-47E3-9643-98A8FBE815A2}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

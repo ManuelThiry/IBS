@@ -1,0 +1,618 @@
+﻿<root>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="I-Welcome" xml:space="preserve">
+        <value>Welcome to IBS Europe</value>
+    </data>
+    <data name="L-CompanyImage" xml:space="preserve">
+        <value>Company logo</value>
+    </data>
+    <data name="L-Product" xml:space="preserve">
+        <value>IBS Europe products</value>
+    </data>
+    <data name="L-Partners" xml:space="preserve">
+        <value>Partners</value>
+    </data>
+    <data name="L-About" xml:space="preserve">
+        <value>About</value>
+    </data>
+    <data name="L-Contact" xml:space="preserve">
+        <value>Contact</value>
+    </data>
+    <data name="L-Author" xml:space="preserve">
+        <value>Created by</value>
+    </data>
+    <data name="L-Legal" xml:space="preserve">
+        <value>Legal notice</value>
+    </data>
+    <data name="L-Privacy" xml:space="preserve">
+        <value>Privacy policy</value>
+    </data>
+    <data name="L-Broker" xml:space="preserve">
+        <value>Brokers space</value>
+    </data>
+    <data name="I-Trusted" xml:space="preserve">
+        <value>Your trusted partner.</value>
+    </data>
+    <data name="I-WhyIBS" xml:space="preserve">
+        <value>Why IBS Europe ?</value>
+    </data>
+    <data name="I-Learn" xml:space="preserve">
+        <value>Learn more about us</value>
+    </data>
+    <data name="I-Title" xml:space="preserve">
+        <value>Home</value>
+    </data>
+    <data name="I-WhyText" xml:space="preserve">
+        <value>&lt;p&gt;As an underwriter and assembler, we create exclusive products designed for individuals. We manage them completely, thus reducing your administrative workload.&lt;/p&gt; &lt;p&gt;We share the same values: customer service, speed, proximity, clarity, and a quality-to-premium ratio.&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Full Coverage in France, Belgium, and Luxembourg:&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;With company accounts in these countries, we can place all of your clients' risks: a second residence in France, a car in a country other than your insured’s country of residence, etc.&lt;/p&gt;</value>
+    </data>
+    <data name="P-Title" xml:space="preserve">
+        <value>Products</value>
+    </data>
+    <data name="B-Title" xml:space="preserve">
+        <value>Brokers space</value>
+    </data>
+    <data name="B-MainD" xml:space="preserve">
+        <value>Main downloads</value>
+    </data>
+    <data name="B-OtherD" xml:space="preserve">
+        <value>Other downloads</value>
+    </data>
+    <data name="B-Individuals" xml:space="preserve">
+        <value>Individuals</value>
+    </data>
+    <data name="B-Professionals" xml:space="preserve">
+        <value>Professionals</value>
+    </data>
+    <data name="Pa-Title" xml:space="preserve">
+        <value>Our partners</value>
+    </data>
+    <data name="AH-Title" xml:space="preserve">
+        <value>About us</value>
+    </data>
+    <data name="AH-Commitments" xml:space="preserve">
+        <value>Our commitments</value>
+    </data>
+    <data name="AT-Image" xml:space="preserve">
+        <value>Picture of </value>
+    </data>
+    <data name="AS-Title" xml:space="preserve">
+        <value>Our story</value>
+    </data>
+    <data name="AT-Title" xml:space="preserve">
+        <value>Our team</value>
+    </data>
+    <data name="AS-Text" xml:space="preserve">
+        <value>&lt;h2 class="mb-3"&gt;Why IBS Europe?&lt;/h2&gt;
+&lt;p class="text-start"&gt;
+    Backed by the experience of three generations, we wanted to rethink this model: &lt;strong&gt;Insurance Broker’s Solution®&lt;/strong&gt;
+&lt;/p&gt;
+&lt;p class="text-start"&gt;
+    &lt;strong&gt;We DESIGN&lt;/strong&gt; Simple, Efficient, and Transparent contracts.
+&lt;/p&gt;
+&lt;p class="text-start"&gt;
+    &lt;strong&gt;We FIND&lt;/strong&gt; insurers to cover the risks we have identified.
+&lt;/p&gt;
+&lt;p class="text-start"&gt;
+    &lt;strong&gt;We ISSUE and MANAGE&lt;/strong&gt; both contracts and claims.
+&lt;/p&gt;
+&lt;p class="text-start mb-5"&gt;
+    We provide a modern and high-quality &lt;strong&gt;SOLUTION&lt;/strong&gt;, both for the broker and the insured.
+&lt;/p&gt;
+
+&lt;h2 class="mb-3"&gt;Our commitments&lt;/h2&gt;
+&lt;ul class="text-start mb-5"&gt;
+    &lt;li&gt;Deliver added value.&lt;/li&gt;
+    &lt;li&gt;Design contracts that, based on our experience, meet the needs of the insured.&lt;/li&gt;
+    &lt;li&gt;Find reliable insurers to cover financial risks.&lt;/li&gt;
+    &lt;li&gt;Manage in an open and modern way.&lt;/li&gt;
+    &lt;li&gt;Present clear contracts.&lt;/li&gt;
+    &lt;li&gt;Handle claims quickly, fairly, and efficiently.&lt;/li&gt;
+    &lt;li&gt;A "Client-centric" mindset present in every employee.&lt;/li&gt;
+    &lt;li&gt;A commitment to respond within 8 working hours.&lt;/li&gt;
+    &lt;li&gt;A high level of personalization.&lt;/li&gt;
+    &lt;li&gt;The best Quality-Price ratio by eliminating redundancies.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2 class="mb-3"&gt;Why Luxembourg?&lt;/h2&gt;
+&lt;p class="text-start"&gt;
+    Because we believe that the market is becoming international, even for individuals.
+&lt;/p&gt;
+&lt;p class="text-start"&gt;
+    Because Luxembourg is the "legitimate" place for the free provision of services related to finance and insurance.
+&lt;/p&gt;
+&lt;p class="text-start mb-5"&gt;
+    Because with today's technology, a "back-office" operates in the same way no matter where it is located geographically.
+&lt;/p&gt;
+
+&lt;h2 class="mb-3"&gt;Our goal&lt;/h2&gt;
+&lt;p class="text-start"&gt;
+    To give you time to focus on your client relationships by providing you with exclusive and modern products, and by taking care of most of your administrative tasks.
+&lt;/p&gt;
+</value>
+    </data>
+    <data name="M-Title" xml:space="preserve">
+        <value>Legal notice</value>
+    </data>
+    <data name="M-Text" xml:space="preserve">
+        <value>&lt;h2&gt;Website Publisher&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Manuel Thiry&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Tel.:&lt;/strong&gt; +32 492/80.22.08&lt;br&gt;
+    &lt;strong&gt;Email:&lt;/strong&gt; &lt;a href="mailto:thiry.manuel@hotmail.com"&gt;thiry.manuel@hotmail.com&lt;/a&gt;&lt;/p&gt;
+
+&lt;h2&gt;AssurMiFID Conduct Rules&lt;/h2&gt;
+&lt;p&gt;&lt;strong&gt;Vanbreda&lt;/strong&gt;&lt;br&gt;
+    The Vanbreda group consists of a set of companies involved in insurance brokerage, various insurance activities, wealth management, risk management, claims handling, and/or activities that are an extension of these. Each company within the group is recognized by the FSMA as an independent broker.&lt;/p&gt;
+
+&lt;p&gt;The Vanbreda group in Belgium consists of: Vanbreda Risk &amp; Benefits – FSMA no. 13718 A-R (BE 0404.055.676), Vanbreda Ausloos – FSMA no. 47833 A (BE 0474.182.421), Vanbreda Credinco – FSMA no. 042518 A (BE 0462.175.702), Vanbreda Geerts – FSMA no. 044401 A (BE 0466.513.679), Vanbreda Huysmans – FSMA no. 067446 A (BE 0478.505.552), Vanbreda Missinne – FSMA no. 013584 A (BE 0426.071.906).&lt;/p&gt;
+
+&lt;p&gt;The Vanbreda group is represented in the Netherlands by Vanbreda Risk &amp; Benefits Nederland and in Luxembourg by Vanbreda Risk &amp; Benefits S.A.&lt;br&gt;
+    The Vanbreda group maintains close ties with the insurance company Justitia. Justitia specializes in insuring Employee Benefits plans tailored by the Vanbreda group to meet the needs of corporate policyholders.&lt;/p&gt;
+
+&lt;h2&gt;Operating Methods&lt;/h2&gt;
+&lt;h3&gt;Insurance Intermediation&lt;/h3&gt;
+&lt;p&gt;As an insurance broker, our specialization is offering and managing insurance contracts and providing advice about them. To do this, we carry out the preparatory work for concluding insurance contracts and assist in managing and implementing them, including the filing of claims.&lt;/p&gt;
+
+&lt;p&gt;Based on the information you provide, we develop an optimal solution for you. It is therefore important that you inform us in advance with accuracy about all known circumstances, and we reasonably expect these to be considered as data having an influence on the proposal we will make to you. Our advice is always based on an impartial analysis. In other words, our analysis is based on a sufficient number of available insurance solutions on the market that meet your needs and wishes. By concluding the contract, you acknowledge that our advice takes into account your needs and wishes and that you have been informed about the scope and limitations of the insurance product you have chosen.&lt;/p&gt;
+
+&lt;h3&gt;Insurance Branches&lt;/h3&gt;
+&lt;p&gt;Most of the companies within the Vanbreda group can act as insurance brokers in all the branches of insurance listed below. If a specific branch is not authorized for a company, this is mentioned next to the branch. Due to its niche specialty, Vanbreda Credinco is only authorized for branches 14, 15, and 21.&lt;/p&gt;
+
+&lt;h4&gt;Non-Life Activity Group&lt;/h4&gt;
+&lt;ul&gt;
+    &lt;li&gt;Accidents except work accidents: lump-sum benefits; indemnity benefits; combinations of these; transported persons.&lt;/li&gt;
+    &lt;li&gt;Work accidents&lt;/li&gt;
+    &lt;li&gt;Illness: lump-sum benefits; indemnity benefits; combinations of these; long-term care insurance.&lt;/li&gt;
+    &lt;li&gt;Motor vehicle damage, excluding railway vehicles: any damage to self-propelled or non-self-propelled land vehicles.&lt;/li&gt;
+    &lt;li&gt;Railway vehicle damage: any damage to these vehicles.&lt;/li&gt;
+    &lt;li&gt;Aircraft damage: any damage to these vehicles.&lt;/li&gt;
+    &lt;li&gt;Marine, lake, and river vessel damage: any damage to river, lake, or sea vessels.&lt;/li&gt;
+    &lt;li&gt;Transported goods, including goods, luggage, and all other property: any damage to transported goods or luggage, regardless of the mode of transport.&lt;/li&gt;
+    &lt;li&gt;Fire and natural elements: any damage to property (other than property included in branches 3, 4, 5, 6, and 7) caused by fire, explosion, storm, natural elements other than hail and frost, nuclear energy, and landslides.&lt;/li&gt;
+    &lt;li&gt;Other property damage: any damage to property (other than property included in branches 3, 4, 5, 6, and 7) caused by hail or frost, as well as by any event, such as theft, other than those included under branch 8.&lt;/li&gt;
+    &lt;li&gt;Motor vehicle third-party liability: any liability arising from the use of land vehicles.&lt;/li&gt;
+    &lt;li&gt;Credit: general insolvency, export credit, installment sales, mortgage credit, agricultural credit. This insurance branch is not offered by Vanbreda Ausloos.&lt;/li&gt;
+    &lt;li&gt;Bonds: direct bonds, indirect bonds.&lt;/li&gt;
+    &lt;li&gt;Various pecuniary losses: risk of job loss; insufficient income (general); bad weather; loss of profits; continuation of high overhead costs; unexpected commercial expenses; loss of market value; loss of rents or income; indirect business losses other than those mentioned previously; non-commercial pecuniary losses; other pecuniary losses.&lt;/li&gt;
+    &lt;li&gt;Legal protection&lt;/li&gt;
+    &lt;li&gt;Assistance: assistance to people in difficulty while traveling or away from home or permanent residence; assistance in other circumstances.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h4&gt;Life Activity Group&lt;/h4&gt;
+&lt;ul&gt;
+    &lt;li&gt;Life insurance not linked to investment funds, except for nuptiality and natality insurance.&lt;/li&gt;
+    &lt;li&gt;Nuptiality and natality insurance not linked to investment funds.&lt;/li&gt;
+    &lt;li&gt;Life insurance, nuptiality, and natality insurance linked to investment funds.&lt;/li&gt;
+    &lt;li&gt;Insurance practiced in Ireland and the United Kingdom, called "permanent health insurance" (long-term, non-cancellable health insurance).&lt;/li&gt;
+    &lt;li&gt;Tontine operations.&lt;/li&gt;
+    &lt;li&gt;Capitalization operations.&lt;/li&gt;
+    &lt;li&gt;Management of collective pension funds.&lt;/li&gt;
+    &lt;li&gt;Operations as defined by the French Insurance Code in Book IV, Title 4, Chapter 1.&lt;/li&gt;
+    &lt;li&gt;Operations depending on the duration of human life, as defined or provided for by social insurance legislation.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;You can find more information about our services in general and the different types of policies for which we act as intermediaries under the sections &lt;strong&gt;Customized Service&lt;/strong&gt; and &lt;strong&gt;Solutions for your Risks&lt;/strong&gt;. This information is indicative only and does not constitute a summary of all the current insurance terms.&lt;/p&gt;
+
+&lt;h2&gt;Code of Conduct&lt;/h2&gt;
+&lt;p&gt;We comply with conduct rules, whether derived from law or professional ethics for intermediaries. This also implies that as a member of the UPCA, we also apply the rules and principles adopted by the professional federation at the sectoral level concerning conflict of interest management and remuneration.&lt;/p&gt;
+
+&lt;h2&gt;Privacy Policy&lt;/h2&gt;
+&lt;p&gt;We respect your privacy in accordance with current legislation. You are not required to answer the questions we ask, but failing to do so may result, depending on the case, in our inability or refusal to enter into a (pre)contractual relationship, to continue such a relationship, or to carry out a transaction at your request or at the request of a third party on your behalf.&lt;/p&gt;
+
+&lt;h2&gt;Use of Our Website&lt;/h2&gt;
+&lt;p&gt;By using our website, you declare that you have read the information below. By providing personal data through the website, you authorize Vanbreda to process it as defined in our Privacy Policy. As the Internet does not offer absolute security, privacy can only be guaranteed if personal data is communicated through secure means of communication.&lt;/p&gt;
+
+&lt;h2&gt;No Warranty&lt;/h2&gt;
+&lt;p&gt;The texts on this website have been carefully written but are necessarily generalizations. They cannot be considered as advice or a comprehensive overview of acquired coverage. Coverage is only provided by the subscribed insurance policy. We reserve the right to adapt, modify, or delete website content.&lt;/p&gt;
+&lt;p&gt;None of the links to third-party websites are under our control. We have no authority over the content or other features of these websites. These links are provided solely for your convenience, and their inclusion does not imply our endorsement of the information on those websites.&lt;/p&gt;
+&lt;p&gt;The Vanbreda group assumes no responsibility for inaccuracies or omissions in the information communicated through our website. If you make decisions based on this information, it is at your own risk. You can always contact us for personalized advice.&lt;/p&gt;
+
+&lt;h2&gt;Cookies&lt;/h2&gt;
+&lt;p&gt;Cookies are small computer files that a website places on your hard drive during your visit.&lt;/p&gt;
+&lt;p&gt;On the Vanbreda group's website, only 'session cookies' are used, which remain active temporarily. 'Session cookies' are deleted from your computer as soon as you close your browser. Moreover, our session cookies do not contain any personal information.&lt;/p&gt;
+&lt;p&gt;Cookies created by our website identify your specific preferences and needs, allowing us to tailor our services accordingly.&lt;/p&gt;
+&lt;p&gt;Most web browsers are automatically set to accept cookies. By changing your browser settings, the Internet user can, however, be warned each time a cookie is sent or completely prevent the creation or storage of cookies on their hard drive. However, the Vanbreda group cannot guarantee access to its website for users who refuse the creation of 'session cookies'.&lt;/p&gt;
+
+&lt;h2&gt;Copyright Notice&lt;/h2&gt;
+&lt;p&gt;All texts, drawings, photos, films, trade names, domain names, trademarks, logos, etc., mentioned on this website are protected by intellectual property rights and belong to the Vanbreda group or third parties.&lt;/p&gt;
+&lt;p&gt;It is forbidden to save the information made available on this website or through it (except those necessary for viewing the site), as well as to reproduce, modify, publish, distribute, send, sell, or transfer it in any way or grant any rights to third parties on this information, without prior written permission from us.&lt;/p&gt;
+&lt;p&gt;The information on this website may only be used under the following conditions:
+    &lt;ol&gt;
+        &lt;li&gt;that the copyright notice below is included on all reproduced or generated documents and copies from this website ("the documents"),&lt;/li&gt;
+        &lt;li&gt;that the documents are used exclusively for personal and informational purposes and not for commercial purposes, and that these documents are not placed on other networks,&lt;/li&gt;
+        &lt;li&gt;that no modification or adaptation is made to the documents.&lt;/li&gt;
+    &lt;/ol&gt;
+&lt;/p&gt;
+&lt;p&gt;Use for any other purpose is strictly prohibited by law, and we may prosecute any infringement or violation of our rights.&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Copyright Vanbreda Risk &amp; Benefits S.A., VANBREDA RISK &amp; BENEFITS NV&lt;/strong&gt;&lt;br&gt;
+    All rights reserved.&lt;/p&gt;
+</value>
+    </data>
+    <data name="Po-Title" xml:space="preserve">
+        <value>Privacy policy</value>
+    </data>
+    <data name="Po-Text" xml:space="preserve">
+        <value>&lt;p&gt;For years, Vanbreda group companies have placed great importance on respecting privacy. We handle the personal data of every individual with care and in compliance with applicable legislation, regardless of whether the individual is a (potential) policyholder, an insured person, a victim, a beneficiary, a contact person within a company, a witness, an expert, etc. This statement explains why Vanbreda collects personal data, what we do with it, and what your rights are.&lt;/p&gt;
+
+&lt;h2&gt;1. Who is the Vanbreda group?&lt;/h2&gt;
+&lt;p&gt;The Vanbreda group is a collection of companies involved in insurance brokerage and various insurance activities, providing advice, wealth management, risk management, claims handling, and/or activities extending from these. Each company within the group is recognized as an independent insurance broker.&lt;/p&gt;
+&lt;p&gt;In Belgium, the Vanbreda group includes: Vanbreda Risk &amp; Benefits – FSMA no. 13718 A-R (BE 0404.055.676), Vanbreda Ausloos – FSMA no. 47833 A (BE 0474.182.421), Vanbreda Credinco – FSMA no. 042518 A (BE 0462.175.702), Vanbreda Geerts – FSMA no. 044401 A (BE 0466.513.679), Vanbreda Huysmans – FSMA no. 067446 A (BE 0478.505.552), Vanbreda Missinne – FSMA no. 013584 A (BE 0426.071.906), Vanbreda Cornelis – FSMA no. 12565 A (BE 0425.054.196).&lt;/p&gt;
+&lt;p&gt;In the Netherlands, the Vanbreda group is represented by Vanbreda Risk &amp; Benefits Nederland, and in Luxembourg by Vanbreda Risk &amp; Benefits S.A. The Vanbreda group has close ties with the insurance company Justitia. Justitia specializes in Employee Benefits insurance plans developed by the Vanbreda group tailored to the corporate policyholder’s needs. The data controller of your personal data is the Vanbreda company that collected it. This statement refers to this data controller as Vanbreda.&lt;/p&gt;
+
+&lt;h2&gt;2. What personal data do we process?&lt;/h2&gt;
+&lt;p&gt;Depending on the situation, we process the following personal data: your identity data, contact details, health data, financial data, national register number, etc. We process this personal data only for one of the reasons listed under point 4.&lt;/p&gt;
+
+&lt;h2&gt;3. Your rights&lt;/h2&gt;
+&lt;h3&gt;3.1 You can consult your personal data&lt;/h3&gt;
+&lt;p&gt;If you would like to know if and what personal data concerning you is processed by Vanbreda, you can request to consult it. Vanbreda will provide you with the most comprehensive overview possible of the personal data it processes in its active files. Given the large amount of personal data processed by Vanbreda, we ask that you specify which information or processing activities your request concerns. Personal data that is only included in backup files or logs, or that cannot be directly associated with you, will not be included. Given the sensitivity of health data, it is not sent by default. For this, we ask you to indicate to which doctor we can send it so that it will be available to you through them.&lt;/p&gt;
+
+&lt;h3&gt;3.2 You can have your personal data corrected&lt;/h3&gt;
+&lt;p&gt;If it turns out that the personal data we process for you is incomplete or incorrect, you can have it corrected and/or updated.&lt;/p&gt;
+
+&lt;h3&gt;3.3 In some cases, you can have your personal data deleted&lt;/h3&gt;
+&lt;p&gt;Your personal data is automatically deleted after some time. More explanations on this can be found in point 6. If you believe that your personal data is being processed incorrectly, you can request that Vanbreda delete it sooner.&lt;/p&gt;
+
+&lt;h3&gt;3.4 You can object to a specific use of your personal data&lt;/h3&gt;
+&lt;p&gt;In certain situations, you may disagree with the processing of your personal data based on Vanbreda's legitimate interests. In this case, you can object to the processing of your personal data, and Vanbreda will review your specific interests as well as its own. Only if there are compelling legitimate grounds (such as fraud prevention) or in the context of (future) legal action will Vanbreda continue to process your personal data.&lt;/p&gt;
+&lt;p&gt;If you object to the processing of your personal data for direct marketing purposes, Vanbreda will stop processing it for that purpose.&lt;/p&gt;
+
+&lt;h3&gt;3.5 You can request restrictions on certain uses of your personal data&lt;/h3&gt;
+&lt;p&gt;You can ask Vanbreda to restrict the processing of your personal data if, for example, you need time to verify the accuracy of your personal data, if the processing is unlawful, if Vanbreda no longer needs the personal data (but you do in the context of legal action), or if you have objected to a processing and the balancing of interests is still under review.&lt;/p&gt;
+
+&lt;h3&gt;3.6 You can request the transfer of your personal data to another party&lt;/h3&gt;
+&lt;p&gt;For the personal data you have provided to Vanbreda, and which is processed with your consent or based on a contract and through automated means, you can request that it be transferred to you or to another party.&lt;/p&gt;
+
+&lt;h3&gt;3.7 You can sometimes refuse decisions made based on automated processing&lt;/h3&gt;
+&lt;p&gt;In some of our processes, decisions are made without human intervention. For example, in the case of a claim settlement where it is clear even to a computer in the specific situation that the reimbursement is straightforward. The existence of such automated decision-making and the underlying logic are indicated during the process. You can always contact your Vanbreda representative if you have questions about automated decision-making or if you do not understand a decision and would like further explanations.&lt;/p&gt;
+
+&lt;h3&gt;3.8 You can withdraw your consent&lt;/h3&gt;
+&lt;p&gt;You can withdraw your consent at any time for personal data that Vanbreda processes based on your consent. If you withdraw your consent, Vanbreda may no longer be able to provide certain services.&lt;/p&gt;
+
+&lt;h3&gt;3.9 How can you exercise these rights?&lt;/h3&gt;
+&lt;p&gt;If you wish to exercise any of these rights, it is important that:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;You clearly state your request to Vanbreda (including information about the data or activity in question, the type of insurance, your client number, etc.);&lt;/li&gt;
+    &lt;li&gt;You identify yourself (for example, through secure online platforms or by providing a copy of your ID).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Depending on the importance and impact of your request, Vanbreda may ask for additional information. It is best to send your request to your Vanbreda contact person.&lt;/p&gt;
+&lt;p&gt;For any questions or complaints about exercising your rights, you can also contact Vanbreda's Data Protection Officer: using our form, by email at &lt;a href="mailto:dpo@vanbreda.be"&gt;dpo@vanbreda.be&lt;/a&gt; or by mail at Vanbreda Risk &amp; Benefits S.A., Attn: Data Protection Officer, Plantin en Moretuslei 297, 2140 Antwerp. You can find more information about data protection legislation on the &lt;a href="http://cnpd.public.lu" target="_blank"&gt;cnpd.public.lu&lt;/a&gt; website, the Luxembourg data protection authority's website. You can also file a complaint there.&lt;/p&gt;
+
+&lt;h2&gt;4. Why do we process your personal data?&lt;/h2&gt;
+&lt;h3&gt;4.1 To meet legal obligations&lt;/h3&gt;
+&lt;p&gt;Vanbreda needs certain personal data to meet its legal obligations. If Vanbreda cannot access this data, it cannot enter into an agreement with you, continue the agreement, or perform a transaction requested by you or a third party on your behalf.&lt;/p&gt;
+&lt;p&gt;The legal provisions that require Vanbreda to process your personal data include:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Insurance law, in particular the law of April 4, 2014, and the law of August 2, 2002, on the supervision of the financial sector and financial services;&lt;/li&gt;
+    &lt;li&gt;Anti-money laundering legislation, particularly the law of September 18, 2017;&lt;/li&gt;
+    &lt;li&gt;Sanctions legislation, particularly the European Regulation 2580/2001/EC;&lt;/li&gt;
+    &lt;li&gt;Accounting and tax obligations.&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;4.2 To conclude and execute the contract&lt;/h3&gt;
+&lt;p&gt;Certain personal data is necessary to conclude the brokerage agreement or provide the service you can expect from Vanbreda as part of the contract's execution. Vanbreda's service includes providing advice, offering and proposing insurance contracts, as well as carrying out the preparatory work for the conclusion of insurance contracts and their subscription. Finally, Vanbreda will also assist you in managing and executing insurance contracts. It will handle claims and, if necessary, appoint experts or contact other relevant parties and share your personal data with them.&lt;/p&gt;
+&lt;p&gt;If you wish to use a third-party payment system, Vanbreda will also need to process personal data for this purpose.&lt;/p&gt;
+
+&lt;h3&gt;4.3 To ensure the proper functioning of our services&lt;/h3&gt;
+&lt;p&gt;Vanbreda will also process your personal data based on its legitimate interests. The processing performed for this purpose is related to:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Customer management;&lt;/li&gt;
+    &lt;li&gt;Central administration within the Vanbreda group;&lt;/li&gt;
+    &lt;li&gt;General business control, including profitability monitoring;&lt;/li&gt;
+    &lt;li&gt;Risk management, fraud prevention, and compliance;&lt;/li&gt;
+    &lt;li&gt;Legal assistance and defense of our rights;&lt;/li&gt;
+    &lt;li&gt;Monitoring and improving service quality;&lt;/li&gt;
+    &lt;li&gt;Internal auditing;&lt;/li&gt;
+    &lt;li&gt;IT support for other purposes (e.g., using pseudo-anonymous data in program testing, troubleshooting, etc.);&lt;/li&gt;
+    &lt;li&gt;Network and information security, including access control;&lt;/li&gt;
+    &lt;li&gt;Studies and statistics;&lt;/li&gt;
+    &lt;li&gt;Analysis of website and application usage to improve our products and services;&lt;/li&gt;
+    &lt;li&gt;Direct marketing to existing customers (commercial mailings, event and seminar invitations, sending surveys, etc.).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;In these processes, Vanbreda systematically balances its interests with your rights and reasonable expectations. If you disagree with any of the aforementioned processes, you can object as described in point 3.&lt;/p&gt;
+
+&lt;h3&gt;4.4 To ensure the proper functioning of our customers' and insurers' services&lt;/h3&gt;
+&lt;p&gt;Vanbreda will also process your personal data based on the legitimate interests of third parties, such as customers, employers, and insurers. This will only happen if the other party's interest outweighs the impact on your rights and reasonable expectations.&lt;/p&gt;
+&lt;p&gt;The processing performed for this purpose includes:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;Statistical reports to customers and employers, for example, to improve working conditions or provide targeted training;&lt;/li&gt;
+    &lt;li&gt;Requests and comparisons of insurance quotes;&lt;/li&gt;
+    &lt;li&gt;Insurance forecasting and underwriting (e.g., work accident insurance).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Where possible, this data is shared anonymously with the relevant parties.&lt;/p&gt;
+
+&lt;h3&gt;4.5 For direct marketing purposes&lt;/h3&gt;
+&lt;p&gt;Vanbreda aims to offer you products and services that may interest you. Furthermore, we believe it is our responsibility to inform you about new professional risks that could threaten the continuity of your business. To advise you effectively, Vanbreda uses the data at its disposal. Vanbreda thus uses your personal data for direct marketing purposes. Through data analysis, you benefit from a tailored approach, and Vanbreda can provide you with personalized offers. If you do not wish to receive these offers, please let us know.&lt;/p&gt;
+
+&lt;h3&gt;4.6 Because you have given us your consent&lt;/h3&gt;
+&lt;p&gt;Certain personal data is only processed because you have given Vanbreda your consent. You can withdraw this consent at any time without needing to justify your decision. This withdrawal means that the previously authorized processing will no longer be possible in the future. However, withdrawing your consent does not invalidate the processing that took place based on your prior consent.&lt;/p&gt;
+
+&lt;h2&gt;5. From whom do we receive your personal data?&lt;/h2&gt;
+&lt;p&gt;Your personal data may reach Vanbreda in different ways:&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;You have provided it to us yourself, at the beginning or during the collaboration.&lt;/li&gt;
+    &lt;li&gt;Vanbreda has received your personal data from someone close to you (family).&lt;/li&gt;
+    &lt;li&gt;Vanbreda has received your personal data under a contract with your employer, under which you are an insured/beneficiary/contact person.&lt;/li&gt;
+    &lt;li&gt;Vanbreda has found this personal data in public sources (e.g., the Belgian Official Gazette, LinkedIn, etc.).&lt;/li&gt;
+    &lt;li&gt;Vanbreda has purchased it from third parties, such as a prospecting database to which you have given your consent.&lt;/li&gt;
+    &lt;li&gt;Someone else has provided your personal data to Vanbreda in the context of an insurance contract or claims management.&lt;/li&gt;
+    &lt;li&gt;Someone else has provided your personal data to Vanbreda in the context of a contract with that third party (e.g., a hospital bill sent directly to Vanbreda via AssurCard).&lt;/li&gt;
+    &lt;li&gt;Indirectly (e.g., while browsing our website).&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;If you provide Vanbreda with someone else's personal data, it is important that you inform that person and refer them to this privacy statement.&lt;/p&gt;
+
+&lt;h2&gt;6. To whom do we provide your personal data?&lt;/h2&gt;
+&lt;h3&gt;6.1 Vanbreda group&lt;/h3&gt;
+&lt;p&gt;Your personal data may be shared between Vanbreda group companies. This way, each Vanbreda company is informed about the customer relationship, and you do not have to provide the same information each time. Of course, this does not apply to your medical data. These are only processed by the company within which they were collected. Within the Vanbreda group, only individuals who need specific information for processing will have access to your personal data. The data they have access to depends on the reason for which they need to consult it.&lt;/p&gt;
+
+&lt;h3&gt;6.2 Others&lt;/h3&gt;
+&lt;p&gt;Vanbreda may share your personal data with third parties involved in the execution of a contract or policy. These include (potential) insurers, a company's contact person, experts and advisors (medical), a bank, a mutual fund, etc. Your health data is handled with the utmost care. To avoid processing unnecessary data, we ask you to comply with the agreements made in the insurance policy. Thus, in some circumstances, you are asked to send medical information directly to the insurance company's medical advisor.&lt;/p&gt;
+&lt;p&gt;If Vanbreda shares this data with a third party (e.g., an insurer or your treating physician), it is only in the context of the execution of a contract or the reimbursement of a claim. Vanbreda may also share your personal data with parties involved in claims processing. These include (the insurer of) the other party, experts and advisors (medical), a bank, etc.&lt;/p&gt;
+&lt;p&gt;To ensure optimal service delivery, Vanbreda relies on several suppliers and subcontractors. To properly perform their tasks, they may need access to your personal data. By entering into a processing agreement with them, Vanbreda sets very clear guidelines regarding how and under what conditions your personal data can be processed. Additionally, Vanbreda also imposes all necessary protection standards on them.&lt;/p&gt;
+&lt;p&gt;If Vanbreda is legally required, it will share your personal data with the competent public authorities. Important: Vanbreda does not sell your personal data!&lt;/p&gt;
+&lt;p&gt;Vanbreda aims to process your personal data as much as possible within the European Economic Area, unless strictly necessary for the execution of a contract (e.g., contacting a local expert in case of a claim abroad). If this is not the case, Vanbreda will inform you.&lt;/p&gt;
+
+&lt;h2&gt;7. How long do we retain your personal data?&lt;/h2&gt;
+&lt;p&gt;Vanbreda will retain your personal data only as long as Vanbreda needs it to carry out its tasks and defend your interests. In our active systems, we destroy your data no later than the expiration of the liability period for potential complaints. In our backup systems, your data is retained until it is deleted due to the nature of the backup system. If a backup is used, data that is no longer necessary for the purposes described is first deleted from active systems.&lt;/p&gt;
+
+&lt;h2&gt;8. Questions and privacy-related issues&lt;/h2&gt;
+&lt;p&gt;Please contact us by email at &lt;a href="mailto:info@vanbreda.lu"&gt;info@vanbreda.lu&lt;/a&gt; or by writing to Vanbreda Risk &amp; Benefits S.A. / 2-4, rue du Château d’Eau / L-3364 Leudelange / Luxembourg. Alternatively, you can call us at +352 46 54 03.&lt;/p&gt;
+&lt;p&gt;You can also contact our Data Protection Officer (DPO) for all your questions and concerns regarding the processing of your personal data: &lt;a href="mailto:dpo@vanbreda.be"&gt;dpo@vanbreda.be&lt;/a&gt;, using our form, or by mail to Vanbreda Risk &amp; Benefits S.A., Attn: DPO, Plantin en Moretuslei 297, 2140 Antwerp.&lt;/p&gt;
+&lt;p&gt;This policy was updated in May 2018.&lt;/p&gt;
+</value>
+    </data>
+    <data name="C-Title" xml:space="preserve">
+        <value>Login</value>
+    </data>
+    <data name="C-User" xml:space="preserve">
+        <value>Username</value>
+    </data>
+    <data name="C-Password" xml:space="preserve">
+        <value>Password</value>
+    </data>
+    <data name="C-Login" xml:space="preserve">
+        <value>Login</value>
+    </data>
+    <data name="C-UserP" xml:space="preserve">
+        <value>Enter your username</value>
+    </data>
+    <data name="C-PasswordP" xml:space="preserve">
+        <value>Enter your password</value>
+    </data>
+    <data name="C-RequiredPassword" xml:space="preserve">
+        <value>Password is required</value>
+    </data>
+    <data name="C-RequiredUsername" xml:space="preserve">
+        <value>Username is required</value>
+    </data>
+    <data name="C-WrongLogin" xml:space="preserve">
+        <value>Username or password incorrect</value>
+    </data>
+    <data name="T-Title" xml:space="preserve">
+        <value>Translate</value>
+    </data>
+    <data name="T-Confirm" xml:space="preserve">
+        <value>Translation confirmation</value>
+    </data>
+    <data name="T-OriginalT" xml:space="preserve">
+        <value>Original text :</value>
+    </data>
+    <data name="T-Automatic" xml:space="preserve">
+        <value>Automatically Generated Translation :</value>
+    </data>
+    <data name="T-Submit" xml:space="preserve">
+        <value>Submit</value>
+    </data>
+    <data name="T-Nothing" xml:space="preserve">
+        <value>No text to translate at the moment 😊</value>
+    </data>
+    <data name="T-Validation" xml:space="preserve">
+        <value>Are you sure you want to confirm the translation? You will not be able to modify it afterwards.</value>
+    </data>
+    <data name="T-Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="T-ConfirmT" xml:space="preserve">
+        <value>Translation confirmation </value>
+    </data>
+    <data name="T-ValidationB" xml:space="preserve">
+        <value>Confirm</value>
+    </data>
+    <data name="Pr-Title" xml:space="preserve">
+        <value>Profile</value>
+    </data>
+    <data name="Pr-MyP" xml:space="preserve">
+        <value>My accont</value>
+    </data>
+    <data name="Pr-Logout" xml:space="preserve">
+        <value>Logout</value>
+    </data>
+    <data name="Pr-TranslateB" xml:space="preserve">
+        <value>Translate</value>
+    </data>
+    <data name="Pr-SwitchUsername" xml:space="preserve">
+        <value>Username change</value>
+    </data>
+    <data name="Pr-CurrentU" xml:space="preserve">
+        <value>Current username</value>
+    </data>
+    <data name="Pr-NewU" xml:space="preserve">
+        <value>New username</value>
+    </data>
+    <data name="Pr-ChangeU" xml:space="preserve">
+        <value>Change username</value>
+    </data>
+    <data name="Pr-SwitchP" xml:space="preserve">
+        <value>Password change</value>
+    </data>
+    <data name="Pr-CurrentP" xml:space="preserve">
+        <value>Current password</value>
+    </data>
+    <data name="Pr-NewP" xml:space="preserve">
+        <value>New password</value>
+    </data>
+    <data name="Pr-ConfirmP" xml:space="preserve">
+        <value>Confirm new password</value>
+    </data>
+    <data name="Pr-ChangeP" xml:space="preserve">
+        <value>Change password</value>
+    </data>
+    <data name="Pr-SuccessU" xml:space="preserve">
+        <value>Your username has been successfully changed.</value>
+    </data>
+    <data name="Pr-IncorrectP" xml:space="preserve">
+        <value>Current password is incorrect.</value>
+    </data>
+    <data name="Pr-SuccessP" xml:space="preserve">
+        <value>Your password has been successfully changed.</value>
+    </data>
+    <data name="Pr-50U" xml:space="preserve">
+        <value>The username must not exceed 50 characters.</value>
+    </data>
+    <data name="Pr-20P" xml:space="preserve">
+        <value>The password must not exceed 20 characters.</value>
+    </data>
+    <data name="Pr-Expression" xml:space="preserve">
+        <value>The password must be at least 8 characters long.</value>
+    </data>
+    <data name="Pr-WrongP" xml:space="preserve">
+        <value>Passwords do not match.</value>
+    </data>
+    <data name="Pr-8P" xml:space="preserve">
+        <value>The password must be at least 8 characters long.</value>
+    </data>
+    <data name="Pr-RequiredU" xml:space="preserve">
+        <value>A new username is required.</value>
+    </data>
+    <data name="Pr-RequiredConfirmP" xml:space="preserve">
+        <value>Password confirmation is required.</value>
+    </data>
+    <data name="Pr-RequiredP" xml:space="preserve">
+        <value>The current password is required.</value>
+    </data>
+    <data name="Pr-RequiredNewP" xml:space="preserve">
+        <value>The new password is required.</value>
+    </data>
+    <data name="MAB-Title" xml:space="preserve">
+        <value>Add document</value>
+    </data>
+    <data name="MA-Add" xml:space="preserve">
+        <value>Add</value>
+    </data>
+    <data name="MA-Cancel" xml:space="preserve">
+        <value>Cancel</value>
+    </data>
+    <data name="MAB-Category" xml:space="preserve">
+        <value>Category</value>
+    </data>
+    <data name="MAB-CategorySelect" xml:space="preserve">
+        <value>Select category</value>
+    </data>
+    <data name="MAB-Document" xml:space="preserve">
+        <value>Document</value>
+    </data>
+    <data name="MA-Name" xml:space="preserve">
+        <value>Name</value>
+    </data>
+    <data name="MAP-Logo" xml:space="preserve">
+        <value>Logo</value>
+    </data>
+    <data name="MAP-Website" xml:space="preserve">
+        <value>Website</value>
+    </data>
+    <data name="MAPa-Title" xml:space="preserve">
+        <value>Add a partner</value>
+    </data>
+    <data name="MAP-Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="MAP-Firstname" xml:space="preserve">
+        <value>First name</value>
+    </data>
+    <data name="MAP-Image" xml:space="preserve">
+        <value>Image</value>
+    </data>
+    <data name="MAP-Lastname" xml:space="preserve">
+        <value>Last name</value>
+    </data>
+    <data name="MAP-Phone" xml:space="preserve">
+        <value>Phone</value>
+    </data>
+    <data name="MAP-Role" xml:space="preserve">
+        <value>Role</value>
+    </data>
+    <data name="MAPe-Title" xml:space="preserve">
+        <value>Add a member</value>
+    </data>
+    <data name="MAP-Description" xml:space="preserve">
+        <value>Description</value>
+    </data>
+    <data name="MAPr-Title" xml:space="preserve">
+        <value>Add a product</value>
+    </data>
+    <data name="MAD-Delete" xml:space="preserve">
+        <value>Delete</value>
+    </data>
+    <data name="MAD-Text" xml:space="preserve">
+        <value>Are you sure you want to delete this item ?</value>
+    </data>
+    <data name="MAD-Title" xml:space="preserve">
+        <value>Confirm deletion</value>
+    </data>
+    <data name="MA-Edit" xml:space="preserve">
+        <value>Edit</value>
+    </data>
+    <data name="MEB-Title" xml:space="preserve">
+        <value>Edit document</value>
+    </data>
+    <data name="MEI-Title" xml:space="preserve">
+        <value>Edit contact informations</value>
+    </data>
+    <data name="MEI-Infos" xml:space="preserve">
+        <value>Contact informations</value>
+    </data>
+    <data name="MEI-Description" xml:space="preserve">
+        <value>Description:</value>
+    </data>
+    <data name="MEI-Text" xml:space="preserve">
+        <value>Text:</value>
+    </data>
+    <data name="MEI-Type" xml:space="preserve">
+        <value>Type:</value>
+    </data>
+    <data name="MEI-Add" xml:space="preserve">
+        <value>Add information</value>
+    </data>
+    <data name="MEI-Emails" xml:space="preserve">
+        <value>Emails list</value>
+    </data>
+    <data name="MEI-Name" xml:space="preserve">
+        <value>Name:</value>
+    </data>
+    <data name="MEI-Email" xml:space="preserve">
+        <value>Email:</value>
+    </data>
+    <data name="MEI-AddE" xml:space="preserve">
+        <value>Add email</value>
+    </data>
+    <data name="MA-Close" xml:space="preserve">
+        <value>Close</value>
+    </data>
+    <data name="MEPe-Title" xml:space="preserve">
+        <value>Edit member</value>
+    </data>
+    <data name="MEPr-Title" xml:space="preserve">
+        <value>Edit product</value>
+    </data>
+</root>

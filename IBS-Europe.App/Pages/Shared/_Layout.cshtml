@@ -1,0 +1,132 @@
+﻿@using System.Globalization
+@using IBS_Europe.App.Resources
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>IBS Europe - @ViewData["Title"]</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true"/>
+    
+    <link rel="icon" href="~/images/IBS-logo-bleu-2_HD.JPG" type="image/x-icon" />
+</head>
+
+<body class="min-vh-100 d-flex flex-column">
+<header class="bg-midnight text-white p-0 border-1 border-white">
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container">
+            <!-- Logo -->
+            <a class="navbar-brand" asp-page="/Index">
+                <img class="w-h-5em" src="images/test.png" alt="@SharedResource.L_CompanyImage">
+            </a>
+
+            <!-- Bouton burger pour petits écrans -->
+            <button class="navbar-toggler mt-3" type="button" data-bs-toggle="collapse" data-bs-target="#navbarContent" aria-controls="navbarContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+
+            <!-- Contenu de la barre de navigation -->
+            <div class="collapse navbar-collapse" id="navbarContent">
+                <!-- Liens principaux -->
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Products" ? "bleu-pastel" : "text-white")" asp-page="/Products">@SharedResource.L_Product</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/BrokerSpace" ? "bleu-pastel" : "text-white")" asp-page="/BrokerSpace">@SharedResource.L_Broker</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Partners" ? "bleu-pastel" : "text-white")" asp-page="/Partners">@SharedResource.L_Partners</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/AboutUsHome" || ViewContext.ActionDescriptor.DisplayName == "/AboutUsTeam" || ViewContext.ActionDescriptor.DisplayName == "/AboutUsText"  ? "bleu-pastel" : "text-white")" asp-page="/AboutUsHome">@SharedResource.L_About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Contact" ? "bleu-pastel" : "text-white")" asp-page="/Contact">@SharedResource.L_Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="https://mybroker.be/" target="_blank"> <img class="rounded-2" src="images/image%20(1).png" alt="Broker" style="width: 5em;"></a>
+                    </li>
+                    
+                </ul>
+
+                <!-- Sélecteur de langue -->
+               <div class="language-select d-inline align-items-center">
+                   <form asp-controller="Home" asp-action="SetLanguage" method="post" class="d-inline-block">
+                       <button type="submit" name="culture" value="fr-FR" class="btn btn-link p-0 border-0 mx-1 align-middle">
+                           <img src="/images/France.png" alt="Français" class="rounded-circle" style="width: 1.5em;">
+                       </button>
+                       <button type="submit" name="culture" value="en-US" class="btn btn-link p-0 border-0 mx-1 align-middle">
+                           <img src="/images/UK.png" alt="English" class="rounded-circle" style="width: 1.5em;">
+                       </button>
+                       <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                   </form>
+               
+                   <!-- Icone profil utilisateur -->
+                   @if (User.Identity.IsAuthenticated)
+                   {
+                       <a class="text-decoration-none bleu-pastel fs-4 ms-1 align-middle" asp-page="/Profile">
+                           <i class="fas fa-user"></i>
+                       </a>
+                   }
+                   else
+                   {
+                       <a class="text-decoration-none text-white fs-4 ms-1 align-middle" asp-page="/Login">
+                           <i class="fas fa-user"></i>
+                       </a>
+                   }
+               </div>
+
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<div class="body">
+    <main role="main" class="pb-3">
+         @if (Thread.CurrentThread.CurrentCulture.Name == "en-US" && User.Identity.IsAuthenticated)
+         {
+             <p class="text-danger text-center">Veuillez passer en Français pour obtenir les droits d'édition.</p>
+         }
+                   
+        @RenderBody()
+    </main>
+</div>
+
+<footer class="border-top mt-3 bg-midnight text-white p-3 w-100 d-flex flex-column flex-sm-row justify-content-between align-items-center mt-auto">
+    <!-- Conteneur gauche pour le texte -->
+    <div class="d-flex align-items-center justify-content-center mb-3 mb-sm-0">
+        <p class="mb-0 text-center me-4">&copy; 2024 - IBS Europe</p>
+            <a class="text-white text-decoration-none mx-1" href="https://www.facebook.com/profile.php?id=100063649896324&locale=fr_FR" target="_blank">
+                <img src="images/facebook-new.png" alt="Facebook" style="width: 1.5em;">
+            </a>
+            <a class="text-white text-decoration-none mx-1" href="https://www.linkedin.com/company/ibs-europe/" target="_blank">
+                <img src="images/linkedin.png" alt="LinkedIn" style="width: 1.5em;">
+            </a>
+    </div>
+
+    <!-- Conteneur droit pour les liens -->
+   <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
+       <a asp-page="/Contact" class="text-white mx-2 text-decoration-none">@SharedResource.L_Contact</a>
+       <a asp-page="/Mentions" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Mentions" ? "bleu-pastel" : "text-white")">@SharedResource.L_Legal</a>
+       <a asp-page="/Politic" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Politic" ? "bleu-pastel" : "text-white")">@SharedResource.L_Privacy</a>
+   </div>
+
+</footer>
+
+
+
+
+
+
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+
+@await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,16 @@
+﻿@using IBS_Europe.App.Pages.Shared.Model
+@model IBS_Europe.App.Pages.Shared.Model.UsernameModel
+
+
+<form method="post" asp-page-handler="@Model.OnPostChangeUsernameAsync">
+    <div class="form-group mb-3">
+        <label for="username" class="form-label">Nom d'utilisateur actuel</label>
+        <input type="text" class="form-control" id="username" value="@Model.UserName.CurrentUsername" disabled />
+    </div>
+    <div class="form-group mb-3">
+        <label for="newUsername" class="form-label">Nouveau nom d'utilisateur</label>
+        <input type="text" class="form-control" id="newUsername" asp-for="@Model.UserName.NewUsername" />
+        <span asp-validation-for="@Model.UserName.NewUsername" class="text-danger"></span>
+    </div>
+    <button type="submit" class="button-1">Changer le nom d'utilisateur</button>
+</form>

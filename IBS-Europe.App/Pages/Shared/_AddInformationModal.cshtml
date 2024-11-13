@@ -1,0 +1,54 @@
+﻿@using IBS_Europe.App.Resources
+@using Type = IBS_Europe.Domains.Type
+@model Contact.InformationModel
+
+<div class="modal fade" id="addInformationModal" tabindex="-1" aria-labelledby="addInformationLabel" data-bs-backdrop="static" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            @{
+                var pageHandler = Model.Title == "Ajouter une information" ? "AddI" : "EditI";
+            }
+
+            <form method="post" asp-page-handler="@pageHandler">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="addInformationLabel">@Model.Title</h5>
+                    <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+
+                    <div class="mb-3">
+                        <label for="Description" class="form-label">Description</label>
+                        <input type="text" class="form-control" id="Description" asp-for="@Model.Description">
+                        <span asp-validation-for="@Model.Description" class="text-danger"></span>
+                    </div>
+                    <div class="mb-3">
+                        <label for="Text" class="form-label">Texte</label>
+                        <input type="text" class="form-control" id="Text" asp-for="@Model.Text">
+                        <span asp-validation-for="@Model.Text" class="text-danger"></span>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="informationType" class="form-label">@SharedResource.MAB_Category</label>
+                        <select asp-for="@Model.Type" class="form-select" id="informationType">
+                            <option value="" disabled selected>@SharedResource.MAB_CategorySelect</option>
+                            @foreach (var cat in Enum.GetValues(typeof(Type)))
+                            {
+                                int category = (int)cat;
+                                <option value="@category">
+                                    @cat
+                                </option>
+                            }
+                        </select>
+
+                        <span asp-validation-for="@Model.Type" class="text-danger"></span>
+                    </div>
+
+                    <div class="modal-footer">
+                        <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
+                        <button type="submit" name="action" class="btn btn-primary">@SharedResource.MA_Add</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

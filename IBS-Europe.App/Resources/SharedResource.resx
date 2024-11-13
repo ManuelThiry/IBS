@@ -1,0 +1,360 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+
+<root>
+    <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+        <xsd:element name="root" msdata:IsDataSet="true">
+            
+        </xsd:element>
+    </xsd:schema>
+    <resheader name="resmimetype">
+        <value>text/microsoft-resx</value>
+    </resheader>
+    <resheader name="version">
+        <value>1.3</value>
+    </resheader>
+    <resheader name="reader">
+        <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <resheader name="writer">
+        <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+    </resheader>
+    <data name="I-Welcome" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-CompanyImage" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Product" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Partners" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-About" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Contact" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Author" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Legal" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Privacy" xml:space="preserve">
+        <value />
+    </data>
+    <data name="L-Broker" xml:space="preserve">
+        <value />
+    </data>
+    <data name="I-Trusted" xml:space="preserve">
+        <value />
+    </data>
+    <data name="I-WhyIBS" xml:space="preserve">
+        <value />
+    </data>
+    <data name="I-Learn" xml:space="preserve">
+        <value />
+    </data>
+    <data name="I-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="I-WhyText" xml:space="preserve">
+        <value />
+    </data>
+    <data name="P-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-MainD" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-OtherD" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-Individuals" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-Professionals" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AH-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AH-Commitments" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-Image" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AS-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AS-Text" xml:space="preserve">
+        <value />
+    </data>
+    <data name="M-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="M-Text" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Po-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Po-Text" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-User" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-Password" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-Login" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-UserP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-PasswordP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-RequiredPassword" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-RequiredUsername" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-WrongLogin" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Confirm" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-OriginalT" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Automatic" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Submit" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Nothing" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Validation" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-ConfirmT" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-ValidationB" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-Cancel" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-MyP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-Logout" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-TranslateB" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-SwitchUsername" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-CurrentU" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-NewU" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-ChangeU" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-SwitchP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-CurrentP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-NewP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-ConfirmP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-ChangeP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-SuccessU" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-IncorrectP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-SuccessP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-50U" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-20P" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-8P" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-Expression" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-WrongP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-RequiredU" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-RequiredP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-RequiredNewP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-RequiredConfirmP" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAB-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAB-Document" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAB-Category" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAB-CategorySelect" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MA-Add" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MA-Cancel" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MA-Name" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Logo" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Website" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAPa-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAPe-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Phone" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Email" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Role" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Image" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Firstname" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Lastname" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Description" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAPr-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAD-Delete" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAD-Text" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAD-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MA-Edit" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEB-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEPe-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEPr-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Infos" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Description" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Text" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Type" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Add" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Emails" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Name" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-Email" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MEI-AddE" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MA-Close" xml:space="preserve">
+        <value />
+    </data>
+</root>

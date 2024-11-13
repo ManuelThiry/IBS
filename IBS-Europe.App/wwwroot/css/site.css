@@ -1,0 +1,286 @@
+body {
+  font-family: "Franklin Gothic Medium", sans-serif;
+  min-height: 100vh;
+}
+
+.bleu-pastel {
+    color: #93c0fc !important;
+    
+}
+
+.body {
+  margin-bottom: 5em;
+}
+
+@media (min-width: 768px) {
+  footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+  }
+}
+
+html {
+  overflow-y: scroll;
+}
+
+
+header {
+  padding: 0.625em 0;
+  position: relative;
+}
+
+header img {
+  vertical-align: middle;
+  cursor: pointer;
+}
+
+header nav a {
+  margin: 0 1em;
+}
+
+.language-select {
+  position: absolute;
+  right: 0;
+  top: 0.9em;
+}
+
+/* INDEX */ 
+
+.index-hero {
+  height: 37.5em;
+  position: relative;
+  overflow: hidden; /* Pour éviter que les images ne débordent */
+  background-size: cover;
+  background-position: center;
+  animation-name: slideshow;
+  animation-duration: 30s; /* Durée totale de l'animation */
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite; /* Pour répéter l'animation indéfiniment */
+}
+
+@keyframes slideshow {
+  0%, 100% { background-image: url("https://cdn.pixabay.com/photo/2022/04/26/03/00/family-7157276_1280.jpg"); }
+  25% { background-image: url("https://cdn.pixabay.com/photo/2017/10/13/12/29/hands-2847508_1280.jpg"); }
+  50% { background-image: url("../images/visu-accueil.jpg"); }
+  75% { background-image: url("https://cdn.pixabay.com/photo/2017/08/30/18/19/bali-2698078_1280.jpg"); }
+}
+
+.index-buttons {
+  position: absolute;
+  left: 0;
+  bottom: 6em;
+}
+
+.index-bubble {
+  position: relative;
+  margin-left: 1em;
+}
+.index-bubble:before {
+  content: '';
+  position: absolute;
+  top: 1.25em;
+  left: -1.25em;
+  width: 0;
+  height: 0;
+  border-right: 1.25em solid white;
+  border-top: 0.625em solid transparent;
+  border-bottom: 0.625em solid transparent;
+}
+
+/* PRODUCTS */
+
+.products-hover:hover {
+  color: skyblue;
+}
+
+.product {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  opacity: 0.4;
+  width: 10em;
+  display: none;
+}
+
+.product.visible {
+  display: block;
+}
+
+.product.current {
+  transform: scale(1.2);
+  opacity: 1;
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.description {
+  display: none;
+  border-top: 0.1em solid #ddd;
+  background-color: #f9f9f9;
+}
+
+.description img {
+  width: 18em;
+  height: auto;
+}
+
+.description.active {
+  display: block;
+}
+
+/* ABOUTUSHOME */
+
+.fade-out {
+  animation: fadeOut 0.5s forwards; /* Durée de l'animation et appliquer uniquement vers la fin */
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+}
+
+/* ABOUTUSTEAM */
+
+/* Animation pour faire apparaître les éléments en douceur */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.title-fade-in {
+  opacity: 0; /* Initialement caché */
+  animation: fadeIn 1s ease-in-out forwards; /* Animation d'apparition */
+  animation-delay: 0.5s; /* Délai pour laisser les cartes apparaître d'abord */
+}
+
+.card {
+  opacity: 0; /* Initialement caché */
+  animation: fadeIn 1s ease-in-out forwards; /* Animation d'apparition */
+}
+
+.card:nth-child(1) {
+  animation-delay: 0.1s;
+}
+
+.card:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.card:nth-child(3) {
+  animation-delay: 0.3s;
+}
+
+.card:nth-child(4) {
+  animation-delay: 0.4s;
+}
+
+
+
+
+
+
+.appears {
+  opacity: 0; /* Initialement caché */
+  animation: fadeIn 1s ease-in-out forwards; /* Animation d'apparition */
+}
+
+
+/* COLOR */
+
+.bg-midnight {
+  background-color: midnightblue;
+}
+
+.color-midnight {
+  color: midnightblue;
+}
+
+/* SIZE */
+
+.w-h-5em {
+  width: 5em;
+  height: 5em;
+}
+
+.w-h-2em {
+  width: 2em;
+  height: 2em;
+}
+
+.w-h-7em {
+  width: 7em;
+  height: 7em;
+}
+
+.fs-3em {
+  font-size: 3em;
+}
+
+.bg-transparent-dark {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.bg-transparent-light {
+  background-color: rgba(255, 255, 255, 0.5);
+}
+
+.min-height-20em {
+  min-height: 20em;
+}
+
+.max-w-50em {
+  max-width: 50em;
+}
+/* OTHER */
+
+.cursor {
+    cursor: pointer;
+}
+
+.border-white {
+  border: 0.1em solid white;
+}
+
+.border-black {
+  border: 0.1em solid black;
+}
+
+.rounded-4 {
+  border-radius: 0.625em;
+}
+
+.button-1 {
+  padding: 0.625em 1.25em;
+  border-radius: 0.625em;
+  cursor: pointer;
+  font-size: 1em;
+  background-color: midnightblue;
+  color: white;
+  border: 0.1em solid white;
+}
+
+.button-1:hover {
+  background-color: white;
+  color: midnightblue;
+  border: 0.1em solid midnightblue;
+}
+
+.shadow {
+  box-shadow: 0 0.25em 0.5em rgba(0, 0, 0, 0.1);
+}
+
+/* */
+
+
+

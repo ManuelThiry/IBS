@@ -1,0 +1,1 @@
+﻿namespace IBS_Europe.App.Resources;
