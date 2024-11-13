@@ -13,10 +13,10 @@
         <div class="col-md-6">
             <h3 class="mb-4">Contactez-nous</h3>
             
-            @if (TempData["SuccessMessage"] != null)
+            @if (Model.Success)
                 {
                     <div class="alert alert-success" role="alert">
-                        @TempData["SuccessMessage"]
+                        Votre message a été envoyé avec succès.
                     </div>
                 }
              @if (TempData["ErrorMessage"] != null)
@@ -75,6 +75,19 @@
                    <label for="picture" class="form-label">Joindre un fichier (PNG, JPEG, PDF)</label>
                    <!-- Utilisation de asp-for pour la cohérence -->
                    <input type="file" class="form-control" id="picture" asp-for="Input.Attachment" accept=".png, .jpeg, .jpg, .pdf">
+                   @if (Model.Input.OldImage != null)
+                       {
+                           if ( Model.Input.OldImage.Extension == ".pdf")
+                           {
+                               <i class="fas fs-5 fa-file-pdf fa-2x text-danger mt-2"></i> 
+                           }
+                           else
+                           {
+                               <img class="w-h-2em" src="@Model.Input.OldImage.Base64" alt="Image Preview" />
+                               
+                           }
+                           <span>@Model.Input.OldImage.FileName</span>
+                       }
                    <span asp-validation-for="Input.Attachment" class="text-danger"></span>
                </div>
            
@@ -91,7 +104,7 @@
            <!-- Informations sur l'entreprise avec icônes -->
             <img src="images/IBS-logo-bleu-2_HD.JPG" alt="LinkedIn" style="width: 15em; margin-left: 10em;">
                    <div class="company-info p-4 shadow-sm rounded bg-light"
-                        style="border: 0.1em solid midnightblue; position: relative; margin-top: @(User.Identity.IsAuthenticated ? "5%" : "8%");">
+                        style="border: 0.1em solid midnightblue; position: relative; margin-top: 5%; min-height: 11%;">
        
                        @foreach(var info in Model.Informations)
                       {
@@ -131,7 +144,7 @@
                                          "#"
                                          )"
                                          target="@((int)info.Type == 3 ? "_blank" : "")"
-                                         class="text-decoration-none text-dark ms-2" style="font-weight: 600;">
+                                         class="text-decoration-none ms-2" style="font-weight: 600;">
                                           @info.Text
                                       </a>
                                   }

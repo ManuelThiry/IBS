@@ -105,23 +105,24 @@ namespace IBS_Europe.App.Pages
         {
             public string CurrentUsername { get; set; }
             
-            [StringLength(50,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_50U")]
+            [MaxLength(50,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_50U")]
             public string NewUsername { get; set; }
         }
 
         public class PasswordModel
         {
-            [StringLength(20,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_20P")]
+            [MaxLength(20,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_20P")]
             [DataType(DataType.Password)]
             public string CurrentPassword { get; set; }
             
-            [StringLength(20,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_20P")]
+            [MaxLength(20,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_20P")]
             [MinLength(8, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_8P")]
             [RegularExpression(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^\da-zA-Z]).{4,20}$", 
                 ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_Expression")]
             [DataType(DataType.Password)]
             public string NewPassword { get; set; }
             
+            [MaxLength(20,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_20P")]
             [DataType(DataType.Password)]
             [Compare("NewPassword", ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_WrongP")]
             public string ConfirmPassword { get; set; }

@@ -484,7 +484,7 @@
         <value>The password must not exceed 20 characters.</value>
     </data>
     <data name="Pr-Expression" xml:space="preserve">
-        <value>The password must be at least 8 characters long.</value>
+        <value>The password must contain at least one uppercase letter, one lowercase letter, one number, and one special character.</value>
     </data>
     <data name="Pr-WrongP" xml:space="preserve">
         <value>Passwords do not match.</value>

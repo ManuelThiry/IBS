@@ -485,7 +485,7 @@
         <value>Le mot de passe ne doit pas dépasser 20 caractères.</value>
     </data>
     <data name="Pr-Expression" xml:space="preserve">
-        <value>Le mot de passe doit comporter au moins 8 caractères.</value>
+        <value>Le mot de passe doit contenir au moins une majuscule, une minuscule, un chiffre et un caractère spécial.</value>
     </data>
     <data name="Pr-WrongP" xml:space="preserve">
         <value>Les mots de passe ne correspondent pas</value>

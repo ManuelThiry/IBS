@@ -48,9 +48,11 @@ namespace IBS_Europe.App.Pages
         public class LoginModel
         {
             [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "C_RequiredUsername")]
+            [StringLength(50,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_50U")]
             public string Identifier { get; set; }
 
             [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "C_RequiredPassword")]
+            [StringLength(20,ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_20P")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
         }

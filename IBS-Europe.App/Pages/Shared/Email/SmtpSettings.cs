@@ -29,7 +29,7 @@ public class EmailService
     public async Task<bool> SendEmailAsync(string toEmail, string subject, MimeEntity body)
     {
         var message = new MimeMessage();
-        message.From.Add(new MailboxAddress("Nom de l'expéditeur", _smtpSettings.Username));
+        message.From.Add(new MailboxAddress(_smtpSettings.Username, _smtpSettings.Username));
         message.To.Add(new MailboxAddress("", toEmail));
         message.Subject = subject;
 
