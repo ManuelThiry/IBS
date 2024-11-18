@@ -8,6 +8,10 @@ body {
     
 }
 
+.bleu-pastel:hover {
+    color: #0b5ed7 !important;
+}
+
 .body {
   margin-bottom: 5em;
 }
@@ -43,34 +47,48 @@ header nav a {
 .language-select {
   position: absolute;
   right: 0;
-  top: 0.9em;
+  top: 0.3em;
 }
 
-/* INDEX */ 
+.language-select button.selected {
+  position: relative;
+}
+
+.language-select button.selected::after {
+  content: '';
+  position: absolute;
+  bottom: -5px; /* Ajustez cette valeur pour positionner la barre */
+  left: 0;
+  width: 100%;
+  height: 2px; /* Hauteur de la barre */
+  background-color: white; /* Couleur de la barre, ajustez selon votre design */
+}
+
+
+/* INDEX */
 
 .index-hero {
-  height: 37.5em;
+  height: 35em;
   position: relative;
-  overflow: hidden; /* Pour éviter que les images ne débordent */
+  overflow: hidden;
   background-size: cover;
   background-position: center;
-  animation-name: slideshow;
-  animation-duration: 30s; /* Durée totale de l'animation */
-  animation-timing-function: ease-in-out;
-  animation-iteration-count: infinite; /* Pour répéter l'animation indéfiniment */
 }
 
-@keyframes slideshow {
-  0%, 100% { background-image: url("https://cdn.pixabay.com/photo/2022/04/26/03/00/family-7157276_1280.jpg"); }
-  25% { background-image: url("https://cdn.pixabay.com/photo/2017/10/13/12/29/hands-2847508_1280.jpg"); }
-  50% { background-image: url("../images/visu-accueil.jpg"); }
-  75% { background-image: url("https://cdn.pixabay.com/photo/2017/08/30/18/19/bali-2698078_1280.jpg"); }
+.index-hero-text {
+  position: relative;
+  z-index: 1; /* Assurez-vous que le texte reste au-dessus de l'image */
 }
 
-.index-buttons {
+.index-hero-background {
   position: absolute;
+  top: 0;
   left: 0;
-  bottom: 6em;
+  right: 0;
+  bottom: 0;
+  background-size: cover;
+  background-position: center;
+  transition: opacity 1s ease-in-out; /* Transition uniquement sur l'arrière-plan */
 }
 
 .index-bubble {
@@ -274,6 +292,39 @@ header nav a {
   background-color: white;
   color: midnightblue;
   border: 0.1em solid midnightblue;
+}
+
+.btn-primary:hover {
+  background-color: white;
+  color: #007bff;
+  border-color: #007bff;
+}
+
+.btn-success:hover {
+  background-color: white;
+  color: #28a745;
+  border-color: #28a745;
+}
+
+.trash:hover {
+  color: #dc3545;
+  background-color: white;
+  border-color: #dc3545;
+}
+
+.trash {
+  background-color: #dc3545;
+}
+
+.btn-warning:hover {
+  background-color: white;
+  border-color: #ffc107;
+}
+
+.btn-danger:hover {
+  background-color: white;
+  color: #dc3545;
+  border-color: #dc3545;
 }
 
 .shadow {

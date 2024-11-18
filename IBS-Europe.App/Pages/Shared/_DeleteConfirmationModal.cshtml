@@ -13,26 +13,34 @@
                                         "Contact")"
               asp-page-handler="Delete">
             
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="deleteConfirmationLabel">@SharedResource.MAD_Title</h5>
-                <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
-            </div>
-            <div class="modal-body">
-                @SharedResource.MAD_Text
-            </div>
-            <div class="modal-footer">
-                <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
+            <div class="modal-content">
+                <div class="modal-header bg-danger text-white">
+                    <h5 class="modal-title" id="deleteConfirmationLabel">@SharedResource.MAD_Title</h5>
+                    <button type="submit" name="action" value="cancel" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
+                </div>
+                <div class="modal-body">
+                    @SharedResource.MAD_Text
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
                     <input type="hidden" name="priority" id="priorityInput" value="" /> 
                     <input type="hidden" id="brokerId" name="brokerId" value="" />
                     <input type="hidden" id="peopleId" name="id" value="" />
                     <input type="hidden" id="productId" name="productId" value="" />
                     <input type="hidden" id="contactId" name="contactId" value="" />
                     <button type="submit" class="btn btn-danger">@SharedResource.MAD_Delete
-            </button>
-              </div>
-                    </div>
-                </form>
+                    </button>
+                </div>
+            </div>
+        </form>
           
     </div>
 </div>
+
+<style>
+.btn-danger:hover {
+   background-color: white;
+   color: #dc3545;
+   border-color: #dc3545;
+}
+           </style>

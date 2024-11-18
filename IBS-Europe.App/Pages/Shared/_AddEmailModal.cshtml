@@ -2,15 +2,15 @@
 @model Contact.EmailModel
 
 <div class="modal fade" id="addEmailModal" tabindex="-1" aria-labelledby="addEmailLabel" data-bs-backdrop="static" aria-hidden="true">
-    <div class="modal-dialog">
+     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             @{
                 var pageHandler = Model.Title == "Ajouter un contact" ? "AddE" : "EditE";
             }
             <form method="post" asp-page-handler="@pageHandler">
-            <div class="modal-header">
+            <div class="modal-header text-white bg-midnight">
                 <h5 class="modal-title" id="addEmailLabel">@Model.Title</h5>
-                <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="submit" name="action" value="cancel" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
 

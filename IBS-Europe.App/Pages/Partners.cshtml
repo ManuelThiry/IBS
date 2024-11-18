@@ -34,18 +34,19 @@
                 
                 @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                 {
-                    <button onclick="openDeleteModal(@product.Priority)" class="btn-close translate-middle bg-white border-0 fs-6" aria-label="Close" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"></button>
-                    
-                    <form method="post">
-                        <div class="d-flex justify-content-center" style="margin-right: 2em;">
-                            <button class="btn btn-light" name="direction" value="left" asp-route-priority="@product.Priority">
+                    <div class="d-flex justify-content-center">
+                                            
+                        <form method="post">
+                            <button class="btn btn-primary btn-sm me-1" name="direction" value="left" asp-route-priority="@product.Priority">
                                 <i class="fas fa-chevron-left"></i>
                             </button>
-                            <button class="btn btn-light" name="direction" value="right" asp-route-priority="@product.Priority">
+                            <button class="btn btn-primary btn-sm me-2" name="direction" value="right" asp-route-priority="@product.Priority">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
-                        </div>
-                    </form>
+                   
+                        </form>
+                        <button onclick="openDeleteModal(@product.Priority)" class="btn btn-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"> <i class="fas fa-trash"></i></button>
+                         </div>
                 }
             </div>
         }

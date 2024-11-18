@@ -14,6 +14,13 @@
     <link rel="icon" href="~/images/IBS-logo-bleu-2_HD.JPG" type="image/x-icon" />
 </head>
 
+<style>
+    .hover:hover {
+        color: #4682b4 !important;
+    }
+</style>
+
+
 <body class="min-vh-100 d-flex flex-column">
 <header class="bg-midnight text-white p-0 border-1 border-white">
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -33,19 +40,19 @@
                 <!-- Liens principaux -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Products" ? "bleu-pastel" : "text-white")" asp-page="/Products">@SharedResource.L_Product</a>
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Products" ? "bleu-pastel" : "text-white hover")" asp-page="/Products">@SharedResource.L_Product</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/BrokerSpace" ? "bleu-pastel" : "text-white")" asp-page="/BrokerSpace">@SharedResource.L_Broker</a>
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/BrokerSpace" ? "bleu-pastel" : "text-white hover")" asp-page="/BrokerSpace">@SharedResource.L_Broker</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Partners" ? "bleu-pastel" : "text-white")" asp-page="/Partners">@SharedResource.L_Partners</a>
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Partners" ? "bleu-pastel" : "text-white hover")" asp-page="/Partners">@SharedResource.L_Partners</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/AboutUsHome" || ViewContext.ActionDescriptor.DisplayName == "/AboutUsTeam" || ViewContext.ActionDescriptor.DisplayName == "/AboutUsText"  ? "bleu-pastel" : "text-white")" asp-page="/AboutUsHome">@SharedResource.L_About</a>
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/AboutUsHome" || ViewContext.ActionDescriptor.DisplayName == "/AboutUsTeam" || ViewContext.ActionDescriptor.DisplayName == "/AboutUsText"  ? "bleu-pastel" : "text-white hover")" asp-page="/AboutUsHome">@SharedResource.L_About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Contact" ? "bleu-pastel" : "text-white")" asp-page="/Contact">@SharedResource.L_Contact</a>
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Contact" ? "bleu-pastel" : "text-white hover")" asp-page="/Contact">@SharedResource.L_Contact</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="https://mybroker.be/" target="_blank"> <img class="rounded-2" src="images/image%20(1).png" alt="Broker" style="width: 5em;"></a>
@@ -54,31 +61,32 @@
                 </ul>
 
                 <!-- Sélecteur de langue -->
-               <div class="language-select d-inline align-items-center">
-                   <form asp-controller="Home" asp-action="SetLanguage" method="post" class="d-inline-block">
-                       <button type="submit" name="culture" value="fr-FR" class="btn btn-link p-0 border-0 mx-1 align-middle">
-                           <img src="/images/France.png" alt="Français" class="rounded-circle" style="width: 1.5em;">
-                       </button>
-                       <button type="submit" name="culture" value="en-US" class="btn btn-link p-0 border-0 mx-1 align-middle">
-                           <img src="/images/UK.png" alt="English" class="rounded-circle" style="width: 1.5em;">
-                       </button>
-                       <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
-                   </form>
-               
-                   <!-- Icone profil utilisateur -->
-                   @if (User.Identity.IsAuthenticated)
-                   {
-                       <a class="text-decoration-none bleu-pastel fs-4 ms-1 align-middle" asp-page="/Profile">
-                           <i class="fas fa-user"></i>
-                       </a>
-                   }
-                   else
-                   {
-                       <a class="text-decoration-none text-white fs-4 ms-1 align-middle" asp-page="/Login">
-                           <i class="fas fa-user"></i>
-                       </a>
-                   }
-               </div>
+              <div class="language-select d-inline align-items-center">
+                  <form asp-controller="Home" asp-action="SetLanguage" method="post" class="d-inline-block">
+                      <button type="submit" name="culture" value="fr-FR" class="btn btn-link p-0 border-0 mx-1 align-middle @(CultureInfo.CurrentCulture.Name == "fr-FR" ? "selected" : "")">
+                          <img src="/images/France.png" alt="Français" class="rounded-circle" style="width: 1.5em;">
+                      </button>
+                      <button type="submit" name="culture" value="en-US" class="btn btn-link p-0 border-0 mx-1 align-middle @(CultureInfo.CurrentCulture.Name == "en-US" ? "selected" : "")">
+                          <img src="/images/UK.png" alt="English" class="rounded-circle" style="width: 1.5em;">
+                      </button>
+                      <input type="hidden" name="returnUrl" value="@Context.Request.Path" />
+                  </form>
+              
+                  <!-- Icone profil utilisateur -->
+                  @if (User.Identity.IsAuthenticated)
+                  {
+                      <a class="text-decoration-none bleu-pastel fs-4 ms-1 align-middle" asp-page="/Profile">
+                          <i class="fas fa-user"></i>
+                      </a>
+                  }
+                  else
+                  {
+                      <a class="text-decoration-none text-white fs-4 ms-1 align-middle" asp-page="/Login">
+                          <i class="fas fa-user"></i>
+                      </a>
+                  }
+              </div>
+
 
             </div>
         </div>
@@ -111,9 +119,9 @@
 
     <!-- Conteneur droit pour les liens -->
    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
-       <a asp-page="/Contact" class="text-white mx-2 text-decoration-none">@SharedResource.L_Contact</a>
-       <a asp-page="/Mentions" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Mentions" ? "bleu-pastel" : "text-white")">@SharedResource.L_Legal</a>
-       <a asp-page="/Politic" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Politic" ? "bleu-pastel" : "text-white")">@SharedResource.L_Privacy</a>
+       <a asp-page="/Contact" class="text-white mx-2 text-decoration-none hover">@SharedResource.L_Contact</a>
+       <a asp-page="/Mentions" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Mentions" ? "bleu-pastel" : "text-white hover")">@SharedResource.L_Legal</a>
+       <a asp-page="/Politic" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Politic" ? "bleu-pastel" : "text-white hover")">@SharedResource.L_Privacy</a>
    </div>
 
 </footer>

@@ -2,12 +2,12 @@
 @model Products.EditModel?
 
 <div class="modal fade" id="addProductModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
-    <div class="modal-dialog" style="max-width: 80%; margin: auto;">
+    <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <form method="post" enctype="multipart/form-data" asp-page-handler="Add">
-            <div class="modal-header">
+            <div class="modal-header text-white bg-midnight">
                 <h5 class="modal-title" id="editProductModalLabel">@SharedResource.MAPr_Title</h5>
-                <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                <button type="submit" name="action" value="cancel" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -41,10 +41,11 @@
 
 
 <style>
-    .modal-dialog {
-        max-width: 80%; 
-        margin: auto; 
-    }
+     .btn-primary:hover {
+            background-color: white;
+            color: #007bff;
+            border-color: #007bff;
+        }
 
 </style>
 

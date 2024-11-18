@@ -17,7 +17,7 @@
 
 <div class="container" style="margin-bottom: 2em;">
     <div class="d-flex justify-content-center align-items-center mt-3">
-        <h1 class="text-center mt-1 title-fade-in">@SharedResource.AT_Title</h1>
+        <h1 class="text-center mt-1">@SharedResource.AT_Title</h1>
         
         @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
         {
@@ -40,14 +40,14 @@
             
                         <input type="file" id="fileInput" name="Input.Picture" style="display:none;" onchange="this.form.submit()" accept=".png, .jpeg, .jpg"/>
             
-                        <img class="card-img-top img" src="@person.Path" alt="@SharedResource.AT_Image @person.FirstName @person.LastName"
+                        <img class="card-img-top img" src="@person.Path" title="@SharedResource.AT_Image @person.FirstName @person.LastName" alt="@SharedResource.AT_Image @person.FirstName @person.LastName"
                              style="cursor: pointer;" onclick="document.getElementById('fileInput').click()" />
                        @Html.ValidationMessage($"people_{person.Id}", "", new { @class = "text-danger small", style = "text-align: center; display: block;"  })
                     </form>
                 }
                 else
                 {
-                    <img src="@person.Path" class="card-img-top img" alt="@SharedResource.AT_Image @person.FirstName @person.LastName">
+                    <img src="@person.Path" class="card-img-top img" alt="@SharedResource.AT_Image @person.FirstName @person.LastName" title="@SharedResource.AT_Image @person.FirstName @person.LastName">
                 }
                  <div class="card-body text-center">
                      <h5 class="card-title">@person.LastName</h5>
@@ -58,35 +58,35 @@
                      </p>
                      <p class="card-text">
                          <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
-                         <a href="tel:@person.Phone">@person.Phone</a>
+                         <a class="text-decoration-none" href="tel:@person.Phone">@person.Phone</a>
                      </p>
                      <p class="card-text">
                          <i class="fas fa-envelope fs-6 text-primary align-middle me-2"></i>
-                         <a href="mailto:@person.Email">@person.Email</a>
+                         <a class="text-decoration-none" href="mailto:@person.Email">@person.Email</a>
                      </p>
      
                      @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                      {
-                         <div class="d-flex justify-content-between align-items-center mt-3">
+                         <div class="d-flex align-items-center justify-content-center">
                              <!-- Flèche gauche -->
                              <form method="post" asp-page-handler="Switch" class="d-inline">
                                  <input type="hidden" name="direction" value="left" />
                                  <input type="hidden" name="priority" value="@person.Priority" />
-                                 <button type="submit" class="btn p-0" style="border: none; background: none;">
-                                     <i class="fas fa-chevron-left fs-6 text-muted cursor"></i>
+                                 <button type="submit" class="btn btn-primary btn-sm me-4">
+                                     <i class="fas fa-chevron-left"></i>
                                  </button>
                              </form>
      
                              <!-- Bouton Edit -->
                              <form method="post" asp-page-handler="EditButton">
                                  <input type="hidden" name="editId" value="@person.Id" />
-                                 <button type="submit" class="btn btn-warning btn-sm mx-2">
+                                 <button type="submit" class="btn btn-warning btn-sm me-2">
                                      <i class="fas fa-edit"></i>
                                  </button>
                              </form>
      
                              <!-- Bouton Supprimer -->
-                             <button onclick="openDeleteModal(@person.Id)" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" type="button" class="btn btn-danger btn-sm mx-2">
+                             <button onclick="openDeleteModal(@person.Id)" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" type="button" class="btn btn-danger btn-sm me-4">
                                  <i class="fas fa-trash"></i>
                              </button>
      
@@ -94,8 +94,8 @@
                              <form method="post" asp-page-handler="Switch" class="d-inline">
                                  <input type="hidden" name="direction" value="right" />
                                  <input type="hidden" name="priority" value="@person.Priority" />
-                                 <button type="submit" class="btn p-0" style="border: none; background: none;">
-                                     <i class="fas fa-chevron-right fs-6 text-muted cursor"></i>
+                                 <button type="submit" class="btn btn-primary btn-sm" >
+                                     <i class="fas fa-chevron-right"></i>
                                  </button>
                              </form>
                          </div>

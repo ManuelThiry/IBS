@@ -7,14 +7,14 @@
 }
 
 <div class="modal fade" id="editInformationsModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="editInformationsModal" aria-hidden="true">
-    <div class="modal-dialog modal-lg">
+     <div class="modal-dialog modal-lg modal-dialog-centered">
         <div class="modal-content">
             <!-- En-tête de la modale -->
-            <div class="modal-header">
+            <div class="modal-header text-white bg-midnight">
                 <h5 class="modal-title" id="editInformationsModalLabel">@SharedResource.MEI_Title</h5>
-                 <form method="post" asp-page-handler="Cancel">
-                 <button type="submit" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                 </form>
+                <form method="post" asp-page-handler="Cancel">
+                    <button type="submit" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </form>
             </div>
 
             <!-- Corps de la modale -->
@@ -30,15 +30,15 @@
                                 <p class="mb-1"><strong>@SharedResource.MEI_Text</strong> <span class="editable-text" id="contact-text-@information.Id">@information.Text</span></p>
                                 <p class="mb-1"><strong>@SharedResource.MEI_Type</strong> <span class="editable-text" id="contact-type-@information.Id">@information.Type</span></p>
                             </div>
-                            <div>
+                            <div class="d-flex align-items-center">
                                 <form method="post" asp-page-handler="EditIButton">
                                     <input type="hidden" name="id" value="@information.Id" />
-                                    <button class="btn btn-warning btn-sm me-2 edit-btn" title="Éditer" data-type="contact" data-id="@information.Id">
+                                    <button class="btn btn-warning btn-sm me-2 edit-btn" data-type="contact" data-id="@information.Id">
                                         <i class="fas fa-edit"></i>
                                     </button>
                                 </form>
                                 <button onclick="openDeleteModal('I-@information.Id')" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
-                                    <i class="fas fa-trash text-white"></i>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                                 
                             </div>
@@ -46,7 +46,7 @@
                     }
                 </div>
                 <form method="post" asp-page-handler="AddIButton">
-                    <button type="submit" class="btn btn-outline-primary btn-sm mb-5" id="add-contact-btn">
+                    <button type="submit" class="btn btn-primary btn-sm mb-5" id="add-contact-btn">
                         <i class="fas fa-plus"></i> @SharedResource.MEI_Add
                     </button>
                     
@@ -64,7 +64,7 @@
                                 <p class="mb-1"><strong>@SharedResource.MEI_Description</strong> <span class="editable-text" id="email-desc-@email.Id">@email.Description</span></p>
                                 <p class="mb-1"><strong>@SharedResource.MEI_Email</strong> <span class="editable-text" id="email-address-@email.Id">@email.EmailAddress</span></p>
                             </div>
-                            <div>
+                            <div class="d-flex align-items-center">
                                 <form method="post" asp-page-handler="EditEButton">
                                     <input type="hidden" name="id" value="@email.Id" />
                                     <button class="btn btn-warning btn-sm me-2 edit-btn" title="Éditer" data-type="contact" data-id="@email.Id">
@@ -73,7 +73,7 @@
                                 </form>
                                 
                                 <button onclick="openDeleteModal('E-@email.Id')" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
-                                    <i class="fas fa-trash text-white"></i>
+                                    <i class="fas fa-trash"></i>
                                 </button>
                                 
                                 
@@ -82,7 +82,7 @@
                     }
                 </div>
                 <form method="post" asp-page-handler="AddEButton">
-                    <button type="submit" class="btn btn-outline-primary btn-sm mb-5" id="add-contactE-btn">
+                    <button type="submit" class="btn btn-primary btn-sm mb-5" id="add-contactE-btn">
                         <i class="fas fa-plus"></i> @SharedResource.MEI_AddE
                     </button>
                                     
@@ -93,7 +93,7 @@
             <!-- Pied de la modale -->
             <div class="modal-footer">
                 <form method="post" asp-page-handler="Cancel">
-                <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Close</button>
+                    <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Close</button>
                 </form>
             </div>
         </div>
@@ -101,57 +101,28 @@
 </div>
 
 <style>
-    .modal-header {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .modal-header .modal-title {
-        font-weight: 600;
-    }
-
-    .modal-content {
-        border-radius: 10px;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-    }
 
     .modal-body {
         max-height: 60vh;
         overflow-y: auto;
         padding: 2rem;
     }
-
-    .modal-footer {
-        border-top: 1px solid #e9ecef;
-        padding-top: 1rem;
-    }
-
-    .btn-outline-primary {
-        border-color: #007bff;
+    
+    .btn-primary:hover {
+        background-color: white;
         color: #007bff;
-        font-weight: 500;
+        border-color: #007bff;
     }
-
-    .btn-outline-primary:hover {
-        background-color: #007bff;
-        color: white;
-    }
-
-    .btn-danger {
-        background-color: #dc3545;
-        color: white;
-    }
-
-    .btn-danger:hover {
-        background-color: #c82333;
-    }
-
-    .btn-warning {
-        background-color: #ffc107;
-        color: white;
-    }
-
+    
     .btn-warning:hover {
-        background-color: #e0a800;
+        background-color: white;
+        border-color: #ffc107;
     }
+    
+    .btn-danger:hover {
+        background-color: white;
+        color: #dc3545;
+        border-color: #dc3545;
+    }
+    
 </style>

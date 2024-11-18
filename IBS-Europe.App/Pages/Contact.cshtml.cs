@@ -188,6 +188,7 @@ public class Contact : PageModel
         };
         
         IsAddInformation = true;
+        Load();
         return Page();
     }
     
@@ -288,6 +289,7 @@ public class Contact : PageModel
         };
         
         IsAddEmail = true;
+        Load();
         return Page();
     }
     
@@ -435,41 +437,49 @@ public class Contact : PageModel
     {
         bool errors = false;
 
-            if (Input.Attachment != null && Input.Attachment.Length > 0)
+            if (Input.Attachment != null && Input.Attachment.Count > 0)
+
             {
+                
+                foreach (var attachment in Input.Attachment)
+                {
+                    var imageError = false;
                 using (var memoryStream = new MemoryStream())
                 {
-                    Input.Attachment.CopyTo(memoryStream);
-                    byte[] fileBytes = memoryStream.ToArray();
-
-                    if (!ImagesVerification.PngJpgOrPdf(fileBytes))
-                    {
-                        ModelState.AddModelError("Attachment", "Le fichier doit être un PNG, JPG ou PDF.");
-                        errors = true;
-                    }
-
-                    const int maxFileSizeInBytes = 20 * 1024 * 1024;
-                    if (fileBytes.Length > maxFileSizeInBytes)
-                    {
-                        ModelState.AddModelError("Input.Ataachment",
-                            "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
-                        errors = true;
-                    }
-
-                    if (!errors)
-                    {
-                        await Input.Attachment.CopyToAsync(memoryStream);
-                        memoryStream.Position = 0;
-                        // Si l'image est valide, la convertir en Base64
-
-                        Input.OldImage = new OldImageModel
+                    
+                        attachment.CopyTo(memoryStream);
+                        byte[] fileBytes = memoryStream.ToArray();
+                        if (!ImagesVerification.PngJpgOrPdf(fileBytes))
                         {
-                            FileName = Input.Attachment.FileName,
-                            Base64 = Convert.ToBase64String(memoryStream.ToArray()),
-                            Extension = Path.GetExtension(Input.Attachment.FileName)
-                        };
+                            ModelState.AddModelError("Input.Attachment", $"Le fichier \"{attachment.FileName}\" est invalide. Seuls les fichiers .png, .jpg et .pdf sont autorisés.");
+                            errors = true;
+                            imageError = true;
+                        }
+                        const int maxFileSizeInBytes = 20 * 1024 * 1024;
+                        if (fileBytes.Length > maxFileSizeInBytes)
+                        {
+                            ModelState.AddModelError("Input.Attachment",
+                                "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                            errors = true;
+                            imageError = true;
+                        }
+                        
+                        if (!imageError)
+                        {
+                            attachment.CopyToAsync(memoryStream);
+                            memoryStream.Position = 0;
+
+                            var newImage = new OldImageModel
+                            {
+                                FileName = attachment.FileName,
+                                Base64 = Convert.ToBase64String(memoryStream.ToArray()),
+                                Extension = Path.GetExtension(attachment.FileName)
+                            };
+                            
+                            Input.OldImage.Add(newImage);
+
+                        }
                     }
-                  
                 }
             }
             
@@ -558,6 +568,21 @@ public class Contact : PageModel
                     HtmlBody = body
                 };
                 
+                if (Input.OldImage.Count > 0 )
+                {
+                    foreach (var attachment in Input.OldImage)
+                    {
+                        byte[] imageBytes = Convert.FromBase64String(attachment.Base64);
+
+                        using (var imageStream = new MemoryStream(imageBytes))
+                        {
+                            bodyBuilder.Attachments.Add(attachment.FileName, imageStream.ToArray());
+                        }
+                    }
+                   
+                }
+                
+                
                 if (await _emailService.SendEmailAsync(typeOfMessage.EmailAddress, subject,
                         bodyBuilder.ToMessageBody()))
                 {
@@ -607,7 +632,7 @@ public class Contact : PageModel
         [MaxLength(50, ErrorMessage = "Le prénom ne doit pas dépasser 50 caractères.")]
         public string FirstName { get; set; }
 
-        public IFormFile Attachment { get; set; }
+        public List<IFormFile> Attachment { get; set; }
 
         [Required(ErrorMessage = "Le message est requis.")]
         [MaxLength(20000, ErrorMessage = "Le message ne doit pas dépasser 20 000 caractères.")]
@@ -615,8 +640,8 @@ public class Contact : PageModel
 
         [Required(ErrorMessage = "Veuillez sélectionner un sujet de message.")]
         public string Sort { get; set; }
-        
-        public OldImageModel OldImage { get; set; }
+
+        public List<OldImageModel> OldImage { get; set; } = new List<OldImageModel>();
     }
     
     public class InformationModel
@@ -642,6 +667,7 @@ public class Contact : PageModel
         public string FileName { get; set; }
         public string Base64 { get; set; }
         public string Extension { get; set; }
+        
     }
 
     public bool HasEmailOrPhoneNumber()

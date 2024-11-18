@@ -3,16 +3,16 @@
 @model Contact.InformationModel
 
 <div class="modal fade" id="addInformationModal" tabindex="-1" aria-labelledby="addInformationLabel" data-bs-backdrop="static" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             @{
                 var pageHandler = Model.Title == "Ajouter une information" ? "AddI" : "EditI";
             }
 
             <form method="post" asp-page-handler="@pageHandler">
-                <div class="modal-header">
+                <div class="modal-header text-white bg-midnight">
                     <h5 class="modal-title" id="addInformationLabel">@Model.Title</h5>
-                    <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="submit" name="action" value="cancel" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
 

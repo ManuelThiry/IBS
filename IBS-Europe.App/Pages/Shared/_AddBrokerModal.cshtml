@@ -3,12 +3,12 @@
 @model BrokerSpace.AddBrokerModel
 
 <div class="modal fade" id="addBrokerModal" tabindex="-1" aria-labelledby="addBrokerLabel" data-bs-backdrop="static" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <form method="post" enctype="multipart/form-data" asp-page-handler="Add">
             <div class="modal-content">
-                <div class="modal-header">
+                <div class="modal-header text-white bg-midnight">
                     <h5 class="modal-title" id="addBrokerLabel">@SharedResource.MAB_Title</h5>
-                    <button type="submit" name="action" value="cancel" class="btn-close" data-bs-dismiss="modal"></button>
+                    <button type="submit" name="action" value="cancel" class="btn-close btn-close-white" data-bs-dismiss="modal"></button>
                 </div>
                 <div class="modal-body">
 

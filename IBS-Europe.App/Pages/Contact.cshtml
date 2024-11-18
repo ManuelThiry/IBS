@@ -74,24 +74,39 @@
                <div class="mb-3">
                    <label for="picture" class="form-label">Joindre un fichier (PNG, JPEG, PDF)</label>
                    <!-- Utilisation de asp-for pour la cohérence -->
-                   <input type="file" class="form-control" id="picture" asp-for="Input.Attachment" accept=".png, .jpeg, .jpg, .pdf">
-                   @if (Model.Input.OldImage != null)
+                   <input type="file" class="form-control" id="picture" asp-for="Input.Attachment" accept=".png, .jpeg, .jpg, .pdf" multiple>
+                   @if (Model.Input.OldImage != null && Model.Input.OldImage.Count > 0)
+                   {
+                       int index = 0; // Déclaration de l'index
+
+                       foreach (var file in Model.Input.OldImage)
                        {
-                           if ( Model.Input.OldImage.Extension == ".pdf")
-                           {
-                               <i class="fas fs-5 fa-file-pdf fa-2x text-danger mt-2"></i> 
-                           }
-                           else
-                           {
-                               <img class="w-h-2em" src="@Model.Input.OldImage.Base64" alt="Image Preview" />
-                               
-                           }
-                           <span>@Model.Input.OldImage.FileName</span>
+                           <div class="mb-3">
+                               @if (file.Extension == ".pdf")
+                               {
+                                   <i class="fas fs-5 fa-file-pdf fa-2x text-danger mt-2"></i>
+                               }
+                               else
+                               {
+                                    <img class="w-h-2em" src="data:image/@(file.Extension.TrimStart('.'));base64,@file.Base64" alt="Image Preview" />
+                                               
+                               }
+            
+                               <span>@file.FileName</span>
+            
+                               <!-- Champs cachés pour conserver chaque pièce jointe entre les soumissions -->
+                               <input type="hidden" name="Input.OldImage[@index].Base64" value="@file.Base64" />
+                               <input type="hidden" name="Input.OldImage[@index].Extension" value="@file.Extension" />
+                               <input type="hidden" name="Input.OldImage[@index].FileName" value="@file.FileName" />
+                           </div>
+
+                           index++; // Incrémentation de l'index pour chaque fichier
                        }
+                   }
+
+
                    <span asp-validation-for="Input.Attachment" class="text-danger"></span>
                </div>
-           
-               <p class="text-primary">Si votre formulaire a été refusé, veuillez remettre votre pièce jointe s'il vous plaît.</p>
            
                <button type="submit" class="btn btn-primary">Envoyer</button>
            </form>
@@ -102,7 +117,9 @@
        <div class="col-md-6">
        
            <!-- Informations sur l'entreprise avec icônes -->
-            <img src="images/IBS-logo-bleu-2_HD.JPG" alt="LinkedIn" style="width: 15em; margin-left: 10em;">
+           <div class="text-center">
+               <img src="images/IBS-logo-bleu-2_HD.JPG" alt="LinkedIn" style="width: 15em;">
+               </div>
                    <div class="company-info p-4 shadow-sm rounded bg-light"
                         style="border: 0.1em solid midnightblue; position: relative; margin-top: 5%; min-height: 11%;">
        
@@ -158,16 +175,16 @@
                                        <form method="post" asp-page-handler="Switch" class="ms-2">
                                            <input type="hidden" name="direction" value="top" />
                                            <input type="hidden" name="priority" value="@info.Priority" />
-                                           <button type="submit" class="btn p-0">
-                                               <i class="fas fa-arrow-up fs-6 text-muted cursor"></i>
+                                           <button type="submit" class="btn btn-primary btn-sm">
+                                               <i class="fas fa-arrow-up"></i>
                                            </button>
                                        </form>
                       
                                        <form method="post" class="ms-2" asp-page-handler="Switch">
                                            <input type="hidden" name="direction" value="bottom" />
                                            <input type="hidden" name="priority" value="@info.Priority" />
-                                           <button type="submit" class="btn p-0">
-                                               <i class="fas fa-arrow-down fs-6 text-muted cursor"></i>
+                                           <button type="submit" class="btn btn-primary btn-sm">
+                                               <i class="fas fa-arrow-down"></i>
                                            </button>
                                        </form>
                                    }
