@@ -15,11 +15,11 @@ public class TranslatorData : ITranslatorData
     {
         _context = context;
     }
-    public Domains.Translator GetTranslation()
+    public async Task<Domains.Translator> GetTranslation()
     {
         for (int i = 0; i <= _numberOfTranslations; i++)
         {
-            var item = GetTranslation(i);
+            var item = await GetTranslation(i);
 
             if (item != null)
             {
@@ -31,13 +31,13 @@ public class TranslatorData : ITranslatorData
         return null;
     }
 
-   private Domains.Translator GetTranslation(int number)
+   private async Task<Domains.Translator> GetTranslation(int number)
 {
     switch (number)
     {
         case 1:
-            var broker = _context.Brokers.Include(t => t.Translator)
-                .FirstOrDefault(t => t.Translator.IsChecked == false);
+            var broker = await _context.Brokers.Include(t => t.Translator)
+                .FirstOrDefaultAsync(t => t.Translator.IsChecked == false);
             if (broker == null || broker.Translator == null)
                 return null;
             return new Translator
@@ -48,8 +48,8 @@ public class TranslatorData : ITranslatorData
             };
 
         case 2:
-            var email1 = _context.Email.Include(t => t.FirstTranslator)
-                .FirstOrDefault(t => t.FirstTranslator.IsChecked == false);
+            var email1 = await _context.Email.Include(t => t.FirstTranslator)
+                .FirstOrDefaultAsync(t => t.FirstTranslator.IsChecked == false);
             if (email1 == null || email1.FirstTranslator == null)
                 return null;
             return new Translator
@@ -60,8 +60,8 @@ public class TranslatorData : ITranslatorData
             };
 
         case 3:
-            var email2 = _context.Email.Include(t => t.SecondTranslator)
-                .FirstOrDefault(t => t.SecondTranslator.IsChecked == false);
+            var email2 = await _context.Email.Include(t => t.SecondTranslator)
+                .FirstOrDefaultAsync(t => t.SecondTranslator.IsChecked == false);
             if (email2 == null || email2.SecondTranslator == null)
                 return null;
             return new Translator
@@ -72,8 +72,8 @@ public class TranslatorData : ITranslatorData
             };
 
         case 4:
-            var info1 = _context.Informations.Include(t => t.FirstTranslator)
-                .FirstOrDefault(t => t.FirstTranslator.IsChecked == false);
+            var info1 = await _context.Informations.Include(t => t.FirstTranslator)
+                .FirstOrDefaultAsync(t => t.FirstTranslator.IsChecked == false);
             if (info1 == null || info1.FirstTranslator == null)
                 return null;
             return new Translator
@@ -84,8 +84,8 @@ public class TranslatorData : ITranslatorData
             };
 
         case 5:
-            var info2 = _context.Informations.Include(t => t.SecondTranslator)
-                .FirstOrDefault(t => t.SecondTranslator.IsChecked == false);
+            var info2 = await _context.Informations.Include(t => t.SecondTranslator)
+                .FirstOrDefaultAsync(t => t.SecondTranslator.IsChecked == false);
             if (info2 == null || info2.SecondTranslator == null)
                 return null;
             return new Translator
@@ -96,8 +96,8 @@ public class TranslatorData : ITranslatorData
             };
 
         case 6:
-            var people = _context.People.Include(t => t.Translator)
-                .FirstOrDefault(t => t.Translator.IsChecked == false);
+            var people = await _context.People.Include(t => t.Translator)
+                .FirstOrDefaultAsync(t => t.Translator.IsChecked == false);
             if (people == null || people.Translator == null)
                 return null;
             return new Translator
@@ -108,8 +108,8 @@ public class TranslatorData : ITranslatorData
             };
 
         case 7:
-            var product = _context.Products.Include(t => t.Translator)
-                .FirstOrDefault(t => t.Translator.IsChecked == false);
+            var product = await _context.Products.Include(t => t.Translator)
+                .FirstOrDefaultAsync(t => t.Translator.IsChecked == false);
             if (product == null || product.Translator == null)
                 return null;
             return new Translator
@@ -126,16 +126,16 @@ public class TranslatorData : ITranslatorData
 
 
 
-    public int GetNumberOfTranslations()
+    public async Task<int> GetNumberOfTranslations()
     {
-        return _context.Translator.Where(t=>t.IsChecked == false).Count();
+        return await _context.Translator.Where(t=>t.IsChecked == false).CountAsync();
     }
 
-    public void SetTranslation(string translation, int id)
+    public async Task SetTranslation(string translation, int id)
     {
-        var item = _context.Translator.FirstOrDefault(t=> t.Id == id);
+        var item = await _context.Translator.FirstOrDefaultAsync(t=> t.Id == id);
         item.Text = translation;
         item.IsChecked = true;
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }

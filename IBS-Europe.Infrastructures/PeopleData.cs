@@ -17,10 +17,10 @@ public class PeopleData : IPeopleData
         _context = context;
     }
     
-    public List<People> GetAllPeople()
+    public async Task<List<People>> GetAllPeople()
     {
         List <People> myList = new List<People>();
-        var items = _context.People.Include(p=> p.Translator).OrderBy(p => p.Priority).ToList();
+        var items = await _context.People.Include(p=> p.Translator).OrderBy(p => p.Priority).ToListAsync();
         foreach (var item in items)
         {
             var role = item.Role;
@@ -44,12 +44,12 @@ public class PeopleData : IPeopleData
         return myList;
     }
     
-    public bool PeopleExists(string Firstname, string LastName, int id)
+    public async Task<bool> PeopleExists(string Firstname, string LastName, int id)
     {
         LastName = LastName ?? "";
         Firstname = Firstname.ToLower().Trim();
         LastName = LastName.ToLower().Trim();
-        return _context.People.Any(e => e.FirstName.ToLower().Trim() == Firstname && e.LastName.ToLower().Trim() == LastName && e.Id != id);
+        return await _context.People.AnyAsync(e => e.FirstName.ToLower().Trim() == Firstname && e.LastName.ToLower().Trim() == LastName && e.Id != id);
     }
     
     public async Task AddPeople(People people)
@@ -58,7 +58,7 @@ public class PeopleData : IPeopleData
         people.Phone = people.Phone ?? "";
         people.LastName = people.LastName ?? "";
         
-        int maxPriority = _context.People.Any() 
+        int maxPriority = await _context.People.AnyAsync() 
             ? _context.People.Max(p => p.Priority) 
             : 0;
     
@@ -81,54 +81,54 @@ public class PeopleData : IPeopleData
             Translator = translator
         };
         _context.People.Add(p);
-        _context.SaveChanges();
+       await _context.SaveChangesAsync();
     }
     
-    public void DeletePeople(int id)
+    public async Task DeletePeople(int id)
     {
-        var item = _context.People.Include(p=> p.Translator).Where(p=> p.Id == id).FirstOrDefault();
+        var item = await _context.People.Include(p=> p.Translator).Where(p=> p.Id == id).FirstOrDefaultAsync();
         int priority = item.Priority;
         if (item != null)
         {
             _context.People.Remove(item);
             _context.Translator.Remove(item.Translator);
             
-            var itemsAbove = _context.People.Where(p=> p.Priority > priority).ToList();
+            var itemsAbove = await _context.People.Where(p=> p.Priority > priority).ToListAsync();
 
             foreach (var i in itemsAbove ) 
             {
                 i.Priority -= 1;
             }
             
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
     }
     
-    public void SwitchPriority(int priority, string direction)
+    public async Task SwitchPriority(int priority, string direction)
     {
-        var item1 = _context.People.Where(p=> p.Priority == priority).FirstOrDefault();
+        var item1 = await _context.People.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
         Data.People? item2;
 
         if (direction.Equals("right"))
         {
-            item2 = _context.People.Where(p=> p.Priority == item1.Priority +1).FirstOrDefault();
+            item2 = await _context.People.Where(p=> p.Priority == item1.Priority +1).FirstOrDefaultAsync();
         }
         else
         {
-            item2 = _context.People.Where(p=> p.Priority == item1.Priority -1).FirstOrDefault();
+            item2 = await _context.People.Where(p=> p.Priority == item1.Priority -1).FirstOrDefaultAsync();
         }
         if (item1 != null && item2 != null)
         {
             int temp = item1.Priority;
             item1.Priority = item2.Priority;
             item2.Priority = temp;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
     
-    public string GetName(int id)
+    public async Task<string> GetName(int id)
     {
-        var item = _context.People.FirstOrDefault(p => p.Id == id);
+        var item = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
     
         if (item != null)
         {
@@ -142,13 +142,13 @@ public class PeopleData : IPeopleData
         return string.Empty;
     }
     
-    public void UpdateImage(int id, string path)
+    public async Task UpdateImage(int id, string path)
     {
-        var item = _context.People.FirstOrDefault(p => p.Id == id);
+        var item = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
         if (item != null)
         {
             item.Path = path;
-            _context.SaveChanges();
+           await _context.SaveChangesAsync();
         }
     }
     
@@ -157,7 +157,7 @@ public class PeopleData : IPeopleData
         people.Email = people.Email ?? "";
         people.Phone = people.Phone ?? "";
         people.LastName = people.LastName ?? "";
-        var item = _context.People.Include(p=> p.Translator).FirstOrDefault(p => p.Id == people.Id);
+        var item = await _context.People.Include(p=> p.Translator).FirstOrDefaultAsync(p => p.Id == people.Id);
         var translator = item.Translator;
         if (item != null)
         {
@@ -172,7 +172,7 @@ public class PeopleData : IPeopleData
             }
             item.Role = people.Role;
             
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

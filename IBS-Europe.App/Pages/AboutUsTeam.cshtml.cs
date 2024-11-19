@@ -27,9 +27,9 @@ public class AboutUsTeam : PageModel
         Load();
     }
 
-    public void Load()
+    public async Task Load()
     {
-        var products = _data.GetAllPeople();
+        var products = await _data.GetAllPeople();
         foreach (var product in products)
         {
             PeopleList.Add(new PeopleViewModel(
@@ -76,7 +76,7 @@ public class AboutUsTeam : PageModel
         {
             bool error = false; 
             
-            if (_data.PeopleExists(Input.Firstname, Input.Lastname, -1))
+            if (await _data.PeopleExists(Input.Firstname, Input.Lastname, -1))
             {
                 ModelState.AddModelError("Firstname", "Cette personne existe déjà.");
                 error = true;
@@ -143,7 +143,7 @@ public class AboutUsTeam : PageModel
         return Page();
     }
 
-    public IActionResult OnPostSwitchImage(int id)
+    public async Task<IActionResult> OnPostSwitchImage(int id)
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -178,7 +178,7 @@ public class AboutUsTeam : PageModel
             {
                 Directory.CreateDirectory(uploadPath);
             }
-            var fileName = Path.GetFileNameWithoutExtension(_data.GetName(id)) + Path.GetExtension(Input.Picture.FileName);
+            var fileName = Path.GetFileNameWithoutExtension(await _data.GetName(id)) + Path.GetExtension(Input.Picture.FileName);
             var filePath = Path.Combine(uploadPath, fileName);
             
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -243,7 +243,7 @@ public class AboutUsTeam : PageModel
         {
             bool error = false; 
             
-            if (_data.PeopleExists(Input.Firstname, Input.Lastname, id))
+            if (await _data.PeopleExists(Input.Firstname, Input.Lastname, id))
             {
                 ModelState.AddModelError("Firstname", "Cette personne existe déjà.");
                 error = true;

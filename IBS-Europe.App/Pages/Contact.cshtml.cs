@@ -4,6 +4,7 @@ using IBS_Europe.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using MimeKit;
+using Newtonsoft.Json;
 using Type = IBS_Europe.Domains.Type;
 
 namespace IBS_Europe.App.Pages;
@@ -47,9 +48,9 @@ public class Contact : PageModel
         Load();
     }
 
-    public void Load()
+    public async Task Load()
     {
-        var emails = _data.GetEmails();
+        var emails = await _data.GetEmails();
         foreach (var email in emails)
         {
             EmailList.Add(new EmailViewModel(
@@ -61,7 +62,7 @@ public class Contact : PageModel
             );
         }
 
-        var infos = _data.GetInformations();
+        var infos = await _data.GetInformations();
         foreach (var info in infos)
         {
             Informations.Add(new InfosViewModel(
@@ -73,6 +74,8 @@ public class Contact : PageModel
                 )
             );
         }
+        
+        LoadImages();
     }
 
     private bool InfoRequiredErrors()
@@ -167,9 +170,11 @@ public class Contact : PageModel
         return error;
     }
 
-    public IActionResult OnPostEditIButton(string id)
+    public async Task<IActionResult> OnPostEditIButton(string id)
     {
-        var item = _data.GetInformations().Find(x => x.Id == int.Parse(id));
+        var items = await _data.GetInformations();
+        var item = items.Find(x => x.Id == int.Parse(id));
+
         
         ModelState.Clear();
         CookieOptions options = new CookieOptions
@@ -268,9 +273,11 @@ public class Contact : PageModel
         return RedirectToPage("Contact", new { isOpen = true });
     }
     
-    public IActionResult OnPostEditEButton(string id)
+    public async Task<IActionResult> OnPostEditEButton(string id)
     {
-        var item = _data.GetEmails().Find(x => x.Id == int.Parse(id));
+        var items = await _data.GetEmails();
+        var item = items.Find(x => x.Id == int.Parse(id));
+
         
         ModelState.Clear();
         CookieOptions options = new CookieOptions
@@ -436,67 +443,16 @@ public class Contact : PageModel
     public async Task<IActionResult> OnPost()
     {
         bool errors = false;
-
-            if (Input.Attachment != null && Input.Attachment.Count > 0)
-
-            {
-                
-                foreach (var attachment in Input.Attachment)
-                {
-                    var imageError = false;
-                using (var memoryStream = new MemoryStream())
-                {
-                    
-                        attachment.CopyTo(memoryStream);
-                        byte[] fileBytes = memoryStream.ToArray();
-                        if (!ImagesVerification.PngJpgOrPdf(fileBytes))
-                        {
-                            ModelState.AddModelError("Input.Attachment", $"Le fichier \"{attachment.FileName}\" est invalide. Seuls les fichiers .png, .jpg et .pdf sont autorisés.");
-                            errors = true;
-                            imageError = true;
-                        }
-                        const int maxFileSizeInBytes = 20 * 1024 * 1024;
-                        if (fileBytes.Length > maxFileSizeInBytes)
-                        {
-                            ModelState.AddModelError("Input.Attachment",
-                                "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
-                            errors = true;
-                            imageError = true;
-                        }
-                        
-                        if (!imageError)
-                        {
-                            attachment.CopyToAsync(memoryStream);
-                            memoryStream.Position = 0;
-
-                            var newImage = new OldImageModel
-                            {
-                                FileName = attachment.FileName,
-                                Base64 = Convert.ToBase64String(memoryStream.ToArray()),
-                                Extension = Path.GetExtension(attachment.FileName)
-                            };
-                            
-                            Input.OldImage.Add(newImage);
-
-                        }
-                    }
-                }
-            }
             
             if (!HasEmailOrPhoneNumber())
             {
                 ModelState.AddModelError("Input.Phone", "Veuillez entrer un numéro de téléphone ou une adresse email.");
-                errors = true;
-            }
-
-            if (errors)
-            {
                 Load();
                 return Page();
             }
-            else if (ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                var typeOfMessage = _data.GetTypeOfMessage(Input.Sort);
+                var typeOfMessage = await _data.GetTypeOfMessage(Input.Sort);
                 var subject = $"Vous avez reçu un message de type {typeOfMessage.Name} de la part de {Input.FirstName} {Input.LastName}";
                 var body = $@"
     <!DOCTYPE html>
@@ -567,25 +523,40 @@ public class Contact : PageModel
                 {
                     HtmlBody = body
                 };
-                
-                if (Input.OldImage.Count > 0 )
-                {
-                    foreach (var attachment in Input.OldImage)
-                    {
-                        byte[] imageBytes = Convert.FromBase64String(attachment.Base64);
 
-                        using (var imageStream = new MemoryStream(imageBytes))
-                        {
-                            bodyBuilder.Attachments.Add(attachment.FileName, imageStream.ToArray());
-                        }
-                    }
-                   
+                var existingValue = Request.Cookies["contactImage"];
+
+                var map = new Dictionary<string, string>();
+
+                if (existingValue != null)
+                {
+                    // Désérialiser la chaîne JSON du cookie en dictionnaire
+                    map = JsonConvert.DeserializeObject<Dictionary<string, string>>(existingValue);
                 }
+
+                foreach (var file in map)
+                {
+                    // Construire le chemin complet vers le fichier
+                    var filePath = Path.Combine("wwwroot", "images", "upload", file.Value);
+
+                    // Vérifier si le fichier existe avant de continuer
+                    if (System.IO.File.Exists(filePath))
+                    {
+                        // Ajouter la pièce jointe en lisant directement le fichier
+                        bodyBuilder.Attachments.Add(file.Key, System.IO.File.ReadAllBytes(filePath));
+                    }
+                }
+
                 
                 
                 if (await _emailService.SendEmailAsync(typeOfMessage.EmailAddress, subject,
                         bodyBuilder.ToMessageBody()))
                 {
+                    CookieOptions options = new CookieOptions
+                    {
+                        Expires = DateTime.Now.AddHours(-1)
+                    };
+                    Response.Cookies.Append("contactImage", "", options);
                     return RedirectToPage("Contact", new { messageSent = true });
                 }
                 else
@@ -595,6 +566,34 @@ public class Contact : PageModel
             }
         Load();
         return Page();
+    }
+
+    public void LoadImages()
+    {
+        var existingValue = Request.Cookies["contactImage"];
+        
+        if (existingValue != null)
+        {
+            var map = JsonConvert.DeserializeObject<Dictionary<string, string>>(existingValue);
+
+            foreach (var file in map.Keys)
+            {
+                Input.Images.Add(new ImageModel
+                {
+                    FileName = file,
+                    FilePath = Path.Combine("images","upload",map[file]),
+                    Extension = Path.GetExtension(Path.Combine("wwwroot","images","upload",map[file]))
+                });
+            }
+        }
+        
+    }
+
+    public class ImageModel
+    {
+        public string FileName { get; set; }
+        public string Extension { get; set; }
+        public string FilePath { get; set; }
     }
 
     public record EmailViewModel
@@ -632,16 +631,14 @@ public class Contact : PageModel
         [MaxLength(50, ErrorMessage = "Le prénom ne doit pas dépasser 50 caractères.")]
         public string FirstName { get; set; }
 
-        public List<IFormFile> Attachment { get; set; }
-
         [Required(ErrorMessage = "Le message est requis.")]
         [MaxLength(20000, ErrorMessage = "Le message ne doit pas dépasser 20 000 caractères.")]
         public string Message { get; set; }
 
         [Required(ErrorMessage = "Veuillez sélectionner un sujet de message.")]
         public string Sort { get; set; }
-
-        public List<OldImageModel> OldImage { get; set; } = new List<OldImageModel>();
+        
+        public List<ImageModel> Images { get; set; } = new List<ImageModel>();
     }
     
     public class InformationModel
@@ -660,14 +657,6 @@ public class Contact : PageModel
         public string Description { get; set; }
         
         public string Title { get; set; }
-    }
-    
-    public class OldImageModel
-    {
-        public string FileName { get; set; }
-        public string Base64 { get; set; }
-        public string Extension { get; set; }
-        
     }
 
     public bool HasEmailOrPhoneNumber()

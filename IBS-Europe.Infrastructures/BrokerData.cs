@@ -17,10 +17,10 @@ public class BrokerData : IBrokerData
         _context = context;
     }
     
-    public List<Broker> GetBrokers(int category, string culture)
+    public async Task<List<Broker>> GetBrokers(int category, string culture)
     {
         List <Broker> myList = new List<Broker>();
-        var items = _context.Brokers.Include(b => b.Translator).Where(a => a.Category == category).OrderBy(x=> x.Priority).ToList();
+        var items = await _context.Brokers.Include(b => b.Translator).Where(a => a.Category == category).OrderBy(x=> x.Priority).ToListAsync();
         foreach (var item in items)
         {
             var description = item.Name;
@@ -39,10 +39,10 @@ public class BrokerData : IBrokerData
         return myList;
     }
     
-    public List<Broker> GetGeneralBrokers(string culture)
+    public async Task<List<Broker>> GetGeneralBrokers(string culture)
     {
         List <Broker> myList = new List<Broker>();
-        var items = _context.Brokers.Include(b=> b.Translator).Where(c => c.Category == (int)Category.Généralistes).OrderBy(x=> x.Priority).ToList();
+        var items = await _context.Brokers.Include(b=> b.Translator).Where(c => c.Category == (int)Category.Généralistes).OrderBy(x=> x.Priority).ToListAsync();
         foreach (var item in items)
         {
             var description = item.Name;
@@ -61,9 +61,9 @@ public class BrokerData : IBrokerData
         return myList;
     }
     
-    public void DeleteBroker(int id)
+    public async Task DeleteBroker(int id)
     {
-        var item = _context.Brokers.Include(b => b.Translator).FirstOrDefault(a => a.Id == id);
+        var item = await _context.Brokers.Include(b => b.Translator).FirstOrDefaultAsync(a => a.Id == id);
         
         if (item != null)
         {
@@ -71,33 +71,33 @@ public class BrokerData : IBrokerData
             _context.Translator.Remove(item.Translator);
             _context.Brokers.Remove(item);
             
-            var itemsAbove = _context.Brokers.Where(p=> p.Priority > priority).ToList();
+            var itemsAbove = await _context.Brokers.Where(p=> p.Priority > priority).ToListAsync();
 
             foreach (var i in itemsAbove ) 
             {
                 i.Priority -= 1;
             }
         
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             
         }
     }
     
-    public bool BrokerExists(int id, string name, int category)
+    public async Task<bool> BrokerExists(int id, string name, int category)
     {
         name = name.ToLower().Trim();
         if (id == -1)
         {
-            return _context.Brokers.Any(a => a.Name.ToLower().Trim() == name && a.Category == category);
+            return await _context.Brokers.AnyAsync(a => a.Name.ToLower().Trim() == name && a.Category == category);
         }
         
-        return _context.Brokers.Any(a => a.Name.ToLower().Trim() == name && a.Id != id && a.Category == category);
+        return await _context.Brokers.AnyAsync(a => a.Name.ToLower().Trim() == name && a.Id != id && a.Category == category);
     }
     
     public async Task AddBroker(Broker broker)
     {
-        int maxPriority = _context.Brokers
-            .Any() // Vérifie si des éléments existent
+        int maxPriority = await _context.Brokers
+            .AnyAsync() // Vérifie si des éléments existent
             ? _context.Brokers.Where(x => x.Category == broker.Category).Max(p => p.Priority) // Applique Max seulement s'il y a des éléments
             : 0; // Sinon retourne 0
 
@@ -122,7 +122,7 @@ public class BrokerData : IBrokerData
     public async Task UpdateBroker(int id, string newName)
     {
         
-        var item = _context.Brokers.Include(t=> t.Translator).FirstOrDefault(a =>  a.Id == id);
+        var item = await _context.Brokers.Include(t=> t.Translator).FirstOrDefaultAsync(a =>  a.Id == id);
         if (item != null && item.Name != newName)
         {
             item.Translator.Text = await DeeplTranslate.TranslateTextWithDeeplAsync(newName, "EN");
@@ -160,9 +160,9 @@ public class BrokerData : IBrokerData
     }
 
     
-    public int GetCategory(int id)
+    public async Task<int> GetCategory(int id)
     {
-        var item = _context.Brokers.FirstOrDefault(a => a.Id == id);
+        var item = await _context.Brokers.FirstOrDefaultAsync(a => a.Id == id);
         if (item != null)
         {
             return item.Category;
@@ -171,9 +171,9 @@ public class BrokerData : IBrokerData
         return -1;
     }
     
-    public string GetBrokerName(int id)
+    public async Task<string> GetBrokerName(int id)
     {
-        var item = _context.Brokers.FirstOrDefault(a => a.Id == id);
+        var item = await _context.Brokers.FirstOrDefaultAsync(a => a.Id == id);
         if (item != null)
         {
             return item.Name;

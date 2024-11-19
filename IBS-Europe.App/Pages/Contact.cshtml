@@ -74,38 +74,34 @@
                <div class="mb-3">
                    <label for="picture" class="form-label">Joindre un fichier (PNG, JPEG, PDF)</label>
                    <!-- Utilisation de asp-for pour la cohérence -->
-                   <input type="file" class="form-control" id="picture" asp-for="Input.Attachment" accept=".png, .jpeg, .jpg, .pdf" multiple>
-                   @if (Model.Input.OldImage != null && Model.Input.OldImage.Count > 0)
-                   {
-                       int index = 0; // Déclaration de l'index
+                   <input type="file" class="form-control" id="picture" accept=".png, .jpeg, .jpg, .pdf">
+                   <div id="fileList" class="mb-2 mt-2">
+                   @if (Model.Input.Images.Count > 0)
+                      {
+                          foreach (var file in Model.Input.Images)
+                          {
+                              <div class="mb-1" data-file-name="@file.FileName">
+                                  @if (file.Extension == ".pdf")
+                                  {
+                                      <i class="fas fs-3 fa-file-pdf fa-2x text-danger ms-1"></i>
+                                  }
+                                  else
+                                  {
+                                       <img class="w-h-2em" src="@Url.Content(file.FilePath)" alt="Image Preview" />
 
-                       foreach (var file in Model.Input.OldImage)
-                       {
-                           <div class="mb-3">
-                               @if (file.Extension == ".pdf")
-                               {
-                                   <i class="fas fs-5 fa-file-pdf fa-2x text-danger mt-2"></i>
-                               }
-                               else
-                               {
-                                    <img class="w-h-2em" src="data:image/@(file.Extension.TrimStart('.'));base64,@file.Base64" alt="Image Preview" />
-                                               
-                               }
-            
-                               <span>@file.FileName</span>
-            
-                               <!-- Champs cachés pour conserver chaque pièce jointe entre les soumissions -->
-                               <input type="hidden" name="Input.OldImage[@index].Base64" value="@file.Base64" />
-                               <input type="hidden" name="Input.OldImage[@index].Extension" value="@file.Extension" />
-                               <input type="hidden" name="Input.OldImage[@index].FileName" value="@file.FileName" />
-                           </div>
-
-                           index++; // Incrémentation de l'index pour chaque fichier
-                       }
-                   }
-
-
-                   <span asp-validation-for="Input.Attachment" class="text-danger"></span>
+                                                  
+                                  }
+               
+                                  <span>@file.FileName</span>
+                                  
+                                    <button type="button" class="btn btn-close btn-sm" onclick="deleteFile('@file.FileName')"></button>
+                                  
+                              </div>
+                              
+                          }
+                      }
+                   </div>
+                      <div id="errorList"></div>
                </div>
            
                <button type="submit" class="btn btn-primary">Envoyer</button>
@@ -238,6 +234,151 @@
     
     function openDeleteModal(id) {
        document.getElementById("contactId").value = id;
+    }
+    
+    const fileInput = document.getElementById('picture');
+        const fileList = document.getElementById('fileList');
+        let selectedFiles = [];
+    
+        fileInput.addEventListener('change', (event) => {
+            // Ajout des nouveaux fichiers au tableau
+            Array.from(event.target.files).forEach(file => selectedFiles.push(file));
+    
+            // Mettre à jour la liste visible des fichiers
+            renderFileList();
+        });
+        
+        function getBase64(file) {
+            return new Promise((resolve, reject) => {
+                const reader = new FileReader();
+                reader.onload = () => resolve(reader.result.split(',')[1]); // Supprime le préfixe `data:...;base64,`
+                reader.onerror = error => reject(error);
+                reader.readAsDataURL(file);
+            });
+        }
+    
+       async function renderFileList() {
+            const errors = document.getElementById('errorList');
+                    errors.innerHTML = '';
+       
+           for (const [index, file] of selectedFiles.entries()) {
+               const fileItem = document.createElement('div');
+               fileItem.className = 'd-flex align-items-center gap-2 mt-2';
+               fileItem.dataset.index = index;
+       
+               // Gestion des aperçus (PDF ou image)
+               if (file.type === 'application/pdf') {
+                   const icon = document.createElement('i');
+                   icon.className = 'fas fs-5 fa-file-pdf fa-2x text-danger';
+                   fileItem.appendChild(icon);
+               } else if (file.type.startsWith('image/')) {
+                   const imgPreview = document.createElement('img');
+                   imgPreview.className = 'w-h-2em';
+                   imgPreview.alt = 'Image Preview';
+       
+                   const reader = new FileReader();
+                   reader.onload = (e) => {
+                       imgPreview.src = e.target.result;
+                   };
+                   reader.readAsDataURL(file);
+       
+                   fileItem.appendChild(imgPreview);
+               }
+       
+               // Préparer les données à envoyer
+              var payload = {
+                  FileName: file.name,
+                  Base64: await getBase64(file),
+                  Extension: file.name.split('.').pop()
+              };
+              
+             $.ajax({
+                 url: '@Url.Action("AddFile", "Image")',  // URL de l'action
+                 type: 'POST',  // Assurez-vous que la méthode est POST
+                 contentType: 'application/json; charset=utf-8',  // Type correct pour JSON
+                 data: JSON.stringify(payload),  // Envoi de l'objet JSON
+                success: function (response) {
+                    
+                     if ( response.message !== 0) {
+                          // Ajouter un élément pour le nom du fichier
+                                             const fileNameSpan = document.createElement('span');
+                                             fileNameSpan.textContent = file.name;
+                                             fileItem.appendChild(fileNameSpan);
+                                         
+                                             // Bouton de suppression
+                                             const deleteButton = document.createElement('button');
+                                             deleteButton.className = 'btn btn-close btn-sm';
+                                             fileItem.setAttribute('data-file-name', file.name);
+                                             
+                                             // Passer l'index ou le nom du fichier dans l'event handler
+                                             deleteButton.addEventListener('click', () => {
+                                                 event.preventDefault();
+                                                 const fileName = file.name; // Nom du fichier à supprimer
+                                                 selectedFiles.splice(file);  // Supprimer le fichier du tableau
+                                                 deleteFile(fileName);  // Appel de la fonction de suppression
+                                             });
+                                         
+                                             // Ajouter le bouton de suppression avant l'ajout du fichier dans la liste
+                                             fileItem.appendChild(deleteButton);
+                                         
+                                             // Ajouter l'élément à la liste
+                                             fileList.appendChild(fileItem);
+                                          
+                     }
+                      const fileIndex = selectedFiles.findIndex(f => f.name === file.name); // Trouver l'index
+                                                                     if (fileIndex > -1) {
+                                                                         selectedFiles.splice(fileIndex, 1); // Supprimer l'élément de selectedFiles
+                                                                     }
+                         
+                
+                },
+
+                error: function (xhr, status, error) {
+                        // Vérifier si l'erreur est une BadRequest
+                        if (xhr.status === 400) {
+                                                                            
+                            // Message d'erreur venant du backend
+                           // Sélectionner le conteneur d'erreurs
+                           const errorList = document.getElementById('errorList');
+                           
+                           // Créer un nouveau message d'erreur
+                           const errorMessage = document.createElement('div');
+                           errorMessage.className = 'alert alert-danger'; // Ajout de classes pour le style
+                           errorMessage.textContent = xhr.responseJSON?.message || "Une erreur est survenue."; // Message d'erreur avec fallback
+                           
+                           // Ajouter le message d'erreur au conteneur
+                           errorList.appendChild(errorMessage);
+                           
+                            const fileIndex = selectedFiles.findIndex(f => f.name === file.name); // Trouver l'index
+                           if (fileIndex > -1) {
+                               selectedFiles.splice(fileIndex, 1); // Supprimer l'élément de selectedFiles
+                           }
+                        } else {
+                            console.error("Erreur : " + error);
+                            console.error("Détails : " + xhr.responseText);
+                        }
+                    }
+             });
+
+        }
+    }
+    
+    function deleteFile(name) {
+        $.ajax({
+            url: '@Url.Action("DeleteFile", "Image")',  // URL de l'action
+            type: 'POST',  // Méthode POST
+            data: { name: name },  // Envoyer le nom du fichier
+            success: function () {
+               const fileElement = document.querySelector(`[data-file-name="${name}"]`);
+                           if (fileElement) {
+                               fileElement.remove(); // Supprimer l'élément du DOM
+                           }
+            },
+            error: function (xhr, status, error) {
+                console.error("Erreur : " + error);
+                console.error("Détails : " + xhr.responseText);
+            }
+        });
     }
 </script>
 }

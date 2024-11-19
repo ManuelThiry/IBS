@@ -195,6 +195,7 @@
       <Folder Include="wwwroot\images\Partners\" />
       <Folder Include="wwwroot\images\People\" />
       <Folder Include="wwwroot\images\Products\" />
+      <Folder Include="wwwroot\images\upload\" />
     </ItemGroup>
 
 

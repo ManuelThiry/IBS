@@ -2,9 +2,9 @@
 
 public interface ITranslatorData
 {
-    public Translator GetTranslation();
+    public Task<Translator> GetTranslation();
     
-    public int GetNumberOfTranslations();
+    public Task<int> GetNumberOfTranslations();
     
-    public void SetTranslation(string translation, int id);
+    public Task SetTranslation(string translation, int id);
 }

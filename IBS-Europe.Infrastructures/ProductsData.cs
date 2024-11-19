@@ -16,25 +16,31 @@ public class ProductsData : IProductsData
         _context = context;
     }
 
-    public HashSet<Product> GetAllProducts(int id, string culture)
+    public async Task<HashSet<Product>> GetAllProducts(int id, string culture)
     {
         HashSet <Product> myList = new HashSet<Product>(5);
         var items = new HashSet<Products>(5);
         
-        if ( _context.Products.Count() == 0)
+        if ( await _context.Products.CountAsync() == 0)
         {
             return myList;
         }
         
-        if ( id == -1)
+        if ( id == -1 || await _context.Products.FirstOrDefaultAsync(p => p.Id == id) == null)
         {
-            items = _context.Products.Include(p => p.Translator).OrderBy(x=> x.Name.ToLower()).Take(5).Include(t=> t.Translator).ToHashSet();
+            items = (await _context.Products
+                    .Include(p => p.Translator)
+                    .OrderBy(x => x.Name.ToLower())
+                    .Take(5)
+                    .ToListAsync()) // Asynchrone ici
+                .ToHashSet(); // Conversion en HashSet après récupération des données
+
         }
         else
         {
-            var selectedProduct = _context.Products.Include(p => p.Translator).FirstOrDefault(p => p.Id == id);
+            var selectedProduct = await _context.Products.Include(p => p.Translator).FirstOrDefaultAsync(p => p.Id == id);
             
-            var orderedItems = _context.Products.Include(p => p.Translator).OrderBy(x => x.Name.ToLower()).ToList();
+            var orderedItems = await _context.Products.Include(p => p.Translator).OrderBy(x => x.Name.ToLower()).ToListAsync();
                 
             int index = orderedItems.IndexOf(selectedProduct);
             
@@ -122,9 +128,9 @@ public class ProductsData : IProductsData
         return myList;
     }
     
-    public Product GetProduct(int id)
+    public async Task<Product> GetProduct(int id)
     {
-        var item = _context.Products.FirstOrDefault(p => p.Id == id);
+        var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         return new Product
         {
             Name = item.Name,
@@ -133,22 +139,22 @@ public class ProductsData : IProductsData
         };
     }
     
-    public bool ProductExists(string name, int id)
+    public async Task<bool> ProductExists(string name, int id)
     {
         name = name.ToLower().Trim();
-        return _context.Products.Any(p => p.Name.ToLower().Trim() == name && p.Id != id);
+        return await _context.Products.AnyAsync(p => p.Name.ToLower().Trim() == name && p.Id != id);
     }
     
-    public void UpdateImage(int id, string path)
+    public async Task UpdateImage(int id, string path)
     {
-        var item = _context.Products.FirstOrDefault(p => p.Id == id);
+        var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         item.Path = path;
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
     
-    public string GetName(int id)
+    public async Task<string> GetName(int id)
     {
-        var item = _context.Products.FirstOrDefault(p => p.Id == id);
+        var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
     
         if (item != null)
         {
@@ -186,26 +192,25 @@ public class ProductsData : IProductsData
             Text = traduction,
             IsChecked = false
         };
-        _context.Products.Add(new Products
+        var addedProduct = _context.Products.Add(new Products
         {
             Name = product.Name,
             Text = product.Description,
             Path = product.Image,
             Translator = translator
-            
         });
-        _context.SaveChanges();
-        
-        return _context.Products.OrderByDescending(p => p.Id).First().Id;
+        await _context.SaveChangesAsync();
+
+        return addedProduct.Entity.Id;
     }
     
-    public void DeleteProduct(int id)
+    public async Task DeleteProduct(int id)
     {
-        var item = _context.Products.Include(p => p.Translator).FirstOrDefault(p => p.Id == id);
+        var item = await _context.Products.Include(p => p.Translator).FirstOrDefaultAsync(p => p.Id == id);
         var translations = item.Translator;
         _context.Products.Remove(item);
         _context.Translator.Remove(translations);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
 

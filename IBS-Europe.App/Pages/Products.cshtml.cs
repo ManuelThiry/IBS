@@ -28,10 +28,10 @@ public class Products : PageModel
         Load();
     }
 
-    public void Load()
+    public async Task Load()
     {
         var culture = Thread.CurrentThread.CurrentCulture.Name;
-        var products = _data.GetAllProducts(GetIdFromCookie(), culture);
+        var products = await _data.GetAllProducts(GetIdFromCookie(), culture);
         foreach (var product in products)
         {
             ProductsList.Add(new ProductViewModel(
@@ -98,7 +98,7 @@ public class Products : PageModel
             error = true;
         } else 
         
-        if ( _data.ProductExists(Edit.Name, -1))
+        if ( await _data.ProductExists(Edit.Name, -1))
         {
             ModelState.AddModelError("Name", "Ce produit existe déjà.");
             error = true;
@@ -203,7 +203,7 @@ public class Products : PageModel
             error = true;
         } else 
         
-        if ( _data.ProductExists(Edit.Name, id))
+        if ( await _data.ProductExists(Edit.Name, id))
         {
             ModelState.AddModelError("Name", "Ce produit existe déjà.");
             error = true;
@@ -247,7 +247,7 @@ public class Products : PageModel
         }
     }
 
-    public IActionResult OnPostSwitchImage()
+    public async Task<IActionResult> OnPostSwitchImage()
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -288,7 +288,7 @@ public class Products : PageModel
             {
                 Directory.CreateDirectory(uploadPath);
             }
-            var fileName = Path.GetFileNameWithoutExtension(_data.GetName(id)) + Path.GetExtension(Edit.Image.FileName);
+            var fileName = Path.GetFileNameWithoutExtension(await _data.GetName(id)) + Path.GetExtension(Edit.Image.FileName);
             var filePath = Path.Combine(uploadPath, fileName);
             
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -302,10 +302,10 @@ public class Products : PageModel
         return RedirectToPage();
     }
     
-    public void OnPostButton(int id)
+    public async Task OnPostButton(int id)
     {
         ModelState.Clear();
-        var product = _data.GetProduct(id);
+        var product = await _data.GetProduct(id);
         
         Edit = new EditModel
         {

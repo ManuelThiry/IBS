@@ -1,4 +1,5 @@
 ﻿using IBS_Europe.Domains.Repository;
+using Microsoft.EntityFrameworkCore;
 
 namespace IBS_Europe.Infrastructures;
 
@@ -10,17 +11,17 @@ public class ProfileData : IProfileData
     {
         _context = context;
     }
-    public void ChangeUsername(string id, string username)
+    public async Task ChangeUsername(string id, string username)
     {
-        var user = _context.Users.FirstOrDefault(u => string.Equals(u.Id, id));
+        var user = await _context.Users.FirstOrDefaultAsync(u => string.Equals(u.Id, id));
         user.UserName = username;
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 
-    public void ChangePassword(string id, string password)
+    public async Task ChangePassword(string id, string password)
     {
-        var user = _context.Users.FirstOrDefault(u => string.Equals(u.Id, id));
+        var user = await _context.Users.FirstOrDefaultAsync(u => string.Equals(u.Id, id));
         user.PasswordHash = password;
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }

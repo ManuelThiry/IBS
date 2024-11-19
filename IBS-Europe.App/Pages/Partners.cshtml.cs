@@ -55,7 +55,7 @@ public class Partners : PageModel
         return RedirectToPage();
     }
     
-    public IActionResult OnPostAdd()
+    public async Task<IActionResult> OnPostAdd()
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -74,7 +74,7 @@ public class Partners : PageModel
         {
             bool error = false;
             
-            if ( _data.PartnerExists(Input.Name))
+            if ( await _data.PartnerExists(Input.Name))
             {
                 ModelState.AddModelError("Name", "Ce partenaire existe déjà.");
                 error = true;
@@ -145,9 +145,9 @@ public class Partners : PageModel
         LoadPartners();
     }
     
-    private void LoadPartners()
+    private async Task LoadPartners()
     {
-        var products = _data.GetAllPartners();
+        var products = await _data.GetAllPartners();
         foreach (var product in products)
         {
             PartnersList.Add(new PartnersViewModel(

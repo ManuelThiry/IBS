@@ -46,10 +46,10 @@ public class Translate : PageModel
        
     }
 
-    public void Load()
+    public async Task Load()
     {
-        NbTranslations = _data.GetNumberOfTranslations();
-        Translator = _data.GetTranslation();
+        NbTranslations = await _data.GetNumberOfTranslations();
+        Translator = await _data.GetTranslation();
     }
     
     public IActionResult OnPost()

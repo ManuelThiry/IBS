@@ -2,13 +2,13 @@
 
 public interface IContactData
 {
-    public List<Email> GetEmails();
+    public Task<List<Email>> GetEmails();
     
-    public List<Informations> GetInformations();
+    public Task<List<Informations>> GetInformations();
     
-    public void SwitchPriority(int priority, string direction);
+    public Task SwitchPriority(int priority, string direction);
 
-    public Email GetTypeOfMessage(string name);
+    public Task<Email> GetTypeOfMessage(string name);
     
     public Task UpdateInformation(Informations information);
     
@@ -18,8 +18,8 @@ public interface IContactData
     
     public Task AddEmail(Email email);
     
-    public void DeleteInformation(int id);
+    public Task DeleteInformation(int id);
     
-    public void DeleteEmail(int id);
+    public Task DeleteEmail(int id);
 
 }

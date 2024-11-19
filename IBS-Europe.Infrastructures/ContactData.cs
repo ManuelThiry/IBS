@@ -20,10 +20,10 @@ public class ContactData : IContactData
     }
     
 
-    public List<Domains.Email> GetEmails()
+    public async Task<List<Domains.Email>>GetEmails()
     {
         List <Domains.Email> myList = new List<Domains.Email>();
-        var items = _context.Email.ToList();
+        var items = await _context.Email.ToListAsync();
         foreach (var item in items)
         {
             myList.Add(new ()
@@ -38,10 +38,10 @@ public class ContactData : IContactData
         return myList;
     }
 
-    public List<Informations> GetInformations()
+    public async Task<List<Informations>> GetInformations()
     {
         List <Domains.Informations> myList = new List<Domains.Informations>();
-        var items = _context.Informations.OrderBy(x=> x.Priority).ToList();
+        var items = await _context.Informations.OrderBy(x=> x.Priority).ToListAsync();
         foreach (var item in items)
         {
             myList.Add(new ()
@@ -57,31 +57,31 @@ public class ContactData : IContactData
         return myList;
     }
     
-    public void SwitchPriority(int priority, string direction)
+    public async Task SwitchPriority(int priority, string direction)
     {
-        var item1 = _context.Informations.Where(p=> p.Priority == priority).FirstOrDefault();
+        var item1 = await _context.Informations.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
         Data.Informations? item2;
 
         if (direction.Equals("bottom"))
         {
-            item2 = _context.Informations.Where(p=> p.Priority == item1.Priority +1).FirstOrDefault();
+            item2 = await _context.Informations.Where(p=> p.Priority == item1.Priority +1).FirstOrDefaultAsync();
         }
         else
         {
-            item2 = _context.Informations.Where(p=> p.Priority == item1.Priority -1).FirstOrDefault();
+            item2 = await _context.Informations.Where(p=> p.Priority == item1.Priority -1).FirstOrDefaultAsync();
         }
         if (item1 != null && item2 != null)
         {
             int temp = item1.Priority;
             item1.Priority = item2.Priority;
             item2.Priority = temp;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
     
-    public Domains.Email GetTypeOfMessage(string name)
+    public async Task<Domains.Email> GetTypeOfMessage(string name)
     {
-        var item = _context.Email.FirstOrDefault(p => p.Name == name);
+        var item = await _context.Email.FirstOrDefaultAsync(p => p.Name == name);
         
         return new Domains.Email()
         {
@@ -94,7 +94,7 @@ public class ContactData : IContactData
 
     public async Task UpdateInformation(Informations information)
     {
-        var item = _context.Informations.Include(x => x.FirstTranslator).Include(x => x.SecondTranslator).FirstOrDefault(p => p.Id == information.Id);
+        var item = await _context.Informations.Include(x => x.FirstTranslator).Include(x => x.SecondTranslator).FirstOrDefaultAsync(p => p.Id == information.Id);
         if ( information.Description != item.Description )
         {
             var translate1 = await DeeplTranslate.TranslateTextWithDeeplAsync(information.Description, "EN");
@@ -115,7 +115,7 @@ public class ContactData : IContactData
 
     public async Task UpdateEmail(Domains.Email email)
     {
-        var item = _context.Email.Include(x => x.FirstTranslator).Include(x => x.SecondTranslator).FirstOrDefault(p => p.Id == email.Id);
+        var item = await _context.Email.Include(x => x.FirstTranslator).Include(x => x.SecondTranslator).FirstOrDefaultAsync(p => p.Id == email.Id);
         if ( email.Description != item.Description )
         {
             var translate1 = await DeeplTranslate.TranslateTextWithDeeplAsync(email.Description, "EN");
@@ -177,9 +177,9 @@ public class ContactData : IContactData
         await _context.SaveChangesAsync();
     }
 
-    public void DeleteInformation(int id)
+    public async Task DeleteInformation(int id)
     {
-        var item = _context.Informations.Include(b => b.FirstTranslator).Include(b=> b.SecondTranslator).FirstOrDefault(a => a.Id == id);
+        var item = await _context.Informations.Include(b => b.FirstTranslator).Include(b=> b.SecondTranslator).FirstOrDefaultAsync(a => a.Id == id);
         
         if (item != null)
         {
@@ -195,18 +195,18 @@ public class ContactData : IContactData
                 i.Priority -= 1;
             }
         
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
             
         }
     }
 
-    public void DeleteEmail(int id)
+    public async Task DeleteEmail(int id)
     {
-        var item = _context.Email.Include(b => b.FirstTranslator).Include(b=> b.SecondTranslator).FirstOrDefault(a => a.Id == id);
+        var item = await _context.Email.Include(b => b.FirstTranslator).Include(b=> b.SecondTranslator).FirstOrDefaultAsync(a => a.Id == id);
 
         _context.Translator.Remove(item.FirstTranslator);
         _context.Translator.Remove(item.SecondTranslator);
         _context.Email.Remove(item);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
 }

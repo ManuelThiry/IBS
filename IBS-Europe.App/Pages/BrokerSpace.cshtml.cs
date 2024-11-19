@@ -59,7 +59,7 @@ namespace IBS_Europe.App.Pages
             return RedirectToPage();
         }
 
-        public IActionResult OnPostUpdateButton(int id)
+        public async Task<IActionResult> OnPostUpdateButton(int id)
         {
             ModelState.Clear();
             CookieOptions options = new CookieOptions
@@ -69,7 +69,7 @@ namespace IBS_Europe.App.Pages
 
             Response.Cookies.Append("selectedBrokerId", id.ToString(), options);
 
-            var broker = _data.GetBrokerName(id);
+            var broker = await _data.GetBrokerName(id);
             
             Input = new AddBrokerModel
             {
@@ -113,7 +113,7 @@ namespace IBS_Europe.App.Pages
                 error = true;
             } else 
             
-            if (_data.BrokerExists(id, Input.Name, _data.GetCategory(id)))
+            if (await _data.BrokerExists(id, Input.Name, await _data.GetCategory(id)))
             {
                 ModelState.AddModelError("Input.Name", "Ce nom existe déjà.");
                 error = true;
@@ -130,12 +130,12 @@ namespace IBS_Europe.App.Pages
             return RedirectToPage();
         }
         
-        private void LoadBrokers()
+        private async Task LoadBrokers()
         {
             BrokersLists.Clear();
 
             SelectedCategoryMethod();
-            var products = _data.GetBrokers(SelectedCategory, Thread.CurrentThread.CurrentCulture.Name);
+            var products = await _data.GetBrokers(SelectedCategory, Thread.CurrentThread.CurrentCulture.Name);
             foreach (var product in products)
             {
                 BrokersLists.Add(new BrokerViewModel(
@@ -146,7 +146,7 @@ namespace IBS_Europe.App.Pages
                 ); 
             }
             
-            var general = _data.GetGeneralBrokers(Thread.CurrentThread.CurrentCulture.Name);
+            var general = await _data.GetGeneralBrokers(Thread.CurrentThread.CurrentCulture.Name);
             foreach (var product in general)
             {
                 BrokersGeneralLists.Add(new BrokerViewModel(
@@ -187,7 +187,7 @@ namespace IBS_Europe.App.Pages
             {
                 error = true;
             }
-            else if (_data.BrokerExists(-1, Input.Name, Input.Category))
+            else if (await _data.BrokerExists(-1, Input.Name, Input.Category))
             {
                 ModelState.AddModelError("Input.Name", "Ce nom existe déjà.");
                 error = true;

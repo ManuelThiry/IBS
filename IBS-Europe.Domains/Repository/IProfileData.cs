@@ -2,7 +2,7 @@
 
 public interface IProfileData
 {
-    public void ChangeUsername(string id,string username);
+    public Task ChangeUsername(string id,string username);
     
-    public void ChangePassword(string id,string password);
+    public Task ChangePassword(string id,string password);
 }

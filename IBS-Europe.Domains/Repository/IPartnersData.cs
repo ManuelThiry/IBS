@@ -2,14 +2,14 @@
 
 public interface IPartnersData
 {
-    public List<Partners> GetAllPartners();
+    public Task<List<Partners>> GetAllPartners();
     
-    public void SwitchPriority(int priority, string direction);
+    public Task SwitchPriority(int priority, string direction);
     
-    public void DeletePartner(int priority);
+    public Task DeletePartner(int priority);
     
-    public void AddPartner(Partners partner);
+    public Task AddPartner(Partners partner);
     
-    public bool PartnerExists(string name);
+    public Task<bool> PartnerExists(string name);
     
 }

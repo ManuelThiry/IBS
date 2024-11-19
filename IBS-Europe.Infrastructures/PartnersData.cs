@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using IBS_Europe.Domains;
+using Microsoft.EntityFrameworkCore;
 using Partners = IBS_Europe.Domains.Partners;
 
 namespace IBS_Europe.Infrastructures;
@@ -14,10 +15,10 @@ public class PartnersData : IPartnersData
         _context = context;
     }
     
-    public List<Partners> GetAllPartners()
+    public async Task<List<Partners>> GetAllPartners()
     {
         List <Partners> myList = new List<Partners>();
-        var items = _context.Partners.OrderBy(a => a.Priority).ThenBy(a => a.Name).ToList();
+        var items = await _context.Partners.OrderBy(a => a.Priority).ThenBy(a => a.Name).ToListAsync();
         foreach (var item in items)
         {
             myList.Add(new Partners
@@ -32,50 +33,50 @@ public class PartnersData : IPartnersData
         return myList;
     }
     
-    public void SwitchPriority(int priority, string direction)
+    public async Task SwitchPriority(int priority, string direction)
     {
-        var item1 = _context.Partners.Where(p=> p.Priority == priority).FirstOrDefault();
+        var item1 = await _context.Partners.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
         Data.Partners? item2;
 
         if (direction.Equals("right"))
         {
-            item2 = _context.Partners.Where(p=> p.Priority == item1.Priority +1).FirstOrDefault();
+            item2 = await _context.Partners.Where(p=> p.Priority == item1.Priority +1).FirstOrDefaultAsync();
         }
         else
         {
-            item2 = _context.Partners.Where(p=> p.Priority == item1.Priority -1).FirstOrDefault();
+            item2 = await _context.Partners.Where(p=> p.Priority == item1.Priority -1).FirstOrDefaultAsync();
         }
         if (item1 != null && item2 != null)
         {
             int temp = item1.Priority;
             item1.Priority = item2.Priority;
             item2.Priority = temp;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
     
-    public void DeletePartner(int priority)
+    public async Task DeletePartner(int priority)
     {
-        var item = _context.Partners.Where(p=> p.Priority == priority).FirstOrDefault();
+        var item = await _context.Partners.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
         if (item != null)
         {
             _context.Partners.Remove(item);
             
-            var itemsAbove = _context.Partners.Where(p=> p.Priority > priority).ToList();
+            var itemsAbove = await _context.Partners.Where(p=> p.Priority > priority).ToListAsync();
 
             foreach (var i in itemsAbove ) 
             {
                 i.Priority -= 1;
             }
             
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
     
-    public void AddPartner(Partners partner)
+    public async Task AddPartner(Partners partner)
     {
         // Récupérer la priorité maximale des partenaires existants et ajouter 1 pour le nouveau partenaire
-        int maxPriority = _context.Partners.Any() 
+        int maxPriority = await _context.Partners.AnyAsync() 
             ? _context.Partners.Max(p => p.Priority) 
             : 0; // Si aucun partenaire, définir à 0
     
@@ -92,12 +93,12 @@ public class PartnersData : IPartnersData
 
         // Ajouter le nouveau partenaire à la base de données
         _context.Partners.Add(data);
-        _context.SaveChanges();
+        await _context.SaveChangesAsync();
     }
     
-    public bool PartnerExists(string name)
+    public async Task<bool> PartnerExists(string name)
     {
-        return _context.Partners.Any(p => p.Name.ToLower().Trim() == name.ToLower().Trim());
+        return await _context.Partners.AnyAsync(p => p.Name.ToLower().Trim() == name.ToLower().Trim());
     }
 
 
