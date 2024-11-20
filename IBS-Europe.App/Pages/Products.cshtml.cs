@@ -134,7 +134,7 @@ public class Products : PageModel
             return Page();
         }
         
-        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", "Products");
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Products");
         if (!Directory.Exists(uploadPath))
         {
             Directory.CreateDirectory(uploadPath);
@@ -146,18 +146,18 @@ public class Products : PageModel
 
         if (Edit.Image != null)
         {
-            fileName = Path.GetFileNameWithoutExtension(Edit.Name) + Path.GetExtension(Edit.Image.FileName);
+            fileName = Cleanup.GenerateUniqueFileName(Edit.Image.FileName);
             filePath = Path.Combine(uploadPath, fileName);
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                 Edit.Image.CopyTo(stream);
             }
-            start = "/Images/Products/";
+            start = "/images/Products/";
         }
         else
         {
             fileName = "IBS-logo-bleu-2_HD.JPG";
-            start = "/Images/";
+            start = "/images/";
         }
         
         
@@ -283,20 +283,34 @@ public class Products : PageModel
                 return RedirectToPage();
             }
             
-            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", "Products");
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Products");
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
             }
-            var fileName = Path.GetFileNameWithoutExtension(await _data.GetName(id)) + Path.GetExtension(Edit.Image.FileName);
-            var filePath = Path.Combine(uploadPath, fileName);
+
+            var fileName = Edit.Image.FileName;
+            var filePath = await _data.GetPath(id);
+            var globalPath = "";
+            if ( !Cleanup.IsPathInDirectory(filePath, "Products") )
+            {
+                var uniqueFileName = Cleanup.GenerateUniqueFileName(fileName);
+                globalPath = Path.Combine(uploadPath, uniqueFileName);
+                filePath = Path.Combine("/images/Products", uniqueFileName);
+                await _data.UpdateImage(id, filePath);
+            }
+            else
+            {
+                var path  = filePath.Substring(filePath.IndexOf("Products") + "Products".Length + 1);
+                globalPath = Path.Combine(uploadPath, path);
+            }
             
-            using (var stream = new FileStream(filePath, FileMode.Create))
+            using (var stream = new FileStream(globalPath, FileMode.Create))
             {
                 Edit.Image.CopyTo(stream);
             }
             
-            _data.UpdateImage(id, "/Images/Products/" + fileName);
+           
         }
 
         return RedirectToPage();
@@ -314,7 +328,7 @@ public class Products : PageModel
         };
 
         IsUpdate = true;
-        Load();
+        await Load();
 
     }
     

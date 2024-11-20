@@ -12,7 +12,7 @@ public interface IProductsData
     
     public Task UpdateImage(int id, string path);
 
-    public Task<string> GetName(int id);
+    public Task<string> GetPath(int id);
     
     public Task<int> AddProduct(Product product);
     

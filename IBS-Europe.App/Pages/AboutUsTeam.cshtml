@@ -33,18 +33,21 @@
          @foreach (var person in Model.PeopleList)
          {
              <div class="card h-100 flex-item m-3" style="width: 18em;">
-                @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
-                {
-                    <form method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage">
-                        <input type="hidden" id="id" name="id" value="@person.Id" />
-            
-                        <input type="file" id="fileInput" name="Input.Picture" style="display:none;" onchange="this.form.submit()" accept=".png, .jpeg, .jpg"/>
-            
-                        <img class="card-img-top img" src="@person.Path" title="@SharedResource.AT_Image @person.FirstName @person.LastName" alt="@SharedResource.AT_Image @person.FirstName @person.LastName"
-                             style="cursor: pointer;" onclick="document.getElementById('fileInput').click()" />
-                       @Html.ValidationMessage($"people_{person.Id}", "", new { @class = "text-danger small", style = "text-align: center; display: block;"  })
-                    </form>
-                }
+                 @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                 {
+                     <form method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage" id="form-@person.Id">
+                         <input type="hidden" id="id-@person.Id" name="id" value="@person.Id" />
+
+                         <input type="file" id="fileInput-@person.Id" name="Input.Picture" style="display:none;" 
+                                onchange="submitForm(@person.Id)" accept=".png, .jpeg, .jpg"/>
+                    
+                         <img class="card-img-top img" src="@person.Path" title="@SharedResource.AT_Image @person.FirstName @person.LastName" 
+                              alt="@SharedResource.AT_Image @person.FirstName @person.LastName"
+                              style="cursor: pointer;" onclick="document.getElementById('fileInput-@person.Id').click()" />
+
+                         @Html.ValidationMessage($"people_{person.Id}", "", new { @class = "text-danger small", style = "text-align: center; display: block;" })
+                     </form>
+                 }
                 else
                 {
                     <img src="@person.Path" class="card-img-top img" alt="@SharedResource.AT_Image @person.FirstName @person.LastName" title="@SharedResource.AT_Image @person.FirstName @person.LastName">
@@ -148,6 +151,20 @@
        function openDeleteModal(id) {
            document.getElementById("peopleId").value = id;
        }
+       
+       function submitForm(personId) {
+               var form = document.getElementById('form-' + personId);
+               var fileInput = document.getElementById('fileInput-' + personId);
+               var filePath = fileInput.value;
+       
+               // Vérifier si un fichier a été sélectionné
+               if (filePath) {
+                   // Si un fichier est sélectionné, soumettre le formulaire
+                   form.submit();
+               } else {
+                   alert('Veuillez sélectionner une image avant de soumettre.');
+               }
+           }
        
    </script>
 

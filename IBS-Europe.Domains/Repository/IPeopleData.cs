@@ -12,9 +12,7 @@ public interface IPeopleData
     
     public Task SwitchPriority(int id, string direction);
     
-    public Task<string> GetName(int id);
-    
-    public Task UpdateImage(int id, string path);
-    
     public Task UpdatePeople(People people);
+    
+    public Task<string> GetPath(int id);
 }

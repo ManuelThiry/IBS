@@ -152,17 +152,13 @@ public class ProductsData : IProductsData
         await _context.SaveChangesAsync();
     }
     
-    public async Task<string> GetName(int id)
+    public async Task<string> GetPath(int id)
     {
         var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
     
         if (item != null)
         {
-            string cleanName = item.Name.Replace(" ", "-");
-            
-            cleanName = System.Text.RegularExpressions.Regex.Replace(cleanName, @"[^a-zA-Z0-9\-_]", "");
-        
-            return cleanName;
+            return item.Path;
         }
 
         return string.Empty;

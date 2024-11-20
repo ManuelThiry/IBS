@@ -126,32 +126,6 @@ public class PeopleData : IPeopleData
         }
     }
     
-    public async Task<string> GetName(int id)
-    {
-        var item = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
-    
-        if (item != null)
-        {
-            string cleanName = item.FirstName+item.LastName;
-            
-            cleanName = System.Text.RegularExpressions.Regex.Replace(cleanName, @"[^a-zA-Z0-9\-_]", "");
-        
-            return cleanName;
-        }
-
-        return string.Empty;
-    }
-    
-    public async Task UpdateImage(int id, string path)
-    {
-        var item = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
-        if (item != null)
-        {
-            item.Path = path;
-           await _context.SaveChangesAsync();
-        }
-    }
-    
     public async Task UpdatePeople(People people)
     {
         people.Email = people.Email ?? "";
@@ -174,5 +148,15 @@ public class PeopleData : IPeopleData
             
             await _context.SaveChangesAsync();
         }
+    }
+    
+    public async Task<string> GetPath(int id)
+    {
+        var item = await _context.People.FirstOrDefaultAsync(p => p.Id == id);
+        if (item != null)
+        {
+            return item.Path;
+        }
+        return string.Empty;
     }
 }

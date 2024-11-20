@@ -22,9 +22,9 @@ public class AboutUsTeam : PageModel
     {
         _data = data;
     }
-    public void OnGet()
+    public async Task OnGetAsync()
     {
-        Load();
+        await Load();
     }
 
     public async Task Load()
@@ -112,13 +112,13 @@ public class AboutUsTeam : PageModel
             
             if (!error)
             {
-                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", "People");
+                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "People");
                 if (!Directory.Exists(uploadPath))
                 {
                     Directory.CreateDirectory(uploadPath);
                 }
                 
-                var fileName = Path.GetFileNameWithoutExtension(Input.Firstname)+ Path.GetFileNameWithoutExtension(Input.Lastname) + Path.GetExtension(Input.Picture.FileName);
+                var fileName = Cleanup.GenerateUniqueFileName(Input.Picture.FileName);
                 var filePath = Path.Combine(uploadPath, fileName);
                 
                 using (var stream = new FileStream(filePath, FileMode.Create))
@@ -132,14 +132,14 @@ public class AboutUsTeam : PageModel
                     LastName = Input.Lastname,
                     Role = Input.Role,
                     Email = Input.Email,
-                    Path = "/Images/People/" + fileName,
+                    Path = "/images/People/" + fileName,
                     Phone = Input.Phone
                 });
                 return RedirectToPage();
             }
             
         }
-        Load();
+        await Load();
         return Page();
     }
 
@@ -168,25 +168,25 @@ public class AboutUsTeam : PageModel
                 if (fileBytes.Length > maxFileSizeInBytes)
                 {
                     ModelState.AddModelError($"people_{id}", "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
-                    Load();
+                    await Load();
                     return Page();
                 }
             }
             
-            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", "People");
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "People");
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
             }
-            var fileName = Path.GetFileNameWithoutExtension(await _data.GetName(id)) + Path.GetExtension(Input.Picture.FileName);
+
+            var path = await _data.GetPath(id);
+            var fileName = path.Substring(path.IndexOf("People") + "People".Length + 1);;
             var filePath = Path.Combine(uploadPath, fileName);
             
             using (var stream = new FileStream(filePath, FileMode.Create))
             {
                Input.Picture.CopyTo(stream);
             }
-            
-            _data.UpdateImage(id, "/Images/People/" + fileName);
         }
 
         return RedirectToPage();

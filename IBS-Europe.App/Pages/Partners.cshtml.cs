@@ -103,7 +103,7 @@ public class Partners : PageModel
             if (!error)
             {
                 // Construire le chemin complet vers le dossier "wwwroot/Images/Partners"
-                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", "Partners");
+                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Partners");
 
                 // Vérifier si le dossier existe, sinon le créer
                 if (!Directory.Exists(uploadPath))
@@ -112,7 +112,7 @@ public class Partners : PageModel
                 }
 
                 // Nom du fichier (nom du partenaire avec l'extension du fichier original)
-                var fileName = Path.GetFileNameWithoutExtension(Input.Name) + Path.GetExtension(Input.Picture.FileName);
+                var fileName = Cleanup.GenerateUniqueFileName(Input.Picture.FileName);
                 var filePath = Path.Combine(uploadPath, fileName);
 
                 // Enregistrer le fichier dans le répertoire "wwwroot/Images/Partners"
@@ -122,20 +122,20 @@ public class Partners : PageModel
                 }
 
                 // Ajouter le partenaire dans la base de données avec le chemin du fichier
-                _data.AddPartner(new Domains.Partners()
+                await _data.AddPartner(new Domains.Partners()
                 {
                     Name = Input.Name,
                     WebSite = Input.WebSite,
-                    Path = "/Images/Partners/" + fileName, // Stocker le chemin relatif dans la base de données
+                    Path = "/images/Partners/" + fileName, // Stocker le chemin relatif dans la base de données
                     Priority = -1
                 });
-                
-                IsAddPartnerAction = false;
+
+                return RedirectToPage();
             }
             
         }
-        LoadPartners();
-        return RedirectToPage();
+        await LoadPartners();
+        return Page();
     }
     
     public void OnPostAddButton()

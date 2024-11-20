@@ -31,7 +31,7 @@ namespace IBS_Europe.App
                 }
                 
                 
-                string uniqueName = GenerateUniqueFileName(file.FileName);
+                string uniqueName = Cleanup.GenerateUniqueFileName(file.FileName);
                 
                 var existingValue = Request.Cookies["contactImage"];
 
@@ -108,20 +108,6 @@ namespace IBS_Europe.App
                 return BadRequest();
             }
         }
-
-        
-        public string GenerateUniqueFileName(string originalFileName)
-        {
-            // Générer un UUID ou une chaîne aléatoire pour garantir l'unicité
-            var uniqueFileName = Guid.NewGuid().ToString(); 
-    
-            // Extraire l'extension du fichier original
-            var extension = Path.GetExtension(originalFileName);
-    
-            // Retourner le nom final unique
-            return $"{uniqueFileName}{extension}";
-        }
-
     }
     
     public class FileModel

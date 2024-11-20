@@ -119,7 +119,7 @@ namespace IBS_Europe.App.Pages
                 error = true;
             }
             
-            LoadBrokers();
+            await LoadBrokers();
             if (error)
             {
                 IsEditdBrokerAction = true;
@@ -161,11 +161,11 @@ namespace IBS_Europe.App.Pages
             
         }
         
-        public void OnPostAddBroker()
+        public async Task OnPostAddBroker()
         {
             ModelState.Clear();
             IsAddBrokerAction = true;
-            LoadBrokers();
+            await LoadBrokers();
         }
 
         public async Task<IActionResult> OnPostAdd()
@@ -230,18 +230,18 @@ namespace IBS_Europe.App.Pages
             if ( error )
             {
                 IsAddBrokerAction = true;
-                LoadBrokers();
+                await LoadBrokers();
                 return Page();
             }
             
-            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "Images", "Brokers");
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Brokers");
             
             if (!Directory.Exists(uploadPath))
             {
                 Directory.CreateDirectory(uploadPath);
             }
             
-            var fileName = Path.GetFileNameWithoutExtension(Input.Name) + Path.GetExtension(Input.Pdf.FileName);
+            var fileName = Cleanup.GenerateUniqueFileName(Input.Pdf.FileName);
             var filePath = Path.Combine(uploadPath, fileName);
             
             using (var stream = new FileStream(filePath, FileMode.Create))
@@ -253,7 +253,7 @@ namespace IBS_Europe.App.Pages
             {
                 Name = Input.Name,
                 Category = Input.Category,
-                Path = "/Images/Brokers/" + fileName, 
+                Path = "/images/Brokers/" + fileName, 
             });
             
             
