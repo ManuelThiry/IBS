@@ -23,16 +23,25 @@ public class ContactData : IContactData
     public async Task<List<Domains.Email>>GetEmails()
     {
         List <Domains.Email> myList = new List<Domains.Email>();
-        var items = await _context.Email.ToListAsync();
+        var items = await _context.Email.Include(c=>c.FirstTranslator).Include(c=>c.SecondTranslator).ToListAsync();
         foreach (var item in items)
         {
-            myList.Add(new ()
+            var contact = new Domains.Email()
             {
+                
                 Name = item.Name,
                 EmailAddress = item.EmailAddress,
                 Description = item.Description,
                 Id = item.Id
-            });
+            };
+            
+            if ( Thread.CurrentThread.CurrentCulture.Name == "en-US")
+            {
+                contact.Name = item.FirstTranslator.Text;
+                contact.Description = item.SecondTranslator.Text;
+            }
+            
+            myList.Add(contact);
         }
         
         return myList;
@@ -41,17 +50,25 @@ public class ContactData : IContactData
     public async Task<List<Informations>> GetInformations()
     {
         List <Domains.Informations> myList = new List<Domains.Informations>();
-        var items = await _context.Informations.OrderBy(x=> x.Priority).ToListAsync();
+        var items = await _context.Informations.Include(i=>i.FirstTranslator).Include(i=>i.SecondTranslator).OrderBy(x=> x.Priority).ToListAsync();
         foreach (var item in items)
         {
-            myList.Add(new ()
+            var contact = new Domains.Informations()
             {
                 Text = item.Text,
                 Description = item.Description,
                 Type = item.Type,
                 Priority = item.Priority,
                 Id = item.Id
-            });
+            };
+            
+            if ( Thread.CurrentThread.CurrentCulture.Name == "en-US")
+            {
+                contact.Text = item.SecondTranslator.Text;
+                contact.Description = item.FirstTranslator.Text;
+            }
+            
+            myList.Add(contact);
         }
         
         return myList;

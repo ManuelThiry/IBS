@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IBS_Europe.App.Resources;
 using IBS_Europe.Domains;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -78,13 +79,13 @@ public class AboutUsTeam : PageModel
             
             if (await _data.PeopleExists(Input.Firstname, Input.Lastname, -1))
             {
-                ModelState.AddModelError("Firstname", "Cette personne existe déjà.");
+                ModelState.AddModelError("Firstname", SharedResource.AT_PersonExist);
                 error = true;
             }
             
             if ( Input.Picture == null )
             {
-                ModelState.AddModelError("Picture", "L'image est requise.");
+                ModelState.AddModelError("Picture", SharedResource.AT_IR);
                 error = true;
             }
             else
@@ -96,14 +97,14 @@ public class AboutUsTeam : PageModel
                 
                     if (!ImagesVerification.PngOrJpg(fileBytes)) 
                     {
-                        ModelState.AddModelError("Picture", "Le fichier doit être une image PNG ou JPG.");
+                        ModelState.AddModelError("Picture", SharedResource.AT_Format);
                         error = true;
                     }
                 
                     const int maxFileSizeInBytes = 20 * 1024 * 1024;
                     if (fileBytes.Length > maxFileSizeInBytes)
                     {
-                        ModelState.AddModelError("Picture", "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                        ModelState.AddModelError("Picture", SharedResource.AT_Size);
                         error = true;
                     }
                 }
@@ -159,15 +160,15 @@ public class AboutUsTeam : PageModel
             
                 if (!ImagesVerification.PngOrJpg(fileBytes))
                 {
-                    ModelState.AddModelError($"people_{id}", "Le fichier doit être une image PNG ou JPG.");
-                    Load();
+                    ModelState.AddModelError($"people_{id}", SharedResource.AT_Format);
+                    await Load();
                     return Page();
                 }
                 
                 const int maxFileSizeInBytes = 20 * 1024 * 1024;
                 if (fileBytes.Length > maxFileSizeInBytes)
                 {
-                    ModelState.AddModelError($"people_{id}", "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                    ModelState.AddModelError($"people_{id}", SharedResource.AT_Size);
                     await Load();
                     return Page();
                 }
@@ -192,9 +193,9 @@ public class AboutUsTeam : PageModel
         return RedirectToPage();
     }
 
-    public void OnPostEditButton(int editId)
+    public async Task OnPostEditButton(int editId)
     {
-        Load();
+        await Load();
         ModelState.Clear();
         CookieOptions options = new CookieOptions
         {
@@ -245,7 +246,7 @@ public class AboutUsTeam : PageModel
             
             if (await _data.PeopleExists(Input.Firstname, Input.Lastname, id))
             {
-                ModelState.AddModelError("Firstname", "Cette personne existe déjà.");
+                ModelState.AddModelError("Firstname", SharedResource.AT_PersonExist);
                 error = true;
             }
            
@@ -267,7 +268,7 @@ public class AboutUsTeam : PageModel
             }
         }
         IsEditPeopleAction = true;
-        Load();
+        await Load();
         return Page();
     }
     
@@ -289,13 +290,13 @@ public class AboutUsTeam : PageModel
         return RedirectToPage();
     }
     
-    public void OnPostAddButton()
+    public async Task OnPostAddButton()
     {
         ModelState.Clear();
         Input = new AddPeopleModel();
 
         IsAddPeopleAction = true;
-        Load();
+        await Load();
     }
     
     public record PeopleViewModel
@@ -319,23 +320,23 @@ public class AboutUsTeam : PageModel
     
     public class AddPeopleModel
     {
-        [Required(ErrorMessage = "Le prénom est requis.")]
-        [StringLength(20, ErrorMessage = "Le prénom ne peut pas dépasser 20 caractères.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_FNR")]
+        [StringLength(20, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_FN20")]
         public string Firstname { get; set; }
         
-        [StringLength(20, ErrorMessage = "Le nom ne peut pas dépasser 20 caractères.")]
+        [StringLength(20, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_N20")]
         public string Lastname { get; set; }
         
-        [Required(ErrorMessage = "Le rôle est requis.")]
-        [StringLength(25, ErrorMessage = "Le rôle ne peut pas dépasser 25 caractères.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_RR")]
+        [StringLength(25, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_R20")]
         public string Role { get; set; }
         
-        [MaxLength(20, ErrorMessage = "Le numéro de téléphone ne doit pas dépasser 20 caractères.")]
-        [Phone(ErrorMessage = "Veuillez entrer un numéro de téléphone valide.")]
+        [MaxLength(20, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_Nu20")]
+        [Phone(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_NuG")]
         public string Phone { get; set; }
         
-        [MaxLength(25, ErrorMessage = "L'email ne doit pas dépasser 25 caractères.")]
-        [EmailAddress(ErrorMessage = "Veuillez entrer une adresse email valide.")]
+        [MaxLength(25, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_ER")]
+        [EmailAddress(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_EG")]
         public string Email { get; set; }
         
         public IFormFile Picture { get; set; }

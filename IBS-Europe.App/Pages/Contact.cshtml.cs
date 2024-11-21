@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using IBS_Europe.App.Pages.Shared.Email;
+using IBS_Europe.App.Resources;
 using IBS_Europe.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -35,7 +36,7 @@ public class Contact : PageModel
         _emailService = emailService;
     }
 
-    public void OnGet(bool isOpen, bool messageSent)
+    public async Task OnGetAsync(bool isOpen, bool messageSent)
     {
         if (isOpen)
         {
@@ -45,7 +46,7 @@ public class Contact : PageModel
         {
             Success = messageSent;
         }
-        Load();
+        await Load();
     }
 
     public async Task Load()
@@ -83,18 +84,18 @@ public class Contact : PageModel
         bool error = false;
         if (string.IsNullOrEmpty(Information.Description))
         {
-            ModelState.AddModelError("Description", "La description est requise.");
+            ModelState.AddModelError("Description", @SharedResource.Co_DR);
             error = true;
         }
         if (string.IsNullOrEmpty(Information.Text))
         {
-            ModelState.AddModelError("Text", "Le texte est requis.");
+            ModelState.AddModelError("Text", @SharedResource.Co_TR);
             error = true;
         }
         
         if (Information.Type == 0)
         {
-            ModelState.AddModelError("Type", "La catégorie est requise.");
+            ModelState.AddModelError("Type", @SharedResource.Co_CR);
             error = true;
         }
 
@@ -106,18 +107,18 @@ public class Contact : PageModel
         bool error = false;
         if (string.IsNullOrEmpty(Email.Description))
         {
-            ModelState.AddModelError("Description", "La description est requise.");
+            ModelState.AddModelError("Description", @SharedResource.Co_DR);
             error = true;
         }
         if (string.IsNullOrEmpty(Email.Name))
         {
-            ModelState.AddModelError("Name", "Le nom est requis.");
+            ModelState.AddModelError("Name", @SharedResource.Co_NR);
             error = true;
         }
         
         if (string.IsNullOrEmpty(Email.EmailAddress))
         {
-            ModelState.AddModelError("EmailAddress", "L'adresse de contact est requise.");
+            ModelState.AddModelError("EmailAddress", SharedResource.Co_ER);
             error = true;
         }
 
@@ -129,20 +130,20 @@ public class Contact : PageModel
         bool error = false;
         if ( Email.Description.Length > 250 )
         {
-            ModelState.AddModelError("Description", "La description ne doit pas dépasser 250 caractères.");
+            ModelState.AddModelError("Description", @SharedResource.Co_D250);
             error = true;
         }
         
         if ( Email.Name.Length > 25 )
         {
-            ModelState.AddModelError("Name", "Le nom ne doit pas dépasser 25 caractères.");
+            ModelState.AddModelError("Name", @SharedResource.Co_N25);
             error = true;
         }
         
         var emailAttribute = new EmailAddressAttribute();
         if (!emailAttribute.IsValid(Email.EmailAddress))
         {
-            ModelState.AddModelError("EmailAddress", "L'adresse de contact n'est pas valide.");
+            ModelState.AddModelError("EmailAddress", @SharedResource.Co_ENG);
             error = true;
         }
 
@@ -157,13 +158,13 @@ public class Contact : PageModel
         bool error = false;
         if ( Information.Description.Length > 25 )
         {
-            ModelState.AddModelError("Description", "La description ne doit pas dépasser 25 caractères.");
+            ModelState.AddModelError("Description", @SharedResource.Co_D25);
             error = true;
         }
         
         if ( Information.Text.Length > 100 )
         {
-            ModelState.AddModelError("Text", "Le texte ne doit pas dépasser 100 caractères.");
+            ModelState.AddModelError("Text", @SharedResource.Co_T25);
             error = true;
         }
 
@@ -186,14 +187,14 @@ public class Contact : PageModel
         
         Information = new InformationModel
         {
-            Title = "Modifier une information",
+            Title = @SharedResource.Co_Modify,
             Description = item.Description,
             Text = item.Text,
             Type = item.Type
         };
         
         IsAddInformation = true;
-        Load();
+        await Load();
         return Page();
     }
     
@@ -212,7 +213,7 @@ public class Contact : PageModel
         }
         
         IsAddInformation = true;
-        Information.Title = "Modifier une information";
+        Information.Title = @SharedResource.Co_Modify;
         
         if (InfoRequiredErrors())
         {
@@ -289,14 +290,14 @@ public class Contact : PageModel
         
         Email = new EmailModel()
         {
-            Title = "Modifier un contact",
+            Title = @SharedResource.Co_ModifyE,
             Description = item.Description,
             Name = item.Name,
             EmailAddress = item.EmailAddress
         };
         
         IsAddEmail = true;
-        Load();
+        await Load();
         return Page();
     }
     
@@ -315,7 +316,7 @@ public class Contact : PageModel
         }
         
         IsAddEmail = true;
-        Email.Title = "Modifier un contact";
+        Email.Title = @SharedResource.Co_ModifyE;
         
         if (EmailRequiredErrors())
         {
@@ -357,7 +358,7 @@ public class Contact : PageModel
         }
         
         IsAddInformation = true;
-        Information.Title = "Ajouter une information";
+        Information.Title = @SharedResource.Co_Add;
         
         if (InfoRequiredErrors())
         {
@@ -379,7 +380,7 @@ public class Contact : PageModel
     {
         Information = new InformationModel
         {
-            Title = "Ajouter une information"
+            Title = @SharedResource.Co_Add
         };
         IsAddInformation = true;
         return Page();
@@ -389,7 +390,7 @@ public class Contact : PageModel
     {
         Email = new EmailModel()
         {
-            Title = "Ajouter un contact"
+            Title = @SharedResource.Co_AddE
         };
         IsAddEmail = true;
         return Page();
@@ -410,7 +411,7 @@ public class Contact : PageModel
         }
         
         IsAddEmail = true;
-        Email.Title = "Ajouter un contact";
+        Email.Title = @SharedResource.Co_AddE;
         
         if (EmailRequiredErrors())
         {
@@ -428,15 +429,15 @@ public class Contact : PageModel
         }
     }
     
-    public IActionResult OnPostSwitch(string direction, int priority)
+    public async Task<IActionResult> OnPostSwitch(string direction, int priority)
     {
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage();
         }
         
-        _data.SwitchPriority(priority, direction);
-        Load();
+        await _data.SwitchPriority(priority, direction);
+        await Load();
         return Page();
     }
 
@@ -446,8 +447,8 @@ public class Contact : PageModel
             
             if (!HasEmailOrPhoneNumber())
             {
-                ModelState.AddModelError("Input.Phone", "Veuillez entrer un numéro de téléphone ou une adresse email.");
-                Load();
+                ModelState.AddModelError("Input.Phone", @SharedResource.Co_PORE);
+                await Load();
                 return Page();
             }
             if (ModelState.IsValid)
@@ -561,10 +562,10 @@ public class Contact : PageModel
                 }
                 else
                 {
-                    TempData["ErrorMessage"] = "Une erreur s'est produite lors de l'envoi de votre message. Veuillez réessayer.";
+                    TempData["ErrorMessage"] = SharedResource.Co_Error;
                 }
             }
-        Load();
+        await Load();
         return Page();
     }
 
@@ -616,26 +617,26 @@ public class Contact : PageModel
 
     public class MailModel
     {
-        [MaxLength(50, ErrorMessage = "Le nom de famille ne doit pas dépasser 50 caractères.")]
+        [MaxLength(50, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MLN")]
         public string LastName { get; set; }
 
-        [MaxLength(100, ErrorMessage = "L'email ne doit pas dépasser 100 caractères.")]
-        [EmailAddress(ErrorMessage = "Veuillez entrer une adresse email valide.")]
+        [MaxLength(100, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_ME50")]
+        [EmailAddress(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MENG")]
         public string Email { get; set; }
 
-        [MaxLength(15, ErrorMessage = "Le numéro de téléphone ne doit pas dépasser 15 caractères.")]
-        [Phone(ErrorMessage = "Veuillez entrer un numéro de téléphone valide.")]
+        [MaxLength(15, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MP15")]
+        [Phone(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MPNG")]
         public string Phone { get; set; }
 
-        [Required(ErrorMessage = "Le nom est requis.")]
-        [MaxLength(50, ErrorMessage = "Le prénom ne doit pas dépasser 50 caractères.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MFR")]
+        [MaxLength(50, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MF50")]
         public string FirstName { get; set; }
 
-        [Required(ErrorMessage = "Le message est requis.")]
-        [MaxLength(20000, ErrorMessage = "Le message ne doit pas dépasser 20 000 caractères.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MMR")]
+        [MaxLength(20000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MM20")]
         public string Message { get; set; }
 
-        [Required(ErrorMessage = "Veuillez sélectionner un sujet de message.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Co_MS")]
         public string Sort { get; set; }
         
         public List<ImageModel> Images { get; set; } = new List<ImageModel>();

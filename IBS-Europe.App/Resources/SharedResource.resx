@@ -357,4 +357,229 @@
     <data name="MA-Close" xml:space="preserve">
         <value />
     </data>
+    <data name="L-Language" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-PersonExist" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-IR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-Format" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-Size" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-FNR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-FN20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-N20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-RR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-R20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-Nu20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-NuG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-ER" xml:space="preserve">
+        <value />
+    </data>
+    <data name="AT-EG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-NR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-N50" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-FMAX" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-FFormat" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-FR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-CR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-Exist" xml:space="preserve">
+        <value />
+    </data>
+    <data name="C-Contact" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-SuccessM" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Firstname" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Lastname" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Subject" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Number" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Email" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Choose" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Message" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-File" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Send" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-DR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-TR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-CR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-NR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-ER" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-D250" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-N25" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-ENG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-D25" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-T25" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Modify" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-ModifyE" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Add" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-AddE" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-PORE" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-Error" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MLN" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-ME50" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MENG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MP15" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MPNG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MF50" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MFR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MMR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MM20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Co-MS" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-Exist" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-FPNG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-F20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-NR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-WR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-IR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-W250" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-N50" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-URL" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-AddProduct" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-Nothing" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-Exist" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-IPNG" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-D20" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-TR" xml:space="preserve">
+        <value />
+    </data>
+    <data name="T-T200" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B_General" xml:space="preserve">
+        <value />
+    </data>
 </root>

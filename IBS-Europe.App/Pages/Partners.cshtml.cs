@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IBS_Europe.App.Resources;
 using IBS_Europe.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -20,24 +21,24 @@ public class Partners : PageModel
     {
         _data = data;
     }
-    public void OnGet()
+    public async Task OnGetAsync()
     {
-        LoadPartners();
+        await LoadPartners();
     }
     
-    public IActionResult OnPost(string direction, int priority)
+    public async Task<IActionResult> OnPost(string direction, int priority)
     {
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage();
         }
         
-        _data.SwitchPriority(priority, direction);
-        LoadPartners();
+        await _data.SwitchPriority(priority, direction);
+        await LoadPartners();
         return Page();
     }
     
-    public IActionResult OnPostDelete(int priority)
+    public async Task<IActionResult> OnPostDelete(int priority)
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -51,7 +52,7 @@ public class Partners : PageModel
             return RedirectToPage();
         }
         
-        _data.DeletePartner(priority);
+        await _data.DeletePartner(priority);
         return RedirectToPage();
     }
     
@@ -76,7 +77,7 @@ public class Partners : PageModel
             
             if ( await _data.PartnerExists(Input.Name))
             {
-                ModelState.AddModelError("Name", "Ce partenaire existe déjà.");
+                ModelState.AddModelError("Name", SharedResource.Pa_Exist);
                 error = true;
             }
 
@@ -88,14 +89,14 @@ public class Partners : PageModel
                 // Appeler la méthode IsPdpPngJpg avec le tableau de bytes
                 if (!ImagesVerification.PngOrJpg(fileBytes))  // Appeler avec le tableau de bytes
                 {
-                    ModelState.AddModelError("Picture", "Le fichier doit être une image PNG ou JPG.");
+                    ModelState.AddModelError("Picture", SharedResource.Pa_FPNG);
                     error = true;
                 }
                 
                 const int maxFileSizeInBytes = 20 * 1024 * 1024; // 20 Mo
                 if (fileBytes.Length > maxFileSizeInBytes)
                 {
-                    ModelState.AddModelError("Picture", "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                    ModelState.AddModelError("Picture", SharedResource.Pa_F20);
                     error = true;
                 }
             }
@@ -138,11 +139,11 @@ public class Partners : PageModel
         return Page();
     }
     
-    public void OnPostAddButton()
+    public async Task OnPostAddButton()
     {
         ModelState.Clear();
         IsAddPartnerAction = true;
-        LoadPartners();
+        await LoadPartners();
     }
     
     private async Task LoadPartners()
@@ -175,16 +176,16 @@ public class Partners : PageModel
     
     public class AddPartnerModel
     {
-        [Required(ErrorMessage = "Le nom est requis.")]
-        [StringLength(50, ErrorMessage = "Le nom ne peut pas dépasser 50 caractères.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_NR")]
+        [StringLength(50, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_N50")]
         public string Name { get; set; }
 
-        [Required(ErrorMessage = "Le site web est requis.")]
-        [StringLength(250, ErrorMessage = "L'URL ne peut pas dépasser 250 caractères.")]
-        [Url(ErrorMessage = "Veuillez entrer une URL valide.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_WR")]
+        [StringLength(250, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_W250")]
+        [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_URL")]
         public string WebSite { get; set; }
         
-        [Required(ErrorMessage = "L'image est requise.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_IR")]
         public IFormFile Picture { get; set; }
         
     }

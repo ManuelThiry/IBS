@@ -1,9 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IBS_Europe.App.Resources;
 using IBS_Europe.Domains;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.ModelBinding;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace IBS_Europe.App.Pages;
 
@@ -23,9 +22,9 @@ public class Products : PageModel
     {
         _data = data;
     }
-    public void OnGet()
+    public async Task OnGet()
     {
-        Load();
+        await Load();
     }
 
     public async Task Load()
@@ -44,13 +43,13 @@ public class Products : PageModel
         }
     }
 
-    public void OnPostAddButton()
+    public async Task OnPostAddButton()
     {
         ModelState.Clear();
         Edit = new EditModel();
 
         IsNew = true;
-        Load();
+        await Load();
     }
 
     public IActionResult OnPostDelete(int productId)
@@ -100,7 +99,7 @@ public class Products : PageModel
         
         if ( await _data.ProductExists(Edit.Name, -1))
         {
-            ModelState.AddModelError("Name", "Ce produit existe déjà.");
+            ModelState.AddModelError("Name", SharedResource.Pr_Exist);
             error = true;
         }
 
@@ -113,7 +112,7 @@ public class Products : PageModel
 
                 if (!ImagesVerification.PngOrJpg(fileBytes))
                 {
-                    ModelState.AddModelError("Edit.Image", "Le fichier doit être une image PNG ou JPG.");
+                    ModelState.AddModelError("Edit.Image", SharedResource.Pr_IPNG);
                     error = true;
                 }
 
@@ -121,7 +120,7 @@ public class Products : PageModel
                 if (fileBytes.Length > maxFileSizeInBytes)
                 {
                     ModelState.AddModelError("Edit.Image",
-                        "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                        SharedResource.Pa_F20);
                     error = true;
                 }
             }
@@ -205,13 +204,13 @@ public class Products : PageModel
         
         if ( await _data.ProductExists(Edit.Name, id))
         {
-            ModelState.AddModelError("Name", "Ce produit existe déjà.");
+            ModelState.AddModelError("Name", SharedResource.Pr_Exist);
             error = true;
         }
 
         if (error)
         {
-            Load();
+            await Load();
             IsUpdate = true;
             return Page();
         }
@@ -263,15 +262,15 @@ public class Products : PageModel
             
                 if (!ImagesVerification.PngOrJpg(fileBytes))
                 {
-                    ModelState.AddModelError("Edit.Image", "Le fichier doit être une image PNG ou JPG.");
-                    Load();
+                    ModelState.AddModelError("Edit.Image", SharedResource.Pr_IPNG);
+                    await Load();
                     return Page();
                 }
                 
                 const int maxFileSizeInBytes = 20 * 1024 * 1024;
                 if (fileBytes.Length > maxFileSizeInBytes)
                 {
-                    ModelState.AddModelError("Edit.Image", "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                    ModelState.AddModelError("Edit.Image", SharedResource.Pa_F20);
                     Load();
                     return Page();
                 }
@@ -346,13 +345,13 @@ public class Products : PageModel
     
     public class EditModel
     {
-        [Required(ErrorMessage = "Le nom est requis.")]
-        [StringLength(50, ErrorMessage = "Le nom ne doit pas dépasser 50 caractères.")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "B_NR")]
+        [StringLength(50, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_N50")]
         public string Name { get; set; }
 
         public IFormFile Image { get; set; }
         
-        [StringLength(20000, ErrorMessage = "La description ne doit pas dépasser de 20 000 caractères")]
+        [StringLength(20000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_D20")]
         public string Description { get; set; }
     }
 }

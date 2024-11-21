@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IBS_Europe.App.Resources;
 using IBS_Europe.Domains;
 using IBS_Europe.Domains.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -33,7 +34,7 @@ public class Translate : PageModel
             return RedirectToPage("/Login");
         }
 
-        Load();
+        await Load();
         if (Translator != null)
         {
             TrTranslator = new TranslatorModel
@@ -52,22 +53,22 @@ public class Translate : PageModel
         Translator = await _data.GetTranslation();
     }
     
-    public IActionResult OnPost()
+    public async Task<IActionResult> OnPost()
     {
-        Load();
+        await Load();
         if (!ModelState.IsValid)
         {
             return Page();
         }
         
-        _data.SetTranslation(TrTranslator.Translation, Translator.Id);
+        await _data.SetTranslation(TrTranslator.Translation, Translator.Id);
         return RedirectToPage();
     }
 
     public class TranslatorModel
     {
-        [Required(ErrorMessage = "Le texte est requis.")]
-        [StringLength(20000, ErrorMessage = "Le texte ne doit pas dépasser de 20 000 caractères")]
+        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "T_TR" )]
+        [StringLength(20000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "T_T200")]
         public string Translation { get; set; }
     }
 }

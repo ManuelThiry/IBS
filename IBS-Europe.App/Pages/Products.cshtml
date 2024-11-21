@@ -85,13 +85,13 @@
         {
             <!-- Message lorsque la liste de produits est vide -->
             <div class="alert alert-warning mt-5" role="alert">
-                Aucun produit n'est disponible pour le moment.
+                @SharedResource.Pr_Nothing
             </div>
             @if(User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
             {
                 <form method="post" asp-page-handler="AddButton">
                     <button type="submit" class="button-1 mt-1">
-                        Ajouter un produit
+                        @SharedResource.Pr_AddProduct
                     </button>
                 </form>
             }
@@ -193,6 +193,5 @@
        }
 
        </script>
-
 
 }

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
 
-namespace IBS_Europe.App
+namespace IBS_Europe.App.Controllers
 {
     public class ImageController : Controller
     {
@@ -88,33 +88,46 @@ namespace IBS_Europe.App
                     map = JsonConvert.DeserializeObject<Dictionary<string, string>>(existingValue);
                 }
 
+                if (!map.ContainsKey(name))
+                {
+                    return NotFound("File not found in cookies.");
+                }
+
                 var targetDelete = map[name];
                 map.Remove(name);
+
                 string filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "upload", targetDelete);
-                System.IO.File.Delete(filePath);
-                
+
+                // Supprimer le fichier de manière asynchrone
+                if (System.IO.File.Exists(filePath))
+                {
+                    await Task.Run(() => System.IO.File.Delete(filePath));
+                }
+
                 var newValue = JsonConvert.SerializeObject(map);
 
                 CookieOptions options = new CookieOptions
                 {
                     Expires = DateTime.Now.AddHours(1)
                 };
-                
+
                 Response.Cookies.Append("contactImage", newValue, options);
-                
+
                 return Ok();
-            } catch (Exception ex)
+            }
+            catch (Exception ex)
             {
-                return BadRequest();
+                // Vous pourriez loguer l'exception ici si nécessaire
+                return BadRequest(new { message = ex.Message });
             }
         }
+
     }
     
     public class FileModel
     {
-        public string FileName { get; set; }
-        public string Base64 { get; set; }
-        public string Extension { get; set; }
+        public string FileName { get; set; } = "";
+        public string Base64 { get; set; } = "";
     }
     
 

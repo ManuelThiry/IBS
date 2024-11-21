@@ -2,7 +2,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System.ComponentModel.DataAnnotations;
-using System.Threading.Tasks;
 using IBS_Europe.App.Resources;
 using IBS_Europe.Domains.Repository;
 
@@ -54,7 +53,7 @@ namespace IBS_Europe.App.Pages
             var user = await _userManager.GetUserAsync(User);
             string id = user.Id;
             
-            _profile.ChangeUsername(id,UserName.NewUsername); 
+            await _profile.ChangeUsername(id,UserName.NewUsername); 
             
             await _signInManager.RefreshSignInAsync(user);
             TempData["SuccessMessage"] = SharedResource.Pr_SuccessU;
@@ -86,7 +85,7 @@ namespace IBS_Europe.App.Pages
             string id = user.Id;
 
             string hashedPassword = _userManager.PasswordHasher.HashPassword(user, Password.NewPassword);
-            _profile.ChangePassword(id, hashedPassword); 
+            await _profile.ChangePassword(id, hashedPassword); 
             
             await _signInManager.RefreshSignInAsync(user);
             TempData["SuccessMessage"] = SharedResource.Pr_SuccessP;

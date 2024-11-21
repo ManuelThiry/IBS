@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using IBS_Europe.App.Resources;
 using IBS_Europe.Domains;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace IBS_Europe.App.Pages
 {
@@ -26,9 +26,9 @@ namespace IBS_Europe.App.Pages
             _data = data;
         }
 
-        public void OnGet()
+        public async Task OnGet()
         {
-            LoadBrokers();
+            await LoadBrokers();
         }
         
         public IActionResult OnPost(int selectedCategory)
@@ -77,7 +77,7 @@ namespace IBS_Europe.App.Pages
             };
             
             IsEditdBrokerAction = true;
-            LoadBrokers();
+            await LoadBrokers();
             return Page();
         }
         
@@ -115,7 +115,7 @@ namespace IBS_Europe.App.Pages
             
             if (await _data.BrokerExists(id, Input.Name, await _data.GetCategory(id)))
             {
-                ModelState.AddModelError("Input.Name", "Ce nom existe déjà.");
+                ModelState.AddModelError("Input.Name", SharedResource.B_Exist);
                 error = true;
             }
             
@@ -189,19 +189,19 @@ namespace IBS_Europe.App.Pages
             }
             else if (await _data.BrokerExists(-1, Input.Name, Input.Category))
             {
-                ModelState.AddModelError("Input.Name", "Ce nom existe déjà.");
+                ModelState.AddModelError("Input.Name", SharedResource.B_Exist);
                 error = true;
             }
             
             if ( Input.Category == 0 )
             {
-                ModelState.AddModelError("Category", "La catégorie est requise.");
+                ModelState.AddModelError("Category", SharedResource.B_CR);
                 error = true;
             }
             
             if (Input.Pdf == null)
             {
-                ModelState.AddModelError("Pdf", "Le fichier est requis.");
+                ModelState.AddModelError("Pdf", SharedResource.B_FR);
                 error = true;
             }
             else
@@ -213,7 +213,7 @@ namespace IBS_Europe.App.Pages
 
                     if (!ImagesVerification.Pdf(fileBytes))
                     {
-                        ModelState.AddModelError("Pdf", "Le fichier doit être un fichier PDF.");
+                        ModelState.AddModelError("Pdf", SharedResource.B_FFormat);
                         error = true;
                     }
 
@@ -221,7 +221,7 @@ namespace IBS_Europe.App.Pages
                     if (fileBytes.Length > maxFileSizeInBytes)
                     {
                         ModelState.AddModelError("Pdf",
-                            "Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.");
+                            SharedResource.B_FMAX);
                         error = true;
                     }
                 }
@@ -292,8 +292,8 @@ namespace IBS_Europe.App.Pages
         
         public class AddBrokerModel
         {
-            [Required(ErrorMessage = "Le nom est requis.")]
-            [StringLength(50, ErrorMessage = "Le nom ne peut pas dépasser 50 caractères.")]
+            [Required(ErrorMessageResourceType = typeof(SharedResource) , ErrorMessageResourceName = "B_NR")]
+            [StringLength(50, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "B_N50")]
             public string Name { get; set; }
             
             public IFormFile Pdf { get; set; }

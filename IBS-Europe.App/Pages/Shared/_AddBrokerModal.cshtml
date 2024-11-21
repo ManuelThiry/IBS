@@ -30,13 +30,17 @@
                             {
                                 int category = (int)cat;
                                 <option value="@category">
-                                    @if (category.Equals(Category.Particuliers))
+                                    @if (category == (int)Category.Particuliers)
                                     {
                                         @SharedResource.B_Individuals
                                     }
-                                    else
+                                    else if ( category == (int)Category.Professionnels)
                                     {
                                         @SharedResource.B_Professionals
+                                    }
+                                    else
+                                    {
+                                        @SharedResource.B_General
                                     }
                                 </option>
                             }

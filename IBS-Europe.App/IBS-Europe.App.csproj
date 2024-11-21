@@ -15,7 +15,6 @@
       <Compile Remove="Pages\Shared\Controller1.cs" />
       <Compile Remove="Pages\Shared\Model\UsernameModel.cs" />
       <Compile Remove="Pages\Shared\ChangeUsername.cshtml.cs" />
-      <Compile Remove="Pages\Shared\Model\**" />
       <Compile Remove="Pages\Mentions.cs" />
       <Compile Update="Pages\Resources\SharedResource.fr.Designer.cs">
         <DesignTime>True</DesignTime>
@@ -90,7 +89,6 @@
 
     <ItemGroup>
       <EmbeddedResource Remove="wwwroot\images\ibs-removebg-preview\**" />
-      <EmbeddedResource Remove="Pages\Shared\Model\**" />
       <EmbeddedResource Update="Pages\Resources\SharedResource.fr.resx">
         <Generator>ResXFileCodeGenerator</Generator>
         <LastGenOutput>Layout.Designer.cs</LastGenOutput>
@@ -162,12 +160,10 @@
       <Content Remove="Pages\Shared\Model\Page1.cshtml" />
       <Content Remove="Pages\Shared\_UsernameModelForm.cshtml" />
       <Content Remove="Pages\Shared\ChangeUsername.cshtml" />
-      <Content Remove="Pages\Shared\Model\**" />
     </ItemGroup>
 
     <ItemGroup>
       <None Remove="wwwroot\images\ibs-removebg-preview\**" />
-      <None Remove="Pages\Shared\Model\**" />
       <None Remove="Pages\Shared\Email\NewFile1.txt" />
         
     </ItemGroup>
@@ -190,7 +186,7 @@
 
     <ItemGroup>
       <Folder Include="Data\" />
-      <Folder Include="Pages\Shared\Translation\" />
+      <Folder Include="Pages\Shared\Model\" />
       <Folder Include="wwwroot\images\Brokers\" />
       <Folder Include="wwwroot\images\Partners\" />
       <Folder Include="wwwroot\images\People\" />

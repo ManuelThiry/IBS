@@ -615,4 +615,262 @@
     <data name="MEPr-Title" xml:space="preserve">
         <value>Edit product</value>
     </data>
+    <data name="L-Language" xml:space="preserve">
+        <value>Please switch to French to obtain editing rights.</value>
+    </data>
+    <data name="AT-PersonExist" xml:space="preserve">
+        <value>This person already exists.</value>
+    </data>
+    <data name="AT-IR" xml:space="preserve">
+        <value>
+The image is required.</value>
+    </data>
+    <data name="AT-Format" xml:space="preserve">
+        <value>The file must be a PNG or JPG image.</value>
+    </data>
+    <data name="AT-Size" xml:space="preserve">
+        <value>
+The file is too large. The maximum allowed size is 20 MB.</value>
+    </data>
+    <data name="AT-FNR" xml:space="preserve">
+        <value>The first name is required.</value>
+    </data>
+    <data name="AT-FN20" xml:space="preserve">
+        <value>
+The first name cannot exceed 20 characters.</value>
+    </data>
+    <data name="AT-N20" xml:space="preserve">
+        <value>The last name cannot exceed 20 characters.</value>
+    </data>
+    <data name="AT-R20" xml:space="preserve">
+        <value>
+The role cannot exceed 25 characters.</value>
+    </data>
+    <data name="AT-RR" xml:space="preserve">
+        <value>
+The role is required.</value>
+    </data>
+    <data name="AT-Nu20" xml:space="preserve">
+        <value>The phone number cannot exceed 20 characters.</value>
+    </data>
+    <data name="AT-NuG" xml:space="preserve">
+        <value>
+Please enter a valid phone number.</value>
+    </data>
+    <data name="AT-ER" xml:space="preserve">
+        <value>
+The email must not exceed 25 characters.</value>
+    </data>
+    <data name="AT-EG" xml:space="preserve">
+        <value>
+Please enter a valid email address.</value>
+    </data>
+    <data name="B-NR" xml:space="preserve">
+        <value>The name is required.</value>
+    </data>
+    <data name="B-N50" xml:space="preserve">
+        <value>
+The name cannot exceed 50 characters.</value>
+    </data>
+    <data name="B-FMAX" xml:space="preserve">
+        <value>
+The file is too large. The maximum allowed size is 20 MB.</value>
+    </data>
+    <data name="B-FFormat" xml:space="preserve">
+        <value>
+The file must be a PDF file.</value>
+    </data>
+    <data name="B-FR" xml:space="preserve">
+        <value>
+The file is required.</value>
+    </data>
+    <data name="B-CR" xml:space="preserve">
+        <value>
+The category is required.</value>
+    </data>
+    <data name="B-Exist" xml:space="preserve">
+        <value>
+This name already exists.</value>
+    </data>
+    <data name="C-Contact" xml:space="preserve">
+        <value>
+Contact us</value>
+    </data>
+    <data name="Co-SuccessM" xml:space="preserve">
+        <value>Your message has been successfully sent.</value>
+    </data>
+    <data name="Co-Firstname" xml:space="preserve">
+        <value>
+First name</value>
+    </data>
+    <data name="Co-Lastname" xml:space="preserve">
+        <value>Last name</value>
+    </data>
+    <data name="Co-Subject" xml:space="preserve">
+        <value>Subject</value>
+    </data>
+    <data name="Co-Number" xml:space="preserve">
+        <value>Phone number</value>
+    </data>
+    <data name="Co-Email" xml:space="preserve">
+        <value>Email</value>
+    </data>
+    <data name="Co-Choose" xml:space="preserve">
+        <value>
+Choose a subject</value>
+    </data>
+    <data name="Co-Message" xml:space="preserve">
+        <value>Message</value>
+    </data>
+    <data name="Co-File" xml:space="preserve">
+        <value>Attach a file (PNG, JPEG, PDF)</value>
+    </data>
+    <data name="Co-Send" xml:space="preserve">
+        <value>Send</value>
+    </data>
+    <data name="Co-DR" xml:space="preserve">
+        <value>The description is required.</value>
+    </data>
+    <data name="Co-TR" xml:space="preserve">
+        <value>
+The text is required.</value>
+    </data>
+    <data name="Co-CR" xml:space="preserve">
+        <value>The category is required.</value>
+    </data>
+    <data name="Co-NR" xml:space="preserve">
+        <value>
+The name is required.</value>
+    </data>
+    <data name="Co-ER" xml:space="preserve">
+        <value>The contact address is required.</value>
+    </data>
+    <data name="Co-D250" xml:space="preserve">
+        <value>
+The description must not exceed 250 characters.</value>
+    </data>
+    <data name="Co-N25" xml:space="preserve">
+        <value>The name must not exceed 25 characters.</value>
+    </data>
+    <data name="Co-ENG" xml:space="preserve">
+        <value>The contact address is not valid.</value>
+    </data>
+    <data name="Co-D25" xml:space="preserve">
+        <value>The description must not exceed 25 characters.</value>
+    </data>
+    <data name="Co-T25" xml:space="preserve">
+        <value>The text must not exceed 100 characters.</value>
+    </data>
+    <data name="Co-Modify" xml:space="preserve">
+        <value>
+Edit information</value>
+    </data>
+    <data name="Co-ModifyE" xml:space="preserve">
+        <value>Edit a contact</value>
+    </data>
+    <data name="Co-Add" xml:space="preserve">
+        <value>
+Add information</value>
+    </data>
+    <data name="Co-AddE" xml:space="preserve">
+        <value>Add a contact</value>
+    </data>
+    <data name="Co-PORE" xml:space="preserve">
+        <value>
+Please enter a phone number or an email address.</value>
+    </data>
+    <data name="Co-Error" xml:space="preserve">
+        <value>An error occurred while sending your message. Please try again.</value>
+    </data>
+    <data name="Co-MLN" xml:space="preserve">
+        <value>The last name must not exceed 50 characters.</value>
+    </data>
+    <data name="Co-ME50" xml:space="preserve">
+        <value>The email must not exceed 100 characters.</value>
+    </data>
+    <data name="Co-MENG" xml:space="preserve">
+        <value>Please enter a valid email address.</value>
+    </data>
+    <data name="Co-MP15" xml:space="preserve">
+        <value>The phone number must not exceed 15 characters.</value>
+    </data>
+    <data name="Co-MPNG" xml:space="preserve">
+        <value>
+Please enter a valid phone number.</value>
+    </data>
+    <data name="Co-MF50" xml:space="preserve">
+        <value>
+The first name must not exceed 50 characters.</value>
+    </data>
+    <data name="Co-MFR" xml:space="preserve">
+        <value>The first name is required.</value>
+    </data>
+    <data name="Co-MMR" xml:space="preserve">
+        <value>The message is required.</value>
+    </data>
+    <data name="Co-MM20" xml:space="preserve">
+        <value>
+The message must not exceed 20,000 characters.</value>
+    </data>
+    <data name="Co-MS" xml:space="preserve">
+        <value>
+Please select a message subject.</value>
+    </data>
+    <data name="Pa-Exist" xml:space="preserve">
+        <value>
+This partner already exists.</value>
+    </data>
+    <data name="Pa-FPNG" xml:space="preserve">
+        <value>
+The file must be a PNG or JPG image.</value>
+    </data>
+    <data name="Pa-F20" xml:space="preserve">
+        <value>
+The file is too large. The maximum allowed size is 20 MB.</value>
+    </data>
+    <data name="Pa-NR" xml:space="preserve">
+        <value>The name is required.</value>
+    </data>
+    <data name="Pa-WR" xml:space="preserve">
+        <value>The website is required.</value>
+    </data>
+    <data name="Pa-IR" xml:space="preserve">
+        <value>The image is required.</value>
+    </data>
+    <data name="Pa-W250" xml:space="preserve">
+        <value>The URL cannot exceed 250 characters.</value>
+    </data>
+    <data name="Pa-N50" xml:space="preserve">
+        <value>
+The name cannot exceed 50 characters.</value>
+    </data>
+    <data name="Pa-URL" xml:space="preserve">
+        <value>
+Please enter a valid URL.</value>
+    </data>
+    <data name="Pr-AddProduct" xml:space="preserve">
+        <value>Add a product</value>
+    </data>
+    <data name="Pr-Nothing" xml:space="preserve">
+        <value>No products are available at the moment.</value>
+    </data>
+    <data name="Pr-Exist" xml:space="preserve">
+        <value>This product already exists.</value>
+    </data>
+    <data name="Pr-IPNG" xml:space="preserve">
+        <value>
+The file must be a PNG or JPG image.</value>
+    </data>
+    <data name="Pr-D20" xml:space="preserve">
+        <value>The description must not exceed 20,000 characters.</value>
+    </data>
+    <data name="T-TR" xml:space="preserve">
+        <value>The text is required.</value>
+    </data>
+    <data name="T-T200" xml:space="preserve">
+        <value>The text must not exceed 20,000 characters.</value>
+    </data>
+    <data name="B_General" xml:space="preserve">
+        <value>General</value>
+    </data>
 </root>

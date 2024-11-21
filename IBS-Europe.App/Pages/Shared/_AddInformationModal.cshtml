@@ -6,7 +6,7 @@
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
             @{
-                var pageHandler = Model.Title == "Ajouter une information" ? "AddI" : "EditI";
+                var pageHandler = Model.Title == @SharedResource.MEI_Add ? "AddI" : "EditI";
             }
 
             <form method="post" asp-page-handler="@pageHandler">
@@ -17,12 +17,12 @@
                 <div class="modal-body">
 
                     <div class="mb-3">
-                        <label for="Description" class="form-label">Description</label>
+                        <label for="Description" class="form-label">@SharedResource.MEI_Description</label>
                         <input type="text" class="form-control" id="Description" asp-for="@Model.Description">
                         <span asp-validation-for="@Model.Description" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
-                        <label for="Text" class="form-label">Texte</label>
+                        <label for="Text" class="form-label">@SharedResource.MEI_Text</label>
                         <input type="text" class="form-control" id="Text" asp-for="@Model.Text">
                         <span asp-validation-for="@Model.Text" class="text-danger"></span>
                     </div>

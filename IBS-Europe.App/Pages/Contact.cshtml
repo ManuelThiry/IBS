@@ -1,4 +1,5 @@
 ﻿@page
+@using IBS_Europe.App.Resources
 @model IBS_Europe.App.Pages.Contact
 
 @{
@@ -11,12 +12,12 @@
     <div class="row">
         <!-- Colonne gauche : Formulaire de contact -->
         <div class="col-md-6">
-            <h3 class="mb-4">Contactez-nous</h3>
+            <h3 class="mb-4">@SharedResource.C_Contact</h3>
             
             @if (Model.Success)
                 {
                     <div class="alert alert-success" role="alert">
-                        Votre message a été envoyé avec succès.
+                        @SharedResource.Co_SuccessM
                     </div>
                 }
              @if (TempData["ErrorMessage"] != null)
@@ -29,12 +30,12 @@
            <form method="post" enctype="multipart/form-data">
                <div class="row">
                    <div class="col-md-6 mb-3">
-                       <label for="firstname" class="form-label">Prénom</label>
+                       <label for="firstname" class="form-label">@SharedResource.Co_Firstname</label>
                        <input type="text" class="form-control" id="firstname" asp-for="Input.FirstName"/>
                        <span asp-validation-for="Input.FirstName" class="text-danger"></span>
                    </div>
                    <div class="col-md-6 mb-3">
-                       <label for="lastname" class="form-label">Nom</label>
+                       <label for="lastname" class="form-label">@SharedResource.Co_Lastname</label>
                        <input type="text" class="form-control" id="lastname" asp-for="Input.LastName"/>
                        <span asp-validation-for="Input.LastName" class="text-danger"></span>
                    </div>
@@ -42,21 +43,21 @@
            
                <div class="row">
                    <div class="col-md-6 mb-3">
-                       <label for="phone" class="form-label">Téléphone</label>
+                       <label for="phone" class="form-label">@SharedResource.Co_Number</label>
                        <input type="tel" class="form-control" id="phone" asp-for="Input.Phone"/>
                        <span asp-validation-for="Input.Phone" class="text-danger"></span>
                    </div>
                    <div class="col-md-6 mb-3">
-                       <label for="email" class="form-label">Email</label>
+                       <label for="email" class="form-label">@SharedResource.Co_Email</label>
                        <input type="email" class="form-control" id="email" asp-for="Input.Email"/>
                        <span asp-validation-for="Input.Email" class="text-danger"></span>
                    </div>
                </div>
            
                <div class="mb-3">
-                   <label for="subject" class="form-label">Sujet</label>
+                   <label for="subject" class="form-label">@SharedResource.Co_Subject</label>
                    <select asp-for="Input.Sort" class="form-select" id="subject">
-                       <option value="" disabled selected>Choisissez un sujet</option>
+                       <option value="" disabled selected>@SharedResource.Co_Choose</option>
                        @foreach (var email in Model.EmailList)
                        {
                            <option title="@email.Description" value="@email.Name">@email.Name</option>
@@ -66,15 +67,15 @@
                </div>
            
                <div class="mb-3">
-                   <label for="message" class="form-label">Message</label>
+                   <label for="message" class="form-label">@SharedResource.Co_Message</label>
                    <textarea class="form-control" id="message" asp-for="Input.Message" rows="5"></textarea>
                    <span asp-validation-for="Input.Message" class="text-danger"></span>
                </div>
            
                <div class="mb-3">
-                   <label for="picture" class="form-label">Joindre un fichier (PNG, JPEG, PDF)</label>
+                   <label for="picture" class="form-label">@SharedResource.Co_File</label>
                    <!-- Utilisation de asp-for pour la cohérence -->
-                   <input type="file" class="form-control" id="picture" accept=".png, .jpeg, .jpg, .pdf">
+                   <input type="file" class="form-control" id="picture" accept=".png, .jpeg, .jpg, .pdf" aria-label="ahc">
                    <div id="fileList" class="mb-2 mt-2">
                    @if (Model.Input.Images.Count > 0)
                       {
@@ -104,7 +105,7 @@
                       <div id="errorList"></div>
                </div>
            
-               <button type="submit" class="btn btn-primary">Envoyer</button>
+               <button type="submit" class="btn btn-primary">@SharedResource.Co_Send</button>
            </form>
 
         </div>

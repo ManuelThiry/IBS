@@ -98,6 +98,51 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string AT_EG {
+            get {
+                return ResourceManager.GetString("AT-EG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_ER {
+            get {
+                return ResourceManager.GetString("AT-ER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_FN20 {
+            get {
+                return ResourceManager.GetString("AT-FN20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_FNR {
+            get {
+                return ResourceManager.GetString("AT-FNR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_Format {
+            get {
+                return ResourceManager.GetString("AT-Format", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string AT_Image {
             get {
                 return ResourceManager.GetString("AT-Image", resourceCulture);
@@ -107,9 +152,135 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string AT_IR {
+            get {
+                return ResourceManager.GetString("AT-IR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_N20 {
+            get {
+                return ResourceManager.GetString("AT-N20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_Nu20 {
+            get {
+                return ResourceManager.GetString("AT-Nu20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_NuG {
+            get {
+                return ResourceManager.GetString("AT-NuG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_PersonExist {
+            get {
+                return ResourceManager.GetString("AT-PersonExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_R20 {
+            get {
+                return ResourceManager.GetString("AT-R20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_RR {
+            get {
+                return ResourceManager.GetString("AT-RR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string AT_Size {
+            get {
+                return ResourceManager.GetString("AT-Size", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string AT_Title {
             get {
                 return ResourceManager.GetString("AT-Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_CR {
+            get {
+                return ResourceManager.GetString("B-CR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_Exist {
+            get {
+                return ResourceManager.GetString("B-Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_FFormat {
+            get {
+                return ResourceManager.GetString("B-FFormat", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_FMAX {
+            get {
+                return ResourceManager.GetString("B-FMAX", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_FR {
+            get {
+                return ResourceManager.GetString("B-FR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_General {
+            get {
+                return ResourceManager.GetString("B_General", resourceCulture);
             }
         }
         
@@ -128,6 +299,24 @@ namespace IBS_Europe.App.Resources {
         internal static string B_MainD {
             get {
                 return ResourceManager.GetString("B-MainD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_N50 {
+            get {
+                return ResourceManager.GetString("B-N50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_NR {
+            get {
+                return ResourceManager.GetString("B-NR", resourceCulture);
             }
         }
         
@@ -155,6 +344,15 @@ namespace IBS_Europe.App.Resources {
         internal static string B_Title {
             get {
                 return ResourceManager.GetString("B-Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string C_Contact {
+            get {
+                return ResourceManager.GetString("C-Contact", resourceCulture);
             }
         }
         
@@ -236,6 +434,330 @@ namespace IBS_Europe.App.Resources {
         internal static string C_WrongLogin {
             get {
                 return ResourceManager.GetString("C-WrongLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Add {
+            get {
+                return ResourceManager.GetString("Co-Add", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_AddE {
+            get {
+                return ResourceManager.GetString("Co-AddE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Choose {
+            get {
+                return ResourceManager.GetString("Co-Choose", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_CR {
+            get {
+                return ResourceManager.GetString("Co-CR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_D25 {
+            get {
+                return ResourceManager.GetString("Co-D25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_D250 {
+            get {
+                return ResourceManager.GetString("Co-D250", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_DR {
+            get {
+                return ResourceManager.GetString("Co-DR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Email {
+            get {
+                return ResourceManager.GetString("Co-Email", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_ENG {
+            get {
+                return ResourceManager.GetString("Co-ENG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_ER {
+            get {
+                return ResourceManager.GetString("Co-ER", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Error {
+            get {
+                return ResourceManager.GetString("Co-Error", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_File {
+            get {
+                return ResourceManager.GetString("Co-File", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Firstname {
+            get {
+                return ResourceManager.GetString("Co-Firstname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Lastname {
+            get {
+                return ResourceManager.GetString("Co-Lastname", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_ME50 {
+            get {
+                return ResourceManager.GetString("Co-ME50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MENG {
+            get {
+                return ResourceManager.GetString("Co-MENG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Message {
+            get {
+                return ResourceManager.GetString("Co-Message", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MF50 {
+            get {
+                return ResourceManager.GetString("Co-MF50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MFR {
+            get {
+                return ResourceManager.GetString("Co-MFR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MLN {
+            get {
+                return ResourceManager.GetString("Co-MLN", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MM20 {
+            get {
+                return ResourceManager.GetString("Co-MM20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MMR {
+            get {
+                return ResourceManager.GetString("Co-MMR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Modify {
+            get {
+                return ResourceManager.GetString("Co-Modify", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_ModifyE {
+            get {
+                return ResourceManager.GetString("Co-ModifyE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MP15 {
+            get {
+                return ResourceManager.GetString("Co-MP15", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MPNG {
+            get {
+                return ResourceManager.GetString("Co-MPNG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_MS {
+            get {
+                return ResourceManager.GetString("Co-MS", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_N25 {
+            get {
+                return ResourceManager.GetString("Co-N25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_NR {
+            get {
+                return ResourceManager.GetString("Co-NR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Number {
+            get {
+                return ResourceManager.GetString("Co-Number", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_PORE {
+            get {
+                return ResourceManager.GetString("Co-PORE", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Send {
+            get {
+                return ResourceManager.GetString("Co-Send", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_Subject {
+            get {
+                return ResourceManager.GetString("Co-Subject", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_SuccessM {
+            get {
+                return ResourceManager.GetString("Co-SuccessM", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_T25 {
+            get {
+                return ResourceManager.GetString("Co-T25", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Co_TR {
+            get {
+                return ResourceManager.GetString("Co-TR", resourceCulture);
             }
         }
         
@@ -335,6 +857,15 @@ namespace IBS_Europe.App.Resources {
         internal static string L_Contact {
             get {
                 return ResourceManager.GetString("L-Contact", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string L_Language {
+            get {
+                return ResourceManager.GetString("L-Language", resourceCulture);
             }
         }
         
@@ -737,9 +1268,90 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string Pa_Exist {
+            get {
+                return ResourceManager.GetString("Pa-Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_F20 {
+            get {
+                return ResourceManager.GetString("Pa-F20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_FPNG {
+            get {
+                return ResourceManager.GetString("Pa-FPNG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_IR {
+            get {
+                return ResourceManager.GetString("Pa-IR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_N50 {
+            get {
+                return ResourceManager.GetString("Pa-N50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_NR {
+            get {
+                return ResourceManager.GetString("Pa-NR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string Pa_Title {
             get {
                 return ResourceManager.GetString("Pa-Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_URL {
+            get {
+                return ResourceManager.GetString("Pa-URL", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_W250 {
+            get {
+                return ResourceManager.GetString("Pa-W250", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_WR {
+            get {
+                return ResourceManager.GetString("Pa-WR", resourceCulture);
             }
         }
         
@@ -791,6 +1403,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string Pr_AddProduct {
+            get {
+                return ResourceManager.GetString("Pr-AddProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string Pr_ChangeP {
             get {
                 return ResourceManager.GetString("Pr-ChangeP", resourceCulture);
@@ -836,6 +1457,24 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string Pr_D20 {
+            get {
+                return ResourceManager.GetString("Pr-D20", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pr_Exist {
+            get {
+                return ResourceManager.GetString("Pr-Exist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string Pr_Expression {
             get {
                 return ResourceManager.GetString("Pr-Expression", resourceCulture);
@@ -848,6 +1487,15 @@ namespace IBS_Europe.App.Resources {
         internal static string Pr_IncorrectP {
             get {
                 return ResourceManager.GetString("Pr-IncorrectP", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pr_IPNG {
+            get {
+                return ResourceManager.GetString("Pr-IPNG", resourceCulture);
             }
         }
         
@@ -884,6 +1532,15 @@ namespace IBS_Europe.App.Resources {
         internal static string Pr_NewU {
             get {
                 return ResourceManager.GetString("Pr-NewU", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pr_Nothing {
+            get {
+                return ResourceManager.GetString("Pr-Nothing", resourceCulture);
             }
         }
         
@@ -1052,9 +1709,27 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string T_T200 {
+            get {
+                return ResourceManager.GetString("T-T200", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string T_Title {
             get {
                 return ResourceManager.GetString("T-Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string T_TR {
+            get {
+                return ResourceManager.GetString("T-TR", resourceCulture);
             }
         }
         

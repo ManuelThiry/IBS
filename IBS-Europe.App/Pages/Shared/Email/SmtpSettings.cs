@@ -1,6 +1,4 @@
-﻿using System.Net.Mail;
-using MailKit.Net.Smtp;
-using Microsoft.Extensions.Options;
+﻿using Microsoft.Extensions.Options;
 using MimeKit;
 using SmtpClient = MailKit.Net.Smtp.SmtpClient;
 
@@ -8,10 +6,10 @@ namespace IBS_Europe.App.Pages.Shared.Email;
 
 public class SmtpSettings
 {
-    public string Host { get; set; }
+    public string Host { get; set; } = "";
     public int Port { get; set; }
-    public string Username { get; set; }
-    public string Password { get; set; }
+    public string Username { get; set; } = "";
+    public string Password { get; set; } = "";
     public bool EnableSsl { get; set; }
 }
 
