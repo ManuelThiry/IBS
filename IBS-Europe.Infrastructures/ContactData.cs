@@ -135,13 +135,13 @@ public class ContactData : IContactData
         var item = await _context.Email.Include(x => x.FirstTranslator).Include(x => x.SecondTranslator).FirstOrDefaultAsync(p => p.Id == email.Id);
         if ( email.Description != item.Description )
         {
-            var translate1 = await DeeplTranslate.TranslateTextWithDeeplAsync(email.Description, "EN");
+            var translate1 = await DeeplTranslate.TranslateTextWithDeeplAsync(email.Name, "EN");
             item.FirstTranslator.Text = translate1;
             item.FirstTranslator.IsChecked = false;
         }
         if ( email.Name != item.Name )
         {
-            var translate2 = await DeeplTranslate.TranslateTextWithDeeplAsync(email.Name, "EN");
+            var translate2 = await DeeplTranslate.TranslateTextWithDeeplAsync(email.Description, "EN");
             item.SecondTranslator.Text = translate2;
             item.SecondTranslator.IsChecked = false;
         }

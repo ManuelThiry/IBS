@@ -271,7 +271,7 @@ public class Products : PageModel
                 if (fileBytes.Length > maxFileSizeInBytes)
                 {
                     ModelState.AddModelError("Edit.Image", SharedResource.Pa_F20);
-                    Load();
+                    await Load();
                     return Page();
                 }
             }

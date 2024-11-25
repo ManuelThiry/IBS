@@ -290,7 +290,7 @@ public class Contact : PageModel
         
         Email = new EmailModel()
         {
-            Title = @SharedResource.Co_ModifyE,
+            Title = SharedResource.Co_ModifyE,
             Description = item.Description,
             Name = item.Name,
             EmailAddress = item.EmailAddress
@@ -376,23 +376,25 @@ public class Contact : PageModel
         }
     }
 
-    public IActionResult OnPostAddIButton()
+    public async Task<IActionResult> OnPostAddIButton()
     {
         Information = new InformationModel
         {
             Title = @SharedResource.Co_Add
         };
         IsAddInformation = true;
+        await Load();
         return Page();
     }
     
-    public IActionResult OnPostAddEButton()
+    public async Task<IActionResult> OnPostAddEButton()
     {
         Email = new EmailModel()
         {
-            Title = @SharedResource.Co_AddE
+            Title = SharedResource.MEI_AddE
         };
         IsAddEmail = true;
+        await Load();
         return Page();
     }
     
@@ -411,7 +413,7 @@ public class Contact : PageModel
         }
         
         IsAddEmail = true;
-        Email.Title = @SharedResource.Co_AddE;
+        Email.Title = SharedResource.MEI_AddE;
         
         if (EmailRequiredErrors())
         {

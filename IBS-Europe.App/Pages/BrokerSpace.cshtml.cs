@@ -115,7 +115,7 @@ namespace IBS_Europe.App.Pages
             
             if (await _data.BrokerExists(id, Input.Name, await _data.GetCategory(id)))
             {
-                ModelState.AddModelError("Input.Name", SharedResource.B_Exist);
+                ModelState.AddModelError("Name", SharedResource.B_Exist);
                 error = true;
             }
             
@@ -189,7 +189,7 @@ namespace IBS_Europe.App.Pages
             }
             else if (await _data.BrokerExists(-1, Input.Name, Input.Category))
             {
-                ModelState.AddModelError("Input.Name", SharedResource.B_Exist);
+                ModelState.AddModelError("Name", SharedResource.B_Exist);
                 error = true;
             }
             
