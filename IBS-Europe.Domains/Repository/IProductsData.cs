@@ -2,19 +2,21 @@
 
 public interface IProductsData
 {
-    public Task<HashSet<Product>> GetAllProducts(int id, string culture);
+    public Task<List<Product>> GetAllProducts(string culture);
     
-    public Task<Product> GetProduct(int id);
+    public Task<Product> GetProduct(string name);
     
-    public Task EditProduct(Product product);
+    public Task EditProduct(Product product, string actualName);
     
-    public Task<bool> ProductExists(string name, int id);
+    public Task<bool> ProductExists(string name, string actualName);
     
-    public Task UpdateImage(int id, string path);
+    public Task UpdateImage(string name, string path);
 
-    public Task<string> GetPath(int id);
+    public Task<string> GetPath(string name);
     
-    public Task<int> AddProduct(Product product);
+    public Task<string> AddProduct(Product product);
     
-    public Task DeleteProduct(int id);
+    public Task DeleteProduct(string name);
+    
+    public Task SwitchPriority(int priority, string direction);
 }

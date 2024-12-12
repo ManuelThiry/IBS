@@ -799,9 +799,6 @@
     <data name="Pa-F20" xml:space="preserve">
         <value>Le fichier est trop volumineux. La taille maximale autorisée est de 20 Mo.</value>
     </data>
-    <data name="Pa-NR" xml:space="preserve">
-        <value>Le nom est requis.</value>
-    </data>
     <data name="Pa-WR" xml:space="preserve">
         <value>Le site web est requis.</value>
     </data>
@@ -840,5 +837,32 @@
     </data>
     <data name="B_General" xml:space="preserve">
         <value>Générale</value>
+    </data>
+    <data name="S-Title" xml:space="preserve">
+        <value>Nos solutions</value>
+    </data>
+    <data name="MAP-Desc" xml:space="preserve">
+        <value>Texte d'accroche</value>
+    </data>
+    <data name="Pr-D200" xml:space="preserve">
+        <value>Le texte d'accroche ne doit pas dépasser 200 caractères</value>
+    </data>
+    <data name="S-Looking" xml:space="preserve">
+        <value>Rechercher une solution</value>
+    </data>
+    <data name="S-NoProducts" xml:space="preserve">
+        <value>Aucune solutions disponible pour le moment.</value>
+    </data>
+    <data name="S-NoLooking" xml:space="preserve">
+        <value>Aucune solutions ne correspond à votre recherche.</value>
+    </data>
+    <data name="Pa-NoPartners" xml:space="preserve">
+        <value>Pas de partenaires disponible pour le moment.</value>
+    </data>
+    <data name="Pa-NR" xml:space="preserve">
+        <value>The name is required.</value>
+    </data>
+    <data name="ABT-NoMembers" xml:space="preserve">
+        <value>Pas de membres disponible pour le moment.</value>
     </data>
 </root>

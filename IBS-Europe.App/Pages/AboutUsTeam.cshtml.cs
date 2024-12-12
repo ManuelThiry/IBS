@@ -47,14 +47,14 @@ public class AboutUsTeam : PageModel
         }
     }
     
-    public IActionResult OnPostSwitch(string direction, int priority)
+    public async Task<IActionResult> OnPostSwitch(string direction, int priority)
     {
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage();
         }
         
-        _data.SwitchPriority(priority, direction);
+        await _data.SwitchPriority(priority, direction);
         return RedirectToPage();
     }
 

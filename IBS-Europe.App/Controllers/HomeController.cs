@@ -31,7 +31,8 @@ public class HomeController : Controller
         {
             return NotFound();
         }
-        var apiKey = _configuration["TinyMCE:ApiKey"];
+
+        var apiKey = Environment.GetEnvironmentVariable("TINYMCE_API_KEY");
         var version = _configuration["TinyMCE:Version"];
         var policy = _configuration["TinyMCE:ReferrerPolicy"];
         var url = $"https://cdn.tiny.cloud/1/{apiKey}/tinymce/{version}/tinymce.min.js";

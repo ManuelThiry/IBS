@@ -26,8 +26,10 @@ public class EmailService
 
     public async Task<bool> SendEmailAsync(string toEmail, string subject, MimeEntity body)
     {
+        var username = Environment.GetEnvironmentVariable("SMTPSettings_Username");
+        var password = Environment.GetEnvironmentVariable("SMTPSettings_Password");
         var message = new MimeMessage();
-        message.From.Add(new MailboxAddress(_smtpSettings.Username, _smtpSettings.Username));
+        message.From.Add(new MailboxAddress(username, password));
         message.To.Add(new MailboxAddress("", toEmail));
         message.Subject = subject;
 
@@ -39,7 +41,7 @@ public class EmailService
         {
             _logger.LogInformation("Tentative d'envoi de l'e-mail...");
             await client.ConnectAsync(_smtpSettings.Host, _smtpSettings.Port, _smtpSettings.EnableSsl);
-            await client.AuthenticateAsync(_smtpSettings.Username, _smtpSettings.Password);
+            await client.AuthenticateAsync(username, password);
             await client.SendAsync(message);
             _logger.LogInformation("E-mail envoyé avec succès à {toEmail}", toEmail);
             return true;

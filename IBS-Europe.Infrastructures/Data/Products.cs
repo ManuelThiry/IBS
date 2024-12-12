@@ -8,6 +8,13 @@ public class Products
     
     public string Path { get; set; }
     
-    public int TranslatorId { get; set; }
-    public Translator Translator { get; set; }
+    public string SmallDescription { get; set; }
+    
+    public int Priority { get; set; }
+    
+    public int FirstTranslatorId { get; set; }
+    public Translator FirstTranslator { get; set; }
+    
+    public int SecondTranslatorId { get; set; }
+    public Translator SecondTranslator { get; set; }
 }

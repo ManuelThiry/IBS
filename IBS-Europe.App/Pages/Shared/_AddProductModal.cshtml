@@ -1,5 +1,6 @@
 ﻿@using IBS_Europe.App.Resources
-@model Products.EditModel?
+@model Solutions.EditModel?
+@inject IConfiguration Configuration
 
 <div class="modal fade" id="addProductModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addProductModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-lg modal-dialog-centered">
@@ -15,7 +16,13 @@
                     <input type="text" class="form-control" id="ProductName" name="Name" value="@Model.Name">
                     <span asp-validation-for="Name" class="text-danger"></span>
                 </div>
-                    
+                
+                <div class="form-group">
+                    <label for="SmallDescription">@SharedResource.MAP_Desc</label>
+                    <textarea class="form-control" id="SmallDescription" name="SmallDescription">@Model.SmallDescription</textarea>
+                    <span asp-validation-for="SmallDescription" class="text-danger"></span>
+                </div>
+                
                 <div class="form-group">
                     <label for="ProductDescription">@SharedResource.MAP_Description</label>
                     <textarea class="form-control" id="ProductDescription" name="Description">@Model.Description</textarea>

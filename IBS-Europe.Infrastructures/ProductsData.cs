@@ -16,145 +16,78 @@ public class ProductsData : IProductsData
         _context = context;
     }
 
-    public async Task<HashSet<Product>> GetAllProducts(int id, string culture)
+    public async Task<List<Product>> GetAllProducts(string culture)
     {
-        HashSet <Product> myList = new HashSet<Product>(5);
-        var items = new HashSet<Products>(5);
-        
-        if ( await _context.Products.CountAsync() == 0)
-        {
-            return myList;
-        }
-        
-        if ( id == -1 || await _context.Products.FirstOrDefaultAsync(p => p.Id == id) == null)
-        {
-            items = (await _context.Products
-                    .Include(p => p.Translator)
-                    .OrderBy(x => x.Name.ToLower())
-                    .Take(5)
-                    .ToListAsync()) // Asynchrone ici
-                .ToHashSet(); // Conversion en HashSet après récupération des données
+       var products = await _context.Products.Include(p => p.FirstTranslator).Include(p => p.SecondTranslator).OrderBy(p=> p.Priority).ToListAsync();
+       
+       var productsToReturn = new List<Product>();
 
+       foreach (var product in products)
+       {
+           productsToReturn.Add(new Product
+           {
+               Name = product.Name,
+               Image = product.Path,
+               Description = culture == "fr-FR" ? product.Text : product.FirstTranslator.Text,
+               Priority = product.Priority,
+               SmallDescription =  culture == "fr-FR" ? product.SmallDescription : product.SecondTranslator.Text
+           });
+       }
+
+       return productsToReturn;
+
+    }
+    
+    public async Task SwitchPriority(int priority, string direction)
+    {
+        var item1 = await _context.Products.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
+        Data.Products? item2;
+
+        if (direction.Equals("right"))
+        {
+            item2 = await _context.Products.Where(p=> p.Priority == item1.Priority +1).FirstOrDefaultAsync();
         }
         else
         {
-            var selectedProduct = await _context.Products.Include(p => p.Translator).FirstOrDefaultAsync(p => p.Id == id);
-            
-            var orderedItems = await _context.Products.Include(p => p.Translator).OrderBy(x => x.Name.ToLower()).ToListAsync();
-                
-            int index = orderedItems.IndexOf(selectedProduct);
-            
-            if ( index -2 < 0 && index -1 < 0 )
-            {
-                if (orderedItems.Count > 4)
-                {
-                    items.Add(orderedItems[orderedItems.Count - 2]);
-                }
-                if (orderedItems.Count > 2)
-                {
-                    items.Add(orderedItems[orderedItems.Count - 1]);
-                }
-                
-            } else if ( index -2 < 0 ) {
-                if (orderedItems.Count > 4)
-                {
-                    items.Add(orderedItems[orderedItems.Count - 1]);
-                }
-                
-                if (orderedItems.Count > 2)
-                {
-                    items.Add(orderedItems[0]);
-                }
-            } else {
-                if (orderedItems.Count > 4)
-                {
-                    items.Add(orderedItems[index - 2]);
-                }
-                if (orderedItems.Count > 2)
-                {
-                    items.Add(orderedItems[index - 1]);
-                }
-            }
-            
-            items.Add(selectedProduct);
-            
-            if ( index + 1 >= orderedItems.Count && index + 2 >= orderedItems.Count ) {
-                if ( orderedItems.Count > 3 )
-                {
-                    items.Add(orderedItems[0]);
-                }
-                if ( orderedItems.Count > 1 )
-                {
-                    items.Add(orderedItems[1]);
-                }
-            } else if ( index + 2 >= orderedItems.Count ) {
-                if ( orderedItems.Count > 3 )
-                {
-                    items.Add(orderedItems[orderedItems.Count - 1]);
-                }
-                if ( orderedItems.Count > 1 )
-                {
-                    items.Add(orderedItems[0]);
-                }
-            } else {
-                if (orderedItems.Count > 3)
-                {
-                    items.Add(orderedItems[index + 1]);
-                }
-                if (orderedItems.Count > 1)
-                {
-                    items.Add(orderedItems[index + 2]);
-                }
-            }
-            
+            item2 = await _context.Products.Where(p=> p.Priority == item1.Priority -1).FirstOrDefaultAsync();
         }
-        
-        foreach (var item in items)
+        if (item1 != null && item2 != null)
         {
-            var description = item.Text;
-            if (culture.Equals("en-US"))
-            {
-                 description = item.Translator.Text;
-            }
-            myList.Add(new Product
-            {
-                Id = item.Id,
-                Name = item.Name,
-                Image = item.Path,
-                Description = description
-            });
+            int temp = item1.Priority;
+            item1.Priority = item2.Priority;
+            item2.Priority = temp;
+            await _context.SaveChangesAsync();
         }
-        
-        return myList;
     }
     
-    public async Task<Product> GetProduct(int id)
+    public async Task<Product> GetProduct(string name)
     {
-        var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        var item = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
         return new Product
         {
             Name = item.Name,
             Image = item.Path,
-            Description = item.Text
+            Description = item.Text,
+            SmallDescription = item.SmallDescription
         };
     }
     
-    public async Task<bool> ProductExists(string name, int id)
+    public async Task<bool> ProductExists(string name, string actualName)
     {
         name = name.ToLower().Trim();
-        return await _context.Products.AnyAsync(p => p.Name.ToLower().Trim() == name && p.Id != id);
+        return await _context.Products.AnyAsync(p => p.Name.ToLower().Trim() == name && p.Name.ToLower().Trim() != actualName.ToLower().Trim());
     }
     
-    public async Task UpdateImage(int id, string path)
+    public async Task UpdateImage(string name, string path)
     {
-        var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        var item = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
         item.Path = path;
         await _context.SaveChangesAsync();
     }
     
-    public async Task<string> GetPath(int id)
+    public async Task<string> GetPath(string name)
     {
-        var item = await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
+        var item = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
     
         if (item != null)
         {
@@ -164,48 +97,77 @@ public class ProductsData : IProductsData
         return string.Empty;
     }
     
-    public async Task EditProduct(Product product)
+    public async Task EditProduct(Product product, string actualName)
     {
-        var item = await _context.Products.Include(p => p.Translator).FirstOrDefaultAsync(p => p.Id == product.Id);
+        product.Description = product.Description ?? string.Empty;
+        product.SmallDescription = product.SmallDescription ?? string.Empty;
+        var item = await _context.Products.Include(p => p.FirstTranslator).Include(p=> p.SecondTranslator).FirstOrDefaultAsync(p => p.Name == actualName);
         if (item != null)
         {
-            string traduction = await DeeplTranslate.TranslateTextWithDeeplAsync(product.Description, "EN");
-            Translator translator = item.Translator;
+            string traduction = item.Text != product.Description ? await DeeplTranslate.TranslateTextWithDeeplAsync(product.Description, "EN") : item.FirstTranslator.Text;
+            string traduction2 = item.SmallDescription != product.SmallDescription ? await DeeplTranslate.TranslateTextWithDeeplAsync(product.SmallDescription, "EN") : item.SecondTranslator.Text;
+            Translator translator = item.FirstTranslator;
+            Translator translator2 = item.SecondTranslator;
             translator.Text = traduction;
             translator.IsChecked = false;
+            translator2.Text = traduction2;
+            translator2.IsChecked = false;
             item.Name = product.Name;
             item.Text = product.Description;
+            item.SmallDescription = product.SmallDescription;
             await _context.SaveChangesAsync();
         }
     }
     
-    public async Task<int> AddProduct(Product product)
+    public async Task<string> AddProduct(Product product)
     {
         product.Description = product.Description ?? string.Empty;
+        product.SmallDescription = product.SmallDescription ?? string.Empty;
         string traduction = await DeeplTranslate.TranslateTextWithDeeplAsync(product.Description, "EN");
+        string traduction2 = await DeeplTranslate.TranslateTextWithDeeplAsync(product.SmallDescription, "EN");
         Translator translator = new Translator
         {
             Text = traduction,
             IsChecked = false
         };
+        Translator translator2 = new Translator
+        {
+            Text = traduction2,
+            IsChecked = false
+        };
+        var priority = await _context.Products.MaxAsync(p => (int?)p.Priority) ?? 0;
         var addedProduct = _context.Products.Add(new Products
         {
             Name = product.Name,
             Text = product.Description,
             Path = product.Image,
-            Translator = translator
+            FirstTranslator = translator,
+            SecondTranslator = translator2,
+            SmallDescription = product.SmallDescription,
+            Priority = priority + 1
         });
         await _context.SaveChangesAsync();
 
-        return addedProduct.Entity.Id;
+        return addedProduct.Entity.Name;
     }
     
-    public async Task DeleteProduct(int id)
+    public async Task DeleteProduct(string name)
     {
-        var item = await _context.Products.Include(p => p.Translator).FirstOrDefaultAsync(p => p.Id == id);
-        var translations = item.Translator;
+        var item = await _context.Products.Include(p => p.FirstTranslator).Include(p=> p.SecondTranslator).FirstOrDefaultAsync(p => p.Name == name);
+        var priority = item.Priority;
+        var translations = item.FirstTranslator;
+        var translation2 = item.SecondTranslator;
         _context.Products.Remove(item);
         _context.Translator.Remove(translations);
+        _context.Translator.Remove(translation2);
+        
+        var itemsAbove = await _context.Products.Where(p=> p.Priority > priority).ToListAsync();
+
+        foreach (var i in itemsAbove ) 
+        {
+            i.Priority -= 1;
+        }
+
         await _context.SaveChangesAsync();
     }
 

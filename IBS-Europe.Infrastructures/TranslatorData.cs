@@ -8,7 +8,7 @@ namespace IBS_Europe.Infrastructures;
 
 public class TranslatorData : ITranslatorData
 {
-    private readonly int _numberOfTranslations = 7;
+    private readonly int _numberOfTranslations = 8;
     private readonly IBSDbContext _context;
 
     public TranslatorData(IBSDbContext context)
@@ -108,15 +108,26 @@ public class TranslatorData : ITranslatorData
             };
 
         case 7:
-            var product = await _context.Products.Include(t => t.Translator)
-                .FirstOrDefaultAsync(t => t.Translator.IsChecked == false);
-            if (product == null || product.Translator == null)
+            var product = await _context.Products.Include(t => t.FirstTranslator)
+                .FirstOrDefaultAsync(t => t.FirstTranslator.IsChecked == false);
+            if (product == null || product.FirstTranslator == null)
                 return null;
             return new Translator
             {
                 OriginalText = product.Text,
-                TranslatedText = product.Translator.Text,
-                Id = product.Translator.Id
+                TranslatedText = product.FirstTranslator.Text,
+                Id = product.FirstTranslator.Id
+            };
+        case 8:
+            var product2 = await _context.Products.Include(t => t.SecondTranslator)
+                .FirstOrDefaultAsync(t => t.SecondTranslator.IsChecked == false);
+            if (product2 == null || product2.SecondTranslator == null)
+                return null;
+            return new Translator
+            {
+                OriginalText = product2.Text,
+                TranslatedText = product2.SecondTranslator.Text,
+                Id = product2.SecondTranslator.Id
             };
 
         default:

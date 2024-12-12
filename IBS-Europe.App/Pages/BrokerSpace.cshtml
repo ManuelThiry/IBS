@@ -14,18 +14,17 @@
             background-color: #ffffff;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             padding: 20px;
-            border-radius: 8px;
             margin-bottom: 20px;
         }
         .highlight-section h2 {
             border-bottom: 2px solid #007bff;
+            font-family: "Merriweather", sans-serif;
             padding-bottom: 10px;
         }
         
         .document-list .list-group-item {
             background-color: #fff;
             border: 1px solid #dee2e6;
-            border-radius: 6px;
             margin-bottom: 10px;
             transition: transform 0.2s ease-in-out;
         }
@@ -41,7 +40,7 @@
 
 <div class="container mt-4">
     
-    <section class="highlight-section">
+    <section class="highlight-section rounded-2">
         @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
         {
             <div class="d-flex justify-content-between align-items-center">
@@ -109,7 +108,7 @@
     </section>
 
 
-    <section class="highlight-section">
+    <section class="highlight-section rounded-2">
         <div class="d-flex justify-content-between align-items-center">
             <h2>@SharedResource.B_OtherD</h2>
             <div>
@@ -121,7 +120,7 @@
                         continue;
                     }
                     var integer = (int)category;
-                    <button type="submit" name="selectedCategory" value="@integer" class="btn @(@Model.SelectedCategory == integer ? "btn btn-secondary" : "btn btn-primary") m-1" style="min-width: 8em;">
+                    <button type="submit" name="selectedCategory" value="@integer" class="btn @(@Model.SelectedCategory == integer ? "btn bg-secondary text-white" : "btn bg-midnight text-white") m-1" style="min-width: 8em;">
                         @if (category.Equals(Category.Particuliers))
                         {
                             @SharedResource.B_Individuals
@@ -148,7 +147,7 @@
                        <div class="d-flex align-items-center">
                            @if (Enum.GetName(typeof(Category), Model.SelectedCategory)?.Equals("Particuliers") == true)
                            {
-                               <span class="badge rounded-pill">@SharedResource.B_Individuals</span>
+                               <span class="badge bg-danger rounded-pill">@SharedResource.B_Individuals</span>
                            }
                            else
                            {

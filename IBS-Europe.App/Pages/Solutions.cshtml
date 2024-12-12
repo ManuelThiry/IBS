@@ -1,0 +1,180 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.Solutions
+
+@{
+    ViewData["Title"] = SharedResource.S_Title;
+    @Html.Partial("_AddProductModal", Model.Edit);
+    @Html.Partial("_EditProductModal", Model.Edit);
+    @Html.Partial("_DeleteConfirmationModal");
+}
+
+<div>
+    <div class="d-flex justify-content-center align-items-center mt-3">
+        <h1 class="mt-1">@SharedResource.S_Title</h1>
+        
+        
+        @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+        {
+            <form method="post" asp-page-handler="AddButton">
+                <button class="button-1 ms-3">
+                    <i class="fas fa-plus"></i>
+                </button>
+            </form>
+        }
+        
+    </div>
+    <div class="d-flex justify-content-center mx-2">
+    <div class="control has-icons-left">
+                <input type="text" id="searchInput" class="input is-medium" placeholder="@SharedResource.S_Looking" oninput="filterProducts()" />
+                <span class="icon is-left">
+                    <i class="fas fa-search"></i>
+                </span>
+            </div>
+    </div>
+
+    <div class="d-flex flex-wrap justify-content-center mb-4" id="productsList">
+        @if (Model.ProductsList.Count == 0)
+        {
+            <div class="alert alert-info mt-5" role="alert">
+                @SharedResource.S_NoProducts
+            </div>
+        }
+        <div id="noSol" class="alert alert-danger mt-5 d-none" role="alert">
+            @SharedResource.S_NoLooking
+        </div>
+        
+        @foreach (var product in Model.ProductsList)
+        {
+            <div class="card solution-card h-100 flex-item m-3 product-card" style="width: 18em;">
+                @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                {
+                    <form method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage" id="form-@product.Name">
+                        <input type="hidden" id="name" name="name" value="@product.Name"/>
+                        <input type="file" id="fileInput-@product.Name" name="Edit.Image" onchange="submitForm('@product.Name')" style="display:none;"  accept=".png, .jpeg, .jpg"/>
+                        <img class="w-100" src="@product.Image" alt="@product.Name" style="height: 18em; cursor: pointer;" onclick="document.getElementById('fileInput-@product.Name').click()"/>
+                        <span asp-validation-for="Edit.Image" class="text-danger"></span>
+                    </form>
+
+                }
+                else
+                {
+                    <img src="@product.Image" class="w-100" style="height: 18em;" alt="@product.Name" title="@product.Name">
+                }
+                <div class="card-body text-center">
+                    <h5 class="card-title fw-bold">@product.Name</h5>
+                    <p style="min-height: 11em;" class="color-midnight fw-light">@product.SmallDescription</p>
+
+                    @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                    {
+                        <div class="d-flex align-items-center justify-content-center">
+                            <!-- Flèche gauche -->
+                            <form method="post" asp-page-handler="Switch" class="d-inline">
+                                <input type="hidden" name="direction" value="left"/>
+                                <input type="hidden" name="priority" value="@product.Priority"/>
+                                <button type="submit" class="btn btn-primary btn-sm me-4">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                            </form>
+
+                            <!-- Bouton Edit -->
+                            <form method="post" asp-page-handler="EditButton">
+                                <input type="hidden" name="name" value="@product.Name"/>
+                                <button type="submit" class="btn btn-warning btn-sm me-2">
+                                    <i class="fas fa-edit"></i>
+                                </button>
+                            </form>
+
+                            <!-- Bouton Supprimer -->
+                            <button onclick="openDeleteModal('@Html.Raw(product.Name)')" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" type="button" class="btn btn-danger btn-sm me-4">
+                                <i class="fas fa-trash"></i>
+                            </button>
+
+                            <!-- Flèche droite -->
+                            <form method="post" asp-page-handler="Switch" class="d-inline">
+                                <input type="hidden" name="direction" value="right"/>
+                                <input type="hidden" name="priority" value="@product.Priority"/>
+                                <button type="submit" class="btn btn-primary btn-sm">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </form>
+                        </div>
+                    }
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+<style>
+    .solution-card {
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    .solution-card:hover {
+        transform: scale(1.03) !important; /* Ajoute l'agrandissement */
+        box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.2) !important;
+        z-index: 10 !important; /* Assure que la card est au-dessus des autres */
+    }
+
+    .product-card {
+        display: block;
+    }
+
+</style>
+
+@section Scripts {
+    <script>
+        function filterProducts() {
+            let input = document.getElementById("searchInput").value.toLowerCase();
+            let productCards = document.getElementsByClassName("product-card");
+            let resultsFound = false;
+            let noSol = document.getElementById("noSol");
+
+            for (let i = 0; i < productCards.length; i++) {
+                let productName = productCards[i].getElementsByClassName("card-title")[0].textContent.toLowerCase();
+                if (productName.includes(input)) {
+                    productCards[i].style.display = "";
+                     resultsFound = true;
+                } else {
+                    productCards[i].style.display = "none";
+                }
+            }
+            
+            if (!resultsFound && input !== "" && @Model.ProductsList.Count > 0) {
+                noSol.classList.remove("d-none");
+            } else {
+                noSol.classList.add("d-none");
+            }
+        }
+
+        $(document).ready(function () {
+            var isAddProduct = '@Model.IsNew';
+            var isEditProduct = '@Model.IsUpdate';
+
+            if (isAddProduct === 'True') {
+                var modal = new bootstrap.Modal(document.getElementById('addProductModal'));
+                modal.show();
+            }
+            if (isEditProduct === 'True') {
+                var modal = new bootstrap.Modal(document.getElementById('editProductModal'));
+                modal.show();
+            }
+        });
+
+        function openDeleteModal(name) {
+            document.getElementById("productName").value = name;
+        }
+        
+          function submitForm(productName) {
+              var form = document.getElementById('form-' + productName);
+              var fileInput = document.getElementById('fileInput-' + productName);
+              var filePath = fileInput.value;
+          
+              if (filePath) {
+                  form.submit();
+              }
+          }
+
+    </script>
+}

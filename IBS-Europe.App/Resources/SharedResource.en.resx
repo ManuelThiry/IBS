@@ -828,9 +828,6 @@ The file must be a PNG or JPG image.</value>
         <value>
 The file is too large. The maximum allowed size is 20 MB.</value>
     </data>
-    <data name="Pa-NR" xml:space="preserve">
-        <value>The name is required.</value>
-    </data>
     <data name="Pa-WR" xml:space="preserve">
         <value>The website is required.</value>
     </data>
@@ -872,5 +869,32 @@ The file must be a PNG or JPG image.</value>
     </data>
     <data name="B_General" xml:space="preserve">
         <value>General</value>
+    </data>
+    <data name="S-Title" xml:space="preserve">
+        <value>Our solutions</value>
+    </data>
+    <data name="MAP-Desc" xml:space="preserve">
+        <value>Teaser</value>
+    </data>
+    <data name="Pr-D200" xml:space="preserve">
+        <value>Teaser must not exceed 200 chracters.</value>
+    </data>
+    <data name="S-Looking" xml:space="preserve">
+        <value>Search for a solution</value>
+    </data>
+    <data name="S-NoProducts" xml:space="preserve">
+        <value>No solutions available at the moment.</value>
+    </data>
+    <data name="S-NoLooking" xml:space="preserve">
+        <value>No solutions matching your search</value>
+    </data>
+    <data name="Pa-NoPartners" xml:space="preserve">
+        <value>No partners available at the moment.</value>
+    </data>
+    <data name="Pa-NR" xml:space="preserve">
+        <value>The name is required.</value>
+    </data>
+    <data name="ABT-NoMembers" xml:space="preserve">
+        <value>No members available at the moment.</value>
     </data>
 </root>

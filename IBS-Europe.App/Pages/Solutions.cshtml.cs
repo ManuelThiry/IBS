@@ -6,43 +6,42 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace IBS_Europe.App.Pages;
 
-public class Products : PageModel
-{/*
+public class Solutions : PageModel
+{
     private readonly IProductsData _data;
     
-    public bool IsUpdate { get; set; }
     public bool IsNew { get; set; }
-
-    public List<ProductViewModel> ProductsList { get; set; } = new List<ProductViewModel>();
-    
+    public bool IsUpdate { get; set; }
     [BindProperty]
     public EditModel Edit { get; set; } = new EditModel();
+    public List<ProductViewModel> ProductsList { get; set; } = new List<ProductViewModel>();
     
-    public Products(IProductsData data)
+    public Solutions(IProductsData data)
     {
         _data = data;
     }
-    public async Task OnGet()
+    public async Task OnGetAsync()
     {
         await Load();
     }
-
-    public async Task Load()
+    
+    private async Task Load()
     {
         var culture = Thread.CurrentThread.CurrentCulture.Name;
-        var products = await _data.GetAllProducts(GetIdFromCookie(), culture);
+        var products = await _data.GetAllProducts(culture);
         foreach (var product in products)
         {
             ProductsList.Add(new ProductViewModel(
                     Name: product.Name,
                     Image: product.Image,
                     Description: product.Description,
-                    Id: product.Id
+                    SmallDescription: product.SmallDescription,
+                    Priority: product.Priority
                 )
             ); 
         }
     }
-
+    
     public async Task OnPostAddButton()
     {
         ModelState.Clear();
@@ -51,32 +50,18 @@ public class Products : PageModel
         IsNew = true;
         await Load();
     }
-
-    public IActionResult OnPostDelete(int productId)
+    
+    public async Task<IActionResult> OnPostSwitch(string direction, int priority)
     {
         if (!User.Identity.IsAuthenticated)
         {
             return RedirectToPage();
         }
         
-        var action = Request.Form["action"];
-
-        if (action == "cancel")
-        {
-            return RedirectToPage();
-        }
-        
-        _data.DeleteProduct(productId);
-        CookieOptions options = new CookieOptions
-        {
-            Expires = DateTime.Now.AddDays(-1)
-        };
-
-        Response.Cookies.Append("selectedProduct", "", options);
-
+        await _data.SwitchPriority(priority, direction);
         return RedirectToPage();
     }
-
+    
     public async Task<IActionResult> OnPostAdd()
     {
         if (!User.Identity.IsAuthenticated)
@@ -97,7 +82,7 @@ public class Products : PageModel
             error = true;
         } else 
         
-        if ( await _data.ProductExists(Edit.Name, -1))
+        if ( await _data.ProductExists(Edit.Name,""))
         {
             ModelState.AddModelError("Name", SharedResource.Pr_Exist);
             error = true;
@@ -129,7 +114,7 @@ public class Products : PageModel
         if (error)
         {
             IsNew = true;
-            Load();
+            await Load();
             return Page();
         }
         
@@ -164,17 +149,33 @@ public class Products : PageModel
         {
             Image = start + fileName,
             Name = Edit.Name,
-            Description = Edit.Description
+            Description = Edit.Description,
+            SmallDescription = Edit.SmallDescription
         };
         
-        int id = await  _data.AddProduct(product);
-        CookieOptions option = new CookieOptions();
-        option.Expires = DateTime.Now.AddMonths(1);
-        Response.Cookies.Append("selectedProduct", id.ToString(), option);
-        return RedirectToPage("/Products");
+        string name = await  _data.AddProduct(product);
+        return RedirectToPage("/Solutions");
     }
+    
+    public async Task OnPostEditButton(string name)
+    {
+        ModelState.Clear();
+        var product = await _data.GetProduct(name);
+        
+        Edit = new EditModel
+        {
+            Name = product.Name,
+            Description = product.Description,
+            SmallDescription = product.SmallDescription, 
+            Reference= product.Name
+        };
 
-    public async Task<IActionResult> OnPostEdit()
+        IsUpdate = true;
+        await Load();
+
+    }
+    
+    public async Task<IActionResult> OnPostEdit(string actualName)
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -188,12 +189,6 @@ public class Products : PageModel
             return RedirectToPage();
         }
         
-        int id = GetIdFromCookie();
-        
-        if (id == -1)
-        {
-            return RedirectToPage("/Products");
-        }
         
         bool error = false;
         
@@ -202,7 +197,7 @@ public class Products : PageModel
             error = true;
         } else 
         
-        if ( await _data.ProductExists(Edit.Name, id))
+        if ( await _data.ProductExists(Edit.Name,actualName))
         {
             ModelState.AddModelError("Name", SharedResource.Pr_Exist);
             error = true;
@@ -217,36 +212,35 @@ public class Products : PageModel
         
         var product = new Product
         {
-            Id = id,
             Name = Edit.Name,
-            Description = Edit.Description
+            Description = Edit.Description,
+            SmallDescription = Edit.SmallDescription
         };
         
-        await _data.EditProduct(product);
-        return RedirectToPage("/Products");
+        await _data.EditProduct(product, actualName);
+        return RedirectToPage("/Solutions");
     }
-
-    private int GetIdFromCookie()
+    
+    public async Task<IActionResult> OnPostDelete(string productName)
     {
-        string selectedProductIdStr = Request.Cookies["selectedProduct"];
-        if (!string.IsNullOrEmpty(selectedProductIdStr))
+        if (!User.Identity.IsAuthenticated)
         {
-            if (int.TryParse(selectedProductIdStr, out int selectedProductId))
-            {
-                return selectedProductId;
-            }
-            else
-            {
-                return -1;
-            }
+            return RedirectToPage();
         }
-        else
-        {
-            return -1;
-        }
-    }
+        
+        var action = Request.Form["action"];
 
-    public async Task<IActionResult> OnPostSwitchImage()
+        if (action == "cancel")
+        {
+            return RedirectToPage();
+        }
+        
+        await _data.DeleteProduct(productName);
+
+        return RedirectToPage();
+    }
+    
+    public async Task<IActionResult> OnPostSwitchImage(string name)
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -275,12 +269,6 @@ public class Products : PageModel
                     return Page();
                 }
             }
-
-            int id = GetIdFromCookie();
-            if (id == -1)
-            {
-                return RedirectToPage();
-            }
             
             var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Products");
             if (!Directory.Exists(uploadPath))
@@ -289,14 +277,14 @@ public class Products : PageModel
             }
 
             var fileName = Edit.Image.FileName;
-            var filePath = await _data.GetPath(id);
+            var filePath = await _data.GetPath(name);
             var globalPath = "";
             if ( !Cleanup.IsPathInDirectory(filePath, "Products") )
             {
                 var uniqueFileName = Cleanup.GenerateUniqueFileName(fileName);
                 globalPath = Path.Combine(uploadPath, uniqueFileName);
                 filePath = Path.Combine("/images/Products", uniqueFileName);
-                await _data.UpdateImage(id, filePath);
+                await _data.UpdateImage(name, filePath);
             }
             else
             {
@@ -315,32 +303,18 @@ public class Products : PageModel
         return RedirectToPage();
     }
     
-    public async Task OnPostButton(int id)
-    {
-        ModelState.Clear();
-        var product = await _data.GetProduct(id);
-        
-        Edit = new EditModel
-        {
-            Name = product.Name,
-            Description = product.Description
-        };
-
-        IsUpdate = true;
-        await Load();
-
-    }
-    
     public record ProductViewModel
     (
-
-        int Id,
         
         string Name,
         
         string Image,
 
-        string Description
+        string Description,
+        
+        string SmallDescription,
+        
+        int Priority
     );
     
     public class EditModel
@@ -351,7 +325,12 @@ public class Products : PageModel
 
         public IFormFile Image { get; set; }
         
+        [StringLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_D200")]
+        public string SmallDescription { get; set; }
+        
         [StringLength(20000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_D20")]
         public string Description { get; set; }
-    }*/
+        
+        public string Reference { get; set; }
+    }
 }

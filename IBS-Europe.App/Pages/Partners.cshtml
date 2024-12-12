@@ -21,21 +21,28 @@
     </div>
     
     <div class="mt-3 d-flex flex-wrap justify-content-center gap-4" style="width: 80%; margin: auto;">
+          @if (Model.PartnersList.Count == 0)
+                    {
+                        <div class="alert alert-info mt-5" role="alert">
+                            @SharedResource.Pa_NoPartners
+                        </div>
+                    }
+          
         @foreach (var product in Model.PartnersList)
         {
             <div class="appears partner-logo">
-                <a class="text-decoration-none" href="@product.Website" 
-                   @if (!string.IsNullOrEmpty(product.Website)) 
+                <a class="text-decoration-none" href="@product.Website"
+                   @if (!string.IsNullOrEmpty(product.Website))
                    {
                        <text>target="_blank"</text>
                    }>
                     <img src="@product.Path" alt="@product.Name" title="@product.Name" class="w-h-7em cursor">
                 </a>
-                
-                @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+
+                @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                 {
                     <div class="d-flex justify-content-center">
-                                            
+
                         <form method="post">
                             <button class="btn btn-primary btn-sm me-1" name="direction" value="left" asp-route-priority="@product.Priority">
                                 <i class="fas fa-chevron-left"></i>
@@ -43,10 +50,10 @@
                             <button class="btn btn-primary btn-sm me-2" name="direction" value="right" asp-route-priority="@product.Priority">
                                 <i class="fas fa-chevron-right"></i>
                             </button>
-                   
+
                         </form>
-                        <button onclick="openDeleteModal(@product.Priority)" class="btn btn-danger btn-sm"  data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"> <i class="fas fa-trash"></i></button>
-                         </div>
+                        <button onclick="openDeleteModal(@product.Priority)" class="btn btn-danger btn-sm" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal"> <i class="fas fa-trash"></i></button>
+                    </div>
                 }
             </div>
         }

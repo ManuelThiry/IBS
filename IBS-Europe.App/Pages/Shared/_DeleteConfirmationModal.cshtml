@@ -6,8 +6,8 @@
                             "BrokerSpace" : 
                             ViewData["Title"]?.ToString() == SharedResource.AT_Title ? 
                                 "AboutUsTeam" : 
-                                ViewData["Title"]?.ToString() == SharedResource.P_Title ? 
-                                    "Products" : 
+                                ViewData["Title"]?.ToString() == SharedResource.S_Title ? 
+                                    "Solutions" : 
                                     ViewData["Title"]?.ToString() == SharedResource.Pa_Title ? 
                                         "Partners" : 
                                         "Contact")"
@@ -26,7 +26,7 @@
                     <input type="hidden" name="priority" id="priorityInput" value="" /> 
                     <input type="hidden" id="brokerId" name="brokerId" value="" />
                     <input type="hidden" id="peopleId" name="id" value="" />
-                    <input type="hidden" id="productId" name="productId" value="" />
+                    <input type="hidden" id="productName" name="productName" value="" />
                     <input type="hidden" id="contactId" name="contactId" value="" />
                     <button type="submit" class="btn btn-danger">@SharedResource.MAD_Delete
                     </button>

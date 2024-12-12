@@ -17,7 +17,7 @@ public class DeeplTranslate
     // Méthode pour initialiser les valeurs statiques
     public static void Init(DeeplSettings deeplSettings)
     {
-        _apiKey = deeplSettings.ApiKey;
+        _apiKey = Environment.GetEnvironmentVariable("DEEPL_API_KEY");
         _url = deeplSettings.Url;
     }
     public static async Task<string> TranslateTextWithDeeplAsync(string text, string targetLanguage)

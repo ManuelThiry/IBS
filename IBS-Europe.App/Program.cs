@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Localization;
 using Microsoft.EntityFrameworkCore;
 using System.Globalization;
+using DotNetEnv;
 using IBS_Europe.App.Pages.Shared.Email;
 using IBS_Europe.Domains.Translation;
 using Microsoft.AspNetCore.Localization.Routing;
@@ -33,12 +34,19 @@ var supportedCultures = new[]
     new CultureInfo("fr-FR"),
     new CultureInfo("en-US")
 };
-
-var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
-
-// Ajouter le service de contexte de base de données
-builder.Services.AddDbContext<IBSDbContext>(options =>
-    options.UseSqlite(connectionString));
+Env.Load();
+var connectionString = Environment.GetEnvironmentVariable("CONNECTION_DATABASE");
+if (builder.Environment.IsDevelopment())
+{
+    builder.Services.AddDbContext<IBSDbContext>(options =>
+        options.UseSqlite(connectionString));
+}
+else
+{
+    builder.Services.AddDbContext<IBSDbContext>(options =>
+        options.UseMySql(connectionString, 
+            ServerVersion.AutoDetect(connectionString))); // Détecte automatiquement la version du serveur MySQL
+}
 
 builder.Services.AddIdentity<IdentityUser, IdentityRole>()
     .AddEntityFrameworkStores<IBSDbContext>()
@@ -78,7 +86,6 @@ app.UseRequestLocalization(app.Services.GetRequiredService<IOptions<RequestLocal
 if (app.Environment.IsDevelopment())
 {
     app.UseDeveloperExceptionPage();
-    builder.Configuration.AddUserSecrets<Program>();
 }
 else
 {
