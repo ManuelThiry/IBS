@@ -100,6 +100,18 @@ public class PartnersData : IPartnersData
     {
         return await _context.Partners.AnyAsync(p => p.Name.ToLower().Trim() == name.ToLower().Trim());
     }
+    
+    public async Task<Dictionary<string,string>> GetcatalogPaths()
+    {
+        var dictionary = new Dictionary<string, string>();
+        var items = await _context.Partners.OrderBy(a => a.Priority).ThenBy(a => a.Name).ToListAsync();
+        foreach (var item in items)
+        {
+           dictionary.Add(item.Name, item.Path);
+        }
+        
+        return dictionary;
+    }
 
 
 }

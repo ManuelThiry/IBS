@@ -41,7 +41,8 @@ public class AboutUsTeam : PageModel
                     Role: product.Role,
                     Path: product.Path,
                     Phone: product.Phone,
-                    Priority: product.Priority
+                    Priority: product.Priority,
+                    SecondPhone: product.SecondPhone
                 )
             ); 
         }
@@ -134,7 +135,8 @@ public class AboutUsTeam : PageModel
                     Role = Input.Role,
                     Email = Input.Email,
                     Path = "/images/People/" + fileName,
-                    Phone = Input.Phone
+                    Phone = Input.Phone,
+                    SecondPhone = Input.SecondPhone
                 });
                 return RedirectToPage();
             }
@@ -211,7 +213,8 @@ public class AboutUsTeam : PageModel
            Role = people.Role,
            Firstname = people.FirstName,
            Lastname = people.LastName,
-           Phone = people.Phone
+           Phone = people.Phone,
+           SecondPhone = people.SecondPhone
         };
         IsEditPeopleAction = true;
         
@@ -261,7 +264,8 @@ public class AboutUsTeam : PageModel
                     LastName = Input.Lastname,
                     Role = Input.Role,
                     Email = Input.Email,
-                    Phone = Input.Phone
+                    Phone = Input.Phone,
+                    SecondPhone = Input.SecondPhone
                 });
 
                 return RedirectToPage();
@@ -315,7 +319,9 @@ public class AboutUsTeam : PageModel
         
         string Phone,
         
-        int Priority
+        int Priority,
+        
+        string SecondPhone
     );
     
     public class AddPeopleModel
@@ -332,8 +338,10 @@ public class AboutUsTeam : PageModel
         public string Role { get; set; }
         
         [MaxLength(20, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_Nu20")]
-        [Phone(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_NuG")]
         public string Phone { get; set; }
+        
+        [MaxLength(20, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_Nu20")]
+        public string SecondPhone { get; set; }
         
         [MaxLength(25, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_ER")]
         [EmailAddress(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_EG")]

@@ -12,4 +12,6 @@ public class Partners
     
     public string Website { get; set; }
     
+    public int Category { get; set; }
+    
 }

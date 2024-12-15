@@ -15,5 +15,7 @@ public class People
     
     public string Phone { get; set; }
     
+    public string SecondPhone { get; set; }
+    
     public int Priority { get; set; }
 }

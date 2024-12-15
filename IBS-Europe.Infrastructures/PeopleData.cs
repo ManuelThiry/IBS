@@ -37,7 +37,8 @@ public class PeopleData : IPeopleData
                 Email = item.Email,
                 Path = item.Path,
                 Phone = item.Phone,
-                Priority = item.Priority
+                Priority = item.Priority,
+                SecondPhone = item.SecondPhone
             });
         }
         
@@ -56,6 +57,7 @@ public class PeopleData : IPeopleData
     {
         people.Email = people.Email ?? "";
         people.Phone = people.Phone ?? "";
+        people.SecondPhone = people.SecondPhone ?? "";
         people.LastName = people.LastName ?? "";
         
         int maxPriority = await _context.People.AnyAsync() 
@@ -78,7 +80,8 @@ public class PeopleData : IPeopleData
             Path = people.Path,
             Phone = people.Phone,
             Priority = newPriority,
-            Translator = translator
+            Translator = translator,
+            SecondPhone = people.SecondPhone
         };
         _context.People.Add(p);
        await _context.SaveChangesAsync();
@@ -131,6 +134,7 @@ public class PeopleData : IPeopleData
         people.Email = people.Email ?? "";
         people.Phone = people.Phone ?? "";
         people.LastName = people.LastName ?? "";
+        people.SecondPhone = people.SecondPhone ?? "";
         var item = await _context.People.Include(p=> p.Translator).FirstOrDefaultAsync(p => p.Id == people.Id);
         var translator = item.Translator;
         if (item != null)
@@ -139,6 +143,7 @@ public class PeopleData : IPeopleData
             item.LastName = people.LastName;
             item.Email = people.Email;
             item.Phone = people.Phone;
+            item.SecondPhone = people.SecondPhone;
             if (people.Role != item.Role)
             {
                 translator.Text = await DeeplTranslate.TranslateTextWithDeeplAsync(people.Role, "EN");

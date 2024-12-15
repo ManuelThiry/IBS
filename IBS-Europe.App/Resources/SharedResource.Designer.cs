@@ -305,6 +305,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string B_Looking {
+            get {
+                return ResourceManager.GetString("B-Looking", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string B_MainD {
             get {
                 return ResourceManager.GetString("B-MainD", resourceCulture);
@@ -443,6 +452,15 @@ namespace IBS_Europe.App.Resources {
         internal static string C_WrongLogin {
             get {
                 return ResourceManager.GetString("C-WrongLogin", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Cat_Title {
+            get {
+                return ResourceManager.GetString("Cat-Title", resourceCulture);
             }
         }
         
@@ -1115,6 +1133,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string MAP_Phone2 {
+            get {
+                return ResourceManager.GetString("MAP-Phone2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string MAP_Role {
             get {
                 return ResourceManager.GetString("MAP-Role", resourceCulture);
@@ -1313,6 +1340,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string Pa_Individuals {
+            get {
+                return ResourceManager.GetString("Pa-Individuals", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string Pa_IR {
             get {
                 return ResourceManager.GetString("Pa-IR", resourceCulture);
@@ -1343,6 +1379,15 @@ namespace IBS_Europe.App.Resources {
         internal static string Pa_NR {
             get {
                 return ResourceManager.GetString("Pa-NR", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pa_Proffesionnals {
+            get {
+                return ResourceManager.GetString("Pa-Proffesionnals", resourceCulture);
             }
         }
         
@@ -1682,6 +1727,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string S_AddSolution {
+            get {
+                return ResourceManager.GetString("S-AddSolution", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string S_Looking {
             get {
                 return ResourceManager.GetString("S-Looking", resourceCulture);
@@ -1712,6 +1766,15 @@ namespace IBS_Europe.App.Resources {
         internal static string S_Title {
             get {
                 return ResourceManager.GetString("S-Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string SD_Title {
+            get {
+                return ResourceManager.GetString("SD-Title", resourceCulture);
             }
         }
         

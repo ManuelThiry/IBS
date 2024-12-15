@@ -7,6 +7,8 @@ public class People
     
     public string Phone { get; set; }
     
+    public string SecondPhone { get; set; }
+    
     public string LastName { get; set; }
     public string Role { get; set; }
     public string Email { get; set; }

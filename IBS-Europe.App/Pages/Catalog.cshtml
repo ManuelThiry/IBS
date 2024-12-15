@@ -1,0 +1,160 @@
+﻿@page
+@model IBS_Europe.App.Pages.Catalog
+@{
+    ViewData["Title"] = "Company Documents";
+    var language = Thread.CurrentThread.CurrentCulture.TwoLetterISOLanguageName.ToUpper();
+}
+
+<div class="container mt-4">
+    <a href="https://app.sectorcatalog.be/" target="_blank">
+        <img src="https://app.sectorcatalog.be/SectorCatalog/assets/images/logos/SC_logo_grey.png" alt="Sector Catalog" class="rounded mx-auto mb-4 d-block" style="width: auto; height: 5em;">
+    </a>
+    
+    <div id="companies">
+        <div id="loading" style="display: flex; justify-content: center; align-items: center; height: 40vh; background-color: #f8f9fa;">
+            <div class="spinner-border" style="color: #00735E " role="status">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+const sanitizeId = (str) => str.replace(/[^a-zA-Z0-9-_]/g, "_");
+const language = "@language";
+const CATALOG_API_KEY = "@Model.APIKey";
+fetch("/APT-script.js")
+            .then(response => response.json())
+            .then(data => {
+                const companies = document.getElementById("companies");
+                data.Companies.sort((a, b) => a.Name.localeCompare(b.Name));
+                data.Companies.forEach(company => {
+                    const uniqueId = sanitizeId(company.Name);
+                    const divC = document.createElement("div");
+                    divC.className = "card mb-4 shadow-sm";
+                    divC.style = "border: 2px solid #FFD992; border-radius: 15px;";
+                    companies.appendChild(divC);
+                    const divCH = document.createElement("div");
+                    divCH.className = "card-header d-flex align-items-center";
+                    divCH.style = "background-color: #00735E; border-radius: 15px 15px 0 0; cursor: pointer;";
+                    divCH.setAttribute("data-bs-toggle", "collapse");
+                    divCH.setAttribute("href", `#${uniqueId}`);
+                    divCH.setAttribute("role", "button");
+                    divCH.setAttribute("aria-expanded", "false");
+                    divCH.setAttribute("aria-controls", company.Name.replace(" ", ""));
+                    divC.appendChild(divCH);
+                    const img = document.createElement("img");
+                    const catalogPaths = @Html.Raw(Json.Serialize(Model.CatalogPaths)); 
+                    let foundPath = null;
+                    
+                    // Parcourir toutes les clés de catalogPaths
+                    for (const key in catalogPaths) {
+                        if (catalogPaths.hasOwnProperty(key) && company.Name.includes(key)) {
+                            foundPath = catalogPaths[key];
+                            break; // On arrête dès qu'on trouve une correspondance
+                        }
+                    }
+                    
+                    // Si un chemin est trouvé, on l'utilise, sinon on utilise une image par défaut
+                    img.src = foundPath ? foundPath : "/images/whiteScreen.jpg";
+                    img.alt = company.Name;
+                    img.className = "rounded-circle me-3";
+                    img.style = "width: 60px; height: 60px; object-fit: cover; border: 2px solid #FFD992;";
+                    divCH.appendChild(img);
+                    const h5 = document.createElement("h5");
+                    h5.className = "mb-0 text-white";
+                    h5.textContent = company.Name;
+                    divCH.appendChild(h5);
+                    const divC2 = document.createElement("div");
+                    divC2.className = "collapse";
+                    divC2.id = uniqueId;
+                    divC.appendChild(divC2);
+                    const divCB = document.createElement("div");
+                    divCB.className = "card-body";
+                    divC2.appendChild(divCB);
+                    let hasDocuments = false; // Variable pour vérifier si des documents sont ajoutés
+            
+                    company.Folders.sort((a, b) => {
+                        const firstCompare = a.FolderDescription[language].localeCompare(b.FolderDescription[language]);
+                        if (firstCompare !== 0) {
+                            return firstCompare;
+                        }
+                        return a.Items[0].Name.localeCompare(b.Items[0].Name);
+                    });
+            
+                    company.Folders.forEach(category => {
+                        const uniqueId = `${sanitizeId(company.Name)}-${sanitizeId(category.FolderDescription[language])}`;
+                        if (document.getElementById('ul-' + uniqueId) === null) {
+                            if (category.Items[0].Language === language) {
+                                const div = document.createElement("div");
+                                div.className = "mb-4";
+                                divCB.appendChild(div);
+                                const button = document.createElement("button");
+                                button.className = "btn btn-outline-success w-100 text-start py-2 px-3";
+                                button.style = "font-size: 1.1em; border-radius: 10px;";
+                                button.setAttribute("data-bs-toggle", "collapse");
+                                button.setAttribute("data-bs-target", `#${uniqueId}`);
+                                button.innerHTML = `<strong>${category.FolderDescription[language]}</strong>`;
+                                div.appendChild(button);
+                                const div2 = document.createElement("div");
+                                div2.className = "collapse mt-2";
+                                div2.id = uniqueId;
+                                div.appendChild(div2);
+                                const ul = document.createElement("ul");
+                                ul.className = "list-group";
+                                ul.id = "ul-" + uniqueId;
+                                div2.appendChild(ul);
+                                const a = document.createElement("a");
+                                a.href = category.Items[0].Url;
+                                a.className = "text-decoration-none";
+                                a.target = "_blank";
+                                ul.appendChild(a);
+                                const li = document.createElement("li");
+                                li.className = "list-group-item d-flex align-items-center";
+                                li.style = "border-left: 5px solid #FFD992; border-radius: 5px; margin-bottom: 0.5em;";
+                                a.appendChild(li);
+                                const i = document.createElement("i");
+                                i.className = "fas fa-file-pdf me-3 text-danger";
+                                li.appendChild(i);
+                                const p = document.createElement("p");
+                                p.className = "mb-0";
+                                p.textContent = category.Items[0].Name;
+                                li.appendChild(p);
+            
+                                hasDocuments = true; // Marquer qu'un document a été ajouté
+                            }
+                        } else {
+                            if (category.Items[0].Language === language) {
+                                const ul = document.getElementById(`ul-${uniqueId}`);
+                                const a = document.createElement("a");
+                                a.href = category.Items[0].Url;
+                                a.className = "text-decoration-none";
+                                a.target = "_blank";
+                                ul.appendChild(a);
+                                const li = document.createElement("li");
+                                li.className = "list-group-item d-flex align-items-center";
+                                li.style = "border-left: 5px solid #FFD992; border-radius: 5px; margin-bottom: 0.5em;";
+                                a.appendChild(li);
+                                const i = document.createElement("i");
+                                i.className = "fas fa-file-pdf me-3 text-danger";
+                                li.appendChild(i);
+                                const p = document.createElement("p");
+                                p.className = "mb-0";
+                                p.textContent = category.Items[0].Name;
+                                li.appendChild(p);
+            
+                                hasDocuments = true; // Marquer qu'un document a été ajouté
+                            }
+                        }
+                    });
+            
+                    // Si aucun document n'a été ajouté, retirer l'entreprise
+                    if (!hasDocuments) {
+                        divC.remove(); // Retirer la div de l'entreprise
+                    }
+                });
+                document.getElementById("loading").style.display = "none";
+            })
+            .catch(error => console.error("Erreur :", error));
+
+</script>
+

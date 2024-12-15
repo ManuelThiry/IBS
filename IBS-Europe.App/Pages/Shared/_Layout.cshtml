@@ -41,7 +41,7 @@
                 <!-- Liens principaux -->
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="font-size: 1.15em;">
                     <li class="nav-item">
-                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Solutions" ? "bleu-pastel" : "text-white hover")" asp-page="/Solutions">@SharedResource.S_Title</a>
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Solutions" || ViewContext.ActionDescriptor.DisplayName == "/SolutionDetails" ? "bleu-pastel" : "text-white hover")" asp-page="/Solutions">@SharedResource.S_Title</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/BrokerSpace" ? "bleu-pastel" : "text-white hover")" asp-page="/BrokerSpace">@SharedResource.L_Broker</a>
@@ -56,13 +56,10 @@
                         <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Contact" ? "bleu-pastel" : "text-white hover")" asp-page="/Contact">@SharedResource.L_Contact</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link @(ViewContext.ActionDescriptor.DisplayName == "/Catalog" ? "bleu-pastel" : "text-white hover")" asp-page="/Catalog">@SharedResource.Cat_Title</a>
+                    </li>
+                    <li class="nav-item">
                         <a class="nav-link" href="https://mybroker.be/" target="_blank"> <img class="rounded-2" src="images/image%20(1).png" alt="Broker" style="width: 5em;"></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mybroker.be/" target="_blank"> <img class="rounded-2" src="images/facebook-new.png" alt="Broker" style="width: 2em; margin-top: -0.2em; "></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="https://mybroker.be/" target="_blank"> <img class="rounded-2" src="images/linkedin.png" alt="Broker" style="width: 2em; margin-left: -2em; margin-top: -0.2em;"></a>
                     </li>
                     
                 </ul>
@@ -101,7 +98,7 @@
 </header>
 
 
-<div class="body">
+<div class="body" style="margin-bottom: 0;">
     <main role="main" class="pb-3">
          @if (Thread.CurrentThread.CurrentCulture.Name == "en-US" && User.Identity.IsAuthenticated)
          {
@@ -112,7 +109,7 @@
     </main>
 </div>
 
-<footer class="mt-3 text-white p-3 w-100 d-flex flex-column flex-sm-row justify-content-between align-items-center mt-auto" style="background-color: #eeeeee; border-top: 0.05em solid midnightblue">
+<footer class="text-white p-3 w-100 d-flex flex-column flex-sm-row justify-content-between align-items-center mt-auto" style="background-color: #eeeeee; border-top: 0.05em solid midnightblue;">
     <!-- Conteneur gauche pour le texte -->
     <div class="d-flex align-items-center justify-content-center mb-3 mb-sm-0">
         <p class="mb-0 text-center me-4 color-midnight">&copy; 2024 - IBS Europe</p>
@@ -141,7 +138,6 @@
 
 <script src="~/lib/jquery/dist/jquery.min.js"></script>
 <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-
 
 @await RenderSectionAsync("Scripts", required: false)
 </body>

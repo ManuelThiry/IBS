@@ -10,7 +10,9 @@
                                     "Solutions" : 
                                     ViewData["Title"]?.ToString() == SharedResource.Pa_Title ? 
                                         "Partners" : 
-                                        "Contact")"
+                                        ViewData["Title"]?.ToString() == SharedResource.C_Title ? 
+                                        "Contact" :
+    "SolutionDetails")"
               asp-page-handler="Delete">
             
             <div class="modal-content">

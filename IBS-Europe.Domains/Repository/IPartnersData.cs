@@ -11,5 +11,7 @@ public interface IPartnersData
     public Task AddPartner(Partners partner);
     
     public Task<bool> PartnerExists(string name);
-    
+
+    public Task<Dictionary<string, string>> GetcatalogPaths();
+
 }

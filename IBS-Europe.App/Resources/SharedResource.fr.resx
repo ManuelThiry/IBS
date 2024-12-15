@@ -518,7 +518,7 @@
         <value>Catégorie</value>
     </data>
     <data name="MAB-CategorySelect" xml:space="preserve">
-        <value>Choisisser une catégorie</value>
+        <value>Choisir une catégorie</value>
     </data>
     <data name="MAB-Document" xml:space="preserve">
         <value>Document</value>
@@ -860,9 +860,30 @@
         <value>Pas de partenaires disponible pour le moment.</value>
     </data>
     <data name="Pa-NR" xml:space="preserve">
-        <value>The name is required.</value>
+        <value>Le nom est requis.</value>
     </data>
     <data name="ABT-NoMembers" xml:space="preserve">
         <value>Pas de membres disponible pour le moment.</value>
+    </data>
+    <data name="S-AddSolution" xml:space="preserve">
+        <value>Ajouter une solution</value>
+    </data>
+    <data name="SD-Title" xml:space="preserve">
+        <value>Détails</value>
+    </data>
+    <data name="B-Looking" xml:space="preserve">
+        <value>Rechercher un téléchargement</value>
+    </data>
+    <data name="Cat-Title" xml:space="preserve">
+        <value>Notre catalogue</value>
+    </data>
+    <data name="MAP-Phone2" xml:space="preserve">
+        <value>2e Téléphone</value>
+    </data>
+    <data name="Pa-Individuals" xml:space="preserve">
+        <value>Particuliers</value>
+    </data>
+    <data name="Pa-Proffesionnals" xml:space="preserve">
+        <value>Entreprises</value>
     </data>
 </root>

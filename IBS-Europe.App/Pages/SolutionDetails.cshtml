@@ -1,0 +1,82 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.SolutionDetails
+
+@{
+    ViewData["Title"] = Model.Product.Name;
+    @Html.Partial("_EditProductModal", Model.Edit);
+    @Html.Partial("_DeleteConfirmationModal");
+}
+
+<div>
+    <div class="p-2 mt-5 rounded-3 min-height-20em d-block" style="border-top: 0.1em solid #ddd; background-color: #f9f9f9; width: 80%; margin: auto;">
+        @if (User.Identity.IsAuthenticated  && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+        {
+            <div class="d-flex justify-content-between">
+                <div class="ms-auto d-flex mt-2 gap-2">
+                    <form method="post" asp-page-handler="EditButton">
+                        <input type="hidden" name="name" value="@Model.Product.Name"/>
+                        <button type="submit" class="btn btn-warning">
+                            <i class="fas fa-edit"></i>
+                        </button>
+                    </form>
+                    <button onclick="openDeleteModal('@Html.Raw(Model.Product.Name)')" class="btn btn-danger me-2" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal">
+                        <i class="fas fa-trash"></i>
+                    </button>
+                </div>
+            </div>
+            
+        
+            <form id="form" method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage">
+                <input type="hidden" name="name" value="@Model.Product.Name"/>
+                <input type="file" id="fileInput" name="Edit.Image" style="display:none;" onchange="submitForm()" accept=".png, .jpeg, .jpg"/>
+                <img class="float-lg-start cursor" style="width: 18em; height: 18em; margin-top: -2em; margin-left: 1em; margin-right: 1em;"
+                     src="@Model.Product.Image" alt="@Model.Product.Name" onclick="document.getElementById('fileInput').click()"/>
+                <span asp-validation-for="Edit.Image" class="text-danger"></span>
+            </form>
+
+            <p style="margin-top: -1em;">@Html.Raw(Model.Product.Description)</p>
+        }
+        else
+        {
+            <img class="m-2 float-lg-start" style="width: 18em; height: 18em; " src="@Model.Product.Image" alt="@Model.Product.Name"/>
+            <p>@Html.Raw(Model.Product.Description)</p>
+        }
+
+        
+     
+
+    </div>
+    <div class="d-flex justify-content-center mt-3">
+        <a asp-page="/Solutions" class="btn btn-secondary me-2" >@SharedResource.MA_Close</a>
+    </div>
+</div>
+
+@section Scripts
+{
+    <script>
+        function openDeleteModal(name) {
+            document.getElementById("productName").value = name;
+        }
+        
+        $(document).ready(function () {
+                    var isEditProduct = '@Model.IsUpdate';
+        
+                    if (isEditProduct === 'True') {
+                        var modal = new bootstrap.Modal(document.getElementById('editProductModal'));
+                        modal.show();
+                    }
+                });
+        
+        function submitForm() {
+            var form = document.getElementById('form');
+            if (form) {
+                form.submit();
+            } else {
+                console.error("Form not found!");
+            }
+        }
+
+                
+    </script>
+}

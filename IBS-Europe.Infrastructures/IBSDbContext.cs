@@ -112,28 +112,28 @@ public class IBSDbContext : IdentityDbContext
         );
         
         modelBuilder.Entity<People>().HasData(
-            new People() { Id = 1, TranslatorId = 2, FirstName = "Gael", LastName = "de Miomandre", Phone = "0412345678", Role = "Administrateur Délégué", Email = "gdm@ibseurope.com", Path = "https://i.pinimg.com/564x/53/76/31/53763136436d736e99c915f41f0ce25d.jpg", Priority = 1},
-            new People() { Id = 2, TranslatorId = 3, FirstName = "Alain", LastName = "de Miomandre", Phone = "0412345678", Role = "Président", Email = "adm@ibseurope.com", Path = "https://avatarfiles.alphacoders.com/326/thumb-1920-326625.jpg", Priority = 2},
-            new People() { Id = 3, TranslatorId = 4, FirstName = "Patrice", LastName = "Penders", Phone = "0412345678", Role = "Souscripteur de produits", Email = "pap@ibseurope.com", Path = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkM7w_sYTtWDdtd18g--vJQXR4RxexU_pxlw&s", Priority = 3},
-            new People() { Id = 4, TranslatorId = 5,  FirstName = "Salvatore", LastName = "Tomasello", Phone = "0412345678",  Role = "Souscripteur junior", Email = "sat@ibseurope.com", Path = "https://i.pinimg.com/564x/9b/ed/ac/9bedac5d6b820b0ead1810bc3551aa5e.jpg", Priority = 4},
-            new People() { Id = 5, TranslatorId = 6, FirstName = "Mathieu", LastName = "Clicq", Phone = "0412345678", Role = "Conseiller assurance", Email = "mac@ibseurope.com", Path = "https://www.cartoonize.net/wp-content/uploads/2024/05/avatar-maker-photo-to-cartoon.png", Priority = 5}
+            new People() { Id = 1, TranslatorId = 2, SecondPhone = "",FirstName = "Gael", LastName = "de Miomandre", Phone = "0412345678", Role = "Administrateur Délégué", Email = "gdm@ibseurope.com", Path = "https://i.pinimg.com/564x/53/76/31/53763136436d736e99c915f41f0ce25d.jpg", Priority = 1},
+            new People() { Id = 2, TranslatorId = 3, SecondPhone = "", FirstName = "Alain", LastName = "de Miomandre", Phone = "0412345678", Role = "Président", Email = "adm@ibseurope.com", Path = "https://avatarfiles.alphacoders.com/326/thumb-1920-326625.jpg", Priority = 2},
+            new People() { Id = 3, TranslatorId = 4, SecondPhone = "", FirstName = "Patrice", LastName = "Penders", Phone = "0412345678", Role = "Souscripteur de produits", Email = "pap@ibseurope.com", Path = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkM7w_sYTtWDdtd18g--vJQXR4RxexU_pxlw&s", Priority = 3},
+            new People() { Id = 4, TranslatorId = 5,  SecondPhone = "", FirstName = "Salvatore", LastName = "Tomasello", Phone = "0412345678",  Role = "Souscripteur junior", Email = "sat@ibseurope.com", Path = "https://i.pinimg.com/564x/9b/ed/ac/9bedac5d6b820b0ead1810bc3551aa5e.jpg", Priority = 4},
+            new People() { Id = 5, TranslatorId = 6, SecondPhone = "", FirstName = "Mathieu", LastName = "Clicq", Phone = "0412345678", Role = "Conseiller assurance", Email = "mac@ibseurope.com", Path = "https://www.cartoonize.net/wp-content/uploads/2024/05/avatar-maker-photo-to-cartoon.png", Priority = 5}
         );
 
         modelBuilder.Entity<Partners>().HasData(
-            new Partners() { Id = 1, Name = "AG Insurance", Path = "https://www.ibseurope.com/images/suppliers/AG.jpg", Priority = 1, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 2, Name = "CFDP", Path = "https://www.ibseurope.com/images/suppliers/cfdp.jpg", Priority = 2, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 3, Name = "Allianz", Path = "https://www.ibseurope.com/images/suppliers/allianz.jpg", Priority = 3, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 4, Name = "EuroCaution", Path = "https://www.ibseurope.com/images/suppliers/eurocaution.jpg", Priority = 4, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 5, Name = "AXA", Path = "https://www.ibseurope.com/images/suppliers/axa.jpg", Priority = 5, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 6, Name = "Europ Assistance", Path = "https://www.ibseurope.com/images/suppliers/europ-assistance.jpg", Priority = 6, Website = "https://www.ibseurope.com/fr/index.cfm" },
-            new Partners() { Id = 7, Name = "ACE Europe", Path = "https://www.ibseurope.com/images/suppliers/ace-europe.jpg", Priority = 7, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 8, Name = "JEAN VERHEYEN", Path = "https://www.ibseurope.com/images/suppliers/verheyen.jpg", Priority = 8, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 9, Name = "Generali Group", Path = "https://www.ibseurope.com/images/suppliers/generali.jpg", Priority = 9, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 10, Name = "Foyer", Path = "https://www.ibseurope.com/images/suppliers/foyer.jpg", Priority = 10, Website = "https://www.ibseurope.com/fr/index.cfm" },
-            new Partners() { Id = 11, Name = "Lalux", Path = "https://www.ibseurope.com/images/suppliers/lalux.jpg", Priority = 11, Website = "https://www.ibseurope.com/fr/index.cfm" },
-            new Partners() { Id = 12, Name = "Baloise", Path = "https://www.ibseurope.com/images/suppliers/labaloise.jpg", Priority = 12, Website = "https://www.ibseurope.com/fr/index.cfm"},
-            new Partners() { Id = 13, Name = "Protegys", Path = "https://www.ibseurope.com/images/suppliers/protegys.jpg", Priority = 13, Website = "https://www.ibseurope.com/fr/index.cfm" },
-            new Partners() { Id = 14, Name = "April", Path = "https://www.ibseurope.com/images/suppliers/aprilinternational.jpg", Priority = 14, Website = "https://www.ibseurope.com/fr/index.cfm" }
+            new Partners() { Id = 1, Category = 1, Name = "AG Insurance", Path = "https://www.ibseurope.com/images/suppliers/AG.jpg", Priority = 1, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 2, Category = 1,Name = "CFDP", Path = "https://www.ibseurope.com/images/suppliers/cfdp.jpg", Priority = 2, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 3, Category = 1,Name = "Allianz", Path = "https://www.ibseurope.com/images/suppliers/allianz.jpg", Priority = 3, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 4, Category = 1,Name = "EuroCaution", Path = "https://www.ibseurope.com/images/suppliers/eurocaution.jpg", Priority = 4, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 5, Category = 1,Name = "AXA", Path = "https://www.ibseurope.com/images/suppliers/axa.jpg", Priority = 5, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 6, Category = 1,Name = "Europ Assistance", Path = "https://www.ibseurope.com/images/suppliers/europ-assistance.jpg", Priority = 6, Website = "https://www.ibseurope.com/fr/index.cfm" },
+            new Partners() { Id = 7, Category = 1,Name = "ACE Europe", Path = "https://www.ibseurope.com/images/suppliers/ace-europe.jpg", Priority = 7, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 8, Category = 1,Name = "JEAN VERHEYEN", Path = "https://www.ibseurope.com/images/suppliers/verheyen.jpg", Priority = 8, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 9, Category = 1,Name = "Generali Group", Path = "https://www.ibseurope.com/images/suppliers/generali.jpg", Priority = 9, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 10,Category = 1, Name = "Foyer", Path = "https://www.ibseurope.com/images/suppliers/foyer.jpg", Priority = 10, Website = "https://www.ibseurope.com/fr/index.cfm" },
+            new Partners() { Id = 11, Category = 1,Name = "Lalux", Path = "https://www.ibseurope.com/images/suppliers/lalux.jpg", Priority = 11, Website = "https://www.ibseurope.com/fr/index.cfm" },
+            new Partners() { Id = 12, Category = 1,Name = "Baloise", Path = "https://www.ibseurope.com/images/suppliers/labaloise.jpg", Priority = 12, Website = "https://www.ibseurope.com/fr/index.cfm"},
+            new Partners() { Id = 13, Category = 1,Name = "Protegys", Path = "https://www.ibseurope.com/images/suppliers/protegys.jpg", Priority = 13, Website = "https://www.ibseurope.com/fr/index.cfm" },
+            new Partners() { Id = 14, Category = 1,Name = "April", Path = "https://www.ibseurope.com/images/suppliers/aprilinternational.jpg", Priority = 14, Website = "https://www.ibseurope.com/fr/index.cfm" }
         );
 
         modelBuilder.Entity<Broker>().HasData(

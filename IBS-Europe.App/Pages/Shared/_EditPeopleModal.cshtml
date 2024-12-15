@@ -40,6 +40,12 @@
                     <input type="text" class="form-control" id="peoplePhone" name="Phone" value="@Model.Phone">
                     <span asp-validation-for="Phone" class="text-danger"></span>
                 </div>
+                
+                <div class="mb-3">
+                    <label for="peoplePhone2" class="form-label">@SharedResource.MAP_Phone2</label>
+                    <input type="text" class="form-control" id="peoplePhone2" name="SecondPhone" value="@Model.SecondPhone">
+                    <span asp-validation-for="SecondPhone" class="text-danger"></span>
+                </div>
 
                 <div class="modal-footer">
                     <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>

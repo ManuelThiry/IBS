@@ -10,28 +10,23 @@
 }
 
 <div>
-    <div class="d-flex justify-content-center align-items-center mt-3">
-        <h1 class="mt-1">@SharedResource.S_Title</h1>
-        
-        
+    <div class="d-flex justify-content-center align-items-center mt-3 sticky-top">
+        <div class="control has-icons-left mb-3 mt-3">
+            <input type="text" id="searchInput" class="input rounded-4 me-2" placeholder="@SharedResource.S_Looking" oninput="filterProducts()" />
+            <span class="icon is-left">
+                <i class="fas fa-search"></i>
+            </span>
+        </div>
         @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
         {
             <form method="post" asp-page-handler="AddButton">
                 <button class="button-1 ms-3">
-                    <i class="fas fa-plus"></i>
+                    @SharedResource.S_AddSolution
                 </button>
             </form>
         }
-        
     </div>
-    <div class="d-flex justify-content-center mx-2">
-    <div class="control has-icons-left">
-                <input type="text" id="searchInput" class="input is-medium" placeholder="@SharedResource.S_Looking" oninput="filterProducts()" />
-                <span class="icon is-left">
-                    <i class="fas fa-search"></i>
-                </span>
-            </div>
-    </div>
+
 
     <div class="d-flex flex-wrap justify-content-center mb-4" id="productsList">
         @if (Model.ProductsList.Count == 0)
@@ -46,24 +41,30 @@
         
         @foreach (var product in Model.ProductsList)
         {
-            <div class="card solution-card h-100 flex-item m-3 product-card" style="width: 18em;">
+            <a asp-page="/SolutionDetails" asp-route-name="@product.Name" class="text-decoration-none mt-3"  onclick="saveScrollPosition()">
+            <div class="card solution-card h-100 flex-item mx-2 product-card" style="width: 25em;">
                 @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                 {
                     <form method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage" id="form-@product.Name">
                         <input type="hidden" id="name" name="name" value="@product.Name"/>
                         <input type="file" id="fileInput-@product.Name" name="Edit.Image" onchange="submitForm('@product.Name')" style="display:none;"  accept=".png, .jpeg, .jpg"/>
-                        <img class="w-100" src="@product.Image" alt="@product.Name" style="height: 18em; cursor: pointer;" onclick="document.getElementById('fileInput-@product.Name').click()"/>
+                        <div class="d-flex justify-content-center">
+                        <img class="no_link" src="@product.Image" alt="@product.Name" style="width: 25em; height: 18em; cursor: pointer;" onclick="document.getElementById('fileInput-@product.Name').click()"/>
+                        </div>
                         <span asp-validation-for="Edit.Image" class="text-danger"></span>
                     </form>
 
                 }
                 else
                 {
-                    <img src="@product.Image" class="w-100" style="height: 18em;" alt="@product.Name" title="@product.Name">
+                    <div class="d-flex justify-content-center">
+                        <img src="@product.Image" style="width: 25em; height: 18em;" alt="@product.Name" title="@product.Name">
+                    </div>
+
                 }
                 <div class="card-body text-center">
                     <h5 class="card-title fw-bold">@product.Name</h5>
-                    <p style="min-height: 11em;" class="color-midnight fw-light">@product.SmallDescription</p>
+                    <p style="min-height: 7em;" class="color-midnight fw-light">@product.SmallDescription</p>
 
                     @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                     {
@@ -86,7 +87,7 @@
                             </form>
 
                             <!-- Bouton Supprimer -->
-                            <button onclick="openDeleteModal('@Html.Raw(product.Name)')" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" type="button" class="btn btn-danger btn-sm me-4">
+                            <button onclick="openDeleteModal('@Html.Raw(product.Name)')" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" type="button" class="btn btn-danger btn-sm me-4 no_link">
                                 <i class="fas fa-trash"></i>
                             </button>
 
@@ -102,6 +103,7 @@
                     }
                 </div>
             </div>
+            </a>
         }
     </div>
 </div>
@@ -130,6 +132,8 @@
             let productCards = document.getElementsByClassName("product-card");
             let resultsFound = false;
             let noSol = document.getElementById("noSol");
+            const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            document.cookie = `searchInputSolution=${searchInput}; path=/; max-age=1800;`;
 
             for (let i = 0; i < productCards.length; i++) {
                 let productName = productCards[i].getElementsByClassName("card-title")[0].textContent.toLowerCase();
@@ -147,6 +151,19 @@
                 noSol.classList.add("d-none");
             }
         }
+        
+        $(document).ready(function () {
+                            // Empêcher la redirection lorsqu'on clique sur le bouton de suppression, la flèche vers le haut et la flèche vers le bas
+                            $(document).on('click', '.no_link', function (event) {
+                                event.preventDefault();  // Empêche l'action par défaut (dans ce cas, l'ouverture du lien)
+                                event.stopPropagation(); // Empêche la propagation vers l'élément parent <a>
+                        
+                                // Vous pouvez ajouter ici le code pour gérer la suppression ou le déplacement si nécessaire
+                            });
+                            
+                        
+                            // Vous pouvez ajouter d'autres logiques pour les autres boutons ou actions ici
+                        });
 
         $(document).ready(function () {
             var isAddProduct = '@Model.IsNew';
@@ -176,5 +193,37 @@
               }
           }
 
+        
+      function saveScrollPosition() {
+          const scrollPosition = window.scrollY; // Position verticale actuelle
+          localStorage.setItem('scrollPosition', scrollPosition); // Stocker dans localStorage
+      }
+       
+      document.addEventListener('DOMContentLoaded', () => {
+              const scrollPosition = localStorage.getItem('scrollPosition');
+              if (scrollPosition) {
+                  window.scrollTo(0, parseInt(scrollPosition, 10)); // Rétablir la position
+                  localStorage.removeItem('scrollPosition'); // Nettoyer après utilisation
+              }
+          });
+        
+        function getCookie(name) {
+                    const value = `; ${document.cookie}`;
+                    const parts = value.split(`; ${name}=`);
+                    if (parts.length === 2) return parts.pop().split(';').shift();
+                    return "";
+                }
+                
+                // Au chargement de la page, applique la recherche enregistrée dans le cookie
+                document.addEventListener("DOMContentLoaded", () => {
+                    const savedSearch = getCookie("searchInputSolution");
+                    if (savedSearch) {
+                        const searchInputElement = document.getElementById("searchInput");
+                        searchInputElement.value = savedSearch;
+                        filterProducts();
+                    }
+                });
+        
+        
     </script>
 }

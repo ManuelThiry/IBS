@@ -8,4 +8,6 @@ public class Partners
     public int Priority { get; set; }
     
     public string WebSite { get; set; }
+    
+    public int Category { get; set; }
 }

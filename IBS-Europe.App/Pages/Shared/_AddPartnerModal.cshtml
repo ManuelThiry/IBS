@@ -1,5 +1,6 @@
 ﻿@using IBS_Europe.App.Resources
-@model Partners.AddPartnerModel
+@using IBS_Europe.Domains
+@model IBS_Europe.App.Pages.Partners.AddPartnerModel
 
 <div class="modal fade" id="addPartnerModal" data-bs-backdrop="static" tabindex="-1" aria-labelledby="addPartnerLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -26,6 +27,28 @@
                     <input type="file" class="form-control" id="partnerImage" name="Picture" accept=".png, .jpeg, .jpg">
                     <span asp-validation-for="Picture" class="text-danger"></span>
                 </div>
+                <div class="mb-3">
+                    <label for="brokerCategory" class="form-label">@SharedResource.MAB_Category</label>
+                    <select asp-for="Category" class="form-select" id="brokerCategory">
+                        <option value="" disabled selected>@SharedResource.MAB_CategorySelect</option>
+                        @foreach (var cat in Enum.GetValues(typeof(PartnerCategory)))
+                        {
+                            int category = (int)cat;
+                            <option value="@category">
+                                @if (category == (int)PartnerCategory.Professionnels)
+                                {
+                                    @SharedResource.Pa_Proffesionnals
+                                }
+                                else if ( category == (int)Category.Particuliers)
+                                {
+                                    @SharedResource.Pa_Individuals
+                                }
+                            </option>
+                        }
+                    </select>
+                    <span asp-validation-for="Category" class="text-danger"></span>
+                </div>
+                
                 <div class="modal-footer">
                     <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
                     <button type="submit" name="action" class="btn btn-primary">@SharedResource.MA_Add</button>

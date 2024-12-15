@@ -606,4 +606,25 @@
     <data name="ABT-NoMembers" xml:space="preserve">
         <value />
     </data>
+    <data name="S-AddSolution" xml:space="preserve">
+        <value />
+    </data>
+    <data name="SD-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-Looking" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Cat-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="MAP-Phone2" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-Individuals" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pa-Proffesionnals" xml:space="preserve">
+        <value />
+    </data>
 </root>

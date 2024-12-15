@@ -71,7 +71,11 @@ public class Partners : PageModel
         }
         
         IsAddPartnerAction = true;
-        if (ModelState.IsValid)
+        if (Input.Category == 0)
+        {
+            ModelState.AddModelError("Category", SharedResource.B_CR);
+        }
+        if (ModelState.IsValid && Input.Category != 0)
         {
             bool error = false;
             
@@ -80,54 +84,64 @@ public class Partners : PageModel
                 ModelState.AddModelError("Name", SharedResource.Pa_Exist);
                 error = true;
             }
-
-            using (var ms = new MemoryStream())
+            
+            if ( Input.Picture != null )
             {
-                Input.Picture.CopyTo(ms);
-                byte[] fileBytes = ms.ToArray();
+                using (var ms = new MemoryStream())
+                {
+                    Input.Picture.CopyTo(ms);
+                    byte[] fileBytes = ms.ToArray();
 
-                // Appeler la méthode IsPdpPngJpg avec le tableau de bytes
-                if (!ImagesVerification.PngOrJpg(fileBytes))  // Appeler avec le tableau de bytes
-                {
-                    ModelState.AddModelError("Picture", SharedResource.Pa_FPNG);
-                    error = true;
-                }
+                    // Appeler la méthode IsPdpPngJpg avec le tableau de bytes
+                    if (!ImagesVerification.PngOrJpg(fileBytes))  // Appeler avec le tableau de bytes
+                    {
+                        ModelState.AddModelError("Picture", SharedResource.Pa_FPNG);
+                        error = true;
+                    }
                 
-                const int maxFileSizeInBytes = 20 * 1024 * 1024; // 20 Mo
-                if (fileBytes.Length > maxFileSizeInBytes)
-                {
-                    ModelState.AddModelError("Picture", SharedResource.Pa_F20);
-                    error = true;
+                    const int maxFileSizeInBytes = 20 * 1024 * 1024; // 20 Mo
+                    if (fileBytes.Length > maxFileSizeInBytes)
+                    {
+                        ModelState.AddModelError("Picture", SharedResource.Pa_F20);
+                        error = true;
+                    }
                 }
             }
 
+            
+
             if (!error)
             {
-                // Construire le chemin complet vers le dossier "wwwroot/Images/Partners"
-                var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Partners");
-
-                // Vérifier si le dossier existe, sinon le créer
-                if (!Directory.Exists(uploadPath))
+                var fileName = "";
+                if (Input.Picture != null)
                 {
-                    Directory.CreateDirectory(uploadPath);
-                }
+                    // Construire le chemin complet vers le dossier "wwwroot/Images/Partners"
+                    var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "Partners");
 
-                // Nom du fichier (nom du partenaire avec l'extension du fichier original)
-                var fileName = Cleanup.GenerateUniqueFileName(Input.Picture.FileName);
-                var filePath = Path.Combine(uploadPath, fileName);
+                    // Vérifier si le dossier existe, sinon le créer
+                    if (!Directory.Exists(uploadPath))
+                    {
+                        Directory.CreateDirectory(uploadPath);
+                    }
 
-                // Enregistrer le fichier dans le répertoire "wwwroot/Images/Partners"
-                using (var stream = new FileStream(filePath, FileMode.Create))
-                {
-                    Input.Picture.CopyTo(stream);
+                    // Nom du fichier (nom du partenaire avec l'extension du fichier original)
+                    fileName = Cleanup.GenerateUniqueFileName(Input.Picture.FileName);
+                    var filePath = Path.Combine(uploadPath, fileName);
+
+                    // Enregistrer le fichier dans le répertoire "wwwroot/Images/Partners"
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        Input.Picture.CopyTo(stream);
+                    }
                 }
+               
 
                 // Ajouter le partenaire dans la base de données avec le chemin du fichier
                 await _data.AddPartner(new Domains.Partners()
                 {
                     Name = Input.Name,
                     WebSite = Input.WebSite,
-                    Path = "/images/Partners/" + fileName, // Stocker le chemin relatif dans la base de données
+                    Path = fileName == "" ? "" : "/images/Partners/" + fileName, // Stocker le chemin relatif dans la base de données
                     Priority = -1
                 });
 
@@ -179,14 +193,14 @@ public class Partners : PageModel
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_NR")]
         [StringLength(50, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_N50")]
         public string Name { get; set; }
-
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_WR")]
+        
         [StringLength(250, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_W250")]
         [Url(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_URL")]
         public string WebSite { get; set; }
         
-        [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pa_IR")]
         public IFormFile Picture { get; set; }
+        
+        public int Category { get; set; }
         
     }
 }

@@ -24,7 +24,7 @@
         <value>Partners</value>
     </data>
     <data name="L-About" xml:space="preserve">
-        <value>About</value>
+        <value>About us</value>
     </data>
     <data name="L-Contact" xml:space="preserve">
         <value>Contact</value>
@@ -896,5 +896,26 @@ The file must be a PNG or JPG image.</value>
     </data>
     <data name="ABT-NoMembers" xml:space="preserve">
         <value>No members available at the moment.</value>
+    </data>
+    <data name="S-AddSolution" xml:space="preserve">
+        <value>Add a solution</value>
+    </data>
+    <data name="SD-Title" xml:space="preserve">
+        <value>Details</value>
+    </data>
+    <data name="B-Looking" xml:space="preserve">
+        <value>Search for a download</value>
+    </data>
+    <data name="Cat-Title" xml:space="preserve">
+        <value>Our Catalog</value>
+    </data>
+    <data name="MAP-Phone2" xml:space="preserve">
+        <value>2nd Phone</value>
+    </data>
+    <data name="Pa-Individuals" xml:space="preserve">
+        <value>Individuals</value>
+    </data>
+    <data name="Pa-Proffesionnals" xml:space="preserve">
+        <value>Companies</value>
     </data>
 </root>

@@ -154,7 +154,8 @@ public class Solutions : PageModel
         };
         
         string name = await  _data.AddProduct(product);
-        return RedirectToPage("/Solutions");
+        return RedirectToPage("/SolutionDetails", new { name = name });
+
     }
     
     public async Task OnPostEditButton(string name)

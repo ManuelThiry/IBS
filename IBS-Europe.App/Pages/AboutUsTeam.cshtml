@@ -66,13 +66,19 @@
                         @person.Role
                     </p>
                     <p class="card-text">
+                        <i class="fas fa-envelope fs-6 text-primary align-middle me-2"></i>
+                        <a class="text-decoration-none" href="mailto:@person.Email">@person.Email</a>
+                    </p>
+                    
+                    <p class="card-text">
                         <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
                         <a class="text-decoration-none" href="tel:@person.Phone">@person.Phone</a>
                     </p>
                     <p class="card-text">
-                        <i class="fas fa-envelope fs-6 text-primary align-middle me-2"></i>
-                        <a class="text-decoration-none" href="mailto:@person.Email">@person.Email</a>
+                        <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
+                        <a class="text-decoration-none" href="tel:@person.SecondPhone">@person.SecondPhone</a>
                     </p>
+                  
 
                     @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                     {

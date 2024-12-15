@@ -62,13 +62,14 @@ public class ProductsData : IProductsData
     
     public async Task<Product> GetProduct(string name)
     {
-        var item = await _context.Products.FirstOrDefaultAsync(p => p.Name == name);
+        var item = await _context.Products.Include(p=> p.FirstTranslator).Include(p=> p.SecondTranslator).FirstOrDefaultAsync(p => p.Name == name);
+        var culture = Thread.CurrentThread.CurrentCulture.Name;
         return new Product
         {
             Name = item.Name,
             Image = item.Path,
-            Description = item.Text,
-            SmallDescription = item.SmallDescription
+            Description = culture == "fr-FR" ? item.Text : item.FirstTranslator.Text,
+            SmallDescription = culture == "fr-FR" ? item.SmallDescription : item.SecondTranslator.Text
         };
     }
     

@@ -36,7 +36,18 @@
                    {
                        <text>target="_blank"</text>
                    }>
-                    <img src="@product.Path" alt="@product.Name" title="@product.Name" class="w-h-7em cursor">
+                    @if (product.Path == "")
+                    {
+                        <div class="w-h-7em bg-white d-flex align-items-center text-black justify-content-center">
+                            <div class="w-h-5em d-flex align-items-center text-black justify-content-center" style="border: 0.05em solid grey;">
+                                <p class="mt-3">@product.Name</p>
+                            </div>
+                        </div>
+                    }
+                    else
+                    {
+                        <img src="@product.Path" alt="@product.Name" title="@product.Name" class="w-h-7em cursor">
+                    }
                 </a>
 
                 @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
