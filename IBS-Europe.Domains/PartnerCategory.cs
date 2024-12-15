@@ -2,7 +2,7 @@
 {
     public enum PartnerCategory
     {
-        Particuliers = 1,
-        Professionnels = 2,
+        Professionnels = 1,
+        Particuliers = 2,
     }
 }

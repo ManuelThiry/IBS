@@ -15,10 +15,10 @@ public class PartnersData : IPartnersData
         _context = context;
     }
     
-    public async Task<List<Partners>> GetAllPartners()
+    public async Task<List<Partners>> GetAllPartners(int selectedCategory)
     {
         List <Partners> myList = new List<Partners>();
-        var items = await _context.Partners.OrderBy(a => a.Priority).ThenBy(a => a.Name).ToListAsync();
+        var items = await _context.Partners.OrderBy(a => a.Priority).ThenBy(a => a.Name).Where(p=> p.Category == selectedCategory).ToListAsync();
         foreach (var item in items)
         {
             myList.Add(new Partners
@@ -33,18 +33,18 @@ public class PartnersData : IPartnersData
         return myList;
     }
     
-    public async Task SwitchPriority(int priority, string direction)
+    public async Task SwitchPriority(int priority, string direction, int selectedCategory)
     {
-        var item1 = await _context.Partners.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
+        var item1 = await _context.Partners.Where(p=> p.Priority == priority).Where(p=> p.Category == selectedCategory).FirstOrDefaultAsync();
         Data.Partners? item2;
 
         if (direction.Equals("right"))
         {
-            item2 = await _context.Partners.Where(p=> p.Priority == item1.Priority +1).FirstOrDefaultAsync();
+            item2 = await _context.Partners.Where(p=> p.Category == selectedCategory).Where(p=> p.Priority == item1.Priority +1).FirstOrDefaultAsync();
         }
         else
         {
-            item2 = await _context.Partners.Where(p=> p.Priority == item1.Priority -1).FirstOrDefaultAsync();
+            item2 = await _context.Partners.Where(p=> p.Category == selectedCategory).Where(p=> p.Priority == item1.Priority -1).FirstOrDefaultAsync();
         }
         if (item1 != null && item2 != null)
         {
@@ -55,14 +55,14 @@ public class PartnersData : IPartnersData
         }
     }
     
-    public async Task DeletePartner(int priority)
+    public async Task DeletePartner(int priority, int selectedCategory)
     {
-        var item = await _context.Partners.Where(p=> p.Priority == priority).FirstOrDefaultAsync();
+        var item = await _context.Partners.Where(p=>p.Category == selectedCategory).Where(p=> p.Priority == priority).FirstOrDefaultAsync();
         if (item != null)
         {
             _context.Partners.Remove(item);
             
-            var itemsAbove = await _context.Partners.Where(p=> p.Priority > priority).ToListAsync();
+            var itemsAbove = await _context.Partners.Where(p=> p.Category == selectedCategory).Where(p=> p.Priority > priority).ToListAsync();
 
             foreach (var i in itemsAbove ) 
             {
@@ -75,8 +75,10 @@ public class PartnersData : IPartnersData
     
     public async Task AddPartner(Partners partner)
     {
+        partner.WebSite = partner.WebSite ?? "";
+        partner.Path = partner.Path ?? "";
         // Récupérer la priorité maximale des partenaires existants et ajouter 1 pour le nouveau partenaire
-        int maxPriority = await _context.Partners.AnyAsync() 
+        int maxPriority = await _context.Partners.Where(p=> p.Category == partner.Category).AnyAsync() 
             ? _context.Partners.Max(p => p.Priority) 
             : 0; // Si aucun partenaire, définir à 0
     
@@ -88,7 +90,8 @@ public class PartnersData : IPartnersData
             Name = partner.Name,
             Path = partner.Path,
             Website = partner.WebSite, // Corriger le nom de propriété si nécessaire
-            Priority = newPriority
+            Priority = newPriority,
+            Category = partner.Category
         };
 
         // Ajouter le nouveau partenaire à la base de données
@@ -96,9 +99,11 @@ public class PartnersData : IPartnersData
         await _context.SaveChangesAsync();
     }
     
-    public async Task<bool> PartnerExists(string name)
+    public async Task<bool> PartnerExists(string name, int selectedCategory)
     {
-        return await _context.Partners.AnyAsync(p => p.Name.ToLower().Trim() == name.ToLower().Trim());
+        return await _context.Partners
+            .Where(p => p.Category == selectedCategory)
+            .AnyAsync(p => p.Name.ToLower().Trim() == name.ToLower().Trim());
     }
     
     public async Task<Dictionary<string,string>> GetcatalogPaths()

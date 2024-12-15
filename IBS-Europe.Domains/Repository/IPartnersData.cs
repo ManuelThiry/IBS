@@ -2,15 +2,15 @@
 
 public interface IPartnersData
 {
-    public Task<List<Partners>> GetAllPartners();
+    public Task<List<Partners>> GetAllPartners(int selectedCategory);
     
-    public Task SwitchPriority(int priority, string direction);
+    public Task SwitchPriority(int priority, string direction, int selectedCategory);
     
-    public Task DeletePartner(int priority);
+    public Task DeletePartner(int priority, int selectedCategory);
     
     public Task AddPartner(Partners partner);
     
-    public Task<bool> PartnerExists(string name);
+    public Task<bool> PartnerExists(string name, int selectedCategory);
 
     public Task<Dictionary<string, string>> GetcatalogPaths();
 

@@ -12,6 +12,8 @@ public class Partners : PageModel
 
     public List<PartnersViewModel> PartnersList { get; set; } = new List<PartnersViewModel>();
     
+    public int SelectedCategory { get; set; }
+    
     public bool IsAddPartnerAction { get; set; }
     
     [BindProperty]
@@ -33,9 +35,21 @@ public class Partners : PageModel
             return RedirectToPage();
         }
         
-        await _data.SwitchPriority(priority, direction);
+        SelectedCategoryMethod();
+        await _data.SwitchPriority(priority, direction, SelectedCategory);
         await LoadPartners();
         return Page();
+    }
+    
+    public IActionResult OnPostSwitchCategory(int selectedCategory)
+    {
+        CookieOptions option = new CookieOptions
+        {
+            Expires = DateTime.Now.AddMonths(1)
+        };
+            
+        Response.Cookies.Append("selectedCategoryPartners", selectedCategory.ToString(), option);
+        return RedirectToPage();
     }
     
     public async Task<IActionResult> OnPostDelete(int priority)
@@ -51,8 +65,8 @@ public class Partners : PageModel
         {
             return RedirectToPage();
         }
-        
-        await _data.DeletePartner(priority);
+        SelectedCategoryMethod();
+        await _data.DeletePartner(priority, SelectedCategory);
         return RedirectToPage();
     }
     
@@ -79,7 +93,7 @@ public class Partners : PageModel
         {
             bool error = false;
             
-            if ( await _data.PartnerExists(Input.Name))
+            if ( await _data.PartnerExists(Input.Name,Input.Category))
             {
                 ModelState.AddModelError("Name", SharedResource.Pa_Exist);
                 error = true;
@@ -142,7 +156,8 @@ public class Partners : PageModel
                     Name = Input.Name,
                     WebSite = Input.WebSite,
                     Path = fileName == "" ? "" : "/images/Partners/" + fileName, // Stocker le chemin relatif dans la base de données
-                    Priority = -1
+                    Priority = -1,
+                    Category = Input.Category
                 });
 
                 return RedirectToPage();
@@ -162,7 +177,8 @@ public class Partners : PageModel
     
     private async Task LoadPartners()
     {
-        var products = await _data.GetAllPartners();
+        SelectedCategoryMethod();
+        var products = await _data.GetAllPartners(SelectedCategory);
         foreach (var product in products)
         {
             PartnersList.Add(new PartnersViewModel(
@@ -175,6 +191,17 @@ public class Partners : PageModel
         }
     }
 
+    private void SelectedCategoryMethod()
+    {
+        if (Request.Cookies.ContainsKey("selectedCategoryPartners"))
+        {
+            SelectedCategory = int.Parse(Request.Cookies["selectedCategoryPartners"]);
+        }
+        else
+        {
+            SelectedCategory = 1;
+        }
+    }
     
     public record PartnersViewModel
     (
