@@ -25,6 +25,12 @@ public class IBSDbContext : IdentityDbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         base.OnModelCreating(modelBuilder);
+        
+        modelBuilder.Entity<Broker>()
+            .HasOne(b => b.Products)
+            .WithMany(p => p.Brokers)
+            .HasForeignKey(b => b.ProductsId);
+
 
         modelBuilder.Entity<Products>()
             .Property(p => p.Name)
@@ -112,7 +118,7 @@ public class IBSDbContext : IdentityDbContext
         );
         
         modelBuilder.Entity<People>().HasData(
-            new People() { Id = 1, TranslatorId = 2, SecondPhone = "",FirstName = "Gael", LastName = "de Miomandre", Phone = "0412345678", Role = "Administrateur Délégué", Email = "gdm@ibseurope.com", Path = "https://i.pinimg.com/564x/53/76/31/53763136436d736e99c915f41f0ce25d.jpg", Priority = 1},
+            new People() { Id = 1,  TranslatorId = 2, SecondPhone = "",FirstName = "Gael", LastName = "de Miomandre", Phone = "0412345678", Role = "Administrateur Délégué", Email = "gdm@ibseurope.com", Path = "https://i.pinimg.com/564x/53/76/31/53763136436d736e99c915f41f0ce25d.jpg", Priority = 1},
             new People() { Id = 2, TranslatorId = 3, SecondPhone = "", FirstName = "Alain", LastName = "de Miomandre", Phone = "0412345678", Role = "Président", Email = "adm@ibseurope.com", Path = "https://avatarfiles.alphacoders.com/326/thumb-1920-326625.jpg", Priority = 2},
             new People() { Id = 3, TranslatorId = 4, SecondPhone = "", FirstName = "Patrice", LastName = "Penders", Phone = "0412345678", Role = "Souscripteur de produits", Email = "pap@ibseurope.com", Path = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkM7w_sYTtWDdtd18g--vJQXR4RxexU_pxlw&s", Priority = 3},
             new People() { Id = 4, TranslatorId = 5,  SecondPhone = "", FirstName = "Salvatore", LastName = "Tomasello", Phone = "0412345678",  Role = "Souscripteur junior", Email = "sat@ibseurope.com", Path = "https://i.pinimg.com/564x/9b/ed/ac/9bedac5d6b820b0ead1810bc3551aa5e.jpg", Priority = 4},
@@ -137,11 +143,11 @@ public class IBSDbContext : IdentityDbContext
         );
 
         modelBuilder.Entity<Broker>().HasData(
-            new Broker() {Id = 1, TranslatorId = 7, Name = "Maestria 2010", Path = "pdf/2010-contrat-conseiller-maestria.pdf", Category = 1, Priority = 1},
-            new Broker() {Id = 2, TranslatorId = 8, Name = "Interim 2010", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 2, Priority = 1},
-            new Broker() {Id = 3, TranslatorId = 9, Name = "Interim 2011", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 3, Priority = 1},
-            new Broker() {Id = 4, TranslatorId = 10, Name = "Interim 2012", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 3, Priority = 2},
-            new Broker() {Id = 5, TranslatorId = 11, Name = "Interim 2013", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 3, Priority = 3}
+            new Broker() {Id = 1, ProductsId = null, TranslatorId = 7, Name = "Maestria 2010", Path = "pdf/2010-contrat-conseiller-maestria.pdf", Category = 1, Priority = 1},
+            new Broker() {Id = 2, ProductsId = null, TranslatorId = 8, Name = "Interim 2010", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 2, Priority = 1},
+            new Broker() {Id = 3, ProductsId = null, TranslatorId = 9, Name = "Interim 2011", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 3, Priority = 1},
+            new Broker() {Id = 4, ProductsId = null, TranslatorId = 10, Name = "Interim 2012", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 3, Priority = 2},
+            new Broker() {Id = 5, ProductsId = null, TranslatorId = 11, Name = "Interim 2013", Path = "pdf/2010-convention-interim-assurances.pdf", Category = 3, Priority = 3}
         );
 
         modelBuilder.Entity<Email>().HasData(
