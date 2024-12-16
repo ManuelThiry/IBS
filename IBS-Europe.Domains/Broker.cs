@@ -8,4 +8,6 @@ public class Broker
     public string Name { get; set; }
     
     public int Category { get; set; }
+    
+    public string Products { get; set; }
 }

@@ -96,6 +96,7 @@ public class BrokerData : IBrokerData
     
     public async Task AddBroker(Broker broker)
     {
+        var product = await _context.Products.Where(p => p.Name == broker.Products).FirstOrDefaultAsync();
         int maxPriority = await _context.Brokers
             .AnyAsync() // Vérifie si des éléments existent
             ? _context.Brokers.Where(x => x.Category == broker.Category).Max(p => p.Priority) // Applique Max seulement s'il y a des éléments
@@ -114,19 +115,21 @@ public class BrokerData : IBrokerData
             Path = broker.Path,
             Category = broker.Category,
             Priority = newPriority,
-            Translator = translator
+            Translator = translator,
+            ProductsId = product == null ? null : product.Id
         });
         await _context.SaveChangesAsync();
     }
     
-    public async Task UpdateBroker(int id, string newName)
+    public async Task UpdateBroker(int id, string newName, string productName)
     {
-        
+        var product = await _context.Products.Where(p => p.Name == productName).FirstOrDefaultAsync();
         var item = await _context.Brokers.Include(t=> t.Translator).FirstOrDefaultAsync(a =>  a.Id == id);
         if (item != null && item.Name != newName)
         {
             item.Translator.Text = await DeeplTranslate.TranslateTextWithDeeplAsync(newName, "EN");
             item.Name = newName;
+            item.ProductsId = product == null ? null : product.Id;
             await _context.SaveChangesAsync();
         }
     }
@@ -174,6 +177,22 @@ public class BrokerData : IBrokerData
     public async Task<string> GetBrokerName(int id)
     {
         var item = await _context.Brokers.FirstOrDefaultAsync(a => a.Id == id);
+        if (item != null)
+        {
+            return item.Name;
+        }
+        
+        return "";
+    }
+
+    public async Task<List<string>> GetProductsList()
+    {
+        return await _context.Products.Select(p => p.Name).ToListAsync(); 
+    }
+    
+    public async Task<string> GetProduct(int id)
+    {
+        var item = await _context.Products.FirstOrDefaultAsync(a => a.Id == id);
         if (item != null)
         {
             return item.Name;

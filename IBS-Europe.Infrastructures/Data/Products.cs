@@ -17,4 +17,6 @@ public class Products
     
     public int SecondTranslatorId { get; set; }
     public Translator SecondTranslator { get; set; }
+    
+    public IList<Broker>? Brokers { get; set; }
 }

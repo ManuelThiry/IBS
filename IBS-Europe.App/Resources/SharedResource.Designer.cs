@@ -305,6 +305,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string B_LinkProduct {
+            get {
+                return ResourceManager.GetString("B-LinkProduct", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string B_Looking {
             get {
                 return ResourceManager.GetString("B-Looking", resourceCulture);
@@ -326,6 +335,15 @@ namespace IBS_Europe.App.Resources {
         internal static string B_N50 {
             get {
                 return ResourceManager.GetString("B-N50", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string B_NoLinToProduct {
+            get {
+                return ResourceManager.GetString("B-NoLinToProduct", resourceCulture);
             }
         }
         
@@ -1577,6 +1595,15 @@ namespace IBS_Europe.App.Resources {
         internal static string Pr_IPNG {
             get {
                 return ResourceManager.GetString("Pr-IPNG", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Pr_Lists {
+            get {
+                return ResourceManager.GetString("Pr-Lists", resourceCulture);
             }
         }
         

@@ -12,6 +12,8 @@ namespace IBS_Europe.App.Pages
         
         public int SelectedCategory { get; set; }
         
+        public List<string> ProductsList { get; set; } = new List<string>();
+        
         public bool IsAddBrokerAction { get; set; }
         public bool IsEditdBrokerAction { get; set; }
         
@@ -70,10 +72,12 @@ namespace IBS_Europe.App.Pages
             Response.Cookies.Append("selectedBrokerId", id.ToString(), options);
 
             var broker = await _data.GetBrokerName(id);
+            var product = await _data.GetProduct(id);
             
             Input = new AddBrokerModel
             {
                 Name = broker,
+                Product = product
             };
             
             IsEditdBrokerAction = true;
@@ -126,7 +130,7 @@ namespace IBS_Europe.App.Pages
                 return Page();
             }
             
-            await _data.UpdateBroker(id, Input.Name);
+            await _data.UpdateBroker(id, Input.Name, Input.Product);
             return RedirectToPage();
         }
         
@@ -158,6 +162,8 @@ namespace IBS_Europe.App.Pages
                 
                 
             }
+            
+            ProductsList = await _data.GetProductsList();
             
         }
         
@@ -254,6 +260,8 @@ namespace IBS_Europe.App.Pages
                 Name = Input.Name,
                 Category = Input.Category,
                 Path = "/images/Brokers/" + fileName, 
+                Products = Input.Product
+                
             });
             
             
@@ -299,6 +307,8 @@ namespace IBS_Europe.App.Pages
             public IFormFile Pdf { get; set; }
             
             public int Category { get; set; }
+            
+            public string Product { get; set; }
         
         }
     }

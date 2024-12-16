@@ -14,4 +14,7 @@ public class Broker
     
     public int TranslatorId { get; set; }
     public Translator Translator { get; set; }
+    
+    public int? ProductsId { get; set; }
+    public Products? Products { get; set; }
 }

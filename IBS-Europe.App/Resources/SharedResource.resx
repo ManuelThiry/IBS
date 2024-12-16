@@ -627,4 +627,13 @@
     <data name="Pa-Proffesionnals" xml:space="preserve">
         <value />
     </data>
+    <data name="B-LinkProduct" xml:space="preserve">
+        <value />
+    </data>
+    <data name="B-NoLinToProduct" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Pr-Lists" xml:space="preserve">
+        <value />
+    </data>
 </root>

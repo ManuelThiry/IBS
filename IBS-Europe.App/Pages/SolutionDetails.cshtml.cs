@@ -29,11 +29,13 @@ public class SolutionDetails : PageModel
     public async Task Load(string name)
     {
         var product = await _productsData.GetProduct(name);
+        var brokers = await _productsData.GetBrokers(name);
         Product = new Model
         {
             Name = product.Name,
             Image = product.Image,
             Description = product.Description,
+            Brokers = brokers
         };
     }
     
@@ -189,4 +191,6 @@ public class Model
     public string Name { get; set; }
     public string Image { get; set; }
     public string Description { get; set; }
+    
+    public Dictionary<string,string> Brokers { get; set; }
 }

@@ -886,4 +886,13 @@
     <data name="Pa-Proffesionnals" xml:space="preserve">
         <value>Entreprises</value>
     </data>
+    <data name="B-LinkProduct" xml:space="preserve">
+        <value>Produit associé à ce document</value>
+    </data>
+    <data name="B-NoLinToProduct" xml:space="preserve">
+        <value>Aucun lien</value>
+    </data>
+    <data name="Pr-Lists" xml:space="preserve">
+        <value>Liste des documents associés :</value>
+    </data>
 </root>

@@ -19,4 +19,6 @@ public interface IProductsData
     public Task DeleteProduct(string name);
     
     public Task SwitchPriority(int priority, string direction);
+    
+    public Task<Dictionary<string,string>> GetBrokers(string productName);
 }

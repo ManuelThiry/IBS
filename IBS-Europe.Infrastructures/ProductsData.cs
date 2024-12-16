@@ -3,6 +3,7 @@ using IBS_Europe.Domains;
 using IBS_Europe.Domains.Translation;
 using IBS_Europe.Infrastructures.Data;
 using Microsoft.EntityFrameworkCore;
+using Broker = IBS_Europe.Domains.Broker;
 using Translator = IBS_Europe.Infrastructures.Data.Translator;
 
 namespace IBS_Europe.Infrastructures;
@@ -59,7 +60,25 @@ public class ProductsData : IProductsData
             await _context.SaveChangesAsync();
         }
     }
-    
+
+    public async Task<Dictionary<string,string>> GetBrokers(string productName)
+    {
+        var brokers = await _context.Products.Include(p => p.Brokers).ToListAsync();
+        var brokersToReturn = new Dictionary<string, string>();
+        foreach (var product in brokers)
+        {
+            if (product.Name == productName)
+            {
+                foreach (var broker in product.Brokers)
+                {
+                    brokersToReturn.Add(broker.Name, broker.Path);
+                }
+            }
+        }
+
+        return brokersToReturn;
+    }
+
     public async Task<Product> GetProduct(string name)
     {
         var item = await _context.Products.Include(p=> p.FirstTranslator).Include(p=> p.SecondTranslator).FirstOrDefaultAsync(p => p.Name == name);

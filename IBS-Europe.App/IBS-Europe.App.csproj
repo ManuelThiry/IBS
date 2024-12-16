@@ -187,7 +187,7 @@
 
     <ItemGroup>
       <Folder Include="Data\" />
-      <Folder Include="Pages\Shared\Model\" />
+      <Folder Include="Middleware\" />
       <Folder Include="wwwroot\images\Brokers\" />
       <Folder Include="wwwroot\images\Partners\" />
       <Folder Include="wwwroot\images\People\" />

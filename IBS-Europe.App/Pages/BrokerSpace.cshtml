@@ -5,8 +5,8 @@
 @{
     ViewData["Title"] = SharedResource.B_Title;
     @Html.Partial("_DeleteConfirmationModal");
-    @Html.Partial("_AddBrokerModal", Model.Input);
-    @Html.Partial("_EditBrokerModal", Model.Input);
+    @Html.Partial("_AddBrokerModal", Model);
+    @Html.Partial("_EditBrokerModal", Model);
 }
 
     <style>
@@ -159,7 +159,7 @@
                             }
                             else
                             {
-                                <span class="badge rounded-pill">@SharedResource.B_Professionals</span>
+                                <span class="badge bg-danger rounded-pill">@SharedResource.B_Professionals</span>
                             }
 
                             @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")

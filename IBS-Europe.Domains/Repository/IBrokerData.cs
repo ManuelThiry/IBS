@@ -9,7 +9,7 @@ public interface IBrokerData
     
     public Task<bool> BrokerExists(int id, string name, int category);
     
-    public Task UpdateBroker(int id, string newName);
+    public Task UpdateBroker(int id, string newName, string product);
     
     public Task SwitchPriority(int id, string direction);
     
@@ -18,4 +18,8 @@ public interface IBrokerData
     public Task AddBroker(Broker broker);
     
     public Task<string> GetBrokerName(int id);
+
+    public Task<List<string>> GetProductsList();
+    
+    public Task<string> GetProduct(int id);
 }
