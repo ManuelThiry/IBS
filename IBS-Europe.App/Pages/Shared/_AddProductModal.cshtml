@@ -55,8 +55,9 @@
         }
 
 </style>
-
-<script>
+@if (User.Identity.IsAuthenticated)
+{
+    <script>
 fetch('/tinymce-script.js')
     .then(response => response.json())
     .then(config => {
@@ -80,7 +81,7 @@ fetch('/tinymce-script.js')
 </script>
 
 
-
+}
 
 
 

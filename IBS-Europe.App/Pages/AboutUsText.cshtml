@@ -6,8 +6,9 @@
     ViewData["Title"] = SharedResource.AS_Title;
 }
 
-<section class="text-center p-5">
-    <div class="title-fade-in container bg-white rounded-3 p-4 shadow" style="max-width: 60%;">
-       @Html.Raw(@SharedResource.AS_Text)
+<section class="p-5" style="width: 80%;">
+    <div class=" container ms-2">
+        @Html.Raw(SharedResource.AS_Text)
     </div>
+
 </section>
