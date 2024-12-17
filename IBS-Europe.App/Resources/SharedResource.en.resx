@@ -877,7 +877,7 @@ The file must be a PNG or JPG image.</value>
         <value>Teaser</value>
     </data>
     <data name="Pr-D200" xml:space="preserve">
-        <value>Teaser must not exceed 200 chracters.</value>
+        <value>Teaser must not exceed 250 chracters.</value>
     </data>
     <data name="S-Looking" xml:space="preserve">
         <value>Search for a solution</value>
@@ -886,7 +886,7 @@ The file must be a PNG or JPG image.</value>
         <value>No solutions available at the moment.</value>
     </data>
     <data name="S-NoLooking" xml:space="preserve">
-        <value>No solutions matching your search</value>
+        <value>No solutions matching your search.</value>
     </data>
     <data name="Pa-NoPartners" xml:space="preserve">
         <value>No partners available at the moment.</value>
@@ -926,5 +926,8 @@ The file must be a PNG or JPG image.</value>
     </data>
     <data name="Pr-Lists" xml:space="preserve">
         <value>List of associated documents</value>
+    </data>
+    <data name="B-AddB" xml:space="preserve">
+        <value>Add a download</value>
     </data>
 </root>

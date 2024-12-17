@@ -187,7 +187,11 @@ public class BrokerData : IBrokerData
 
     public async Task<List<string>> GetProductsList()
     {
-        return await _context.Products.Select(p => p.Name).ToListAsync(); 
+        return await _context.Products
+            .OrderBy(p => p.Priority)
+            .Select(p=> p.Name)// Tri par la propriété Priority
+            .ToListAsync(); // Conversion en liste
+
     }
     
     public async Task<string> GetProduct(int id)

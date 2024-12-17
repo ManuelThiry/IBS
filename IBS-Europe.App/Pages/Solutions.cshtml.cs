@@ -326,7 +326,7 @@ public class Solutions : PageModel
 
         public IFormFile Image { get; set; }
         
-        [StringLength(200, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_D200")]
+        [StringLength(250, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_D200")]
         public string SmallDescription { get; set; }
         
         [StringLength(20000, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "Pr_D20")]

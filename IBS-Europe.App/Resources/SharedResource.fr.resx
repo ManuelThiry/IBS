@@ -845,7 +845,7 @@
         <value>Texte d'accroche</value>
     </data>
     <data name="Pr-D200" xml:space="preserve">
-        <value>Le texte d'accroche ne doit pas dépasser 200 caractères</value>
+        <value>Le texte d'accroche ne doit pas dépasser 250 caractères</value>
     </data>
     <data name="S-Looking" xml:space="preserve">
         <value>Rechercher une solution</value>
@@ -894,5 +894,8 @@
     </data>
     <data name="Pr-Lists" xml:space="preserve">
         <value>Liste des documents associés :</value>
+    </data>
+    <data name="B-AddB" xml:space="preserve">
+        <value>Ajouter un téléchargement</value>
     </data>
 </root>

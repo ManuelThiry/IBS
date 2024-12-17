@@ -190,6 +190,20 @@ public class ProductsData : IProductsData
 
         await _context.SaveChangesAsync();
     }
+    
+    public async Task<Dictionary<string,string>> GetProductsList()
+    {
+        var products = await _context.Products
+            .OrderBy(p => p.Priority) 
+            .ToListAsync(); 
+        var productsList = new Dictionary<string,string>();
+        foreach (var product in products)
+        {
+            productsList.Add(product.Name, product.Path);
+        }
+
+        return productsList;
+    }
 
 
 }

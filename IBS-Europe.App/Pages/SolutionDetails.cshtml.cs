@@ -37,6 +37,8 @@ public class SolutionDetails : PageModel
             Description = product.Description,
             Brokers = brokers
         };
+        
+        ViewData["ProductsList"] = await _productsData.GetProductsList();
     }
     
     public async Task<IActionResult> OnPostDelete(string productName)

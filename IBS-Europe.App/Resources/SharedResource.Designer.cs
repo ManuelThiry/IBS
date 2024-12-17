@@ -242,6 +242,15 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string B_AddB {
+            get {
+                return ResourceManager.GetString("B-AddB", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string B_CR {
             get {
                 return ResourceManager.GetString("B-CR", resourceCulture);
