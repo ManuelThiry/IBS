@@ -1,5 +1,5 @@
 ﻿@using IBS_Europe.App.Resources
-@model Pages.BrokerSpace
+@model Pages.BrokerSpace.AddBrokerModel
 
 <div class="modal fade" id="editBrokerModal" tabindex="-1" data-bs-backdrop="static" aria-labelledby="editBrokerLabel" aria-hidden="true">
     <div class="modal-dialog">
@@ -14,13 +14,13 @@
                 <div class="modal-body">
                     <div class="mb-3">
                         <label for="brokerName" class="form-label">@SharedResource.MA_Name</label>
-                        <input type="text" class="form-control" id="brokerName" name="Name" value="@Model.Input.Name">
-                        <span asp-validation-for="@Model.Input.Name" class="text-danger"></span>
+                        <input type="text" class="form-control" id="brokerName" name="Name" value="@Model.Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     
                     <div class="mb-3">
                         <label for="productLink" class="form-label">@SharedResource.B_LinkProduct</label>
-                        <select asp-for="@Model.Input.Product" class="form-select" id="productLink">
+                        <select asp-for="Product" class="form-select" id="productLink">
                             <option value="" selected>@SharedResource.B_NoLinToProduct</option>
                         </select>
                     </div>

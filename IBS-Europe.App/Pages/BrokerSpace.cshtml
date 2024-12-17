@@ -5,8 +5,8 @@
 @{
     ViewData["Title"] = SharedResource.B_Title;
     @Html.Partial("_DeleteConfirmationModal");
-    @Html.Partial("_AddBrokerModal", Model);
-    @Html.Partial("_EditBrokerModal", Model);
+    @Html.Partial("_AddBrokerModal", Model.Input);
+    @Html.Partial("_EditBrokerModal", Model.Input);
 }
 
     <style>

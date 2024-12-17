@@ -1,6 +1,6 @@
 ﻿@using IBS_Europe.Domains
 @using IBS_Europe.App.Resources
-@model BrokerSpace
+@model BrokerSpace.AddBrokerModel
 
 <div class="modal fade" id="addBrokerModal" tabindex="-1" aria-labelledby="addBrokerLabel" data-bs-backdrop="static" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
@@ -14,17 +14,17 @@
 
                     <div class="mb-3">
                         <label for="brokerName" class="form-label">@SharedResource.MA_Name</label>
-                        <input type="text" class="form-control" id="brokerName" name="Name" value="@Model.Input.Name">
-                        <span asp-validation-for="@Model.Input.Name" class="text-danger"></span>
+                        <input type="text" class="form-control" id="brokerName" name="Name" value="@Model.Name">
+                        <span asp-validation-for="Name" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label for="brokerPdf" class="form-label">@SharedResource.MAB_Document</label>
                         <input type="file" class="form-control" id="brokerPdf" name="pdf" accept=".pdf">
-                        <span asp-validation-for="@Model.Input.Pdf" class="text-danger"></span>
+                        <span asp-validation-for="Pdf" class="text-danger"></span>
                     </div>
                     <div class="mb-3">
                         <label for="brokerCategory" class="form-label">@SharedResource.MAB_Category</label>
-                        <select asp-for="@Model.Input.Category" class="form-select" id="brokerCategory">
+                        <select asp-for="Category" class="form-select" id="brokerCategory">
                             <option value="" disabled selected>@SharedResource.MAB_CategorySelect</option>
                             @foreach (var cat in Enum.GetValues(typeof(Category)))
                             {
@@ -46,14 +46,14 @@
                             }
                         </select>
 
-                        <span asp-validation-for="@Model.Input.Category" class="text-danger"></span>
+                        <span asp-validation-for="Category" class="text-danger"></span>
                     </div>
                     
                     <div class="mb-3">
                         <label for="productLink" class="form-label">@SharedResource.B_LinkProduct</label>
-                        <select asp-for="@Model.Input.Product" class="form-select" id="productLink">
+                        <select asp-for="Product" class="form-select" id="productLink">
                             <option value="" selected>@SharedResource.B_NoLinToProduct</option>
-                            @foreach(var product in Model.ProductsList)
+                            @foreach(var product in ViewData["ProductsList"] as List<string>)
                             {
                                 <option value="@product">@product</option>
                             }

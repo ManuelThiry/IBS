@@ -12,8 +12,6 @@ namespace IBS_Europe.App.Pages
         
         public int SelectedCategory { get; set; }
         
-        public List<string> ProductsList { get; set; } = new List<string>();
-        
         public bool IsAddBrokerAction { get; set; }
         public bool IsEditdBrokerAction { get; set; }
         
@@ -162,8 +160,7 @@ namespace IBS_Europe.App.Pages
                 
                 
             }
-            
-            ProductsList = await _data.GetProductsList();
+            ViewData["ProductsList"] = await _data.GetProductsList();
             
         }
         
