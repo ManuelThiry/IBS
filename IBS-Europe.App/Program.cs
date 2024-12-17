@@ -8,13 +8,8 @@ using System.Globalization;
 using DotNetEnv;
 using IBS_Europe.App.Pages.Shared.Email;
 using IBS_Europe.Domains.Translation;
-using Microsoft.AspNetCore.Localization.Routing;
 using Microsoft.AspNetCore.Mvc.Razor;
 using Microsoft.Extensions.Options;
-using MailKit.Net.Smtp;
-using MimeKit;
-using MailKit;
-
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.Configure<SmtpSettings>(builder.Configuration.GetSection("SmtpSettings"));

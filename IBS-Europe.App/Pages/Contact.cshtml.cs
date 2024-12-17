@@ -539,6 +539,7 @@ public class Contact : PageModel
 
                 foreach (var file in map)
                 {
+                    
                     // Construire le chemin complet vers le fichier
                     var filePath = Path.Combine("wwwroot", "images", "upload", file.Value);
 

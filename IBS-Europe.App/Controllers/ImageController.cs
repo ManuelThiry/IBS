@@ -55,6 +55,14 @@ namespace IBS_Europe.App.Controllers
                 {
                     Expires = DateTime.Now.AddHours(1)
                 };
+                
+                var uploadDir = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "upload");
+
+                // Vérifier si le dossier existe, sinon le créer
+                if (!Directory.Exists(uploadDir))
+                {
+                    Directory.CreateDirectory(uploadDir);
+                }
 
                 // Déterminer le chemin du fichier à sauvegarder dans wwwroot/upload
                 var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "upload", uniqueName);

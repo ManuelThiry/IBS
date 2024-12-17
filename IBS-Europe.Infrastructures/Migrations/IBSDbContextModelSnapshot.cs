@@ -15,32 +15,39 @@ namespace IBS_Europe.Infrastructures.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder.HasAnnotation("ProductVersion", "6.0.24");
+            modelBuilder
+                .HasAnnotation("ProductVersion", "6.0.24")
+                .HasAnnotation("Relational:MaxIdentifierLength", 64);
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Broker", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("Category")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    b.Property<int?>("ProductsId")
+                        .HasColumnType("int");
 
                     b.Property<int>("TranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("ProductsId");
 
                     b.HasIndex("TranslatorId");
 
@@ -98,25 +105,25 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("FirstTranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("SecondTranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -160,27 +167,27 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("FirstTranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<int>("SecondTranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Type")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -247,22 +254,25 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    b.Property<int>("Category")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Website")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -272,6 +282,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 1,
+                            Category = 1,
                             Name = "AG Insurance",
                             Path = "https://www.ibseurope.com/images/suppliers/AG.jpg",
                             Priority = 1,
@@ -280,6 +291,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 2,
+                            Category = 1,
                             Name = "CFDP",
                             Path = "https://www.ibseurope.com/images/suppliers/cfdp.jpg",
                             Priority = 2,
@@ -288,6 +300,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 3,
+                            Category = 1,
                             Name = "Allianz",
                             Path = "https://www.ibseurope.com/images/suppliers/allianz.jpg",
                             Priority = 3,
@@ -296,6 +309,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 4,
+                            Category = 1,
                             Name = "EuroCaution",
                             Path = "https://www.ibseurope.com/images/suppliers/eurocaution.jpg",
                             Priority = 4,
@@ -304,6 +318,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 5,
+                            Category = 1,
                             Name = "AXA",
                             Path = "https://www.ibseurope.com/images/suppliers/axa.jpg",
                             Priority = 5,
@@ -312,6 +327,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 6,
+                            Category = 1,
                             Name = "Europ Assistance",
                             Path = "https://www.ibseurope.com/images/suppliers/europ-assistance.jpg",
                             Priority = 6,
@@ -320,6 +336,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 7,
+                            Category = 1,
                             Name = "ACE Europe",
                             Path = "https://www.ibseurope.com/images/suppliers/ace-europe.jpg",
                             Priority = 7,
@@ -328,6 +345,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 8,
+                            Category = 1,
                             Name = "JEAN VERHEYEN",
                             Path = "https://www.ibseurope.com/images/suppliers/verheyen.jpg",
                             Priority = 8,
@@ -336,6 +354,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 9,
+                            Category = 1,
                             Name = "Generali Group",
                             Path = "https://www.ibseurope.com/images/suppliers/generali.jpg",
                             Priority = 9,
@@ -344,6 +363,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 10,
+                            Category = 1,
                             Name = "Foyer",
                             Path = "https://www.ibseurope.com/images/suppliers/foyer.jpg",
                             Priority = 10,
@@ -352,6 +372,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 11,
+                            Category = 1,
                             Name = "Lalux",
                             Path = "https://www.ibseurope.com/images/suppliers/lalux.jpg",
                             Priority = 11,
@@ -360,6 +381,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 12,
+                            Category = 1,
                             Name = "Baloise",
                             Path = "https://www.ibseurope.com/images/suppliers/labaloise.jpg",
                             Priority = 12,
@@ -368,6 +390,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 13,
+                            Category = 1,
                             Name = "Protegys",
                             Path = "https://www.ibseurope.com/images/suppliers/protegys.jpg",
                             Priority = 13,
@@ -376,6 +399,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 14,
+                            Category = 1,
                             Name = "April",
                             Path = "https://www.ibseurope.com/images/suppliers/aprilinternational.jpg",
                             Priority = 14,
@@ -387,37 +411,41 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
+
+                    b.Property<string>("SecondPhone")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<int>("TranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -436,6 +464,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                             Phone = "0412345678",
                             Priority = 1,
                             Role = "Administrateur Délégué",
+                            SecondPhone = "",
                             TranslatorId = 2
                         },
                         new
@@ -448,6 +477,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                             Phone = "0412345678",
                             Priority = 2,
                             Role = "Président",
+                            SecondPhone = "",
                             TranslatorId = 3
                         },
                         new
@@ -460,6 +490,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                             Phone = "0412345678",
                             Priority = 3,
                             Role = "Souscripteur de produits",
+                            SecondPhone = "",
                             TranslatorId = 4
                         },
                         new
@@ -472,6 +503,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                             Phone = "0412345678",
                             Priority = 4,
                             Role = "Souscripteur junior",
+                            SecondPhone = "",
                             TranslatorId = 5
                         },
                         new
@@ -484,6 +516,7 @@ namespace IBS_Europe.Infrastructures.Migrations
                             Phone = "0412345678",
                             Priority = 5,
                             Role = "Conseiller assurance",
+                            SecondPhone = "",
                             TranslatorId = 6
                         });
                 });
@@ -492,26 +525,38 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
+
+                    b.Property<int>("FirstTranslatorId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
+
+                    b.Property<int>("Priority")
+                        .HasColumnType("int");
+
+                    b.Property<int>("SecondTranslatorId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("SmallDescription")
+                        .IsRequired()
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("TEXT");
-
-                    b.Property<int>("TranslatorId")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("TranslatorId");
+                    b.HasIndex("FirstTranslatorId");
+
+                    b.HasIndex("SecondTranslatorId");
 
                     b.ToTable("Products");
 
@@ -519,10 +564,13 @@ namespace IBS_Europe.Infrastructures.Migrations
                         new
                         {
                             Id = 1,
+                            FirstTranslatorId = 1,
                             Name = "JuriPASS",
                             Path = "images/IBS-logo-bleu-2_HD.JPG",
-                            Text = "<h2>Qu'est ce que JuriPASS ?</h2>\n            <p><strong>Contrat unique en Belgique !</strong><br>\n                Votre assuré, son conjoint et toute personne\n                vivant habituellement sous son toit,\n                bénéficient d'une Assistance et d'une Protection Juridique :\n                dans le cadre de leur vie privée ;\n               \n                en cas de litige avec leur employeur ;\n               \n                en leur qualité de propriétaire ou de locataire\n                de leur résidence principale ou secondaire.\n                Les biens donnés en location (y compris le recouvrement\n                des loyers impayés) en option.\n               \n                dans le cas de litiges qui concernent leur santé ;\n               \n                pour leur(s) véhicule(s) (Option) ;\n               \n                <br>\n                <br>\n                <strong>Les garanties sont acquises pour les litiges extra contractuels ET contractuels. </strong><br>\n                QUELQUES EXEMPLES : <br>\n                Après une opération, des complications surviennent…\n               \n                L'appartement de rêve des vacances… est au milieu d'un chantier.\n               \n                Votre client fait l'objet d’un licenciement abusif.\n               \n                Le garagiste oublie de remettre de l'huile dans le carter de son véhicule.\n               \n                Un locataire de votre client dégrade le bien ou n’a pas payé son loyer depuis trois mois.\n               \n                <br><br>\n                <strong>Si vous respectez scrupuleusement notre procédure et ne prenez aucune initiative sans concertation préalable avec nous : </strong><br>\n                PAS DE FRANCHISE,\n               \n                PAS DE DELAI D'ATTENTE OU DE CARENCE !\n               \n                Notre prime de base : 131.96 € (évolue avec l'indice « Abex »)\n            </p>",
-                            TranslatorId = 1
+                            Priority = 0,
+                            SecondTranslatorId = 28,
+                            SmallDescription = "Test",
+                            Text = "<h2>Qu'est ce que JuriPASS ?</h2>\n            <p><strong>Contrat unique en Belgique !</strong><br>\n                Votre assuré, son conjoint et toute personne\n                vivant habituellement sous son toit,\n                bénéficient d'une Assistance et d'une Protection Juridique :\n                dans le cadre de leur vie privée ;\n               \n                en cas de litige avec leur employeur ;\n               \n                en leur qualité de propriétaire ou de locataire\n                de leur résidence principale ou secondaire.\n                Les biens donnés en location (y compris le recouvrement\n                des loyers impayés) en option.\n               \n                dans le cas de litiges qui concernent leur santé ;\n               \n                pour leur(s) véhicule(s) (Option) ;\n               \n                <br>\n                <br>\n                <strong>Les garanties sont acquises pour les litiges extra contractuels ET contractuels. </strong><br>\n                QUELQUES EXEMPLES : <br>\n                Après une opération, des complications surviennent…\n               \n                L'appartement de rêve des vacances… est au milieu d'un chantier.\n               \n                Votre client fait l'objet d’un licenciement abusif.\n               \n                Le garagiste oublie de remettre de l'huile dans le carter de son véhicule.\n               \n                Un locataire de votre client dégrade le bien ou n’a pas payé son loyer depuis trois mois.\n               \n                <br><br>\n                <strong>Si vous respectez scrupuleusement notre procédure et ne prenez aucune initiative sans concertation préalable avec nous : </strong><br>\n                PAS DE FRANCHISE,\n               \n                PAS DE DELAI D'ATTENTE OU DE CARENCE !\n               \n                Notre prime de base : 131.96 € (évolue avec l'indice « Abex »)\n            </p>"
                         });
                 });
 
@@ -530,16 +578,16 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<bool>("IsChecked")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER")
+                        .HasColumnType("tinyint(1)")
                         .HasDefaultValue(false);
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.HasKey("Id");
 
@@ -707,25 +755,31 @@ namespace IBS_Europe.Infrastructures.Migrations
                             Id = 27,
                             IsChecked = true,
                             Text = "Monday - Friday: 9 AM - 6 PM"
+                        },
+                        new
+                        {
+                            Id = 28,
+                            IsChecked = true,
+                            Text = "Test"
                         });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
@@ -740,17 +794,17 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -762,54 +816,54 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("datetime(6)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(256)");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("tinyint(1)");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(256)");
 
                     b.HasKey("Id");
 
@@ -827,17 +881,17 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("INTEGER");
+                        .HasColumnType("int");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("Id");
 
@@ -849,17 +903,17 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -871,10 +925,10 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -886,16 +940,16 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("varchar(255)");
 
                     b.Property<string>("Value")
-                        .HasColumnType("TEXT");
+                        .HasColumnType("longtext");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 
@@ -904,11 +958,17 @@ namespace IBS_Europe.Infrastructures.Migrations
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Broker", b =>
                 {
+                    b.HasOne("IBS_Europe.Infrastructures.Data.Products", "Products")
+                        .WithMany("Brokers")
+                        .HasForeignKey("ProductsId");
+
                     b.HasOne("IBS_Europe.Infrastructures.Data.Translator", "Translator")
                         .WithMany()
                         .HasForeignKey("TranslatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.Navigation("Products");
 
                     b.Navigation("Translator");
                 });
@@ -964,13 +1024,21 @@ namespace IBS_Europe.Infrastructures.Migrations
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Products", b =>
                 {
-                    b.HasOne("IBS_Europe.Infrastructures.Data.Translator", "Translator")
+                    b.HasOne("IBS_Europe.Infrastructures.Data.Translator", "FirstTranslator")
                         .WithMany()
-                        .HasForeignKey("TranslatorId")
+                        .HasForeignKey("FirstTranslatorId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Translator");
+                    b.HasOne("IBS_Europe.Infrastructures.Data.Translator", "SecondTranslator")
+                        .WithMany()
+                        .HasForeignKey("SecondTranslatorId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("FirstTranslator");
+
+                    b.Navigation("SecondTranslator");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -1022,6 +1090,11 @@ namespace IBS_Europe.Infrastructures.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Products", b =>
+                {
+                    b.Navigation("Brokers");
                 });
 #pragma warning restore 612, 618
         }
