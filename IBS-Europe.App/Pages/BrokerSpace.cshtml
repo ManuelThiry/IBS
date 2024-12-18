@@ -44,28 +44,24 @@
     <section class="highlight-section rounded-2">
         @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
         {
-            <div class="d-flex justify-content-between align-items-center">
-                <h2>@SharedResource.B_MainD</h2>
-                <div>
-                    <form method="post" asp-page-handler="AddBroker">
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <h2 class="mb-3 mb-md-0">@SharedResource.B_MainD</h2>
+                <div class="d-flex align-items-center justify-content-center gap-2">
+                    <div class="w-md-50 mt-2" style="width: 100%;">
+                        <div class="position-relative">
+                            <input type="text" id="searchInput" class="form-control pe-5" placeholder="@SharedResource.B_Looking" 
+                                   aria-label="Search" oninput="filterProducts()">
+                            <i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                        </div>
+                    </div>
+                    <form class="mt-2" method="post" asp-page-handler="AddBroker">
                         <button type="submit" class="button-1">
-                            @SharedResource.B_AddB
+                            <i class="fas fa-plus"></i>
                         </button>
                     </form>
                 </div>
                 
-                <div class="row mb-0 mt-3 sticky-top">
-                    <div class="m-auto" style="width: 35em;">
-                        <div class="input-group mb-3">
-                            <input type="text" id="searchInput" class="form-control w-50 mx-auto" placeholder="@SharedResource.B_Looking" aria-label="Search" aria-describedby="button-addon2" oninput="filterProducts()">
-                            <span class="input-group-text position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); background-color: transparent; border: none;">
-                                <i class="fas fa-search"></i>
-                            </span>
-                        </div>
-                    </div>
-                </div>
                 
-               
             </div>
 
             <div class="list-group document-list mt-4">
