@@ -4,11 +4,13 @@
 
 @{
     ViewData["Title"] = Model.Product.Name;
-    @Html.Partial("_EditProductModal", Model.Edit);
-    @Html.Partial("_DeleteConfirmationModal");
-    var productName = Model.Product.Name;  // Nom du produit
-    var productDescription = Model.Product.Description;  // Description du produit
-    var productImage = Model.Product.Image;  // URL de l'image
+    @Html.Partial("_EditProductModal", Model.Edit)
+    ;
+    @Html.Partial("_DeleteConfirmationModal")
+    ;
+    var productName = Model.Product.Name; // Nom du produit
+    var productDescription = Model.Product.Description; // Description du produit
+    var productImage = Model.Product.Image; // URL de l'image
 }
 <style>
     .card-overlay {
@@ -51,33 +53,75 @@
         <!-- Liste déroulante des produits -->
         <div class="col-md-3 mb-4">
             <div class="product-list">
-                <p class="form-label fw-bold">Autres produits :</p>
-               @foreach (var product in ViewData["ProductsList"] as Dictionary<string, string>)
-               {
-                   var isActive = product.Key == productName ? "background-color: midnightblue; color: white;" : "color: black";
-                   <a asp-page="/SolutionDetails" asp-route-name="@product.Key" 
-                      class="broker-card text-decoration-none d-flex align-items-center w-100 p-2 rounded-3 shadow-sm mb-2"
-                      style="@isActive">
-                       <img src="@product.Value" alt="@product.Value" style="width: 2em; height: 2em;">
-                       <p class="mb-0 ms-2 text-truncate" style="font-size: 1em; color: inherit;">@product.Key</p>
-                   </a>
-               }
+                <p class="form-label fw-bold">@SharedResource.SD_OtherS</p>
+                @foreach (var product in ViewData["ProductsList"] as Dictionary<string, string>)
+                {
+                    var isActive = product.Key == productName ? "background-color: midnightblue; color: white;" : "color: black";
+                    <a asp-page="/SolutionDetails" asp-route-name="@product.Key"
+                       id="product-@product.Key"
+                       class="broker-card text-decoration-none d-flex align-items-center w-100 p-2 rounded-3 shadow-sm mb-2"
+                       style="@isActive" onclick="saveScrollPosition()">
+                        <img src="@product.Value" alt="@product.Value" style="width: 2em; height: 2em;">
+                        <p class="mb-0 ms-2 text-truncate" style="font-size: 1em; color: inherit;">@product.Key</p>
+                    </a>
+                }
+
 
             </div>
             <div class="mt-4 text-center">
-                <button onclick="window.history.back()" class="btn btn-secondary w-100">Retour</button>
+                <button onclick="window.history.back()" class="btn btn-secondary w-100">@SharedResource.SD_Back</button>
             </div>
-            
+
         </div>
 
         <!-- Affichage du produit -->
         <div class="col-md-9">
-            <div class="card shadow-lg" style="background-image: url('@productImage'); background-size: cover; background-position: center; position: relative;">
+            <div class="card shadow-lg position-relative" style="background-image: url('@productImage'); background-size: cover; background-position: center; position: relative;">
                 <div class="card-overlay"></div>
                 <div class="card-content p-4">
                     <h2 class="card-title">@productName</h2>
                     <p class="card-text">@Html.Raw(productDescription)</p>
+                    @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                    {
+                        <div style="position: absolute; top: 0.5em; right: 0.5em; margin: 0; font-size: 1em; color: #000;">
+
+                            <div class="d-flex align-items-center">
+                                <!-- Bouton Edit -->
+                                <form method="post" asp-page-handler="EditButton">
+                                    <input type="hidden" name="name" value="@Model.Product.Name"/>
+                                    <button type="submit" class="btn btn-warning btn-sm me-2">
+                                        <i class="fas fa-edit"></i>
+                                    </button>
+                                </form>
+
+                                <form id="form" method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage">
+                                    <input type="hidden" name="name" value="@Model.Product.Name"/>
+                                    <input type="file" id="fileInput" name="Edit.Image" style="display:none;" onchange="submitForm()" accept=".png, .jpeg, .jpg"/>
+                                    <button type="button" class="btn btn-warning btn-sm me-2" onclick="document.getElementById('fileInput').click();">
+                                        <i class="fas fa-camera"></i>
+                                    </button>
+                                </form>
+
+
+                                <!-- Bouton Supprimer -->
+                                <button onclick="openDeleteModal('@Html.Raw(Model.Product.Name)')" data-bs-toggle="modal" data-bs-target="#deleteConfirmationModal" type="button" class="btn btn-danger btn-sm me-2 no_link">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+
+
+                            </div>
+                        </div>
+                    }
+                    @foreach (var broker in Model.Product.Brokers)
+                    {
+                        <a href="@broker.Value" target="_blank"
+                           class="broker-card text-decoration-none text-danger d-flex align-items-center w-100 m-auto p-2 rounded-3 shadow-sm mb-2">
+                            <i class="fas fa-file-pdf"></i>
+                            <p class="mb-0 ms-2 text-black" style="font-size: 1em; color: inherit;">@broker.Key</p>
+                        </a>
+                    }
                 </div>
+
             </div>
         </div>
     </div>
@@ -100,12 +144,48 @@
         });
 
         function submitForm() {
-            var form = document.getElementById('form');
-            if (form) {
-                form.submit();
-            } else {
-                console.error("Form not found!");
+                var form = document.getElementById("form");
+                var fileInput = document.getElementById("fileInput");
+                if (fileInput.files.length > 0) {
+                    form.submit(); // Soumettre le formulaire si un fichier a été sélectionné
+                }
             }
-        }
+
+            function saveScrollPosition() {
+                      const productList = document.querySelector('.product-list');
+                          if (productList) {
+                              localStorage.setItem('scrollPositionDetails', productList.scrollTop);
+                          }
+                  }
+                  
+                  document.addEventListener('DOMContentLoaded', () => {
+                      // Réinitialiser le scroll global en haut de la page
+                      window.scrollTo(0, 0);
+                      
+                      const scrollPosition = localStorage.getItem('scrollPositionDetails');
+                      const productList = document.querySelector('.product-list');
+                      
+                      if (scrollPosition && productList) {
+                          productList.scrollTop = parseInt(scrollPosition, 10); // Rétablir la position du scroll de la liste des produits
+                          localStorage.removeItem('scrollPositionDetails'); // Nettoyer après utilisation
+                      } else {
+                          var productName = '@productName'; // Récupérer le nom du produit du modèle Razor
+                          var productElement = document.getElementById('product-' + productName);
+                          
+                          if (productElement) {
+                              // Attendre que tout soit chargé et alors faire défiler jusqu'à l'élément dans la liste des produits
+                              setTimeout(() => {
+                                  productElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                              }, 100); // Utiliser un délai court pour s'assurer que tout est bien chargé
+                          }
+                      }
+                      
+                      // Assurer que le scroll global reste en haut après tout
+                      setTimeout(() => {
+                          window.scrollTo(0, 0);
+                      }, 100); // Ajuster ce délai selon le temps total de chargement si nécessaire
+                  });
+
+
     </script>
 }

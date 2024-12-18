@@ -24,7 +24,7 @@
 
 <div class="m-auto" style="width: 85%;">
     
-    <div class="d-flex justify-content-center align-items-center mt-3 sticky-top">
+    <div class="d-flex justify-content-center align-items-center mt-3">
         <h1 class="text-center mt-2">@SharedResource.S_Title</h1>
             @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
             {
@@ -47,7 +47,7 @@
     </div>
     
 
-    <div class="row">
+    <div class="row d-flex justify-content-center">
         @foreach (var solution in Model.ProductsList)
         {
             <div style="width: 40em;">
@@ -55,7 +55,22 @@
                     <a asp-page="/SolutionDetails" asp-route-name="@solution.Name" class="text-decoration-none text-black mt-3 hover-white" onclick="saveScrollPosition()">
                         <div class="d-flex ">
                             <div>
-                                <img class="w-h-7em rounded-5" src="@solution.Image" alt="@solution.Image">
+                                @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
+                                {
+                                    <form method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage" id="form-@solution.Name">
+                                        <input type="hidden" id="name" name="name" value="@solution.Name"/>
+                                        <input type="file" id="fileInput-@solution.Name" name="Edit.Image" onchange="submitForm('@solution.Name')" style="display:none;"  accept=".png, .jpeg, .jpg"/>
+                                        <div class="d-flex justify-content-center">
+                                            <img class="no_link w-h-7em rounded-5" src="@solution.Image" alt="@solution.Name" onclick="document.getElementById('fileInput-@solution.Name').click()"/>
+                                        </div>
+                                        <span asp-validation-for="Edit.Image" class="text-danger"></span>
+                                    </form>
+                                }
+                                else
+                                {
+                                    <img class="w-h-7em rounded-5" src="@solution.Image" alt="@solution.Image">
+                                }
+                                
                             </div>
                             <div class="ms-3 d-block">
                                 <h5>@solution.Name</h5>

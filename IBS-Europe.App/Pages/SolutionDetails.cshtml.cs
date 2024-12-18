@@ -121,7 +121,7 @@ public class SolutionDetails : PageModel
         };
         
         await _productsData.EditProduct(product, actualName);
-        return RedirectToPage("/SolutionDetails", new { name = actualName });
+        return RedirectToPage("/SolutionDetails", new { name = Edit.Name });
     }
     
     public async Task<IActionResult> OnPostSwitchImage(string name)

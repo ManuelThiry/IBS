@@ -930,4 +930,10 @@ The file must be a PNG or JPG image.</value>
     <data name="B-AddB" xml:space="preserve">
         <value>Add a download</value>
     </data>
+    <data name="SD-OtherS" xml:space="preserve">
+        <value>Other solutions</value>
+    </data>
+    <data name="SD-Back" xml:space="preserve">
+        <value>Back</value>
+    </data>
 </root>

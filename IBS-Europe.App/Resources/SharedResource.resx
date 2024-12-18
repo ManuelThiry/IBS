@@ -639,4 +639,10 @@
     <data name="B-AddB" xml:space="preserve">
         <value />
     </data>
+    <data name="SD-OtherS" xml:space="preserve">
+        <value />
+    </data>
+    <data name="SD-Back" xml:space="preserve">
+        <value />
+    </data>
 </root>

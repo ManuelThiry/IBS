@@ -898,4 +898,10 @@
     <data name="B-AddB" xml:space="preserve">
         <value>Ajouter un téléchargement</value>
     </data>
+    <data name="SD-OtherS" xml:space="preserve">
+        <value>Autres solutions</value>
+    </data>
+    <data name="SD-Back" xml:space="preserve">
+        <value>Retour</value>
+    </data>
 </root>

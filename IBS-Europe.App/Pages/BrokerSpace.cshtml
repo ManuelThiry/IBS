@@ -107,19 +107,18 @@
         }
         else
         {
-            <div class="d-flex justify-content-between align-items-center">
-            <h2>@SharedResource.B_MainD</h2>
-            <div class="row mb-0 mt-3 sticky-top">
-                <div class="m-auto" style="width: 40em;;">
-                    <div class="input-group mb-3">
-                        <input type="text" id="searchInput" class="form-control w-50 mx-auto" placeholder="@SharedResource.B_Looking" aria-label="Search" aria-describedby="button-addon2" oninput="filterProducts()">
-                        <span class="input-group-text position-absolute" style="right: 10px; top: 50%; transform: translateY(-50%); background-color: transparent; border: none;">
-                            <i class="fas fa-search"></i>
-                        </span>
+            <div class="d-flex flex-column flex-md-row align-items-center justify-content-between">
+                <h2 class="mb-3 mb-md-0">@SharedResource.B_MainD</h2>
+                <div class="w-md-50 mt-2" style="width: 60%;">
+                    <div class="position-relative">
+                        <input type="text" id="searchInput" class="form-control pe-5" placeholder="@SharedResource.B_Looking" 
+                               aria-label="Search" oninput="filterProducts()">
+                        <i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
                     </div>
                 </div>
             </div>
-        </div>
+
+            
             <div class="list-group document-list mt-4">
                 @foreach (var document in Model.BrokersGeneralLists)
                 {
