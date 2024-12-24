@@ -410,7 +410,7 @@
         <value>Texte original :</value>
     </data>
     <data name="T-Automatic" xml:space="preserve">
-        <value>Traduction automatiquement généré :</value>
+        <value>Traduction automatique générée (Veuillez garder les éventuelles balises HTML) :</value>
     </data>
     <data name="T-Submit" xml:space="preserve">
         <value>Valider</value>

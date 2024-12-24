@@ -22,8 +22,13 @@
                         <label for="productLink" class="form-label">@SharedResource.B_LinkProduct</label>
                         <select asp-for="Product" class="form-select" id="productLink">
                             <option value="" selected>@SharedResource.B_NoLinToProduct</option>
+                            @foreach(var product in ViewData["ProductsList"] as List<string>)
+                            {
+                                <option value="@product">@product</option>
+                            }
                         </select>
                     </div>
+                    
                     
 
                     <div class="modal-footer">

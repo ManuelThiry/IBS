@@ -125,7 +125,7 @@ public class TranslatorData : ITranslatorData
                 return null;
             return new Translator
             {
-                OriginalText = product2.Text,
+                OriginalText = product2.SmallDescription,
                 TranslatedText = product2.SecondTranslator.Text,
                 Id = product2.SecondTranslator.Id
             };

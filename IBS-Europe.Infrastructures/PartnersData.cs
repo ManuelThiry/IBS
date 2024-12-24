@@ -55,11 +55,12 @@ public class PartnersData : IPartnersData
         }
     }
     
-    public async Task DeletePartner(int priority, int selectedCategory)
+    public async Task<string> DeletePartner(int priority, int selectedCategory)
     {
         var item = await _context.Partners.Where(p=>p.Category == selectedCategory).Where(p=> p.Priority == priority).FirstOrDefaultAsync();
         if (item != null)
         {
+            var path = item.Path;
             _context.Partners.Remove(item);
             
             var itemsAbove = await _context.Partners.Where(p=> p.Category == selectedCategory).Where(p=> p.Priority > priority).ToListAsync();
@@ -70,7 +71,10 @@ public class PartnersData : IPartnersData
             }
             
             await _context.SaveChangesAsync();
+            return path;
         }
+
+        return "";
     }
     
     public async Task AddPartner(Partners partner)

@@ -236,7 +236,16 @@ public class Solutions : PageModel
             return RedirectToPage();
         }
         
-        await _data.DeleteProduct(productName);
+        var path = await _data.DeleteProduct(productName);
+        
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        var filePath = Path.Combine(uploadPath, path.TrimStart('/')); 
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
+
 
         return RedirectToPage();
     }

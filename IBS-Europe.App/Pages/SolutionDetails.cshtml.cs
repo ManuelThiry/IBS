@@ -55,7 +55,15 @@ public class SolutionDetails : PageModel
             return RedirectToPage("/SolutionDetails", new { name = productName });
         }
         
-        await _productsData.DeleteProduct(productName);
+        var path = await _productsData.DeleteProduct(productName);
+        
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        var filePath = Path.Combine(uploadPath, path.TrimStart('/')); 
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
 
         return RedirectToPage("/Solutions");
     }

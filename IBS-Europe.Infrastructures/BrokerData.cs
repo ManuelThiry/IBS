@@ -61,12 +61,20 @@ public class BrokerData : IBrokerData
         return myList;
     }
     
-    public async Task DeleteBroker(int id)
+    public async Task<string> DeleteBroker(int id)
     {
         var item = await _context.Brokers.Include(b => b.Translator).FirstOrDefaultAsync(a => a.Id == id);
         
         if (item != null)
         {
+            var path = item.Path;
+            if (File.Exists(path))  // Vérifier si le fichier existe
+            {
+                File.Delete(path);  // Supprimer le fichier
+            }
+
+            
+            
             var priority = item.Priority;
             _context.Translator.Remove(item.Translator);
             _context.Brokers.Remove(item);
@@ -79,8 +87,12 @@ public class BrokerData : IBrokerData
             }
         
             await _context.SaveChangesAsync();
-            
+
+            return path;
+
         }
+
+        return "";
     }
     
     public async Task<bool> BrokerExists(int id, string name, int category)
@@ -97,10 +109,11 @@ public class BrokerData : IBrokerData
     public async Task AddBroker(Broker broker)
     {
         var product = await _context.Products.Where(p => p.Name == broker.Products).FirstOrDefaultAsync();
-        int maxPriority = await _context.Brokers
-            .AnyAsync() // Vérifie si des éléments existent
-            ? _context.Brokers.Where(x => x.Category == broker.Category).Max(p => p.Priority) // Applique Max seulement s'il y a des éléments
-            : 0; // Sinon retourne 0
+        int maxPriority = _context.Brokers
+            .Where(x => x.Category == broker.Category)
+            .DefaultIfEmpty()  // Ajoute un élément par défaut si la séquence est vide
+            .Max(p => p == null ? 0 : p.Priority);  // Si la séquence est vide, max sera 0
+
 
     
         int newPriority = maxPriority + 1;
@@ -125,13 +138,19 @@ public class BrokerData : IBrokerData
     {
         var product = await _context.Products.Where(p => p.Name == productName).FirstOrDefaultAsync();
         var item = await _context.Brokers.Include(t=> t.Translator).FirstOrDefaultAsync(a =>  a.Id == id);
+        if (item != null)
+        {
+            item.ProductsId = product == null ? null : product.Id; 
+        }
         if (item != null && item.Name != newName)
         {
             item.Translator.Text = await DeeplTranslate.TranslateTextWithDeeplAsync(newName, "EN");
+            item.Translator.IsChecked = false;
             item.Name = newName;
-            item.ProductsId = product == null ? null : product.Id;
-            await _context.SaveChangesAsync();
+            
+            
         }
+        await _context.SaveChangesAsync();
     }
     
     public async Task SwitchPriority(int id, string direction)
@@ -196,10 +215,14 @@ public class BrokerData : IBrokerData
     
     public async Task<string> GetProduct(int id)
     {
-        var item = await _context.Products.FirstOrDefaultAsync(a => a.Id == id);
+        var item = await _context.Brokers.Include(b=>b.Products).FirstOrDefaultAsync(a => a.Id == id);
         if (item != null)
         {
-            return item.Name;
+            if (item.Products == null)
+            {
+                return "";
+            }
+            return item.Products.Name;
         }
         
         return "";

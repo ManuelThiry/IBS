@@ -87,12 +87,13 @@ public class PeopleData : IPeopleData
        await _context.SaveChangesAsync();
     }
     
-    public async Task DeletePeople(int id)
+    public async Task<string> DeletePeople(int id)
     {
         var item = await _context.People.Include(p=> p.Translator).Where(p=> p.Id == id).FirstOrDefaultAsync();
         int priority = item.Priority;
         if (item != null)
         {
+            var path = item.Path;
             _context.People.Remove(item);
             _context.Translator.Remove(item.Translator);
             
@@ -104,7 +105,11 @@ public class PeopleData : IPeopleData
             }
             
            await _context.SaveChangesAsync();
+
+           return path;
         }
+
+        return "";
     }
     
     public async Task SwitchPriority(int priority, string direction)

@@ -6,7 +6,7 @@ public interface IPartnersData
     
     public Task SwitchPriority(int priority, string direction, int selectedCategory);
     
-    public Task DeletePartner(int priority, int selectedCategory);
+    public Task<string> DeletePartner(int priority, int selectedCategory);
     
     public Task AddPartner(Partners partner);
     

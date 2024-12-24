@@ -51,8 +51,10 @@
                         <div class="position-relative">
                             <input type="text" id="searchInput" class="form-control pe-5" placeholder="@SharedResource.B_Looking" 
                                    aria-label="Search" oninput="filterProducts()">
-                            <i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                            <i class="fas fa-search position-absolute" id="searchIcon" style="right: 12px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                            <i class="fas fa-times position-absolute" id="clearSearchIcon" style="right: 12px; top: 50%; transform: translateY(-50%); color: #6c757d; cursor: pointer;" onclick="resetSearch()"></i>
                         </div>
+                        
                     </div>
                     <form class="mt-2" method="post" asp-page-handler="AddBroker">
                         <button type="submit" class="button-1">
@@ -109,8 +111,10 @@
                     <div class="position-relative">
                         <input type="text" id="searchInput" class="form-control pe-5" placeholder="@SharedResource.B_Looking" 
                                aria-label="Search" oninput="filterProducts()">
-                        <i class="fas fa-search position-absolute" style="right: 15px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                       <i class="fas fa-search position-absolute" id="searchIcon" style="right: 12px; top: 50%; transform: translateY(-50%); color: #6c757d;"></i>
+                       <i class="fas fa-times position-absolute" id="clearSearchIcon" style="right: 12px; top: 50%; transform: translateY(-50%); color: #6c757d; cursor: pointer;" onclick="resetSearch()"></i>
                     </div>
+                    
                 </div>
             </div>
 
@@ -254,28 +258,38 @@
                 });
              
         function filterProducts() {
-            // Récupère la valeur saisie dans le champ de recherche
             const searchInput = document.getElementById("searchInput").value.toLowerCase();
+            const searchIcon = document.getElementById("searchIcon");
+            const clearSearchIcon = document.getElementById("clearSearchIcon");
         
-            // Sauvegarde la recherche dans un cookie
-            document.cookie = `searchInput=${searchInput}; path=/; max-age=1800;`;
+            // Sauvegarder la recherche dans un cookie
+            document.cookie = `searchInput=${searchInput}; path=/;`;
         
-            // Récupère tous les éléments des listes de documents
+            // Afficher/masquer les icônes de la loupe et de la croix
+            if (searchInput.trim() === "") {
+                searchIcon.style.display = "inline"; // Afficher la loupe si vide
+                clearSearchIcon.style.display = "none"; // Masquer la croix si vide
+            } else {
+                searchIcon.style.display = "none"; // Masquer la loupe si non vide
+                clearSearchIcon.style.display = "inline"; // Afficher la croix si non vide
+            }
+        
+            // Filtrer les éléments de la liste en fonction de la recherche
             const documentItems = document.querySelectorAll(".list-group .list-group-item");
-        
-            // Parcourt chaque élément pour vérifier s'il correspond au critère de recherche
             documentItems.forEach((item) => {
                 const documentName = item.querySelector("span").textContent.toLowerCase();
-        
-                // Si le nom contient le texte de recherche, on affiche l'élément ; sinon, on le masque
-                if (documentName.includes(searchInput)) {
-                    item.style.display = "block";
-                } else {
-                    item.style.display = "none";
-                }
+                item.style.display = documentName.includes(searchInput) ? "block" : "none";
             });
         }
+
         
+        function resetSearch() {
+            document.getElementById("searchInput").value = ''; // Réinitialiser le champ de recherche
+            filterProducts(); // Revenir à l'affichage initial des produits
+        }
+
+        
+        // Fonction pour récupérer la valeur d'un cookie par son nom
         // Fonction pour récupérer la valeur d'un cookie par son nom
         function getCookie(name) {
             const value = `; ${document.cookie}`;
@@ -283,16 +297,31 @@
             if (parts.length === 2) return parts.pop().split(';').shift();
             return "";
         }
+
         
         // Au chargement de la page, applique la recherche enregistrée dans le cookie
         document.addEventListener("DOMContentLoaded", () => {
+            const clearSearchIcon = document.getElementById("clearSearchIcon");
             const savedSearch = getCookie("searchInput");
             if (savedSearch) {
                 const searchInputElement = document.getElementById("searchInput");
                 searchInputElement.value = savedSearch;
                 filterProducts();
-            }
+            } else {
+clearSearchIcon.style.display = "none"; // Masquer la croix si vide
+           
+                }
         });
+        
+         document.addEventListener("DOMContentLoaded", () => {
+             const savedSearch = getCookie("searchInput");
+             if (savedSearch) {
+                 const searchInputElement = document.getElementById("searchInput");
+                 searchInputElement.value = savedSearch;
+                 filterProducts(); // Appliquer la recherche sauvegardée
+             }
+         });
+
 
 
 

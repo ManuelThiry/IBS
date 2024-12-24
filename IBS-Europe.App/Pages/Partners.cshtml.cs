@@ -66,7 +66,16 @@ public class Partners : PageModel
             return RedirectToPage();
         }
         SelectedCategoryMethod();
-        await _data.DeletePartner(priority, SelectedCategory);
+        var path = await _data.DeletePartner(priority, SelectedCategory);
+        
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        var filePath = Path.Combine(uploadPath, path.TrimStart('/')); 
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
+
         return RedirectToPage();
     }
     

@@ -15,35 +15,33 @@ namespace IBS_Europe.Infrastructures.Migrations
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
-            modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.24")
-                .HasAnnotation("Relational:MaxIdentifierLength", 64);
+            modelBuilder.HasAnnotation("ProductVersion", "6.0.24");
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Broker", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Category")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int?>("ProductsId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("TranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -52,78 +50,31 @@ namespace IBS_Europe.Infrastructures.Migrations
                     b.HasIndex("TranslatorId");
 
                     b.ToTable("Brokers");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Category = 1,
-                            Name = "Maestria 2010",
-                            Path = "pdf/2010-contrat-conseiller-maestria.pdf",
-                            Priority = 1,
-                            TranslatorId = 7
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Category = 2,
-                            Name = "Interim 2010",
-                            Path = "pdf/2010-convention-interim-assurances.pdf",
-                            Priority = 1,
-                            TranslatorId = 8
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Category = 3,
-                            Name = "Interim 2011",
-                            Path = "pdf/2010-convention-interim-assurances.pdf",
-                            Priority = 1,
-                            TranslatorId = 9
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Category = 3,
-                            Name = "Interim 2012",
-                            Path = "pdf/2010-convention-interim-assurances.pdf",
-                            Priority = 2,
-                            TranslatorId = 10
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Category = 3,
-                            Name = "Interim 2013",
-                            Path = "pdf/2010-convention-interim-assurances.pdf",
-                            Priority = 3,
-                            TranslatorId = 11
-                        });
                 });
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Email", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("EmailAddress")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("FirstTranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("SecondTranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -132,62 +83,33 @@ namespace IBS_Europe.Infrastructures.Migrations
                     b.HasIndex("SecondTranslatorId");
 
                     b.ToTable("Email");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Vous souhaitez des informations concernant les produits.",
-                            EmailAddress = "affaires@ibseurope.com",
-                            FirstTranslatorId = 12,
-                            Name = "Information",
-                            SecondTranslatorId = 13
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "Vous souhaitez annoncer un sinistre.",
-                            EmailAddress = "sinistre@ibseurope.com",
-                            FirstTranslatorId = 14,
-                            Name = "Sinistres",
-                            SecondTranslatorId = 15
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "Vous souhaitez faire une demande particulière.",
-                            EmailAddress = "info@ibseurope.com",
-                            FirstTranslatorId = 16,
-                            Name = "Autres",
-                            SecondTranslatorId = 17
-                        });
                 });
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Informations", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Description")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("FirstTranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SecondTranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Type")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
@@ -196,361 +118,114 @@ namespace IBS_Europe.Infrastructures.Migrations
                     b.HasIndex("SecondTranslatorId");
 
                     b.ToTable("Informations");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Adresse",
-                            FirstTranslatorId = 18,
-                            Priority = 5,
-                            SecondTranslatorId = 19,
-                            Text = "68 route de Luxembourg, L-4972 Dippach, Luxembourg",
-                            Type = 3
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Description = "BE",
-                            FirstTranslatorId = 20,
-                            Priority = 4,
-                            SecondTranslatorId = 21,
-                            Text = "+32-4 259 76 72",
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Description = "LUX",
-                            FirstTranslatorId = 22,
-                            Priority = 3,
-                            SecondTranslatorId = 23,
-                            Text = "+352-26 31 06 11-1",
-                            Type = 1
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Description = "Email",
-                            FirstTranslatorId = 24,
-                            Priority = 2,
-                            SecondTranslatorId = 25,
-                            Text = "info@ibseurope.com",
-                            Type = 2
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Description = "Horaire",
-                            FirstTranslatorId = 26,
-                            Priority = 1,
-                            SecondTranslatorId = 27,
-                            Text = "Lundi - Vendredi : 9h - 18h",
-                            Type = 4
-                        });
                 });
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Partners", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("Category")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Website")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Partners");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Category = 1,
-                            Name = "AG Insurance",
-                            Path = "https://www.ibseurope.com/images/suppliers/AG.jpg",
-                            Priority = 1,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Category = 1,
-                            Name = "CFDP",
-                            Path = "https://www.ibseurope.com/images/suppliers/cfdp.jpg",
-                            Priority = 2,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Category = 1,
-                            Name = "Allianz",
-                            Path = "https://www.ibseurope.com/images/suppliers/allianz.jpg",
-                            Priority = 3,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Category = 1,
-                            Name = "EuroCaution",
-                            Path = "https://www.ibseurope.com/images/suppliers/eurocaution.jpg",
-                            Priority = 4,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Category = 1,
-                            Name = "AXA",
-                            Path = "https://www.ibseurope.com/images/suppliers/axa.jpg",
-                            Priority = 5,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Category = 1,
-                            Name = "Europ Assistance",
-                            Path = "https://www.ibseurope.com/images/suppliers/europ-assistance.jpg",
-                            Priority = 6,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Category = 1,
-                            Name = "ACE Europe",
-                            Path = "https://www.ibseurope.com/images/suppliers/ace-europe.jpg",
-                            Priority = 7,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Category = 1,
-                            Name = "JEAN VERHEYEN",
-                            Path = "https://www.ibseurope.com/images/suppliers/verheyen.jpg",
-                            Priority = 8,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Category = 1,
-                            Name = "Generali Group",
-                            Path = "https://www.ibseurope.com/images/suppliers/generali.jpg",
-                            Priority = 9,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Category = 1,
-                            Name = "Foyer",
-                            Path = "https://www.ibseurope.com/images/suppliers/foyer.jpg",
-                            Priority = 10,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Category = 1,
-                            Name = "Lalux",
-                            Path = "https://www.ibseurope.com/images/suppliers/lalux.jpg",
-                            Priority = 11,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            Category = 1,
-                            Name = "Baloise",
-                            Path = "https://www.ibseurope.com/images/suppliers/labaloise.jpg",
-                            Priority = 12,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            Category = 1,
-                            Name = "Protegys",
-                            Path = "https://www.ibseurope.com/images/suppliers/protegys.jpg",
-                            Priority = 13,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        },
-                        new
-                        {
-                            Id = 14,
-                            Category = 1,
-                            Name = "April",
-                            Path = "https://www.ibseurope.com/images/suppliers/aprilinternational.jpg",
-                            Priority = 14,
-                            Website = "https://www.ibseurope.com/fr/index.cfm"
-                        });
                 });
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.People", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("FirstName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LastName")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Phone")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Role")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("SecondPhone")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("TranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("TranslatorId");
 
                     b.ToTable("People");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Email = "gdm@ibseurope.com",
-                            FirstName = "Gael",
-                            LastName = "de Miomandre",
-                            Path = "https://i.pinimg.com/564x/53/76/31/53763136436d736e99c915f41f0ce25d.jpg",
-                            Phone = "0412345678",
-                            Priority = 1,
-                            Role = "Administrateur Délégué",
-                            SecondPhone = "",
-                            TranslatorId = 2
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Email = "adm@ibseurope.com",
-                            FirstName = "Alain",
-                            LastName = "de Miomandre",
-                            Path = "https://avatarfiles.alphacoders.com/326/thumb-1920-326625.jpg",
-                            Phone = "0412345678",
-                            Priority = 2,
-                            Role = "Président",
-                            SecondPhone = "",
-                            TranslatorId = 3
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Email = "pap@ibseurope.com",
-                            FirstName = "Patrice",
-                            LastName = "Penders",
-                            Path = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSkM7w_sYTtWDdtd18g--vJQXR4RxexU_pxlw&s",
-                            Phone = "0412345678",
-                            Priority = 3,
-                            Role = "Souscripteur de produits",
-                            SecondPhone = "",
-                            TranslatorId = 4
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Email = "sat@ibseurope.com",
-                            FirstName = "Salvatore",
-                            LastName = "Tomasello",
-                            Path = "https://i.pinimg.com/564x/9b/ed/ac/9bedac5d6b820b0ead1810bc3551aa5e.jpg",
-                            Phone = "0412345678",
-                            Priority = 4,
-                            Role = "Souscripteur junior",
-                            SecondPhone = "",
-                            TranslatorId = 5
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Email = "mac@ibseurope.com",
-                            FirstName = "Mathieu",
-                            LastName = "Clicq",
-                            Path = "https://www.cartoonize.net/wp-content/uploads/2024/05/avatar-maker-photo-to-cartoon.png",
-                            Phone = "0412345678",
-                            Priority = 5,
-                            Role = "Conseiller assurance",
-                            SecondPhone = "",
-                            TranslatorId = 6
-                        });
                 });
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Products", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("FirstTranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Path")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("Priority")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<int>("SecondTranslatorId")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SmallDescription")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -559,227 +234,44 @@ namespace IBS_Europe.Infrastructures.Migrations
                     b.HasIndex("SecondTranslatorId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            FirstTranslatorId = 1,
-                            Name = "JuriPASS",
-                            Path = "images/IBS-logo-bleu-2_HD.JPG",
-                            Priority = 0,
-                            SecondTranslatorId = 28,
-                            SmallDescription = "Test",
-                            Text = "<h2>Qu'est ce que JuriPASS ?</h2>\n            <p><strong>Contrat unique en Belgique !</strong><br>\n                Votre assuré, son conjoint et toute personne\n                vivant habituellement sous son toit,\n                bénéficient d'une Assistance et d'une Protection Juridique :\n                dans le cadre de leur vie privée ;\n               \n                en cas de litige avec leur employeur ;\n               \n                en leur qualité de propriétaire ou de locataire\n                de leur résidence principale ou secondaire.\n                Les biens donnés en location (y compris le recouvrement\n                des loyers impayés) en option.\n               \n                dans le cas de litiges qui concernent leur santé ;\n               \n                pour leur(s) véhicule(s) (Option) ;\n               \n                <br>\n                <br>\n                <strong>Les garanties sont acquises pour les litiges extra contractuels ET contractuels. </strong><br>\n                QUELQUES EXEMPLES : <br>\n                Après une opération, des complications surviennent…\n               \n                L'appartement de rêve des vacances… est au milieu d'un chantier.\n               \n                Votre client fait l'objet d’un licenciement abusif.\n               \n                Le garagiste oublie de remettre de l'huile dans le carter de son véhicule.\n               \n                Un locataire de votre client dégrade le bien ou n’a pas payé son loyer depuis trois mois.\n               \n                <br><br>\n                <strong>Si vous respectez scrupuleusement notre procédure et ne prenez aucune initiative sans concertation préalable avec nous : </strong><br>\n                PAS DE FRANCHISE,\n               \n                PAS DE DELAI D'ATTENTE OU DE CARENCE !\n               \n                Notre prime de base : 131.96 € (évolue avec l'indice « Abex »)\n            </p>"
-                        });
                 });
 
             modelBuilder.Entity("IBS_Europe.Infrastructures.Data.Translator", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("IsChecked")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("tinyint(1)")
+                        .HasColumnType("INTEGER")
                         .HasDefaultValue(false);
 
                     b.Property<string>("Text")
                         .IsRequired()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
                     b.ToTable("Translator");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            IsChecked = true,
-                            Text = "<h2>What is JuriPASS?</h2>\n\n<p><strong>Unique contract in Belgium!</strong><br> Your insured person, their spouse, and anyone living regularly under their roof, benefit from Legal Assistance and Protection: in the context of their private life;\nin case of a dispute with their employer;\n\nas a homeowner or tenant of their primary or secondary residence. Rental properties (including recovery of unpaid rents) as an option;\n\nin case of disputes concerning their health;\n\nfor their vehicle(s) (Option);\n\n<br> <br> <strong>Coverage applies to both extracontractual and contractual disputes.</strong><br> SOME EXAMPLES: <br> After surgery, complications arise…\nThe dream vacation apartment… is in the middle of a construction site.\n\nYour client is subject to wrongful termination.\n\nThe mechanic forgets to refill the oil in the vehicle’s engine.\n\nA tenant of your client damages the property or hasn't paid rent for three months.\n\n<br><br> <strong>If you strictly follow our procedure and take no initiative without prior consultation with us:</strong><br> NO DEDUCTIBLE,\n\nNO WAITING PERIOD OR QUALIFYING PERIOD!\n\nOur base premium: €131.96 (adjusted with the \"Abex\" index).\n\n</p>"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            IsChecked = true,
-                            Text = "Chief Executive Officer"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            IsChecked = true,
-                            Text = "President"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            IsChecked = true,
-                            Text = "Product Underwriter"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            IsChecked = true,
-                            Text = "Junior Underwriter"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            IsChecked = true,
-                            Text = "Insurance Advisor"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            IsChecked = true,
-                            Text = "Maestria 2010"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            IsChecked = true,
-                            Text = "Interim 2010"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            IsChecked = true,
-                            Text = "Interim 2011"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            IsChecked = true,
-                            Text = "Interim 2012"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            IsChecked = true,
-                            Text = "Interim 2013"
-                        },
-                        new
-                        {
-                            Id = 12,
-                            IsChecked = true,
-                            Text = "Information"
-                        },
-                        new
-                        {
-                            Id = 13,
-                            IsChecked = true,
-                            Text = "You would like information regarding the products."
-                        },
-                        new
-                        {
-                            Id = 14,
-                            IsChecked = true,
-                            Text = "Claims"
-                        },
-                        new
-                        {
-                            Id = 15,
-                            IsChecked = true,
-                            Text = "You would like to report a claim."
-                        },
-                        new
-                        {
-                            Id = 16,
-                            IsChecked = true,
-                            Text = "Others"
-                        },
-                        new
-                        {
-                            Id = 17,
-                            IsChecked = true,
-                            Text = "You would like to make a specific request."
-                        },
-                        new
-                        {
-                            Id = 18,
-                            IsChecked = true,
-                            Text = "Adress"
-                        },
-                        new
-                        {
-                            Id = 19,
-                            IsChecked = true,
-                            Text = "68 route de Luxembourg, L-4972 Dippach, Luxembourg"
-                        },
-                        new
-                        {
-                            Id = 20,
-                            IsChecked = true,
-                            Text = "BE"
-                        },
-                        new
-                        {
-                            Id = 21,
-                            IsChecked = true,
-                            Text = "+32-4 259 76 72"
-                        },
-                        new
-                        {
-                            Id = 22,
-                            IsChecked = true,
-                            Text = "LUX"
-                        },
-                        new
-                        {
-                            Id = 23,
-                            IsChecked = true,
-                            Text = "+352-26 31 06 11-1"
-                        },
-                        new
-                        {
-                            Id = 24,
-                            IsChecked = true,
-                            Text = "Email"
-                        },
-                        new
-                        {
-                            Id = 25,
-                            IsChecked = true,
-                            Text = "info@ibseurope.com"
-                        },
-                        new
-                        {
-                            Id = 26,
-                            IsChecked = true,
-                            Text = "Schedule"
-                        },
-                        new
-                        {
-                            Id = 27,
-                            IsChecked = true,
-                            Text = "Monday - Friday: 9 AM - 6 PM"
-                        },
-                        new
-                        {
-                            Id = 28,
-                            IsChecked = true,
-                            Text = "Test"
-                        });
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -794,17 +286,17 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RoleId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -816,54 +308,54 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Email")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetime(6)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("NormalizedUserName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PasswordHash")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("tinyint(1)");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("UserName")
                         .HasMaxLength(256)
-                        .HasColumnType("varchar(256)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -881,17 +373,17 @@ namespace IBS_Europe.Infrastructures.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("INTEGER");
 
                     b.Property<string>("ClaimType")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ClaimValue")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("Id");
 
@@ -903,17 +395,17 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderKey")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("ProviderDisplayName")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("LoginProvider", "ProviderKey");
 
@@ -925,10 +417,10 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("RoleId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "RoleId");
 
@@ -940,16 +432,16 @@ namespace IBS_Europe.Infrastructures.Migrations
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
                     b.Property<string>("UserId")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("LoginProvider")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Name")
-                        .HasColumnType("varchar(255)");
+                        .HasColumnType("TEXT");
 
                     b.Property<string>("Value")
-                        .HasColumnType("longtext");
+                        .HasColumnType("TEXT");
 
                     b.HasKey("UserId", "LoginProvider", "Name");
 

@@ -33,7 +33,15 @@
 
                 <div class="modal-footer">
                     <button type="submit" name="action" value="cancel" class="btn btn-secondary" data-bs-dismiss="modal">@SharedResource.MA_Cancel</button>
-                    <button type="submit" name="action" class="btn btn-primary">@SharedResource.MA_Add</button>
+                     @if ( Model.Title == SharedResource.MEI_AddE )
+                      {
+                          <button type="submit" name="action" class="btn btn-primary">@SharedResource.MA_Add</button>
+                      }
+                      else
+                      {
+                          <button type="submit" name="action" class="btn btn-primary">@SharedResource.MA_Edit</button>
+                      }
+                     
                 </div>
             </div>
              </form>

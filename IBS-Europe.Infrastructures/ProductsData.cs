@@ -129,9 +129,9 @@ public class ProductsData : IProductsData
             Translator translator = item.FirstTranslator;
             Translator translator2 = item.SecondTranslator;
             translator.Text = traduction;
-            translator.IsChecked = false;
+            translator.IsChecked = product.Description == string.Empty ? true : false;
             translator2.Text = traduction2;
-            translator2.IsChecked = false;
+            translator2.IsChecked = product.SmallDescription == string.Empty ? true : false;
             item.Name = product.Name;
             item.Text = product.Description;
             item.SmallDescription = product.SmallDescription;
@@ -148,12 +148,12 @@ public class ProductsData : IProductsData
         Translator translator = new Translator
         {
             Text = traduction,
-            IsChecked = false
+            IsChecked = product.Description == string.Empty ? true : false
         };
         Translator translator2 = new Translator
         {
             Text = traduction2,
-            IsChecked = false
+            IsChecked = product.SmallDescription == string.Empty ? true : false
         };
         var priority = await _context.Products.MaxAsync(p => (int?)p.Priority) ?? 0;
         var addedProduct = _context.Products.Add(new Products
@@ -171,9 +171,10 @@ public class ProductsData : IProductsData
         return addedProduct.Entity.Name;
     }
     
-    public async Task DeleteProduct(string name)
+    public async Task<string> DeleteProduct(string name)
     {
         var item = await _context.Products.Include(p => p.FirstTranslator).Include(p=> p.SecondTranslator).FirstOrDefaultAsync(p => p.Name == name);
+        var path = item.Path;
         var priority = item.Priority;
         var translations = item.FirstTranslator;
         var translation2 = item.SecondTranslator;
@@ -189,6 +190,8 @@ public class ProductsData : IProductsData
         }
 
         await _context.SaveChangesAsync();
+        
+        return path.Contains("Products") ? path : "";
     }
     
     public async Task<Dictionary<string,string>> GetProductsList()

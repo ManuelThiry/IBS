@@ -5,7 +5,7 @@ public interface IBrokerData
     public Task<List<Broker>> GetBrokers(int category, string culture);
     public Task<List<Broker>> GetGeneralBrokers(string culture);
     
-    public Task DeleteBroker(int id);
+    public Task<string> DeleteBroker(int id);
     
     public Task<bool> BrokerExists(int id, string name, int category);
     

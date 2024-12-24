@@ -42,7 +42,7 @@ namespace IBS_Europe.App.Pages
             return RedirectToPage();
         }
         
-        public IActionResult OnPostDelete(int brokerId)
+        public async Task<IActionResult> OnPostDelete(int brokerId)
         {
             if (!User.Identity.IsAuthenticated)
             {
@@ -55,7 +55,15 @@ namespace IBS_Europe.App.Pages
             {
                 return RedirectToPage();
             }
-            _data.DeleteBroker(brokerId);
+            var path = await _data.DeleteBroker(brokerId);
+            var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+            var filePath = Path.Combine(uploadPath, path.TrimStart('/'));  // Retirer le / initial
+
+            if (System.IO.File.Exists(filePath))
+            {
+                System.IO.File.Delete(filePath);
+            }
+
             return RedirectToPage();
         }
 

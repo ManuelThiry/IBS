@@ -16,7 +16,7 @@ public interface IProductsData
     
     public Task<string> AddProduct(Product product);
     
-    public Task DeleteProduct(string name);
+    public Task<string> DeleteProduct(string name);
     
     public Task SwitchPriority(int priority, string direction);
     

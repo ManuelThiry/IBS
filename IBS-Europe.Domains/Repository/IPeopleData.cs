@@ -8,7 +8,7 @@ public interface IPeopleData
     
     public Task AddPeople(People people);
     
-    public Task DeletePeople(int id);
+    public Task<string> DeletePeople(int id);
     
     public Task SwitchPriority(int id, string direction);
     

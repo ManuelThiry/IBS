@@ -276,7 +276,7 @@ public class AboutUsTeam : PageModel
         return Page();
     }
     
-    public IActionResult OnPostDelete(int id)
+    public async Task<IActionResult> OnPostDelete(int id)
     {
         if (!User.Identity.IsAuthenticated)
         {
@@ -290,7 +290,16 @@ public class AboutUsTeam : PageModel
             return RedirectToPage();
         }
         
-        _data.DeletePeople(id);
+        var path = await _data.DeletePeople(id);
+        
+        var uploadPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot");
+        var filePath = Path.Combine(uploadPath, path.TrimStart('/')); 
+
+        if (System.IO.File.Exists(filePath))
+        {
+            System.IO.File.Delete(filePath);
+        }
+
         return RedirectToPage();
     }
     
