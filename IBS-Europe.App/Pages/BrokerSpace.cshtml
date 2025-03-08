@@ -36,6 +36,17 @@
             background-color: #007bff;
             font-size: 0.8rem;
         }
+        
+        .catalog:hover {
+            border-color: #FFD992;
+            background-color: #157347 !important;
+        }
+
+        
+        .catalog {
+        border-color: #FFD992 ;
+        }
+
     </style>
 
 <div class="container mt-4">
@@ -136,7 +147,12 @@
     <section class="highlight-section rounded-2">
         <div class="d-flex justify-content-between align-items-center">
             <h2>@SharedResource.B_OtherD</h2>
+            <a asp-page="/Catalog" class="btn btn-success catalog text-white">
+                @SharedResource.Cat_Title
+            </a>
             <div>
+                
+
                 <form method="post">
                     @foreach (var category in Enum.GetValues(typeof(IBS_Europe.Domains.Category)))
                     {

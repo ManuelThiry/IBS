@@ -178,9 +178,23 @@ public class ProductsData : IProductsData
         var priority = item.Priority;
         var translations = item.FirstTranslator;
         var translation2 = item.SecondTranslator;
+        
+        var brokers = await _context.Brokers.Where(b => b.Products.Id == item.Id).ToListAsync();
+        if ( brokers != null)
+        {
+            foreach (var broker in brokers)
+            {
+                broker.Products = null;
+            }
+        }
+        {
+            
+        }
         _context.Products.Remove(item);
         _context.Translator.Remove(translations);
         _context.Translator.Remove(translation2);
+        
+        
         
         var itemsAbove = await _context.Products.Where(p=> p.Priority > priority).ToListAsync();
 

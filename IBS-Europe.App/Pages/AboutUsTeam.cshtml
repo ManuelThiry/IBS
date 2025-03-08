@@ -13,6 +13,10 @@
     .img {
         height: 19em;
     }
+    
+    .card-text {
+    min-height: 1.5em;
+    }
 </style>
 
 <div class="container" style="margin-bottom: 2em;">
@@ -61,22 +65,31 @@
                 <div class="card-body text-center">
                     <h5 class="card-title">@person.LastName</h5>
                     <h5 class="card-title">@person.FirstName</h5>
-                    <p class="card-text">
+                    <p class="card-text" style="font-size: 0.750em;">
                         <i class="fas fa-user fs-6 text-primary align-middle me-2"></i>
                         @person.Role
                     </p>
-                    <p class="card-text">
-                        <i class="fas fa-envelope fs-6 text-primary align-middle me-2"></i>
-                        <a class="text-decoration-none" href="mailto:@person.Email">@person.Email</a>
+                    <p class="card-text" style="font-size: 0.750em;">
+                        @if (person.Email.Trim() != "")
+                        {
+                            <i class="fas fa-envelope fs-6 text-primary align-middle me-2"></i>
+                            <a class="text-decoration-none" href="mailto:@person.Email">@person.Email</a>
+                        }
                     </p>
                     
-                    <p class="card-text">
-                        <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
-                        <a class="text-decoration-none" href="tel:@person.Phone">@person.Phone</a>
+                    <p class="card-text" style="font-size: 0.750em;">
+                         @if (person.Phone.Trim() != "")
+                         {
+                             <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
+                             <a class="text-decoration-none" href="tel:@person.Phone">@person.Phone</a>
+                         }
                     </p>
-                    <p class="card-text">
-                        <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
-                        <a class="text-decoration-none" href="tel:@person.SecondPhone">@person.SecondPhone</a>
+                    <p class="card-text" style="font-size: 0.750em;">
+                         @if (person.SecondPhone.Trim() != "")
+                         {
+                             <i class="fas fa-phone fs-6 text-primary align-middle me-2"></i>
+                             <a class="text-decoration-none" href="tel:@person.SecondPhone">@person.SecondPhone</a>
+                         }
                     </p>
                   
 

@@ -343,7 +343,7 @@ public class AboutUsTeam : PageModel
         public string Lastname { get; set; }
         
         [Required(ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_RR")]
-        [StringLength(25, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_R20")]
+        [StringLength(40, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_R20")]
         public string Role { get; set; }
         
         [MaxLength(20, ErrorMessageResourceType = typeof(SharedResource), ErrorMessageResourceName = "AT_Nu20")]
