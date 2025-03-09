@@ -145,36 +145,35 @@
 
 
     <section class="highlight-section rounded-2">
-        <div class="d-flex justify-content-between align-items-center">
-            <h2>@SharedResource.B_OtherD</h2>
-            <a asp-page="/Catalog" class="btn btn-success catalog text-white">
-                @SharedResource.Cat_Title
-            </a>
-            <div>
-                
+       <div class="d-flex flex-column flex-md-row justify-content-between align-items-center">
+           <h2>@SharedResource.B_OtherD</h2>
+           <a asp-page="/Catalog" class="btn btn-success catalog text-white">
+               @SharedResource.Cat_Title
+           </a>
+           <div>
+               <form method="post" class="d-flex flex-wrap justify-content-start">
+                   @foreach (var category in Enum.GetValues(typeof(IBS_Europe.Domains.Category)))
+                   {
+                       if (category.Equals(IBS_Europe.Domains.Category.Généralistes))
+                       {
+                           continue;
+                       }
+                       var integer = (int)category;
+                       <button type="submit" name="selectedCategory" value="@integer" class="btn @(@Model.SelectedCategory == integer ? "btn bg-secondary text-white" : "btn bg-midnight text-white") m-1" style="min-width: 8em;">
+                           @if (category.Equals(Category.Particuliers))
+                           {
+                               @SharedResource.B_Individuals
+                           }
+                           else
+                           {
+                               @SharedResource.B_Professionals
+                           }
+                       </button>
+                   }
+               </form>
+           </div>
+       </div>
 
-                <form method="post">
-                    @foreach (var category in Enum.GetValues(typeof(IBS_Europe.Domains.Category)))
-                    {
-                        if (category.Equals(IBS_Europe.Domains.Category.Généralistes))
-                        {
-                            continue;
-                        }
-                        var integer = (int)category;
-                        <button type="submit" name="selectedCategory" value="@integer" class="btn @(@Model.SelectedCategory == integer ? "btn bg-secondary text-white" : "btn bg-midnight text-white") m-1" style="min-width: 8em;">
-                            @if (category.Equals(Category.Particuliers))
-                            {
-                                @SharedResource.B_Individuals
-                            }
-                            else
-                            {
-                                @SharedResource.B_Professionals
-                            }
-                        </button>
-                    }
-                </form>
-            </div>
-        </div>
 
         <div class="list-group document-list mt-3">
             @foreach (var broker in Model.BrokersLists)
