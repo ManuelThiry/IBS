@@ -58,27 +58,38 @@
 @if (User.Identity.IsAuthenticated)
 {
     <script>
-fetch('/tinymce-script.js')
-    .then(response => response.json())
-    .then(config => {
-        if (!config.scriptUrl) {
-            throw new Error('Script URL is missing in the response');
-        }
-        const script = document.createElement('script');
-        script.src = config.scriptUrl; // Correctement défini ici
-        script.onload = () => {
-            // Assurez-vous que TinyMCE est initialisé après le chargement du script
-            tinymce.init(config.options); 
-        };
-        script.onerror = (error) => {
-            console.error('Erreur de chargement du script TinyMCE :', error);
-        };
-        document.head.appendChild(script);
-    })
-    .catch(error => console.error('Erreur lors de la configuration de TinyMCE :', error));
+    document.addEventListener("DOMContentLoaded", function() {
+        // Assurez-vous d'initialiser TinyMCE
+        fetch('/tinymce-script.js')
+            .then(response => response.json())
+            .then(config => {
+                if (!config.scriptUrl) {
+                    throw new Error('Script URL is missing in the response');
+                }
+                const script = document.createElement('script');
+                script.src = config.scriptUrl;
+                script.onload = () => {
+                    tinymce.init(config.options);
+                };
+                script.onerror = (error) => {
+                    console.error('Erreur de chargement du script TinyMCE :', error);
+                };
+                document.head.appendChild(script);
+            })
+            .catch(error => console.error('Erreur lors de la configuration de TinyMCE :', error));
 
-
+        // Synchroniser TinyMCE avec le formulaire avant la soumission
+        document.querySelector('form').addEventListener('submit', function(event) {
+            // Ajouter un délai pour s'assurer que TinyMCE est chargé avant la soumission
+            setTimeout(function() {
+                const tinyMceContentProductDescription = tinymce.get('ProductDescription').getContent();
+                document.getElementById('ProductDescription').value = tinyMceContentProductDescription;
+            }, 100); // Attendre 100ms
+        });
+    });
 </script>
+
+
 
 
 }
