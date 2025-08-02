@@ -42,7 +42,7 @@
                             }
         @foreach (var person in Model.PeopleList)
         {
-            <div class="card h-100 flex-item m-3" style="width: 18em;">
+            <div class="card h-100 flex-item m-3" style="width: 21em;">
                 @if (User.Identity.IsAuthenticated && Thread.CurrentThread.CurrentCulture.Name == "fr-FR")
                 {
                     <form method="post" enctype="multipart/form-data" asp-page-handler="SwitchImage" id="form-@person.Id">

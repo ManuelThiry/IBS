@@ -1,0 +1,14 @@
+﻿@page
+@using IBS_Europe.App.Resources
+@model IBS_Europe.App.Pages.Complaints
+
+@{
+    ViewData["Title"] = SharedResource.Claims_Title;
+}
+
+<section class="p-5" style="width: 100%;">
+    <div class=" container ms-2">
+        @Html.Raw(SharedResource.Claims_Text)
+    </div>
+
+</section>

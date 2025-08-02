@@ -645,4 +645,10 @@
     <data name="SD-Back" xml:space="preserve">
         <value />
     </data>
+    <data name="Claims-Title" xml:space="preserve">
+        <value />
+    </data>
+    <data name="Claims-Text" xml:space="preserve">
+        <value />
+    </data>
 </root>

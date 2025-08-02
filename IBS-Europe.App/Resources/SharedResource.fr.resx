@@ -145,125 +145,176 @@
         <value>Mentions légales</value>
     </data>
     <data name="M-Text" xml:space="preserve">
-        <value>&lt;h2&gt;Editeur du site web&lt;/h2&gt;
-                &lt;p&gt;&lt;strong&gt;Manuel THIRY&lt;/strong&gt;
-            
-                &lt;p&gt;&lt;strong&gt;Tél.:&lt;/strong&gt; &lt;a href="tel:+32492802208"&gt;+32 492/80.22.08&lt;/a&gt;
-&lt;br&gt;
-                    &lt;strong&gt;Email:&lt;/strong&gt; &lt;a href="mailto:thiry.manuel@hotmail.com"&gt;thiry.manuel@hotmail.com&lt;/a&gt;&lt;/p&gt;
+        <value>&lt;h2&gt;Éditeur du site web&lt;/h2&gt;
 
-&lt;h2&gt; Mentions légales &lt;/h2&gt;
-            
-              &lt;h5&gt; 1. Informations légales &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Le présent site internet est édité par la société &lt;strong&gt; Insurance Broker's Solution Europe&lt;/strong&gt;, Société Anonyme, inscrite au registre de commerce et des sociétés (RCS) sous le numéro &lt;strong&gt; B108838&lt;/strong&gt;, ayant son siège social à &lt;a href="https://www.google.com/maps?q=Route+de+Luxembourg+68,+4972+Dippach,+Grand-Duché+du+Luxembourg" target="_blank"&gt;
-    Route de Luxembourg 68, 4972 Dippach, Grand-Duché du Luxembourg&lt;/a&gt;. &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;Manuel THIRY&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;
+    &lt;strong&gt;Tél.:&lt;/strong&gt; &lt;a href="tel:+32492802208"&gt;+32 492/80.22.08&lt;/a&gt;&lt;br&gt;
+    &lt;strong&gt;Email:&lt;/strong&gt; &lt;a href="mailto:thiry.manuel@hotmail.com"&gt;thiry.manuel@hotmail.com&lt;/a&gt;
+&lt;/p&gt;
 
-&lt;h5&gt; 2. Autorisation et régulation &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Insurance Broker's Solution Europe est un courtier en assurances agréé par le Commissariat aux Assurances (CAA) du Luxembourg sous le numéro d'affiliation &lt;strong&gt; 2005CM014&lt;/strong&gt;. &lt;/p&gt;
+&lt;h2&gt;Mentions légales&lt;/h2&gt;
 
-&lt;h5&gt;  3. Directeur de la publication  &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Le responsable de la publication du site web est &lt;/strong&gt; Gael de Miomandre &lt;/strong&gt;, en qualité de &lt;strong&gt; administrateur délégué &lt;/strong&gt; de la société &lt;strong&gt; Insurance Broker's Solution Europe&lt;/strong&gt;. &lt;/p&gt;
+&lt;h5&gt;1. Informations légales&lt;/h5&gt;
+&lt;p&gt;
+    Le présent site internet est édité par la société &lt;strong&gt;Insurance Broker's Solution Europe&lt;/strong&gt;, Société Anonyme, inscrite au registre de commerce et des sociétés (RCS) sous le numéro &lt;strong&gt;B108838&lt;/strong&gt;, ayant son siège social à 
+    &lt;a href="https://www.google.com/maps?q=Route+de+Luxembourg+68,+4972+Dippach,+Grand-Duché+du+Luxembourg" target="_blank" rel="noopener noreferrer"&gt;
+        Route de Luxembourg 68, 4972 Dippach, Grand-Duché du Luxembourg
+    &lt;/a&gt;.
+&lt;/p&gt;
 
-&lt;h5&gt; 4. Hébergeur du site &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Le site internet est hébergé par &lt;a href="https://www.ovhcloud.com/fr/" target="_blank"&gt; OVHcloud&lt;/a&gt;, dont le siège social est situé à &lt;a href="https://www.google.com/maps?q=2+rue+Kellermann,+59100+Roubaix,+France" target="_blank"&gt;
-    2 rue Kellermann - 59100 Roubaix - France&lt;/a&gt;, et contactable au &lt;a href="tel:+33972101007"&gt;+33 9 72 10 10 07&lt;/a&gt;. &lt;/p&gt;
+&lt;h5&gt;2. Autorisation et régulation&lt;/h5&gt;
+&lt;p&gt;
+    Insurance Broker's Solution Europe est un courtier en assurances agréé par le Commissariat aux Assurances (CAA) du Luxembourg sous le numéro d'affiliation &lt;strong&gt;2005CM014&lt;/strong&gt;.
+&lt;/p&gt;
 
-&lt;h5&gt; 5. Propriété intellectuelle &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; L'ensemble des contenus présents sur le site, incluant mais ne se limitant pas aux textes, graphiques, images, logos, icônes, vidéos, ainsi que leur agencement, sont la propriété exclusive de &lt;strong&gt; Insurance Broker's Solution Europe &lt;/strong&gt; ou de leurs auteurs respectifs, et sont protégés par les lois en vigueur sur la propriété intellectuelle. &lt;/p&gt;
+&lt;h5&gt;3. Directeur de la publication&lt;/h5&gt;
+&lt;p&gt;
+    Le responsable de la publication du site web est &lt;strong&gt;Gael de Miomandre&lt;/strong&gt;, en qualité d’&lt;strong&gt;administrateur délégué&lt;/strong&gt; de la société &lt;strong&gt;Insurance Broker's Solution Europe&lt;/strong&gt;.
+&lt;/p&gt;
 
-&lt;h5&gt;  6. Responsabilité &lt;/strong&gt; &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Le contenu du site est fourni à titre informatif. Les informations sur les produits d'assurance proposées sont détaillées pour vous permettre de vous informer. &lt;strong&gt; Insurance Broker's Solution Europe &lt;/strong&gt; ne garantit pas l'exactitude totale des informations et se décharge de toute responsabilité en cas d'erreur ou omission. Le site n'implique aucune souscription en ligne ou engagement contractuel de la part de l'utilisateur. &lt;/p&gt;
+&lt;h5&gt;4. Hébergeur du site&lt;/h5&gt;
+&lt;p&gt;
+    Le site internet est hébergé par 
+    &lt;a href="https://www.ovhcloud.com/fr/" target="_blank" rel="noopener noreferrer"&gt;OVHcloud&lt;/a&gt;, dont le siège social est situé à 
+    &lt;a href="https://www.google.com/maps?q=2+rue+Kellermann,+59100+Roubaix,+France" target="_blank" rel="noopener noreferrer"&gt;
+        2 rue Kellermann - 59100 Roubaix - France
+    &lt;/a&gt;, et contactable au &lt;a href="tel:+33972101007"&gt;+33 9 72 10 10 07&lt;/a&gt;.
+&lt;/p&gt;
 
-&lt;p&gt; Les documents disponibles à téléchargement, comme les questionnaires de souscription, sont à titre informatif et ne constituent pas une offre de contrat. Toute souscription ou demande d'assurance se fera après un échange direct avec nos conseillers. &lt;/p&gt;
+&lt;hr&gt;
 
-&lt;h5&gt; 7. Loi applicable et juridiction compétente &lt;/h5&gt;
+&lt;h5&gt;5. Propriété intellectuelle&lt;/h5&gt;
+&lt;p&gt;
+    L'ensemble des contenus présents sur le site, incluant mais ne se limitant pas aux textes, graphiques, images, logos, icônes, vidéos, ainsi que leur agencement, sont la propriété exclusive de &lt;strong&gt;Insurance Broker's Solution Europe&lt;/strong&gt; ou de leurs auteurs respectifs, et sont protégés par les lois en vigueur sur la propriété intellectuelle.
+&lt;/p&gt;
 
-&lt;p&gt; Les présentes mentions légales sont régies par le droit luxembourgeois. Tout litige en relation avec l'utilisation du site sera soumis à la compétence exclusive des tribunaux du Luxembourg. &lt;/p&gt;</value>
+&lt;hr&gt;
+
+&lt;h5&gt;6. Responsabilité&lt;/h5&gt;
+&lt;p&gt;
+    Le contenu du site est fourni à titre informatif. Les informations sur les produits d'assurance proposées sont détaillées pour vous permettre de vous informer. &lt;strong&gt;Insurance Broker's Solution Europe&lt;/strong&gt; ne garantit pas l'exactitude totale des informations et se décharge de toute responsabilité en cas d'erreur ou omission. Le site n'implique aucune souscription en ligne ou engagement contractuel de la part de l'utilisateur.
+&lt;/p&gt;
+&lt;p&gt;
+    Les documents disponibles à téléchargement, comme les questionnaires de souscription, sont à titre informatif et ne constituent pas une offre de contrat. Toute souscription ou demande d'assurance se fera après un échange direct avec nos conseillers.
+&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;7. Loi applicable et juridiction compétente&lt;/h5&gt;
+&lt;p&gt;
+    Les présentes mentions légales sont régies par le droit luxembourgeois. Tout litige en relation avec l'utilisation du site sera soumis à la compétence exclusive des tribunaux du Luxembourg.
+&lt;/p&gt;
+&lt;hr&gt;&lt;h5&gt;8. Utilisation des cookies&lt;/h5&gt;
+&lt;p&gt;
+    Ce site utilise uniquement des cookies strictement nécessaires à son bon fonctionnement (ex. gestion de session, sécurité). Aucune donnée personnelle n’est collectée ou transmise à des tiers. Aucun cookie publicitaire ou de suivi n’est utilisé.
+&lt;/p&gt;
+</value>
     </data>
     <data name="Po-Title" xml:space="preserve">
         <value>Politique de confidentialité</value>
     </data>
     <data name="Po-Text" xml:space="preserve">
-        <value>&lt;h2&gt; Politique de confidentialité &lt;/h2&gt;
+        <value>&lt;h2&gt;Politique de confidentialité&lt;/h2&gt;
 
-&lt;h5&gt; 1. Introduction &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; La protection de vos données personnelles est une priorité pour &lt;strong&gt; Insurance Broker's Solution Europe&lt;/strong&gt;. Cette politique de confidentialité vous informe sur la manière dont nous collectons, utilisons et protégeons vos données personnelles conformément aux exigences du &lt;strong&gt; Règlement Général sur la Protection des Données (RGPD) &lt;/strong&gt; et de la législation luxembourgeoise applicable. &lt;/p&gt;
+&lt;h5&gt;1. Introduction&lt;/h5&gt;
+&lt;p&gt;
+    La protection de vos données personnelles est une priorité pour &lt;strong&gt;Insurance Broker's Solution Europe&lt;/strong&gt;. Cette politique de confidentialité vous informe sur la manière dont nous collectons, utilisons et protégeons vos données personnelles conformément aux exigences du &lt;strong&gt;Règlement Général sur la Protection des Données (RGPD)&lt;/strong&gt; et de la législation luxembourgeoise applicable.
+&lt;/p&gt;
 
-&lt;h5&gt; 2. Responsable du traitement des données &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Le responsable du traitement des données personnelles collectées sur ce site est &lt;strong&gt; Insurance Broker's Solution Europe&lt;/strong&gt;, Société Anonyme, immatriculée sous le numéro &lt;strong&gt; B108838&lt;/strong&gt;, dont le siège social est situé à &lt;a href="https://www.google.com/maps?q=Route+de+Luxembourg+68,+4972+Dippach,+Grand-Duché+du+Luxembourg" target="_blank"&gt;
-    Route de Luxembourg 68, 4972 Dippach, Grand-Duché du Luxembourg&lt;/a&gt;. &lt;/p&gt; 
+&lt;h5&gt;2. Responsable du traitement des données&lt;/h5&gt;
+&lt;p&gt;
+    Le responsable du traitement des données personnelles collectées sur ce site est &lt;strong&gt;Insurance Broker's Solution Europe&lt;/strong&gt;, Société Anonyme, immatriculée sous le numéro &lt;strong&gt;B108838&lt;/strong&gt;, dont le siège social est situé à 
+    &lt;a href="https://www.google.com/maps?q=Route+de+Luxembourg+68,+4972+Dippach,+Grand-Duché+du+Luxembourg" target="_blank" rel="noopener noreferrer"&gt;
+        Route de Luxembourg 68, 4972 Dippach, Grand-Duché du Luxembourg
+    &lt;/a&gt;.
+&lt;/p&gt;
 
-&lt;h5&gt; 3. Types de données collectées &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Nous collectons uniquement les données personnelles que vous nous fournissez volontairement lorsque vous : &lt;/p&gt; 
-
+&lt;h5&gt;3. Types de données collectées&lt;/h5&gt;
+&lt;p&gt;Nous collectons uniquement les données personnelles que vous nous fournissez volontairement lorsque vous :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Remplissez un formulaire de contact avec vos coordonnées (nom, prénom, adresse e-mail, numéro de téléphone) et votre demande. &lt;/li&gt;
-&lt;li&gt;Téléchargez des documents ou questionnaires de souscription, bien que ces derniers ne constituent pas une souscription définitive.&lt;/li&gt;
+    &lt;li&gt;Remplissez un formulaire de contact avec vos coordonnées (nom, prénom, adresse e-mail, numéro de téléphone) et votre demande.&lt;/li&gt;
+    &lt;li&gt;Téléchargez des documents ou questionnaires de souscription, bien que ces derniers ne constituent pas une souscription définitive.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5&gt; 4. Finalités du traitement &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Les données personnelles collectées sont utilisées pour les finalités suivantes : &lt;/p&gt;
+&lt;h5&gt;4. Finalités du traitement&lt;/h5&gt;
+&lt;p&gt;Les données personnelles collectées sont utilisées pour les finalités suivantes :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Répondre à vos demandes de contact.&lt;/li&gt;
-&lt;li&gt;Vous fournir des informations sur les produits d'assurance que nous proposons. &lt;/li&gt;
-&lt;li&gt;Vous permettre de télécharger des questionnaires de souscription à des fins informatives.&lt;/li&gt;
-&lt;li&gt;Répondre à nos obligations juridiques, réglementaires, professionnelles et/ou contractuelles.&lt;/li&gt;
+    &lt;li&gt;Répondre à vos demandes de contact.&lt;/li&gt;
+    &lt;li&gt;Vous fournir des informations sur les produits d'assurance que nous proposons.&lt;/li&gt;
+    &lt;li&gt;Vous permettre de télécharger des questionnaires de souscription à des fins informatives.&lt;/li&gt;
+    &lt;li&gt;Répondre à nos obligations juridiques, réglementaires, professionnelles et/ou contractuelles.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5&gt; 5. Bases légales du traitement &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Le traitement de vos données repose sur les bases légales suivantes : &lt;/p&gt;
+&lt;h5&gt;5. Bases légales du traitement&lt;/h5&gt;
+&lt;p&gt;Le traitement de vos données repose sur les bases légales suivantes :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt; &lt;strong&gt; Consentement&lt;/strong&gt;: Nous obtenons votre consentement lorsque vous remplissez un formulaire de contact ou demandez des informations.&lt;/li&gt;
-&lt;li&gt; &lt;strong&gt;Exécution d'un contrat&lt;/strong&gt;: Le traitement des données peut être nécessaire pour répondre à une demande spécifique d'un utilisateur, bien qu'aucun contrat ne soit conclu via le site.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Obligation imposée par la Réglementation&lt;/strong&gt;: lorsque nous sommes tenus de traiter vos données à caractère personnel pour nous conformer à une obligation légale ou de communication d’informations à une autorité publique, une autorité fiscale, une autorité de contrôle ou une autorité judiciaire.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Intérêts légitimes&lt;/strong&gt;: nous traiterons vos données à caractère personnel s’il est dans notre intérêt légitime de le faire, afin de gérer au mieux les affaires de notre société conformément à la Réglementation, et dans la mesure où cet intérêt n’outrepasse pas vos propres intérêts.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Consentement&lt;/strong&gt; : Nous obtenons votre consentement lorsque vous remplissez un formulaire de contact ou demandez des informations.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Exécution d'un contrat&lt;/strong&gt; : Le traitement des données peut être nécessaire pour répondre à une demande spécifique d'un utilisateur, bien qu'aucun contrat ne soit conclu via le site.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Obligation imposée par la réglementation&lt;/strong&gt; : lorsque nous sommes tenus de traiter vos données à caractère personnel pour nous conformer à une obligation légale ou de communication d’informations à une autorité publique, une autorité fiscale, une autorité de contrôle ou une autorité judiciaire.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Intérêts légitimes&lt;/strong&gt; : nous traiterons vos données à caractère personnel s’il est dans notre intérêt légitime de le faire, afin de gérer au mieux les affaires de notre société conformément à la réglementation, et dans la mesure où cet intérêt n’outrepasse pas vos propres intérêts.&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h5&gt; 6. Partage des données &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Nous ne partageons vos données personnelles avec des tiers que dans les cas suivants : &lt;/p&gt;
+&lt;h5&gt;6. Partage des données&lt;/h5&gt;
+&lt;p&gt;Nous ne partageons vos données personnelles avec des tiers que dans les cas suivants :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;Avec des prestataires de services de confiance qui nous aident dans la gestion des demandes de contact (par exemple, prestataires de services d'emailing).&lt;/li&gt;
-&lt;li&gt;Si cela est nécessaire pour se conformer à une obligation légale.&lt;/li&gt;
+    &lt;li&gt;Avec des prestataires de services de confiance qui nous aident dans la gestion des demandes de contact (par exemple, prestataires de services d'emailing).&lt;/li&gt;
+    &lt;li&gt;Si cela est nécessaire pour se conformer à une obligation légale.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;Vos données ne seront ni vendues, ni échangées à des fins commerciales.&lt;/p&gt;
 
-&lt;h5&gt; 7. Durée de conservation des données &lt;/h5&gt;
+&lt;hr&gt;
 
+&lt;h5&gt;7. Durée de conservation des données&lt;/h5&gt;
 &lt;p&gt;Nous conservons vos données personnelles uniquement pendant la durée nécessaire pour répondre à votre demande, ou pour satisfaire à des obligations légales, puis elles sont supprimées de manière sécurisée.&lt;/p&gt;
 
-&lt;h5&gt; 8. Vos droits &lt;/h5&gt;
+&lt;hr&gt;
 
-&lt;p&gt; Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles : &lt;/p&gt;
+&lt;h5&gt;8. Vos droits&lt;/h5&gt;
+&lt;p&gt;Conformément au RGPD, vous disposez des droits suivants concernant vos données personnelles :&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;Droit d'accès&lt;/strong&gt;: Vous pouvez demander une copie des données que nous détenons à votre sujet.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit de rectification&lt;/strong&gt;: Vous pouvez demander la correction de données incorrectes ou incomplètes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit à l'effacement&lt;/strong&gt;: Vous pouvez demander l'effacement de vos données personnelles, sous réserve de certaines conditions.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit à la limitation du traitement&lt;/strong&gt;: Vous pouvez demander la limitation du traitement de vos données dans certaines situations.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit à la portabilité&lt;/strong&gt;: Vous pouvez demander la transmission de vos données à un autre prestataire.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit d'opposition&lt;/strong&gt;: Vous pouvez vous opposer au traitement de vos données, pour des raisons légitimes.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit d’information&lt;/strong&gt;: Vous pouvez demander à obtenir la confirmation que des données à caractère personnel vous concernant sont ou ne sont pas traitées.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit d’introduire une réclamation&lt;/strong&gt;: Vous pouvez introduire une réclamation auprès l’autorité de contrôle en charge de la protection des données à caractère personnel.&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;Droit de retirer votre consentement&lt;/strong&gt;: si vous avez donné votre consentement pour le traitement de vos données à caractère personnel, vous pouvez retirer ce consentement à tout moment, sans que cela porte atteinte au traitement effectué sur base de votre consentement avant le retrait de celui‐ci.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit d'accès&lt;/strong&gt; : Vous pouvez demander une copie des données que nous détenons à votre sujet.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit de rectification&lt;/strong&gt; : Vous pouvez demander la correction de données incorrectes ou incomplètes.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit à l'effacement&lt;/strong&gt; : Vous pouvez demander l'effacement de vos données personnelles, sous réserve de certaines conditions.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit à la limitation du traitement&lt;/strong&gt; : Vous pouvez demander la limitation du traitement de vos données dans certaines situations.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit à la portabilité&lt;/strong&gt; : Vous pouvez demander la transmission de vos données à un autre prestataire.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit d'opposition&lt;/strong&gt; : Vous pouvez vous opposer au traitement de vos données, pour des raisons légitimes.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit d’information&lt;/strong&gt; : Vous pouvez demander à obtenir la confirmation que des données à caractère personnel vous concernant sont ou ne sont pas traitées.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit d’introduire une réclamation&lt;/strong&gt; : Vous pouvez introduire une réclamation auprès de l’autorité de contrôle en charge de la protection des données à caractère personnel.&lt;/li&gt;
+    &lt;li&gt;&lt;strong&gt;Droit de retirer votre consentement&lt;/strong&gt; : si vous avez donné votre consentement pour le traitement de vos données à caractère personnel, vous pouvez retirer ce consentement à tout moment, sans que cela porte atteinte au traitement effectué sur base de votre consentement avant le retrait de celui‐ci.&lt;/li&gt;
 &lt;/ul&gt;
+&lt;p&gt;Pour exercer ces droits, vous pouvez nous contacter par e-mail à l'adresse &lt;a href="mailto:info@ibseurope.com"&gt;info@ibseurope.com&lt;/a&gt; ou par courrier à notre adresse mentionnée ci-dessus.&lt;/p&gt;
 
-&lt;p&gt;Pour exercer ces droits, vous pouvez nous contacter par e-mail à l'adresse &lt;a href="mailto:info@ibseurope.com"&gt;info@ibseurope.com&lt;/a&gt;
-  ou par courrier à notre adresse mentionnée ci-dessus.&lt;/p&gt;
+&lt;hr&gt;
 
-&lt;h5&gt; 9. Sécurité des données &lt;/h5&gt;
-&lt;p&gt; Nous mettons en place des mesures techniques et organisationnelles pour protéger vos données personnelles contre tout accès non autorisé, toute divulgation, altération ou destruction. &lt;/p&gt;
-
+&lt;h5&gt;9. Sécurité des données&lt;/h5&gt;
+&lt;p&gt;
+    Nous mettons en place des mesures techniques et organisationnelles pour protéger vos données personnelles contre tout accès non autorisé, toute divulgation, altération ou destruction.
+&lt;/p&gt;
 </value>
     </data>
     <data name="C-Title" xml:space="preserve">
@@ -534,7 +585,7 @@
         <value>Le nom ne peut pas dépasser 20 caractères.</value>
     </data>
     <data name="AT-R20" xml:space="preserve">
-        <value>Le rôle ne peut pas dépasser 40 caractères.</value>
+        <value>Le rôle ne peut pas dépasser 50 caractères.</value>
     </data>
     <data name="AT-RR" xml:space="preserve">
         <value>Le rôle est requis.</value>
@@ -768,16 +819,16 @@
         <value>Rechercher un téléchargement</value>
     </data>
     <data name="Cat-Title" xml:space="preserve">
-        <value>Catalogue</value>
+        <value>Conditions générales</value>
     </data>
     <data name="MAP-Phone2" xml:space="preserve">
         <value>2e Téléphone</value>
     </data>
     <data name="Pa-Individuals" xml:space="preserve">
-        <value>Particuliers</value>
+        <value>Courtiers</value>
     </data>
     <data name="Pa-Proffesionnals" xml:space="preserve">
-        <value>Entreprises</value>
+        <value>Compagnies</value>
     </data>
     <data name="B-LinkProduct" xml:space="preserve">
         <value>Produit associé à ce document</value>
@@ -796,5 +847,66 @@
     </data>
     <data name="SD-Back" xml:space="preserve">
         <value>Retour</value>
+    </data>
+    <data name="Claims-Title" xml:space="preserve">
+        <value>Politique de réclamations</value>
+    </data>
+    <data name="Claims-Text" xml:space="preserve">
+        <value>&lt;h2&gt;Politique de gestion des réclamations&lt;/h2&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;Introduction&lt;/h5&gt;
+&lt;p&gt;Chez IBS Europe, la satisfaction de nos clients est une priorité. C’est pourquoi nous avons mis en place une procédure simple et transparente pour permettre à tout client de soumettre une réclamation et d’obtenir une réponse rapide et équitable.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;Qu’est-ce qu’une réclamation ?&lt;/h5&gt;
+&lt;p&gt;Une réclamation est l’expression d’un mécontentement formulé par un client à l’égard d’un professionnel de l’assurance, notamment concernant :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;la souscription, la gestion ou la résiliation d’un contrat,&lt;/li&gt;
+  &lt;li&gt;un service fourni,&lt;/li&gt;
+  &lt;li&gt;un conseil reçu.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Une demande d’information, de clarification ou de service n’est pas considérée comme une réclamation.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;Comment déposer une réclamation ?&lt;/h5&gt;
+&lt;p&gt;Vous pouvez adresser votre réclamation par l’un des moyens suivants :&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;Par email : &lt;a href="mailto:info@ibseurope.com"&gt;info@ibseurope.com&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;Par courrier postal :&lt;br&gt;
+    IBS Europe&lt;br&gt;
+    Route de Luxembourg 68&lt;br&gt;
+    4972 Dippach, Luxembourg
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;Délais de traitement&lt;/h5&gt;
+&lt;ul&gt;
+  &lt;li&gt;Nous accusons réception de votre réclamation dans un délai de 10 jours ouvrables à compter de sa réception.&lt;/li&gt;
+  &lt;li&gt;Une réponse motivée vous sera transmise au plus tard dans un délai de 30 jours ouvrables.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Si nous ne sommes pas en mesure de répondre dans ce délai, nous vous informerons des raisons du retard et du délai estimé de réponse.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;Traitement des données personnelles&lt;/h5&gt;
+&lt;p&gt;Les données collectées dans le cadre de votre réclamation sont traitées conformément à notre Politique de confidentialité, dans le respect du Règlement Général sur la Protection des Données (RGPD). Elles sont conservées uniquement le temps nécessaire au traitement de la réclamation et pour répondre à nos obligations légales.&lt;/p&gt;
+
+&lt;hr&gt;
+
+&lt;h5&gt;En cas de désaccord persistant&lt;/h5&gt;
+&lt;p&gt;Si, malgré nos efforts, la réponse apportée ne vous satisfait pas, vous pouvez vous adresser gratuitement à l’autorité de régulation :&lt;/p&gt;
+&lt;p&gt;
+  &lt;strong&gt;Commissariat aux Assurances (CAA)&lt;/strong&gt;&lt;br&gt;
+  Service Réclamations&lt;br&gt;
+  11, rue Robert Stümper, L-2557 Luxembourg&lt;br&gt;
+  &lt;a href="mailto:reclamation@caa.lu"&gt;reclamation@caa.lu&lt;/a&gt;&lt;br&gt;
+  &lt;a href="https://www.caa.lu" target="_blank" rel="noopener noreferrer"&gt;www.caa.lu&lt;/a&gt;
+&lt;/p&gt;</value>
     </data>
 </root>

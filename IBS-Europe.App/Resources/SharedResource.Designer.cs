@@ -494,6 +494,24 @@ namespace IBS_Europe.App.Resources {
         /// <summary>
         ///   Looks up a localized string similar to .
         /// </summary>
+        internal static string Claims_Text {
+            get {
+                return ResourceManager.GetString("Claims-Text", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
+        internal static string Claims_Title {
+            get {
+                return ResourceManager.GetString("Claims-Title", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to .
+        /// </summary>
         internal static string Co_Add {
             get {
                 return ResourceManager.GetString("Co-Add", resourceCulture);

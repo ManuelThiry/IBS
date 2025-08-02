@@ -58,7 +58,12 @@
                     <li class="nav-item">
                         <a class="nav-link" href="https://mybroker.be/" target="_blank"> <img class="rounded-2" src="images/image%20(1).png" alt="Broker" style="width: 5em;"></a>
                     </li>
-                    
+                    <li class="nav-item" style=" margin-top: 0.4em;">
+                        <a asp-page="/Catalog" class="btn btn-primary" style="height: 1.6em; display: flex; justify-content: center; align-items: center; margin-top: 0.1em;">
+                            @SharedResource.Cat_Title
+                        </a>
+                    </li>
+
                 </ul>
 
                 <!-- Sélecteur de langue -->
@@ -122,6 +127,7 @@
    <div class="d-flex flex-column flex-md-row align-items-center justify-content-center">
        <a asp-page="/Contact" class="color-midnight mx-2 text-decoration-none hover">@SharedResource.L_Contact</a>
        <a asp-page="/Mentions" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Mentions" ? "bleu-pastel" : "color-midnight hover")">@SharedResource.L_Legal</a>
+       <a asp-page="/Complaints" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Complaints" ? "bleu-pastel" : "color-midnight hover")">@SharedResource.Claims_Title</a>
        <a asp-page="/Politic" class="mx-2 text-decoration-none  @(ViewContext.ActionDescriptor.DisplayName == "/Politic" ? "bleu-pastel" : "color-midnight hover")">@SharedResource.L_Privacy</a>
    </div>
 
